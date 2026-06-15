@@ -1,0 +1,78 @@
+site_name: 統計学Ⅰ
+site_description: 北星学園大学「統計学Ⅰ（B）」2026年度 後期 授業資料
+site_author: 小野原 彩香
+# GitHub Pages 公開時のURL（aonoa68.github.io/toukei-1/ を想定）
+site_url: https://aonoa68.github.io/toukei-1/
+
+theme:
+  name: material
+  language: ja
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: teal
+      accent: teal
+      toggle:
+        icon: material/weather-night
+        name: ダークモードに切り替え
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: teal
+      accent: teal
+      toggle:
+        icon: material/weather-sunny
+        name: ライトモードに切り替え
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.top
+    - navigation.footer
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - toc.follow
+  icon:
+    repo: fontawesome/brands/github
+
+plugins:
+  - search:
+      lang:
+        - ja
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.arithmatex:      # 数式（$$ ... $$ / \( ... \)）
+      generic: true
+  - tables
+  - attr_list
+  - md_in_html
+  - toc:
+      permalink: true
+
+# 数式レンダリング（MathJax）
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
+
+nav:
+  - ホーム: index.md
+  - 第01回 直感の敗北: 01_guidance.md
+  - 第02回 代表値の嘘: 02_representative_values.md
+  - 第03回 ばらつき: 03_variability.md
+  - 第04回 Python入門: 04_python_intro.md
+  - 第05回 相関と因果: 05_correlation.md
+  - 第06回 標本とCLT: 06_sampling_clt.md
+  - 第07回 推定と信頼区間: 07_estimation.md
+  - 第08回 仮説検定とt検定: 08_ttest.md
+  - 第09回 分散分析ANOVA: 09_anova.md
+  - 第10回 回帰分析: 10_regression.md
+  - 第11回 モデル選択とAIC: 11_aic.md
+  - 第12回 ベイズ統計の入り口: 12_bayes.md
+  - 第13回 多変量解析PCA: 13_pca.md
+  - 第14回 総括: 14_synthesis.md
