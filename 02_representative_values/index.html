@@ -379,7 +379,7 @@
   <a href="#2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. 平均は、一部の大金持ちに吊り上げられる
+        2. 平均は、一部の巨体に吊り上げられる
       
     </span>
   </a>
@@ -820,7 +820,7 @@
   <a href="#2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. 平均は、一部の大金持ちに吊り上げられる
+        2. 平均は、一部の巨体に吊り上げられる
       
     </span>
   </a>
@@ -937,8 +937,8 @@
 </table>
 <p>どれも「代表値」だが、<strong>別物</strong>だ。そして――どれを選ぶかで、データの語る物語が変わる。</p>
 <hr />
-<h2 id="2">2. 平均は、一部の大金持ちに吊り上げられる<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
-<p>北辰大学の学生400人の世帯年収を見る（Colab <code>02_representative_values.ipynb</code>）。</p>
+<h2 id="2">2. 平均は、一部の巨体に吊り上げられる<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
+<p>霊長類265種の体重を見る（Colab <code>02_representative_values.ipynb</code>）。</p>
 <table>
 <thead>
 <tr>
@@ -949,66 +949,80 @@
 <tbody>
 <tr>
 <td>平均値</td>
-<td>約 <strong>670万円</strong></td>
+<td><strong>5,881 g</strong>（約5.9kg）</td>
 </tr>
 <tr>
 <td>中央値</td>
-<td>約 <strong>578万円</strong></td>
+<td><strong>3,006 g</strong>（約3.0kg）</td>
 </tr>
 <tr>
 <td>最大値</td>
-<td>12,000万円（この1人が平均を押し上げる）</td>
+<td>149,325 g（ヒガシゴリラ。この1種が平均を押し上げる）</td>
+</tr>
+<tr>
+<td>最小値</td>
+<td>31 g（ネズミキツネザル）</td>
 </tr>
 </tbody>
 </table>
-<p>平均と中央値が<strong>約100万円</strong>もズレる。「平均年収670万」と聞くと豊かに見えるが、<strong>実際の“真ん中の人”は578万</strong>。</p>
+<p><strong>平均は中央値のほぼ2倍。</strong> 最大と最小の差は<strong>4,800倍</strong>ある。</p>
 <div class="admonition note">
 <p class="admonition-title">なぜズレるのか</p>
-<p>年収の分布は<strong>右に長い裾を引く</strong>（少数の超富裕層が右端にいる）。平均はすべての値を足し込むので、極端に大きい値に<strong>引っ張られる</strong>。中央値は「順位」だけを見るので、右端が何億円だろうと真ん中は動かない。</p>
+<p>体重の分布は<strong>右に長い裾を引く</strong>（少数の大型類人猿が右端にいる）。平均はすべての値を足し込むので、極端に大きい値に<strong>引っ張られる</strong>。中央値は「順位」だけを見るので、右端が何kgだろうと真ん中は動かない。</p>
 </div>
-<p>これは年収だけの話ではない。<strong>地価・SNSのフォロワー数・資産・再生回数</strong>――右に裾を引くデータは世の中にあふれている。これらを「平均」で語るのは、たいてい誇張になる。</p>
+<p>これは体重だけの話ではない。<strong>年収・地価・SNSのフォロワー数・都市の人口</strong>――右に裾を引くデータは世の中にあふれている。これらを「平均」で語るのは、たいてい誇張になる。</p>
+<div class="admonition danger">
+<p class="admonition-title">さらに厄介なこと ―― この分布は「二山」である</p>
+<p>対数の目盛りで区切り直すと、山が<strong>2つ</strong>あることが分かる。400g〜1,400gあたりの小型のサル・キツネザルの山と、5,039〜7,696gに55種が集中する山（正体はオナガザル科92種）。</p>
+<p>そして<strong>中央値3,006gは、その2つの山の「谷間」に落ちている。</strong>つまり ――</p>
+<p><strong>平均も中央値も最頻値も、「よくいる霊長類」を指していない。</strong>山が2つあるとき、1つの代表値で答えようとすること自体が間違いである。</p>
+</div>
 <hr />
 <h2 id="3">3. 外れ値は平均を動かし、中央値は動かさない<a class="headerlink" href="#3" title="Permanent link">&para;</a></h2>
-<p>超富裕世帯（5,000万円超）を除くと――</p>
+<p>大型類人猿（ヒト科・7種）を除くと――</p>
 <table>
 <thead>
 <tr>
 <th></th>
 <th>平均</th>
 <th>中央値</th>
+<th>種数</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>全員</td>
-<td>670</td>
-<td>578</td>
+<td>全種</td>
+<td>5,881 g</td>
+<td>3,006 g</td>
+<td>265</td>
 </tr>
 <tr>
-<td>外れ値を除く</td>
-<td>619</td>
-<td>577.5</td>
+<td>ヒト科を除く</td>
+<td>4,127 g</td>
+<td>2,797 g</td>
+<td>258</td>
 </tr>
 </tbody>
 </table>
-<p><strong>平均は約50万円も動く</strong>のに、<strong>中央値はほぼ動かない</strong>。中央値は外れ値に強い。この性質を <strong>頑健（robust）</strong> と呼ぶ。</p>
+<p>たった7種（全体の2.6%）を抜いただけで<strong>平均は1,754g動く</strong>のに、<strong>中央値は209gしか動かない</strong>。動いた量の比は約<strong>8.4倍</strong>。中央値は外れ値に強い。この性質を <strong>頑健（robust）</strong> と呼ぶ。</p>
 <h3 id="_2">「外れ値は消していいのか」問題<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
 <div class="admonition warning">
 <p class="admonition-title">消す前に、理由を言えるか</p>
 <p>外れ値の扱いには<strong>説明責任</strong>がある。</p>
 <ul>
-<li><strong>入力ミス・測定ミス</strong>（身長1710cm のような）→ 訂正するか除外してよい。理由が明確。</li>
-<li><strong>本物の極端な値</strong>（本当に年収1.2億の家庭）→ 勝手に消したら<strong>データの捏造</strong>。</li>
+<li><strong>入力ミス・測定ミス</strong>（元データには体重 <strong>−999g</strong> という値が実際に入っている。これは「未測定」を表す符号）→ 訂正するか除外してよい。理由が明確。</li>
+<li><strong>本物の極端な値</strong>（ヒガシゴリラは<strong>本当に149kgある</strong>）→ 勝手に消したら<strong>データの捏造</strong>。</li>
 <li><strong>「平均を下げたい／上げたいから消す」は禁じ手。</strong> 結論に都合よくデータを削るのは統計的誤用の典型。</li>
 </ul>
 <p>迷ったら「消す」より「<strong>中央値で報告する</strong>」「外れ値ありとなしの両方を示す」ほうが誠実なことが多い。</p>
 </div>
 <hr />
 <h2 id="4-3">4. 対称な分布なら、3つは一致する<a class="headerlink" href="#4-3" title="Permanent link">&para;</a></h2>
-<p>歪んでいるからズレるのであって、いつもズレるわけではない。ほぼ左右対称な<code>テスト点</code>では：</p>
+<p>歪んでいるからズレるのであって、いつもズレるわけではない。同じデータセットの中でも、ほぼ左右対称な<code>妊娠期間日</code>では：</p>
 <ul>
-<li>平均 57.4 / 中央値 58 / 最頻 53 ―― <strong>ほぼ一致</strong></li>
+<li>平均 164.4日 / 中央値 165.5日（歪度 −0.06）―― <strong>ほぼ一致</strong></li>
 </ul>
+<p><strong>列によって分布の形はまったく違う。</strong>「このデータは平均を使ってよいか」は、列ごとに判断することになる。</p>
 <p>対称な分布では「どれを使っても同じ」。<strong>だからこそ、まず分布の形（ヒストグラム）を見ることが先</strong>。形を見ずに平均だけ報告するのが、いちばん危ない。</p>
 <hr />
 <h2 id="_3">まとめ<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
@@ -1032,12 +1046,12 @@
 <td>中央値</td>
 <td>外れ値に強い（頑健）</td>
 <td>大小の情報を一部捨てる</td>
-<td>年収・地価など歪んだデータ</td>
+<td>体重・年収など歪んだデータ</td>
 </tr>
 <tr>
 <td>最頻値</td>
 <td>カテゴリにも使える</td>
-<td>連続データでは不安定</td>
+<td>連続データでは区切り方に左右される</td>
 <td>選択肢・人気投票</td>
 </tr>
 </tbody>

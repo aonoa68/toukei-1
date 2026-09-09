@@ -896,12 +896,13 @@
 <p>到達目標との対応：<strong>G1（記述統計）</strong>。</p>
 <hr />
 <h2 id="1">1. 平均だけでは、データは分からない<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
-<p>2つのクラスがテストを受けた。<strong>どちらも平均58点</strong>。同じようなクラスだろうか？</p>
+<p>2か所の森で、サルの体重を30頭ずつ測った。<strong>どちらも平均6.0kg</strong>。同じような群れだろうか？</p>
 <ul>
-<li>クラスA：全員がだいたい58点（SD ≈ 0）</li>
-<li>クラスB：半分が20点、半分が96点（SD ≈ 39）</li>
+<li>森A：ほとんどの個体が6kg前後（SD ≈ 0）</li>
+<li>森B：半分が2kg、半分が10kg（SD ≈ 4.1）</li>
 </ul>
 <p>平均は同じでも中身は正反対。<strong>平均は分布の「位置」しか表さない。</strong> 足りないのは「どれだけ散らばっているか」＝<strong>ばらつき</strong>の情報だ。</p>
+<p>森Bはそもそも<strong>2つの別々の集団が混ざっている</strong>のかもしれない（第2回の「二山」の話とつながる）。</p>
 <hr />
 <h2 id="2">2. 分散と標準偏差 ―― なぜ二乗するのか<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
 <p>ばらつきは「各データが平均からどれだけ離れているか」で測る。</p>
@@ -912,9 +913,9 @@
 </ol>
 <div class="admonition note">
 <p class="admonition-title">なぜ二乗？　なぜルート？</p>
-<p>二乗は「符号を消して、大きいズレをより重く見る」ため。ルートは「点²を点に戻して、人間が読める単位にする」ため。<strong>だから普段はSDを使う。</strong></p>
+<p>二乗は「符号を消して、大きいズレをより重く見る」ため。ルートは「日²を日に戻して、人間が読める単位にする」ため。<strong>だから普段はSDを使う。</strong></p>
 </div>
-<p>北辰大の <code>テスト点</code>：</p>
+<p>霊長類の <code>妊娠期間日</code>（146種）：</p>
 <table>
 <thead>
 <tr>
@@ -925,49 +926,70 @@
 <tbody>
 <tr>
 <td>平均</td>
-<td>57.4 点</td>
+<td>164.4 日</td>
 </tr>
 <tr>
 <td>分散</td>
-<td>133.8（点²・読みにくい）</td>
+<td>1,427.2（日²・読みにくい）</td>
 </tr>
 <tr>
 <td>標準偏差(SD)</td>
-<td><strong>11.6 点</strong>（元の単位・これを使う）</td>
+<td><strong>37.8 日</strong>（元の単位・これを使う）</td>
 </tr>
 </tbody>
 </table>
-<p>SDは「平均からの<strong>標準的な散らばり幅</strong>」。平均±1SD（約46〜69点）に多くの学生が収まる。</p>
+<p>SDは「平均からの<strong>標準的な散らばり幅</strong>」。平均±1SD（約127〜202日）に多くの種が収まる。</p>
+<p>ちなみにヒトの妊娠期間は約280日で、この平均から見ると <strong>+3SD</strong> ほど右にいる。霊長類の中ではかなり長いほうである。</p>
 <hr />
 <h2 id="3">3. 偏差値の正体<a class="headerlink" href="#3" title="Permanent link">&para;</a></h2>
-<p>偏差値は、点数を <strong>平均50・標準偏差10</strong> のものさしに置き直しただけ。</p>
-<div class="arithmatex">\[ 偏差値 = 50 + 10 \times \frac{あなたの点 - 平均}{標準偏差} \]</div>
-<p>「平均からSD何個分ずれているか」を 50 中心に表したもの。テストが難しくて平均が低くても、<strong>自分の相対位置</strong>が分かる。</p>
+<p>偏差値は、値を <strong>平均50・標準偏差10</strong> のものさしに置き直しただけ。</p>
+<div class="arithmatex">\[ 偏差値 = 50 + 10 \times \frac{あなたの値 - 平均}{標準偏差} \]</div>
+<p>「平均からSD何個分ずれているか」を 50 中心に表したもの。<strong>これを霊長類の体重でやると、壊れる。</strong></p>
 <table>
 <thead>
 <tr>
-<th>テスト点</th>
-<th>偏差値</th>
+<th>種</th>
+<th style="text-align: right;">体重</th>
+<th style="text-align: right;">生のスケール</th>
+<th style="text-align: right;">対数スケール</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>80</td>
-<td>69.6</td>
+<td>ネズミキツネザル</td>
+<td style="text-align: right;">31 g</td>
+<td style="text-align: right;">45.5</td>
+<td style="text-align: right;">23.2</td>
 </tr>
 <tr>
-<td>57（≒平均）</td>
-<td>49.7</td>
+<td>ニホンザル</td>
+<td style="text-align: right;">10,115 g</td>
+<td style="text-align: right;">53.2</td>
+<td style="text-align: right;">59.9</td>
 </tr>
 <tr>
-<td>35</td>
-<td>30.7</td>
+<td>ヒト</td>
+<td style="text-align: right;">58,541 g</td>
+<td style="text-align: right;">90.1</td>
+<td style="text-align: right;">71.1</td>
+</tr>
+<tr>
+<td>ヒガシゴリラ</td>
+<td style="text-align: right;">149,325 g</td>
+<td style="text-align: right;"><strong>159.2</strong></td>
+<td style="text-align: right;">77.1</td>
 </tr>
 </tbody>
 </table>
+<div class="admonition danger">
+<p class="admonition-title">偏差値159 という数字</p>
+<p>まともなテストでは出てこない値である。<strong>計算式は間違っていない。</strong>壊れているのは、この式が暗黙に置いている前提――<strong>データが平均のまわりに左右対称に散らばっていること</strong>――のほうだ。</p>
+<p>そして反対の端も見てほしい。31gのネズミキツネザル（45.5）と10kgのニホンザル（53.2）は、たった8しか違わない。<strong>体重は324倍も違うのに</strong>である。</p>
+<p><strong>上は青天井、下は潰れる。</strong>対数の目盛りに変えれば全部 23〜78 に収まる。<strong>同じ種の同じ体重で、変えたのはものさしだけ。</strong></p>
+</div>
 <div class="admonition tip">
 <p class="admonition-title">偏差値の読み方</p>
-<p>偏差値60 = 平均より1SD上 = 上位約16%。偏差値は「点の高さ」ではなく「<strong>集団の中での位置</strong>」。同じ80点でも、集団のSDが違えば偏差値は変わる。</p>
+<p>偏差値60 = 平均より1SD上 = 上位約16%（<strong>分布が正規のときだけ</strong>）。偏差値は「値の大きさ」ではなく「<strong>集団の中での位置</strong>」。偏差値・Zスコア・標準化――名前は違っても、すべて同じ仮定の上に乗っている。</p>
 </div>
 <hr />
 <h2 id="4-68-95-997">4. 正規分布と 68-95-99.7 則<a class="headerlink" href="#4-68-95-997" title="Permanent link">&para;</a></h2>
@@ -976,36 +998,49 @@
 <thead>
 <tr>
 <th>範囲</th>
-<th>含まれる割合（理論）</th>
-<th>テスト点（実データ）</th>
+<th>理論</th>
+<th>対数体重（実データ）</th>
+<th>生の体重（実データ）</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>平均 ±1SD</td>
 <td>約 68%</td>
-<td>67.0%</td>
+<td>71.7%</td>
+<td>97.4%</td>
 </tr>
 <tr>
 <td>平均 ±2SD</td>
 <td>約 95%</td>
-<td>94.8%</td>
+<td>94.7%</td>
+<td>97.4%</td>
 </tr>
 <tr>
 <td>平均 ±3SD</td>
 <td>約 99.7%</td>
-<td>99.8%</td>
+<td>100.0%</td>
+<td>98.5%</td>
 </tr>
 </tbody>
 </table>
-<p>テスト点は実データでもほぼこの通り（歪度 −0.09 ≒ 左右対称）。だから正規分布で<strong>よく近似できる</strong>。</p>
+<p><strong>対数の目盛りにした体重</strong>はほぼこの通り（歪度 −0.40）。だから正規分布で<strong>よく近似できる</strong>。
+一方、<strong>生のスケール</strong>（歪度 +7.60）はまったく合っていない。</p>
 <hr />
 <h2 id="5">5. 正規分布は「仮定」であって、自然法則ではない<a class="headerlink" href="#5" title="Permanent link">&para;</a></h2>
-<p>世の中のすべてが正規分布ではない。<code>世帯年収</code> に正規分布を当てはめると――</p>
+<p>世の中のすべてが正規分布ではない。<strong>生のスケールの体重</strong>に正規分布を当てはめると――</p>
 <ul>
-<li>年収の歪度は <strong>+11.6</strong>（強く右に裾を引く）。テスト点の −0.09 とは別世界。</li>
-<li>釣鐘型の正規曲線は、年収のヒストグラムに<strong>まったく合わない</strong>。</li>
+<li>体重の歪度は <strong>+7.60</strong>（強く右に裾を引く）。対数にした後の −0.40 とは別世界。</li>
+<li>釣鐘型の正規曲線は、体重のヒストグラムに<strong>まったく合わない</strong>。</li>
+<li>そして <strong>平均 − 1SD = −7,254 g</strong>。<strong>体重がマイナスの動物はいない。</strong>当てはめた時点で、ありえない領域に確率を配ってしまっている。</li>
 </ul>
+<div class="admonition note">
+<p class="admonition-title">正直に言うと、対数にしても「正規分布」ではない</p>
+<p>厳密に検定すると（Shapiro-Wilk）、対数スケールでも「正規とは言えない」と出る。妊娠期間日も歪度がほぼ0（−0.06）で見た目は左右対称なのに、山が尖りすぎていて棄却される。</p>
+<p><strong>左右対称であることと、正規分布であることは、同じではない。</strong></p>
+<p>では対数変換は無駄だったのか。そうではない。±1SDの実測が <strong>97.4% → 71.7%</strong>（理論68%）まで近づいたのは事実で、生のスケールよりはるかに使える。</p>
+<p><strong>正規分布は「現実の姿」ではなく「近似の道具」である。</strong>問うべきは「正規分布か（Yes/No）」ではなく、<strong>「この目的に対して、十分な近似か」</strong>。</p>
+</div>
 <div class="admonition warning">
 <p class="admonition-title">「正規だと仮定する」ことの責任</p>
 <p>68-95-99.7則や、後で習う多くの手法は「正規分布である」ことを前提にしている。<strong>歪んだデータにそれを当てると、間違った結論になる。</strong>
@@ -1031,7 +1066,7 @@
 </tr>
 <tr>
 <td>偏差値</td>
-<td>平均50・SD10に置き直した相対位置</td>
+<td>平均50・SD10に置き直した相対位置。<strong>分布が歪むと破綻する</strong>（ゴリラ159）</td>
 </tr>
 <tr>
 <td>68-95-99.7則</td>
@@ -1042,6 +1077,8 @@
 <blockquote>
 <p><strong>平均は「位置」、SDは「幅」。両方見て初めてデータが分かる。</strong>
 正規分布は便利な仮定だが、当てはまるかは自分で確かめるもの。</p>
+<p><strong>同じデータでも、ものさしを変えれば偏差値は159にも77にもなる。</strong>
+数字が出てきたら、<strong>どんな仮定の上で計算されたのか</strong>を問う。</p>
 </blockquote>
 <div class="admonition abstract">
 <p class="admonition-title">次回予告</p>

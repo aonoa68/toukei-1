@@ -514,6 +514,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="4. 標本サイズ n を増やすと「締まる」">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#n" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        尺度を選ぶと、必要な n が変わる
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -536,10 +553,27 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="6. ただし「無作為抽出」が大前提">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        今日の「母集団」自体が、実は偏った標本である
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
         まとめ
@@ -852,6 +886,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="4. 標本サイズ n を増やすと「締まる」">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#n" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        尺度を選ぶと、必要な n が変わる
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -874,10 +925,27 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="6. ただし「無作為抽出」が大前提">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        今日の「母集団」自体が、実は偏った標本である
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
         まとめ
@@ -926,10 +994,10 @@
 <hr />
 <h2 id="2">2. 母集団と標本<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
 <ul>
-<li><strong>母集団（population）</strong>：本当に知りたい全体（例：全国民の年収）</li>
-<li><strong>標本（sample）</strong>：実際に調べる一部（例：選ばれた数百人）</li>
+<li><strong>母集団（population）</strong>：本当に知りたい全体</li>
+<li><strong>標本（sample）</strong>：実際に調べる一部</li>
 </ul>
-<p>今日の母集団は「北辰大の一般家庭の世帯年収」（極端な富裕2世帯は別扱いで除く）。</p>
+<p>今日の母集団は「<strong>体重の記録がある霊長類265種</strong>」。</p>
 <table>
 <thead>
 <tr>
@@ -939,61 +1007,127 @@
 </thead>
 <tbody>
 <tr>
+<td>母集団の大きさ N</td>
+<td>265 種</td>
+</tr>
+<tr>
 <td>母平均 μ</td>
-<td>619 万円</td>
+<td>5,881 g</td>
 </tr>
 <tr>
 <td>母標準偏差 σ</td>
-<td>284 万円</td>
+<td>13,110 g</td>
 </tr>
 <tr>
 <td>歪度</td>
-<td>0.91（右に歪む＝正規ではない）</td>
+<td><strong>+7.60</strong>（右に強く歪む＝正規ではない）</td>
 </tr>
 </tbody>
 </table>
+<div class="admonition warning">
+<p class="admonition-title">歪度7.60 は極端である</p>
+<p>一般に「歪んでいる」と言われるデータの歪度は1〜2程度。この母集団で<strong>中心極限定理が本当に効くのか</strong>が、今日の見どころになる。</p>
+</div>
 <hr />
 <h2 id="3">3. 標本平均は、母平均の周りに散らばる<a class="headerlink" href="#3" title="Permanent link">&para;</a></h2>
-<p>母集団から n=30 人を無作為に選んで平均を取ると、母平均（619）に近いがぴったりではない値が出る。1回では運に左右される。</p>
+<p>母集団から n=30 種を無作為に選んで平均を取ると、母平均（5,881g）に近いがぴったりではない値が出る。数十gの種と数万gの種が混ざっているので、大型種が1種でも多く入れば標本平均は跳ね上がる。1回では運に左右される。</p>
 <p>そこで <strong>n=30 の標本取り→平均を2000回くりかえす</strong>と、標本平均たちはどう散らばるか？</p>
 <ul>
-<li>標本平均の平均 ≈ <strong>617</strong>（母平均619とほぼ一致）</li>
-<li>標本平均のばらつき（SD）≈ <strong>52</strong></li>
-<li>標本平均の分布の歪度 ≈ <strong>0.20</strong>（母集団の0.91より小さい＝<strong>正規に近づいた</strong>）</li>
+<li>標本平均の平均 ≈ <strong>5,850 g</strong>（母平均5,881とほぼ一致）</li>
+<li>標本平均のばらつき（SD）≈ <strong>2,300 g</strong></li>
+<li>標本平均の分布の歪度 ≈ <strong>1.3</strong>（母集団の7.60から大きく下がった＝<strong>正規に近づいた</strong>）</li>
 </ul>
 <div class="admonition success">
 <p class="admonition-title">中心極限定理（CLT）</p>
 <p>母集団がどんな形（歪んでいても）でも、<strong>標本平均をたくさん集めると、その分布は正規分布に近づく</strong>。
 だから「一部」から「全体の平均」を語れる。</p>
 </div>
+<div class="admonition danger">
+<p class="admonition-title">ただし、まだ正規分布ではない</p>
+<p>よく「<strong>n が30あれば正規分布とみなしてよい</strong>」と言われる。だが歪度1.3は、決して0ではない。分布は<strong>右にまだ裾を引いている</strong>。</p>
+<p><strong>「n=30ルール」は、母集団がそこそこ対称なときの目安にすぎない。</strong>この母集団のように極端に歪んでいると、30では足りない。</p>
+</div>
 <hr />
 <h2 id="4-n">4. 標本サイズ n を増やすと「締まる」<a class="headerlink" href="#4-n" title="Permanent link">&para;</a></h2>
-<p>n を 5・30・100 と変えて標本平均の分布を比べると、<strong>n が大きいほど母平均の近くにギュッと締まる</strong>。</p>
-<p>そのばらつきが <strong>標準誤差（Standard Error, SE）</strong>：</p>
+<p>n を 5・30・100・500 と変えて標本平均の分布を比べると、<strong>2つのことが同時に起きる</strong>。</p>
+<p><strong>① ばらつきが小さくなる（締まる）</strong> ―― そのばらつきが <strong>標準誤差（Standard Error, SE）</strong>：</p>
 <div class="arithmatex">\[ SE = \frac{\sigma}{\sqrt{n}} \]</div>
+<p><strong>② 形が正規分布に近づく（ただし、ゆっくり）</strong></p>
 <table>
 <thead>
 <tr>
-<th>n</th>
-<th>標準誤差 <span class="arithmatex">\( \sigma/\sqrt{n} \)</span></th>
+<th style="text-align: right;">n</th>
+<th style="text-align: right;">SE の理論値 <span class="arithmatex">\( \sigma/\sqrt{n} \)</span></th>
+<th style="text-align: right;">実測SD</th>
+<th style="text-align: right;">歪度</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>5</td>
-<td>約 127</td>
+<td style="text-align: right;">母集団</td>
+<td style="text-align: right;">―</td>
+<td style="text-align: right;">13,110</td>
+<td style="text-align: right;"><strong>7.60</strong></td>
 </tr>
 <tr>
-<td>30</td>
-<td>約 52</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">5,863</td>
+<td style="text-align: right;">5,674</td>
+<td style="text-align: right;">3.62</td>
 </tr>
 <tr>
-<td>100</td>
-<td>約 28</td>
+<td style="text-align: right;">30</td>
+<td style="text-align: right;">2,394</td>
+<td style="text-align: right;">2,430</td>
+<td style="text-align: right;"><strong>1.49</strong></td>
+</tr>
+<tr>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">1,311</td>
+<td style="text-align: right;">1,333</td>
+<td style="text-align: right;">0.79</td>
+</tr>
+<tr>
+<td style="text-align: right;">500</td>
+<td style="text-align: right;">586</td>
+<td style="text-align: right;">581</td>
+<td style="text-align: right;">0.30</td>
 </tr>
 </tbody>
 </table>
 <p>n を <strong>4倍</strong>にすると SE は <strong>半分</strong>。だから「精度を2倍にするには4倍のデータが要る」。データを増やす効果は、増やすほど鈍くなる。</p>
+<p><strong>そして注目すべきは、右の2列の進み方の違いである。</strong>ばらつきは 1/√n できれいに縮むのに、<strong>歪みはなかなか取れない</strong>。n=500 でもまだ0.3残っている。</p>
+<div class="admonition warning">
+<p class="admonition-title">CLTが言っていること・言っていないこと</p>
+<p><strong>CLTは「いつかは正規になる」と言っているだけで、「n=30で正規になる」とは言っていない。</strong>
+必要な n は、母集団がどれだけ歪んでいるかで決まる。</p>
+</div>
+<h3 id="n">尺度を選ぶと、必要な n が変わる<a class="headerlink" href="#n" title="Permanent link">&para;</a></h3>
+<p>第3回で、体重は<strong>対数にすると左右対称に近づいた</strong>（歪度 7.60 → −0.40）。対数の体重を母集団にすると：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">n</th>
+<th style="text-align: right;">歪度（対数スケール）</th>
+<th style="text-align: right;">歪度（生スケール）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;"><strong>−0.20</strong></td>
+<td style="text-align: right;">3.54</td>
+</tr>
+<tr>
+<td style="text-align: right;">30</td>
+<td style="text-align: right;"><strong>0.03</strong></td>
+<td style="text-align: right;">1.38</td>
+</tr>
+</tbody>
+</table>
+<p><strong>対数にすると、n=5 の時点でもう十分に対称。</strong>生のスケールで n=500 かけても届かなかった水準である。</p>
+<p><strong>同じデータ、同じ標本サイズ。違うのは尺度だけ。</strong>どの尺度で分析するかは、必要なデータ量を左右する実務的な判断でもある。</p>
+<p>（ただし注意：対数の平均を戻しても元の平均にはならない。対数で分析すると「幾何平均」の話になる。何を推定したいのかで選ぶこと。）</p>
 <hr />
 <h2 id="5">5. 大事な区別：「標本そのもの」≠「標本平均の分布」<a class="headerlink" href="#5" title="Permanent link">&para;</a></h2>
 <div class="admonition warning">
@@ -1002,7 +1136,7 @@
 正規に近づくのは <strong>標本平均の分布</strong>であって、<strong>標本そのもの</strong>は母集団と同じ形（歪んだまま）。</p>
 </div>
 <ul>
-<li>標本そのもの（1000人を1回）→ 母集団どおり<strong>歪んだ形</strong></li>
+<li>標本そのもの（1000回抽出）→ 母集団どおり<strong>歪んだ形</strong></li>
 <li>標本平均（n=30）の分布 → <strong>正規に近い釣鐘型</strong></li>
 </ul>
 <p>混同すると「うちのデータは正規分布だ」と誤って正規前提の手法を使ってしまう。</p>
@@ -1018,8 +1152,17 @@
 <p>偏った集め方をしたデータは、何万件あっても母集団を正しく代表しない。
 <strong>「たくさん集めた」は「正しく集めた」ではない。</strong></p>
 </div>
+<h3 id="_2">今日の「母集団」自体が、実は偏った標本である<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<p>ここまで265種を母集団として扱ってきた。しかし <strong>この265種は「体重が測られた種」でしかない。</strong>霊長類376種のうち、体重の記録があるのは70%。残り111種は測られていない。</p>
+<p>そして測られている種には偏りがある。よく研究されてきた科は埋まり、研究者が少ない・観察が難しい科は空欄が多い。</p>
+<p>つまり「霊長類の平均体重 5,881g」は、厳密には <strong>「よく研究されてきた霊長類の平均体重」</strong> である。</p>
+<blockquote>
+<p><strong>データの形は、世界の形であると同時に、研究の歴史の形でもある。</strong>
+どんなに立派な統計手法を使っても、<strong>何が測られなかったか</strong>は数字の中に現れない。
+それに気づけるのは、対象を知っている人間だけである。</p>
+</blockquote>
 <hr />
-<h2 id="_2">まとめ<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h2 id="_3">まとめ<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
@@ -1034,7 +1177,11 @@
 </tr>
 <tr>
 <td>中心極限定理(CLT)</td>
-<td>母集団がどんな形でも、標本平均の分布は正規に近づく</td>
+<td>母集団がどんな形でも、標本平均の分布は正規に<strong>近づく</strong></td>
+</tr>
+<tr>
+<td><strong>n=30ルールの限界</strong></td>
+<td><strong>母集団が強く歪んでいると30では足りない</strong>（歪度7.6→n=30でまだ1.5）</td>
 </tr>
 <tr>
 <td>標準誤差 <span class="arithmatex">\( SE=\sigma/\sqrt{n} \)</span></td>
@@ -1051,8 +1198,10 @@
 </tbody>
 </table>
 <blockquote>
-<p><strong>一部から全体を語れるのは、標本平均がCLTにより正規分布に従うから。</strong>
+<p><strong>一部から全体を語れるのは、標本平均がCLTにより正規分布に近づくから。</strong>
 ただし「無作為に集めた」ことが大前提 ―― 数の多さは偏りを直さない。</p>
+<p><strong>教科書に書いてある目安（n=30）を、自分のデータで確かめた。そして通用しなかった。</strong>
+目安は目安であって、法則ではない。<strong>確かめる手段を、あなたはもう持っている。</strong></p>
 </blockquote>
 <div class="admonition abstract">
 <p class="admonition-title">次回予告</p>
