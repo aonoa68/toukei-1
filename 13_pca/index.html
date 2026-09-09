@@ -931,13 +931,14 @@
 <hr />
 <h2 id="0">0. フック<a class="headerlink" href="#0" title="Permanent link">&para;</a></h2>
 <blockquote>
-<p>北辰大データには、勉強・睡眠・出席・朝食・SNS… とたくさんの変数がある。
+<p>霊長類データには、体重・妊娠期間・離乳日齢・寿命・産子数… とたくさんの変数がある。
 全部の関係を一度に見るのは無理（変数5個でも散布図は10通り、10個なら45通り）。
 これらの背後にある「本当の軸」は、いくつあるのだろう？</p>
 </blockquote>
 <hr />
 <h2 id="1-pca">1. 主成分分析（PCA）の発想<a class="headerlink" href="#1-pca" title="Permanent link">&para;</a></h2>
-<p>生活に関する5つの変数を使う：<strong>勉強時間・睡眠時間・出席率・朝食日数・SNS時間</strong>。</p>
+<p><strong>生活史</strong>に関する5つの変数を使う：<strong>体重・妊娠期間・離乳日齢・最長寿命・一腹産子数</strong>。</p>
+<p>前処理を2つ行う。① 何桁にもまたがる量なので<strong>対数</strong>にする ② 単位が違う（g・日・月・頭）ので<strong>標準化</strong>する。</p>
 <p>PCAは、これら5次元のデータを、<strong>ばらつき（情報）が最も大きい方向</strong>に新しい軸を引き直す。最初の軸（第1主成分）が一番多くの情報を持ち、次の軸（第2主成分）がその次…と続く。少数の軸だけ残せば<strong>次元を削減</strong>できる。</p>
 <p>（変数ごとに単位が違う（時間・%・日）ので、まず<strong>標準化</strong>して土俵をそろえる。）</p>
 <h3 id="_2">寄与率：各軸がどれだけ情報を持つか<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
@@ -967,7 +968,7 @@
 </tr>
 </tbody>
 </table>
-<p><strong>第1主成分だけで全体の約61%</strong>、第2主成分まで合わせると約74%。5次元の本質は、ほぼ<strong>2次元</strong>に圧縮できる。</p>
+<p><strong>第1主成分だけで全体の約74%</strong>、第2主成分まで合わせると約74%。5次元の本質は、ほぼ<strong>2次元</strong>に圧縮できる。</p>
 <hr />
 <h2 id="2">2. 主成分の命名 ―― 負荷を読む<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
 <p>第1主成分が「何の軸」かは、各変数の効き方（<strong>負荷</strong>）を見て、人間が<strong>命名</strong>する。</p>
@@ -981,46 +982,100 @@
 </thead>
 <tbody>
 <tr>
-<td>勉強時間</td>
+<td>体重</td>
+<td>+0.48</td>
+<td>+0.21</td>
+</tr>
+<tr>
+<td>妊娠期間</td>
 <td>+0.45</td>
-<td>−0.09</td>
+<td>−0.26</td>
 </tr>
 <tr>
-<td>睡眠時間</td>
-<td>+0.39</td>
-<td>+0.90</td>
-</tr>
-<tr>
-<td>出席率</td>
+<td>離乳日齢</td>
 <td>+0.48</td>
-<td>−0.16</td>
+<td>+0.12</td>
 </tr>
 <tr>
-<td>朝食日数</td>
-<td>+0.48</td>
-<td>−0.18</td>
+<td>最長寿命</td>
+<td>+0.42</td>
+<td>+0.57</td>
 </tr>
 <tr>
-<td>SNS時間</td>
-<td><strong>−0.42</strong></td>
-<td>+0.35</td>
+<td>一腹産子数</td>
+<td><strong>−0.39</strong></td>
+<td>+0.74</td>
 </tr>
 </tbody>
 </table>
-<p>第1主成分は、勉強・睡眠・出席・朝食が高くSNSが低い人ほど大きくなる。これは「<strong>生活がきちんとしている度合い（規律）</strong>」と読める。</p>
+<p>4つが同じ向きで、<strong>産子数だけが逆向き</strong>。言葉にすると ――</p>
+<blockquote>
+<p><strong>＋の側</strong>：体が大きく、妊娠が長く、乳離れが遅く、長生きし、<strong>一度に少ししか産まない</strong>
+<strong>−の側</strong>：体が小さく、妊娠が短く、乳離れが早く、短命で、<strong>一度にたくさん産む</strong></p>
+</blockquote>
+<p>これは生物学で <strong>生活史の「速い－遅い」連続体（fast–slow continuum）</strong> と呼ばれるものである。速い戦略＝短く生きてたくさん産む（数で勝負）、遅い戦略＝長く生きて少なく産んで大事に育てる（質で勝負）。</p>
 <div class="admonition success">
 <p class="admonition-title">PCAが隠れた軸を浮かび上がらせた</p>
-<p>もともと別々だった5つの変数の背後に、<strong>1本の“規律”という軸</strong>が隠れていた。
-これが<strong>次元削減＝本質の抽出</strong>。（第2主成分は睡眠時間が突出＝「睡眠の多さ」の軸。）</p>
+<p>もともと別々だった5つの変数の背後に、<strong>1本の“生き方”の軸</strong>が隠れていた。
+これが<strong>次元削減＝本質の抽出</strong>。</p>
 </div>
 <hr />
 <h2 id="3-2">3. 2次元に圧縮して可視化<a class="headerlink" href="#3-2" title="Permanent link">&para;</a></h2>
-<p>各学生を第1主成分（規律）と第2主成分の2軸で配置し、色をテスト点にすると、<strong>規律の高い（右側の）人ほどテスト点が高い</strong>傾向が見える。5次元の散布図は描けないが、2次元なら一目で構造が分かる。</p>
+<p>各種を第1主成分（速い－遅い）と第2主成分の2軸で配置し、<strong>科ごとに色を変える</strong>。5次元の散布図は描けないが、2次元なら一目で構造が分かる。</p>
+<p><strong>注意：PCAには「科」の情報を一切与えていない。</strong>5つの数値だけから軸を作った。それなのに ――</p>
+<table>
+<thead>
+<tr>
+<th>科</th>
+<th style="text-align: right;">第1主成分の平均</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>コビトキツネザル科</td>
+<td style="text-align: right;">−4.31</td>
+</tr>
+<tr>
+<td>ガラゴ科</td>
+<td style="text-align: right;">−2.07</td>
+</tr>
+<tr>
+<td>オマキザル科</td>
+<td style="text-align: right;">−1.19</td>
+</tr>
+<tr>
+<td>キツネザル科</td>
+<td style="text-align: right;">−0.80</td>
+</tr>
+<tr>
+<td>オナガザル科</td>
+<td style="text-align: right;">+1.02</td>
+</tr>
+<tr>
+<td>クモザル科</td>
+<td style="text-align: right;">+1.32</td>
+</tr>
+<tr>
+<td>テナガザル科</td>
+<td style="text-align: right;">+1.96</td>
+</tr>
+<tr>
+<td><strong>ヒト科</strong></td>
+<td style="text-align: right;"><strong>+3.50</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>分類群が一直線に並んだ。</strong>そして最も「遅い」5種はすべてヒト科で、その頂点が <strong><code>Homo sapiens</code>（+4.15）</strong>である。反対の端はネズミキツネザル（−5.55）。</p>
+<div class="admonition note">
+<p class="admonition-title">PCAは「ヒトは特別だ」と教えたわけではない</p>
+<p>5つの数値を、ばらつきが最大になる向きに並べ直しただけである。結果として分類群が並び、ヒトが端に来た。<strong>それをどう意味づけるかは、人間の仕事</strong>である。</p>
+</div>
 <hr />
 <h2 id="4">4. 大事な注意<a class="headerlink" href="#4" title="Permanent link">&para;</a></h2>
 <ul>
-<li><strong>PCAは情報を失う</strong>。今回、第1・第2主成分で説明できたのは約<strong>74%</strong>。残りの<strong>約26%は捨てている</strong>。圧縮はタダではない。</li>
-<li><strong>主成分に必ず意味があるとは限らない</strong>。今回はたまたま「規律」と解釈できたが、現実のデータでは「何だかよく分からない軸」も多い。<strong>意味づけ（命名）は人間の解釈</strong>で、数学が保証するものではない。</li>
+<li><strong>PCAは情報を失う</strong>。今回、第1・第2主成分で説明できたのは約<strong>74%</strong>。残りの<strong>約13%は捨てている</strong>。圧縮はタダではない。</li>
+<li><strong>主成分に必ず意味があるとは限らない</strong>。第1主成分は「速い－遅い」と読めたが、<strong>第2主成分（13.4%）は簡単には命名できない</strong>（産子数と寿命が同じ向きに乗っており、生活史の軸では説明しにくい）。現実のデータでは「何だかよく分からない軸」のほうが多い。<strong>意味づけ（命名）は人間の解釈</strong>で、数学が保証するものではない。</li>
+<li><strong>使った89種は「5変数すべてに記録がある種」だけ</strong>である（全376種の24%）。第6回で見たとおり、よく研究された種に偏っている。<strong>この軸は、よく調べられた霊長類の軸</strong>である。</li>
 <li>主成分の<strong>向き（符号）は反転することがある</strong>（数学的には同じ）。</li>
 </ul>
 <div class="admonition warning">
@@ -1048,11 +1103,11 @@
 </tr>
 <tr>
 <td>寄与率</td>
-<td>各主成分が説明する情報の割合（第1主成分61%・累積74%）</td>
+<td>各主成分が説明する情報の割合（第1主成分74%・累積87%）</td>
 </tr>
 <tr>
 <td>負荷と命名</td>
-<td>各変数の効き方を見て、人間が軸に意味を与える（例：規律）</td>
+<td>各変数の効き方を見て、人間が軸に意味を与える（例：速い－遅い）</td>
 </tr>
 <tr>
 <td>❌ 誤り</td>

@@ -997,11 +997,11 @@
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nb">list</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>          <span class="c1"># 列名の一覧</span>
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>                 <span class="c1"># 先頭5行</span>
 </code></pre></div>
-<p>「行＝1人の学生」「列＝身長・テスト点などの項目」。これがデータ分析の基本の形だ。</p>
+<p>「行＝1つの種」「列＝体重・妊娠期間などの項目」。これがデータ分析の基本の形だ。</p>
 <hr />
 <h2 id="2">2. 列を取り出す<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
 <p>1列を取り出すには <code>df["列名"]</code> と書く。</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">df</span><span class="p">[</span><span class="s2">&quot;テスト点&quot;</span><span class="p">]</span>      <span class="c1"># テスト点の列</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">df</span><span class="p">[</span><span class="s2">&quot;体重g&quot;</span><span class="p">]</span>      <span class="c1"># 体重の列</span>
 </code></pre></div>
 <div class="admonition warning">
 <p class="admonition-title">列名は正確に</p>
@@ -1010,38 +1010,38 @@
 <hr />
 <h2 id="3-2">3. 代表値をコードで（第2回の再現）<a class="headerlink" href="#3-2" title="Permanent link">&para;</a></h2>
 <p>第2回で手計算した3つの代表値は、メソッド1つで出る。</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">df</span><span class="p">[</span><span class="s2">&quot;テスト点&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>    <span class="c1"># 平均  → 57.4</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">df</span><span class="p">[</span><span class="s2">&quot;テスト点&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">median</span><span class="p">()</span>  <span class="c1"># 中央値 → 58</span>
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="n">df</span><span class="p">[</span><span class="s2">&quot;テスト点&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mode</span><span class="p">()</span>    <span class="c1"># 最頻値 → 53</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">df</span><span class="p">[</span><span class="s2">&quot;体重g&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>    <span class="c1"># 平均  → 5880.9</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">df</span><span class="p">[</span><span class="s2">&quot;体重g&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">median</span><span class="p">()</span>  <span class="c1"># 中央値 → 3006.0</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="n">df</span><span class="p">[</span><span class="s2">&quot;一腹産子数&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mode</span><span class="p">()</span>  <span class="c1"># 最頻値 → 1.01（連続値の体重では意味がない）</span>
 </code></pre></div>
 <p>第2回で電卓を叩いて出した値と、同じになるはず。<strong>違いは速さと正確さだけ。</strong></p>
 <hr />
 <h2 id="4-3">4. ばらつきをコードで（第3回の再現）<a class="headerlink" href="#4-3" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">df</span><span class="p">[</span><span class="s2">&quot;テスト点&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>   <span class="c1"># 標準偏差 → 11.6</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">df</span><span class="p">[</span><span class="s2">&quot;テスト点&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">var</span><span class="p">()</span>   <span class="c1"># 分散     → 133.8</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">df</span><span class="p">[</span><span class="s2">&quot;妊娠期間日&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>   <span class="c1"># 標準偏差 → 37.8</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">df</span><span class="p">[</span><span class="s2">&quot;妊娠期間日&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">var</span><span class="p">()</span>   <span class="c1"># 分散     → 1427.2</span>
 </code></pre></div>
 <p>第3回の「SD ≈ 11.6点」がそのまま出る。</p>
 <hr />
 <h2 id="5-describe">5. describe() ―― 一気に要約<a class="headerlink" href="#5-describe" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">df</span><span class="p">[</span><span class="s2">&quot;テスト点&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">df</span><span class="p">[</span><span class="s2">&quot;体重g&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
 </code></pre></div>
 <p>件数・平均・SD・最小・四分位数・最大が一度に出る。手計算なら数十分の作業が一瞬で終わる。</p>
 <hr />
 <h2 id="6-groupby">6. グループごとに集計（groupby）<a class="headerlink" href="#6-groupby" title="Permanent link">&para;</a></h2>
-<p>「学部ごとのテスト点平均」のような<strong>グループ別集計</strong>は、<code>groupby</code> で書く。</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;学部&quot;</span><span class="p">)[</span><span class="s2">&quot;テスト点&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="c1"># 経済学部 58.51 / 社会福祉学部 56.82 / 文学部 56.38</span>
+<p>「科ごとの体重平均」のような<strong>グループ別集計</strong>は、<code>groupby</code> で書く。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;科&quot;</span><span class="p">)[</span><span class="s2">&quot;体重g&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="c1"># ヒト科 70526 / オナガザル科 7829 / クモザル科 7127 …</span>
 </code></pre></div>
 <p><code>groupby("グループにする列")["集計する列"].集計関数()</code> という形。これは第9回（分散分析）への布石でもある。</p>
 <hr />
 <h2 id="7">7. 欠損を確認<a class="headerlink" href="#7" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">df</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>   <span class="c1"># 列ごとの欠損(未記入)の数</span>
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="c1"># 睡眠時間h: 2 / 通学時間min: 1</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="c1"># 初産日齢: 273 / 出産間隔日: 267 / 新生児体重g: 259 …（体重gですら111種が未測定）</span>
 </code></pre></div>
-<p>第2回で仕込んだ「汚れ」（未記入）が、コードだと一瞬で見つかる。現実のデータには必ず欠損がある。</p>
+<p><strong>本物の研究データは、こういう姿をしている。</strong>体重ですら111種が未測定で、初産日齢にいたっては273種が空欄である。現実のデータには必ず欠損がある。第6回で「この偏りが何を意味するか」を詳しく扱う。</p>
 <hr />
 <h2 id="8-1">8. グラフを1行で<a class="headerlink" href="#8-1" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;テスト点&quot;</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="mi">25</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;体重g&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">(),</span> <span class="n">bins</span><span class="o">=</span><span class="mi">40</span><span class="p">)</span>
 </code></pre></div>
 <p>第2・3回で見たヒストグラムも、コードなら1行。日本語が□□に化けるときは、冒頭の <code>japanize-matplotlib</code> を実行したか確認する。</p>
 <hr />

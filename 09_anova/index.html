@@ -599,6 +599,17 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#f-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        対照実験 ―― F が1前後だと、どう見えるか
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#f" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -862,6 +873,17 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#f-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        対照実験 ―― F が1前後だと、どう見えるか
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#f" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -931,8 +953,8 @@
 <hr />
 <h2 id="0">0. フック<a class="headerlink" href="#0" title="Permanent link">&para;</a></h2>
 <blockquote>
-<p>3つの学部（経済・文・社福）でテスト点に差があるか調べたい。
-「じゃあ、経済vs文・文vs社福・経済vs社福 と、<strong>全ペアで t検定</strong>すればいいよね？」</p>
+<p>3つの科（オマキザル科・クモザル科・コビトキツネザル科）で体重に差があるか調べたい。
+「じゃあ、オマキvsクモ・クモvsコビト・オマキvsコビト と、<strong>全ペアで t検定</strong>すればいいよね？」</p>
 </blockquote>
 <p>――この『全ペアでt検定』が、実は危ない。</p>
 <hr />
@@ -982,31 +1004,61 @@
 <hr />
 <h2 id="3-anova-1">3. ANOVA ―― まず1回で「どこかに差があるか」<a class="headerlink" href="#3-anova-1" title="Permanent link">&para;</a></h2>
 <p>分散分析（ANOVA）は、3群以上を<strong>一度の検定</strong>で「<strong>どこかに差があるか</strong>」だけを判定する。検定を繰り返さないので偽陽性が増えない。</p>
-<p>3学部のテスト点で実行すると：</p>
+<p>3つの科の体重で実行すると（対数スケール）：</p>
 <table>
 <thead>
 <tr>
-<th>学部</th>
-<th>平均（n）</th>
+<th>科</th>
+<th>体重の中央値（n）</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>経済</td>
-<td>58.5（166）</td>
+<td>オマキザル科</td>
+<td>492 g（39種）</td>
 </tr>
 <tr>
-<td>文</td>
-<td>56.4（138）</td>
+<td>クモザル科</td>
+<td>6,652 g（16種）</td>
 </tr>
 <tr>
-<td>社福</td>
-<td>56.8（96）</td>
+<td>コビトキツネザル科</td>
+<td>69 g（13種）</td>
 </tr>
 </tbody>
 </table>
-<p><strong>ANOVA：F = 1.42、p = 0.243</strong></p>
-<p>平均は少し違って見えるが、<strong>群内のばらつき（個人差）に比べれば誤差の範囲</strong>で、「学部によってテスト点に差がある」とは言えなかった。（見かけの平均差にだまされない、という第2〜3回の教訓ともつながる。）</p>
+<p><strong>ANOVA：F = 151.89、p = 3×10⁻²⁵</strong></p>
+<p>圧倒的に有意。中央値が桁で違うのだから当然である。F=151.89 は「グループ間の差が、群内のばらつきの150倍」という意味。</p>
+<h3 id="f-1">対照実験 ―― F が1前後だと、どう見えるか<a class="headerlink" href="#f-1" title="Permanent link">&para;</a></h3>
+<p>同じ科の枠組みで、<strong>差がなさそうな量</strong>を調べる。「科によって、生息地の降水量に差はあるか？」</p>
+<table>
+<thead>
+<tr>
+<th>科</th>
+<th>月降水量の平均（n）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>オナガザル科</td>
+<td>158.7 mm（130種）</td>
+</tr>
+<tr>
+<td>クモザル科</td>
+<td>161.3 mm（24種）</td>
+</tr>
+<tr>
+<td>サキ科</td>
+<td>154.8 mm（26種）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>ANOVA：F = 0.08、p = 0.92</strong></p>
+<p>平均値の見かけの違いは、群内のばらつきに完全に埋もれている。（見かけの平均差にだまされない、という第2〜3回の教訓ともつながる。）</p>
+<div class="admonition note">
+<p class="admonition-title">「有意でなかった」も立派な結果</p>
+<p>ただしこれは「差がないことの証明」ではない。<strong>「この種数・このばらつきでは、差を検出できなかった」</strong>が正確な言い方である。</p>
+</div>
 <h3 id="f">F値の気持ち<a class="headerlink" href="#f" title="Permanent link">&para;</a></h3>
 <p>ANOVAは2種類のばらつきを比べる。</p>
 <div class="arithmatex">\[ F = \frac{\text{群間のばらつき（グループの平均どうしの違い）}}{\text{群内のばらつき（同じグループ内の個人差）}} \]</div>

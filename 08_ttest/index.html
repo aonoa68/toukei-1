@@ -557,6 +557,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="2. t検定をやってみる（明確な差の例）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        対照：差がない例も、同じデータの中にある
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -604,7 +621,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
         まとめ
@@ -852,6 +869,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="2. t検定をやってみる（明確な差の例）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        対照：差がない例も、同じデータの中にある
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -899,7 +933,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
         まとめ
@@ -941,10 +975,10 @@
 <hr />
 <h2 id="0">0. フック<a class="headerlink" href="#0" title="Permanent link">&para;</a></h2>
 <blockquote>
-<p>新しい勉強法を試したクラスは、従来のクラスより<strong>テスト平均が3点高かった</strong>。
-これは「効果があった」のか、「たまたま」なのか？</p>
+<p>保護区の中と外で、同じ種のサルの体重を測った。<strong>保護区の中のほうが平均0.2kg重かった。</strong>
+これは「保護区に効果があった」のか、「たまたま」なのか？</p>
 </blockquote>
-<p>直感では決められない。3点は大きい？小さい？――この問いに答えるのが<strong>仮説検定</strong>だ。</p>
+<p>直感では決められない。0.2kgは大きい？小さい？――この問いに答えるのが<strong>仮説検定</strong>だ。</p>
 <hr />
 <h2 id="1">1. 帰無仮説 ―― 背理法で考える<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
 <p>検定は背理法に似ている。</p>
@@ -958,27 +992,53 @@
 </blockquote>
 <hr />
 <h2 id="2-t">2. t検定をやってみる（明確な差の例）<a class="headerlink" href="#2-t" title="Permanent link">&para;</a></h2>
-<p>北辰大データで、一人暮らしの人と実家の人の<strong>通学時間</strong>を比べる。2群の平均差が偶然かを調べるのが <strong>t検定</strong>。</p>
+<p>霊長類の進化を語るとき、大きな区分が <strong>旧世界ザル</strong>（アフリカ・アジア）と <strong>新世界ザル</strong>（中南米）である。両者は3,000万年以上前に分かれた。この2つの科で<strong>体重に差があるか</strong>を調べる。第3回のとおり体重は対数で扱う。</p>
 <table>
 <thead>
 <tr>
-<th>群</th>
-<th>平均通学時間</th>
+<th>科</th>
+<th>体重の中央値（n）</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>一人暮らし</td>
-<td>19分（n=143）</td>
+<td>オナガザル科（旧世界）</td>
+<td>7,226 g（92種）</td>
 </tr>
 <tr>
-<td>実家</td>
-<td>57分（n=256）</td>
+<td>オマキザル科（新世界）</td>
+<td>492 g（39種）</td>
 </tr>
 </tbody>
 </table>
-<p>t検定の結果：<strong>t = −23.3、p ≈ 4.6 × 10⁻⁷¹</strong>（ほぼ0）。</p>
-<p>「差はない」と仮定すると、これほどの差は偶然ではまず起きない → <strong>有意差あり</strong>。</p>
+<p>t検定の結果：<strong>t = 20.03、p ≈ 8.4 × 10⁻²⁷</strong>（ほぼ0）。</p>
+<p>「差はない」と仮定すると、これほどの差（中央値で約15倍）は偶然ではまず起きない → <strong>有意差あり</strong>。</p>
+<h3 id="_2">対照：差がない例も、同じデータの中にある<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<p>今度は <strong>オナガザル科（旧世界）と クモザル科（新世界）</strong> を比べる。クモザル科も新世界ザルだが、大型の種が多い。</p>
+<table>
+<thead>
+<tr>
+<th>科</th>
+<th>体重の中央値（n）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>オナガザル科</td>
+<td>7,226 g（92種）</td>
+</tr>
+<tr>
+<td>クモザル科</td>
+<td>6,652 g（16種）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>t = −0.02、p = 0.98。</strong> まったく差があると言えない。</p>
+<div class="admonition warning">
+<p class="admonition-title">何と何を比べるかは、検定の外側</p>
+<p>旧世界か新世界かで決まるのではない。<strong>新世界ザルの中に、小型のオマキザル科と大型のクモザル科が両方いる</strong>からである。</p>
+<p><strong>同じデータ・同じ手法で、比べる相手を変えただけで結論が正反対になる。</strong>「何と何を比べるか」は検定にかける前の<strong>あなたの判断</strong>であり、統計は「その比較が妥当か」を教えてくれない。</p>
+</div>
 <hr />
 <h2 id="3-p">3. p値の意味を、正しく<a class="headerlink" href="#3-p" title="Permanent link">&para;</a></h2>
 <p>ここで誤解を3つ、はっきり打ち消す。</p>
@@ -989,11 +1049,11 @@
 </ul>
 <hr />
 <h2 id="4-p-n">4. p値の脆さ ―― 同じ差でも n で変わる<a class="headerlink" href="#4-p-n" title="Permanent link">&para;</a></h2>
-<p>「従来法58点」「新法60点」、<strong>真の差はたった2点で固定</strong>。そこから n 人ずつ取って t検定、を2000回くりかえし、有意（p&lt;0.05）になった割合を見る。</p>
+<p>冒頭のフックに戻る。保護区の外6.0kg・中6.2kg、<strong>真の差はたった0.2kgで固定</strong>。そこから n 頭ずつ捕獲して測る、を2000回くりかえし、有意（p&lt;0.05）になった割合を見る。</p>
 <table>
 <thead>
 <tr>
-<th>各群の人数 n</th>
+<th>各群の頭数 n</th>
 <th>有意になった割合</th>
 </tr>
 </thead>
@@ -1014,7 +1074,7 @@
 </table>
 <div class="admonition danger">
 <p class="admonition-title">効果は同じ。n が違うだけ</p>
-<p>真の差は常に2点。なのに <strong>n を増やすほど「有意」になりやすい</strong>。
+<p>真の差は常に0.2kg。なのに <strong>n を増やすほど「有意」になりやすい</strong>。
 つまり、サンプルを増やすだけで小さな差でも「有意差あり」を作れてしまう。
 <strong>「p&lt;0.05だった」だけでは、効果が大きいことの証明にはならない。</strong></p>
 </div>
@@ -1030,16 +1090,24 @@
 </thead>
 <tbody>
 <tr>
-<td>通学時間（一人暮らし vs 実家）</td>
-<td><strong>1.90</strong>（大きい効果）</td>
+<td>旧世界 vs 新世界（オマキザル科）</td>
+<td><strong>4.40</strong>（けた外れに大きい）</td>
 </tr>
 <tr>
-<td>勉強法（58 vs 60）</td>
+<td>旧世界 vs クモザル科</td>
+<td><strong>−0.00</strong>（実質ゼロ）</td>
+</tr>
+<tr>
+<td>保護区の内外（0.2kgの差）</td>
 <td><strong>0.18</strong>（小さい効果）</td>
 </tr>
 </tbody>
 </table>
-<p>勉強法の差は「n を増やせば有意にできる」が、効果量は小さい。<strong>有意 ≠ 効果が大きい。</strong> だから検定では、p値と一緒に<strong>必ず効果量も見る</strong>。</p>
+<p>d = 4.40 は目安の「0.8で大」をはるかに超えている。群内のばらつき4個分以上も離れているということ。</p>
+<p>一方、保護区の例は d = 0.18。<strong>n さえ増やせば有意にできるが、生物学的にはごくわずかな差</strong>である。<strong>有意 ≠ 効果が大きい。</strong> だから検定では、p値と一緒に<strong>必ず効果量も見る</strong>。</p>
+<blockquote>
+<p><strong>p値は「偶然かどうか」、効果量は「どれくらいか」。</strong>論文でも報告書でも、<strong>両方を書く</strong>。</p>
+</blockquote>
 <hr />
 <h2 id="6-2">6. 2種類の誤り<a class="headerlink" href="#6-2" title="Permanent link">&para;</a></h2>
 <p>検定は完璧ではない。間違え方が2つある。</p>
@@ -1069,7 +1137,7 @@
 <li>だから「有意」でも、<strong>20回に1回は偶然の偽陽性</strong>かもしれない。検定を何度も繰り返せば偽陽性は増える（→第9回）。</li>
 </ul>
 <hr />
-<h2 id="_2">まとめ<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h2 id="_3">まとめ<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
