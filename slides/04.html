@@ -87,11 +87,11 @@ table { font-size: 0.8em; }
 <header>統計学Ⅰ（B）2026　第4回</header>
 <h2 id="%E3%83%87%E3%83%BC%E3%82%BF%E3%81%AF%E8%A1%A8%EF%BC%9D-dataframe">データは「表」＝ DataFrame</h2>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python">df = pd.read_csv(URL)   <span class="hljs-comment"># 表を読み込む</span>
-df.shape                <span class="hljs-comment"># (学生数, 列数)</span>
+df.shape                <span class="hljs-comment"># (種数, 列数)</span>
 df.head()               <span class="hljs-comment"># 先頭5行</span>
 </code></pre>
-<p>行 ＝ 1人の学生<br />
-列 ＝ テスト点・身長などの項目</p>
+<p>行 ＝ 1つの種<br />
+列 ＝ 体重・妊娠期間などの項目</p>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="5" data-paginate="true" data-header="統計学Ⅰ（B）2026　第4回" data-theme="default" data-style="section { font-size: 27px; }
 h1 { color: #00695c; }
@@ -108,9 +108,9 @@ table { font-size: 0.8em; }
 ;" data-marpit-pagination-total="8" data-size="16:9">
 <header>統計学Ⅰ（B）2026　第4回</header>
 <h2 id="%E4%BB%A3%E8%A1%A8%E5%80%A4%E3%82%92%E3%82%B3%E3%83%BC%E3%83%89%E3%81%A7%E7%AC%AC2%E5%9B%9E%E3%81%AE%E5%86%8D%E7%8F%BE">代表値をコードで（第2回の再現）</h2>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python">df[<span class="hljs-string">&quot;テスト点&quot;</span>].mean()    <span class="hljs-comment"># 平均  → 57.4</span>
-df[<span class="hljs-string">&quot;テスト点&quot;</span>].median()  <span class="hljs-comment"># 中央値 → 58</span>
-df[<span class="hljs-string">&quot;テスト点&quot;</span>].mode()    <span class="hljs-comment"># 最頻値 → 53</span>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python">df[<span class="hljs-string">&quot;体重g&quot;</span>].mean()      <span class="hljs-comment"># 平均  → 5880.9</span>
+df[<span class="hljs-string">&quot;体重g&quot;</span>].median()    <span class="hljs-comment"># 中央値 → 3006.0</span>
+df[<span class="hljs-string">&quot;一腹産子数&quot;</span>].mode() <span class="hljs-comment"># 最頻値 → 1.01</span>
 </code></pre>
 <br />
 <p>電卓で出した値と<strong>同じ</strong>。違いは速さと正確さだけ。</p>
@@ -130,11 +130,11 @@ table { font-size: 0.8em; }
 ;" data-marpit-pagination-total="8" data-size="16:9">
 <header>統計学Ⅰ（B）2026　第4回</header>
 <h2 id="%E3%81%B0%E3%82%89%E3%81%A4%E3%81%8D%E3%83%BB%E8%A6%81%E7%B4%84%E3%83%BB%E9%9B%86%E8%A8%88">ばらつき・要約・集計</h2>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python">df[<span class="hljs-string">&quot;テスト点&quot;</span>].std()                    <span class="hljs-comment"># SD → 11.6</span>
-df[<span class="hljs-string">&quot;テスト点&quot;</span>].describe()               <span class="hljs-comment"># 一気に要約</span>
-df.groupby(<span class="hljs-string">&quot;学部&quot;</span>)[<span class="hljs-string">&quot;テスト点&quot;</span>].mean()   <span class="hljs-comment"># 学部別平均</span>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python">df[<span class="hljs-string">&quot;妊娠期間日&quot;</span>].std()                  <span class="hljs-comment"># SD → 37.8</span>
+df[<span class="hljs-string">&quot;体重g&quot;</span>].describe()                  <span class="hljs-comment"># 一気に要約</span>
+df.groupby(<span class="hljs-string">&quot;科&quot;</span>)[<span class="hljs-string">&quot;体重g&quot;</span>].mean()        <span class="hljs-comment"># 科別平均</span>
 df.isna().<span class="hljs-built_in">sum</span>()                         <span class="hljs-comment"># 欠損の確認</span>
-plt.hist(df[<span class="hljs-string">&quot;テスト点&quot;</span>])                <span class="hljs-comment"># グラフ1行</span>
+plt.hist(df[<span class="hljs-string">&quot;体重g&quot;</span>].dropna())          <span class="hljs-comment"># グラフ1行</span>
 </code></pre>
 <p>手計算なら数十分 → <strong>一瞬</strong></p>
 </section>

@@ -40,12 +40,12 @@ table { font-size: 0.78em; }
 <header>統計学Ⅰ（B）2026　第8回</header>
 <h2 id="%E3%83%95%E3%83%83%E3%82%AF">フック</h2>
 <blockquote>
-<p>新しい勉強法のクラスは、従来より<br />
-<strong>テスト平均が3点高かった</strong></p>
+<p>保護区の中の群れは、外より<br />
+<strong>平均体重が0.2kg重かった</strong></p>
 </blockquote>
 <br />
 <h2 id="span-classbig%E5%8A%B9%E6%9E%9C-%E3%81%9D%E3%82%8C%E3%81%A8%E3%82%82%E5%81%B6%E7%84%B6span"><span class="big">効果？ それとも偶然？</span></h2>
-<p>3点は大きい？小さい？ 直感では決められない</p>
+<p>0.2kgは大きい？小さい？ 直感では決められない</p>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="3" data-paginate="true" data-header="統計学Ⅰ（B）2026　第8回" data-theme="default" data-style="section { font-size: 27px; }
 h1 { color: #00695c; }
@@ -81,8 +81,8 @@ table { font-size: 0.78em; }
 ;" data-marpit-pagination-total="9" data-size="16:9">
 <header>統計学Ⅰ（B）2026　第8回</header>
 <h2 id="t%E6%A4%9C%E5%AE%9A%E6%98%8E%E7%A2%BA%E3%81%AA%E5%B7%AE%E3%81%AE%E4%BE%8B">t検定（明確な差の例）</h2>
-<p>通学時間：一人暮らし <strong>19分</strong> vs 実家 <strong>57分</strong></p>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python">t, p = stats.ttest_ind(一人暮らし, 実家)
+<p>体重の中央値：オナガザル科（旧世界）<strong>7,226g</strong> vs オマキザル科（新世界）<strong>492g</strong></p>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python">t, p = stats.ttest_ind(旧世界, 新世界)
 </code></pre>
 <p>→ <strong>t = −23.3、p ≈ 0.00000…（10⁻⁷¹）</strong></p>
 <p>偶然ではまず起きない差 → 有意差あり</p>
@@ -122,7 +122,7 @@ table { font-size: 0.78em; }
 <header>統計学Ⅰ（B）2026　第8回</header>
 <h2 id="p%E5%80%A4%E3%81%AE%E8%84%86%E3%81%95%E5%90%8C%E3%81%98%E5%B7%AE%E3%81%A7%E3%82%82-n-%E3%81%A7%E5%A4%89%E3%82%8F%E3%82%8B">p値の脆さ：同じ差でも n で変わる</h2>
 <p><img src="data/pvalue_n.png" alt="" style="width:620px;" /></p>
-<p>真の差は<strong>2点で固定</strong>。n を増やすだけで「有意」を作れる</p>
+<p>真の差は<strong>0.2kgで固定</strong>。n を増やすだけで「有意」を作れる</p>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="7" data-paginate="true" data-header="統計学Ⅰ（B）2026　第8回" data-theme="default" data-style="section { font-size: 27px; }
 h1 { color: #00695c; }
@@ -146,8 +146,8 @@ table { font-size: 0.78em; }
 </thead>
 <tbody>
 <tr>
-<td>通学時間（一人暮らし vs 実家）</td>
-<td><strong>1.90</strong> 大</td>
+<td>旧世界 vs 新世界（体重）</td>
+<td><strong>4.40</strong> けた外れ</td>
 </tr>
 <tr>
 <td>勉強法（58 vs 60）</td>

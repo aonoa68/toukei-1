@@ -44,12 +44,12 @@ code { font-size: 0.9em; }
 <header>統計学Ⅰ（B）2026　第10回</header>
 <h2 id="%E3%83%95%E3%83%83%E3%82%AF">フック</h2>
 <blockquote>
-<p>「<strong>通学時間</strong>でテスト点を予測できる？」</p>
+<p>「<strong>栄養段階</strong>（草食/雑食）で行動圏を予測できる？」</p>
 </blockquote>
 <p>直線を引いてみると… <strong>R² ≈ 0</strong><br />
-通学時間では予測できない（直線ほぼ水平）</p>
+R²=0.0001。まったく説明できない</p>
 <br />
-<p>では <strong>勉強時間</strong> なら？</p>
+<p>では <strong>体重</strong> なら？</p>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="3" data-paginate="true" data-header="統計学Ⅰ（B）2026　第10回" data-theme="default" data-style="section { font-size: 27px; }
 h1 { color: #00695c; }
@@ -65,10 +65,10 @@ table { font-size: 0.8em; }
 code { font-size: 0.9em; }
 ;" data-marpit-pagination-total="9" data-size="16:9">
 <header>統計学Ⅰ（B）2026　第10回</header>
-<h2 id="%E5%8D%98%E5%9B%9E%E5%B8%B0%E5%8B%89%E5%BC%B7-%E2%86%92-%E3%83%86%E3%82%B9%E3%83%88%E7%82%B9">単回帰：勉強 → テスト点</h2>
+<h2 id="%E5%8D%98%E5%9B%9E%E5%B8%B0%E4%BD%93%E9%87%8D-%E2%86%92-%E8%A1%8C%E5%8B%95%E5%9C%8F%E4%B8%A1%E5%AF%BE%E6%95%B0">単回帰：体重 → 行動圏（両対数）</h2>
 <p><img src="data/regression_line.png" alt="" style="width:560px;" /></p>
-<p><span is="marp-span" data-auto-scaling="downscale-only" class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>テスト点</mtext><mo>≈</mo><mn>45.5</mn><mo>+</mo><mn>7.5</mn><mo>×</mo><mtext>勉強時間</mtext></mrow><annotation encoding="application/x-tex">\text{テスト点} \approx 45.5 + 7.5 \times \text{勉強時間} 
-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord text"><span class="mord cjk_fallback">テスト点</span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≈</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">45.5</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">7.5</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord text"><span class="mord cjk_fallback">勉強時間</span></span></span></span></span></span></p><p>傾き7.5＝勉強1時間で予測+7.5点 / R²=0.36</p>
+<p><span is="marp-span" data-auto-scaling="downscale-only" class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>log</mi><mo>⁡</mo><mo stretchy="false">(</mo><mtext>行動圏</mtext><mo stretchy="false">)</mo><mo>≈</mo><mo>−</mo><mn>3.883</mn><mo>+</mo><mn>0.933</mn><mo>×</mo><mi>log</mi><mo>⁡</mo><mo stretchy="false">(</mo><mtext>体重</mtext><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\log(\text{行動圏}) \approx -3.883 + 0.933 \times \log(\text{体重}) 
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop">lo<span style="margin-right:0.0139em;">g</span></span><span class="mopen">(</span><span class="mord text"><span class="mord cjk_fallback">行動圏</span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≈</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">−</span><span class="mord">3.883</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">0.933</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop">lo<span style="margin-right:0.0139em;">g</span></span><span class="mopen">(</span><span class="mord text"><span class="mord cjk_fallback">体重</span></span><span class="mclose">)</span></span></span></span></span></p><p>傾き0.933＝<strong>体重10倍で行動圏8.6倍</strong> / R²=0.462（n=153種）</p>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="4" data-paginate="true" data-header="統計学Ⅰ（B）2026　第10回" data-theme="default" data-style="section { font-size: 27px; }
 h1 { color: #00695c; }
@@ -92,7 +92,7 @@ code { font-size: 0.9em; }
 </ul>
 <br />
 <h2 id="span-classbig%E2%9A%A0%EF%B8%8F-%E4%BF%82%E6%95%B0-%E2%89%A0-%E5%9B%A0%E6%9E%9Cspan"><span class="big"><img class="emoji" draggable="false" alt="⚠️" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@17.0.2/assets/svg/26a0.svg" data-marp-twemoji=""/> 係数 ≠ 因果</span></h2>
-<p>「勉強1hで+7.5点」は予測上の関連。因果の保証ではない</p>
+<p>「体重10倍で行動圏8.6倍」は予測上の関連。因果の保証ではない</p>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="5" data-paginate="true" data-header="統計学Ⅰ（B）2026　第10回" data-theme="default" data-style="section { font-size: 27px; }
 h1 { color: #00695c; }
@@ -109,8 +109,8 @@ code { font-size: 0.9em; }
 ;" data-marpit-pagination-total="9" data-size="16:9">
 <header>統計学Ⅰ（B）2026　第10回</header>
 <h2 id="%E9%87%8D%E5%9B%9E%E5%B8%B0%E8%A4%87%E6%95%B0%E3%81%AE%E5%A4%89%E6%95%B0%E3%81%A7">重回帰：複数の変数で</h2>
-<p><span is="marp-span" data-auto-scaling="downscale-only" class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>点</mtext><mo>≈</mo><mn>42.4</mn><mo>+</mo><mn>6.6</mn><mtext> </mtext><mtext>勉強</mtext><mo>+</mo><mn>1.0</mn><mtext> </mtext><mtext>睡眠</mtext><mo>−</mo><mn>0.8</mn><mtext> </mtext><mi>S</mi><mi>N</mi><mi>S</mi></mrow><annotation encoding="application/x-tex">点 \approx 42.4 + 6.6\,勉強 + 1.0\,睡眠 - 0.8\,SNS 
-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord cjk_fallback">点</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≈</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">42.4</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7667em;vertical-align:-0.0833em;"></span><span class="mord">6.6</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord cjk_fallback">勉強</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7667em;vertical-align:-0.0833em;"></span><span class="mord">1.0</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord cjk_fallback">睡眠</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord">0.8</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.0576em;">S</span><span class="mord mathnormal" style="margin-right:0.109em;">N</span><span class="mord mathnormal" style="margin-right:0.0576em;">S</span></span></span></span></span></p><p>各係数＝「<strong>他を一定にしたとき</strong>」の関連（統制）<br />
+<p><span is="marp-span" data-auto-scaling="downscale-only" class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>log</mi><mo>⁡</mo><mtext>行動圏</mtext><mo>≈</mo><mo>−</mo><mn>3.36</mn><mo>+</mo><mn>0.568</mn><mtext> </mtext><mi>log</mi><mo>⁡</mo><mtext>体重</mtext><mo>+</mo><mn>0.828</mn><mtext> </mtext><mi>log</mi><mo>⁡</mo><mtext>集団サイズ</mtext></mrow><annotation encoding="application/x-tex">\log行動圏 \approx -3.36 + 0.568\,\log体重 + 0.828\,\log集団サイズ 
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mop">lo<span style="margin-right:0.0139em;">g</span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord cjk_fallback">行動圏</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≈</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">−</span><span class="mord">3.36</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord">0.568</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop">lo<span style="margin-right:0.0139em;">g</span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord cjk_fallback">体重</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord">0.828</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop">lo<span style="margin-right:0.0139em;">g</span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord cjk_fallback">集団サイズ</span></span></span></span></span></p><p>各係数＝「<strong>他を一定にしたとき</strong>」の関連（統制）<br />
 SNSの−0.8 ＝ 勉強・睡眠が同じ人で比べたSNSの効果</p>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="6" data-paginate="true" data-header="統計学Ⅰ（B）2026　第10回" data-theme="default" data-style="section { font-size: 27px; }
@@ -129,7 +129,7 @@ code { font-size: 0.9em; }
 <header>統計学Ⅰ（B）2026　第10回</header>
 <h2 id="r%C2%B2%E3%81%AE%E7%BD%A0%E8%B6%B3%E3%81%9B%E3%81%B0%E5%BF%85%E3%81%9A%E4%B8%8A%E3%81%8C%E3%82%8B">R²の罠：足せば必ず上がる</h2>
 <p><img src="data/r2_inflation.png" alt="" style="width:560px;" /></p>
-<p><strong>でたらめな乱数</strong>を20本足すだけで R² 0.36→0.41</p>
+<p><strong>でたらめな乱数</strong>を50本足すだけで R² 0.46→0.67</p>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="7" data-paginate="true" data-header="統計学Ⅰ（B）2026　第10回" data-theme="default" data-style="section { font-size: 27px; }
 h1 { color: #00695c; }
@@ -168,7 +168,7 @@ code { font-size: 0.9em; }
 <header>統計学Ⅰ（B）2026　第10回</header>
 <h2 id="%E4%BB%96%E3%81%AE%E7%BD%A0%E5%A4%96%E6%8C%BF%E3%81%A8%E6%AE%8B%E5%B7%AE">他の罠：外挿と残差</h2>
 <ul>
-<li><strong>外挿</strong>：勉強20h を式に入れると予測 <strong>196点</strong>（あり得ない）<br />
+<li><strong>外挿</strong>：1トンの霊長類を入れると <strong>52km²</strong>。エラーは出ないが、そんな種はいない<br />
 → データ範囲の外は予測できない</li>
 <li><strong>残差</strong>（実際−予測）は必ずプロット。偏りがないか見る</li>
 </ul>
