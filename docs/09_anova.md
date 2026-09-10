@@ -11,7 +11,8 @@
 !!! info "今日のリンク"
     - [📊 スライドを開く](slides/09.html)
     - [📓 Colabノートを開く（09_anova.ipynb）](https://colab.research.google.com/github/aonoa68/toukei-1/blob/main/colab/09_anova.ipynb)
-    - 📝 今日の課題は**このページの末尾**にあります。解答の提出は Moodle の「第9回 課題」へ
+    - [📝 課題を提出する（Moodle・第9回）](https://moodle.hokusei.ac.jp/mod/assign/view.php?id=990630)
+    - 課題の本文は**このページの末尾**にあります
 <!-- LINKS:END -->
 
 ## この回のゴール

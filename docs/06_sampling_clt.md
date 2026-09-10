@@ -11,7 +11,8 @@
 !!! info "今日のリンク"
     - [📊 スライドを開く](slides/06.html)
     - [📓 Colabノートを開く（06_sampling_clt.ipynb）](https://colab.research.google.com/github/aonoa68/toukei-1/blob/main/colab/06_sampling_clt.ipynb)
-    - 📝 今日の課題は**このページの末尾**にあります。解答の提出は Moodle の「第6回 課題」へ
+    - [📝 課題を提出する（Moodle・第6回）](https://moodle.hokusei.ac.jp/mod/assign/view.php?id=990627)
+    - 課題の本文は**このページの末尾**にあります
 <!-- LINKS:END -->
 
 ## この回のゴール
