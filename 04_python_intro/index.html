@@ -528,6 +528,45 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#moodle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        今日の課題（Moodle提出）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="今日の課題（Moodle提出）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a10-440" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        パートA：選択・数値問題（自動採点・各10点 ×4＝40点）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bai60" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        パートB：記述問題（AIフィードバック対象・60点）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -953,6 +992,45 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#moodle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        今日の課題（Moodle提出）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="今日の課題（Moodle提出）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a10-440" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        パートA：選択・数値問題（自動採点・各10点 ×4＝40点）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bai60" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        パートB：記述問題（AIフィードバック対象・60点）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -975,6 +1053,16 @@
 <p>計算は機械に、判断は人間に ―― 今日から、あなたがコードを書く</p>
 </blockquote>
 <hr />
+<!-- LINKS:START -->
+<div class="admonition info">
+<p class="admonition-title">今日のリンク</p>
+<ul>
+<li><a href="https://colab.research.google.com/github/aonoa68/toukei-1/blob/main/colab/04_python_intro.ipynb">📓 Colabノートを開く（04_python_intro.ipynb）</a></li>
+<li>📝 今日の課題は<strong>このページの末尾</strong>にあります。解答の提出は Moodle の「第4回 課題」へ</li>
+</ul>
+</div>
+<!-- LINKS:END -->
+
 <h2 id="_1">この回のゴール<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <ul>
 <li>データを「表（DataFrame）」として読み込み、列を取り出せる</li>
@@ -1087,6 +1175,30 @@
 <blockquote>
 <p>手で求めた値と、コードで求めた値は同じ。違うのは速さと正確さ。
 <strong>計算は機械に任せ、人間は「どの数字を信じるか」の判断に集中する。</strong></p>
+</blockquote>
+<hr />
+<h2 id="moodle">今日の課題（Moodle提出）<a class="headerlink" href="#moodle" title="Permanent link">&para;</a></h2>
+<p><strong>配点：100点（自動採点40点 ＋ 記述60点）／ 提出先：Moodle</strong></p>
+<p>Colab <code>04_python_intro.ipynb</code> の <code>____</code> をすべて埋めて実行し、<strong>出力された数値</strong>を見て答えること。</p>
+<hr />
+<h3 id="a10-440">パートA：選択・数値問題（自動採点・各10点 ×4＝40点）<a class="headerlink" href="#a10-440" title="Permanent link">&para;</a></h3>
+<p><strong>A1.</strong> <code>df["体重g"].mean()</code> を実行して出た<strong>平均値</strong>（小数第1位まで）を入力しなさい。
+（半角数字で。例：1234.5）</p>
+<p><strong>A2.</strong> <code>df.groupby("科")["体重g"].mean()</code> を実行したとき、体重の平均が<strong>最も大きかった科</strong>はどれか。
+- (ア) ヒト科　(イ) オナガザル科　(ウ) コビトキツネザル科</p>
+<p><strong>A3.</strong> <code>df.isna().sum()</code> を実行したとき、<strong><code>体重g</code> の欠損（未測定）の数</strong>はいくつか。（半角数字）</p>
+<p><strong>A4.</strong> <code>df["体重g"].describe()</code> の <strong>count（有効な種数）</strong> はいくつか。（半角数字）</p>
+<hr />
+<h3 id="bai60">パートB：記述問題（AIフィードバック対象・60点）<a class="headerlink" href="#bai60" title="Permanent link">&para;</a></h3>
+<div class="admonition warning">
+<p class="admonition-title">【全記述に共通・重要】自分の出力を引用すること</p>
+<p>各記述には、<strong>今日あなたのノートが出力した具体的な数値</strong>を最低1つ引用すること（例：「平均は5880.9と出た」「科別ではヒト科が70,526gで最大だった」「体重の欠損は111種あった」）。
+<strong>引用がない記述は満点になりません。</strong></p>
+</div>
+<p><strong>B1.（30点）</strong> 第2回・第3回では電卓などで代表値やばらつきを手計算した。今日は同じ値を<strong>コードで</strong>求めた。両者を比べて、<strong>「計算は機械に、判断は人間に」とはどういうことか</strong>を、自分の言葉で説明しなさい。手計算とコードはそれぞれ何が得意で、人間が集中すべきことは何か。</p>
+<p><strong>B2.（30点）</strong> 今日コードを書いていて<strong>詰まった点（エラーや迷い）を1つ</strong>挙げ、何が原因で、どう解決したか（または何を確認したか）を具体的に書きなさい。詰まらなかった人は、6つの穴埋めのうち1つを選び、<strong>何という列名・メソッドを入れて、どんな結果が出たか</strong>を書きなさい。</p>
+<blockquote>
+<p>目安：B1・B2あわせて300〜500字。<strong>自分の言葉</strong>で書くこと。</p>
 </blockquote>
 <div class="admonition abstract">
 <p class="admonition-title">次回予告</p>

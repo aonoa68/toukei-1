@@ -700,6 +700,45 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#moodle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        今日の課題（Moodle提出）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="今日の課題（Moodle提出）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a10-440" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        パートA：選択・数値問題（自動採点・各10点 ×4＝40点）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bai60" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        パートB：記述問題（AIフィードバック対象・60点）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -865,6 +904,45 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#moodle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        今日の課題（Moodle提出）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="今日の課題（Moodle提出）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a10-440" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        パートA：選択・数値問題（自動採点・各10点 ×4＝40点）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bai60" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        パートB：記述問題（AIフィードバック対象・60点）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -887,6 +965,16 @@
 <p>データで「信念」を更新する、もう一つの確率の見方</p>
 </blockquote>
 <hr />
+<!-- LINKS:START -->
+<div class="admonition info">
+<p class="admonition-title">今日のリンク</p>
+<ul>
+<li><a href="https://colab.research.google.com/github/aonoa68/toukei-1/blob/main/colab/12_bayes.ipynb">📓 Colabノートを開く（12_bayes.ipynb）</a></li>
+<li>📝 今日の課題は<strong>このページの末尾</strong>にあります。解答の提出は Moodle の「第12回 課題」へ</li>
+</ul>
+</div>
+<!-- LINKS:END -->
+
 <h2 id="_1">この回のゴール<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <ul>
 <li>ベイズの確率観（信念の度合い）と、頻度論との違いを説明できる</li>
@@ -1071,6 +1159,35 @@
 <blockquote>
 <p><strong>ベイズは『データで信念を更新する』枠組み。頻度論とは世界観が違うだけで、優劣ではない。</strong>
 検査の例のように、<strong>事前情報を無視すると直感は大きく外れる</strong>。</p>
+</blockquote>
+<hr />
+<h2 id="moodle">今日の課題（Moodle提出）<a class="headerlink" href="#moodle" title="Permanent link">&para;</a></h2>
+<p><strong>配点：100点（自動採点40点 ＋ 記述60点）／ 提出先：Moodle</strong></p>
+<p>Colab <code>12_bayes.ipynb</code> を実行したうえで答えること。</p>
+<hr />
+<h3 id="a10-440">パートA：選択・数値問題（自動採点・各10点 ×4＝40点）<a class="headerlink" href="#a10-440" title="Permanent link">&para;</a></h3>
+<p><strong>A1.</strong> 有病率1%・感度99%・特異度99%の検査で陽性だったとき、本当に病気である確率（陽性的中率）に<strong>最も近い</strong>のは？
+- (ア) 99%　(イ) 90%　(ウ) 50%　(エ) 1%</p>
+<p><strong>A2.</strong> A1で直感（99%）が大きく外れた理由として<strong>最も適切</strong>なのは？
+- (ア) 検査の精度が低いから
+- (イ) 病気の人が元々少なく（事前確率が低く）、偽陽性が無視できないから
+- (ウ) 計算を間違えたから</p>
+<p><strong>A3.</strong> ベイズの用語で、「データを見る前の信念」を表すのはどれか。
+- (ア) 事後確率　(イ) 尤度　(ウ) 事前確率</p>
+<p><strong>A4.</strong> ベイズ更新について<strong>正しい</strong>のは？
+- (ア) データが増えても事後分布は変わらない
+- (イ) データが増えるほど事後分布は狭まり、真の値の近くに締まる
+- (ウ) 事前が違うと、いくらデータを増やしても結論は永遠に一致しない</p>
+<hr />
+<h3 id="bai60">パートB：記述問題（AIフィードバック対象・60点）<a class="headerlink" href="#bai60" title="Permanent link">&para;</a></h3>
+<div class="admonition warning">
+<p class="admonition-title">【全記述に共通・重要】自分の出力を引用すること</p>
+<p>記述には、今日のColabで確認した数値を最低1つ引用すること（例：「陽性的中率は50%」「n=100で信用区間の幅が0.17」「正反対の事前でも事後は0.70と0.75」）。<strong>引用がない記述は満点になりません。</strong></p>
+</div>
+<p><strong>B1.（30点）</strong> 「頻度論」と「ベイズ」の確率の考え方の違いを、<strong>自分の言葉で</strong>説明しなさい。少なくとも、(1)確率を何と捉えるか、(2)母平均などのパラメータを「固定された定数」と見るか「分布を持つもの」と見るか、の2点に触れること。第7回の信頼区間と、ベイズの信用区間の違いにも触れられるとよい。</p>
+<p><strong>B2.（30点）</strong> ある人が「ベイズは事前確率という主観を入れるから、非科学的で信用できない」と言っている。今日のシミュレーション（正反対の事前を持つ2人が同じデータを見た結果）をふまえて、<strong>この批判に反論</strong>しなさい。</p>
+<blockquote>
+<p>目安：B1・B2あわせて350〜550字。<strong>自分の言葉</strong>で書くこと。</p>
 </blockquote>
 <div class="admonition abstract">
 <p class="admonition-title">次回予告</p>

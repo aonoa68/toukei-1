@@ -679,6 +679,45 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#moodle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        今日の課題（Moodle提出）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="今日の課題（Moodle提出）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a10-440" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        パートA：選択問題（自動採点・各10点 ×4＝40点）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bai60" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        パートB：記述問題（AIフィードバック対象・60点）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -877,6 +916,45 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#moodle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        今日の課題（Moodle提出）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="今日の課題（Moodle提出）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a10-440" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        パートA：選択問題（自動採点・各10点 ×4＝40点）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bai60" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        パートB：記述問題（AIフィードバック対象・60点）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -899,6 +977,16 @@
 <p>当てはまりの良さ vs 複雑さ ―― オッカムの剃刀の定量化</p>
 </blockquote>
 <hr />
+<!-- LINKS:START -->
+<div class="admonition info">
+<p class="admonition-title">今日のリンク</p>
+<ul>
+<li><a href="https://colab.research.google.com/github/aonoa68/toukei-1/blob/main/colab/11_aic.ipynb">📓 Colabノートを開く（11_aic.ipynb）</a></li>
+<li>📝 今日の課題は<strong>このページの末尾</strong>にあります。解答の提出は Moodle の「第11回 課題」へ</li>
+</ul>
+</div>
+<!-- LINKS:END -->
+
 <h2 id="_1">この回のゴール<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <ul>
 <li>過学習（手元に合わせすぎて未知データに弱くなる）を説明できる</li>
@@ -1016,6 +1104,37 @@ AICは<strong>差</strong>で比べる相対指標で、複雑さには<strong>�
 <blockquote>
 <p><strong>R²最大のモデルとAIC最小のモデルは違う。</strong>
 良いモデルは「当てはまり」ではなく「当てはまりと複雑さのバランス」で選ぶ。</p>
+</blockquote>
+<hr />
+<h2 id="moodle">今日の課題（Moodle提出）<a class="headerlink" href="#moodle" title="Permanent link">&para;</a></h2>
+<p><strong>配点：100点（自動採点40点 ＋ 記述60点）／ 提出先：Moodle</strong></p>
+<p>Colab <code>11_aic.ipynb</code> を実行したうえで答えること。</p>
+<hr />
+<h3 id="a10-440">パートA：選択問題（自動採点・各10点 ×4＝40点）<a class="headerlink" href="#a10-440" title="Permanent link">&para;</a></h3>
+<p><strong>A1.</strong> 過学習が起きると、訓練データへの当てはまり（訓練R²）とテストデータの予測誤差はそれぞれどうなるか。
+- (ア) 訓練R²は上がり続けるが、テスト誤差は途中から悪化する
+- (イ) 両方とも良くなり続ける
+- (ウ) 訓練R²が下がり、テスト誤差も下がる</p>
+<p><strong>A2.</strong> AIC（赤池情報量規準）の説明として<strong>最も正しい</strong>のは？
+- (ア) 当てはまりの良さに、複雑さ（変数の多さ）のペナルティを足した指標で、<strong>小さいほど良い</strong>
+- (イ) 大きいほど良いモデルだ
+- (ウ) R²と同じもの</p>
+<p><strong>A3.</strong> 3モデルで R²最大は「M3（でたらめ入り）」、AIC最小は「M2」だった。<strong>採用すべき</strong>モデルは？
+- (ア) R²が最大の M3　(イ) AICが最小の M2　(ウ) 変数が最も多い M3</p>
+<p><strong>A4.</strong> AICの使い方として<strong>正しい</strong>のは？
+- (ア) AICの絶対値が小さいほど、それ自体に意味がある
+- (イ) AICは相対指標で、同じデータで作ったモデル間の<strong>差</strong>で比べる
+- (ウ) 変数を増やせばAICは必ず下がる</p>
+<hr />
+<h3 id="bai60">パートB：記述問題（AIフィードバック対象・60点）<a class="headerlink" href="#bai60" title="Permanent link">&para;</a></h3>
+<div class="admonition warning">
+<p class="admonition-title">【全記述に共通・重要】自分の出力を引用すること</p>
+<p>記述には、今日のColabで確認した数値を最低1つ引用すること（例：「M2のAICは2891で最小」「M3はR²最大0.386だがAICは2906」「でたらめを足すと訓練R²↑なのにテスト誤差↑」）。<strong>引用がない記述は満点になりません。</strong></p>
+</div>
+<p><strong>B1.（30点）</strong> 後輩が「3つのモデルを比べたら、R²はモデルCが一番高かった。だからCを使うべきだ」と言っている。<strong>なぜそれだけでは決められないのか</strong>、過学習とAICの観点から説明し、<strong>どう判断すべきか</strong>を述べなさい。</p>
+<p><strong>B2.（30点）</strong> 「変数はとにかくたくさん入れたほうが良いモデルになる」という考えは、なぜ間違いか。今日見た<strong>過学習</strong>（当てはまりと予測の食い違い）と、<strong>AICのペナルティ</strong>の両方を使って説明しなさい。あわせて「オッカムの剃刀」が何を言っているかにも触れること。</p>
+<blockquote>
+<p>目安：B1・B2あわせて350〜550字。<strong>自分の言葉</strong>で書くこと。</p>
 </blockquote>
 <div class="admonition abstract">
 <p class="admonition-title">次回予告</p>

@@ -744,6 +744,45 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#moodle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        今日の課題（Moodle提出）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="今日の課題（Moodle提出）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a10-440" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        パートA：選択問題（自動採点・各10点 ×4＝40点）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bai60" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        パートB：記述問題（AIフィードバック対象・60点）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -899,6 +938,45 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#moodle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        今日の課題（Moodle提出）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="今日の課題（Moodle提出）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a10-440" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        パートA：選択問題（自動採点・各10点 ×4＝40点）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bai60" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        パートB：記述問題（AIフィードバック対象・60点）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -921,6 +999,16 @@
 <p>たくさんの変数の背後にある、少数の軸を見つける ―― 次元を削減して本質を見る</p>
 </blockquote>
 <hr />
+<!-- LINKS:START -->
+<div class="admonition info">
+<p class="admonition-title">今日のリンク</p>
+<ul>
+<li><a href="https://colab.research.google.com/github/aonoa68/toukei-1/blob/main/colab/13_pca.ipynb">📓 Colabノートを開く（13_pca.ipynb）</a></li>
+<li>📝 今日の課題は<strong>このページの末尾</strong>にあります。解答の提出は Moodle の「第13回 課題」へ</li>
+</ul>
+</div>
+<!-- LINKS:END -->
+
 <h2 id="_1">この回のゴール<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <ul>
 <li>次元削減（多くの変数を少数の軸にまとめる）の発想を理解する</li>
@@ -1118,6 +1206,37 @@
 <blockquote>
 <p><strong>PCAは『たくさんの変数の背後にある少数の軸』を見つける道具。</strong>
 ただし情報は一部失われ、軸の意味づけは人間の解釈。</p>
+</blockquote>
+<hr />
+<h2 id="moodle">今日の課題（Moodle提出）<a class="headerlink" href="#moodle" title="Permanent link">&para;</a></h2>
+<p><strong>配点：100点（自動採点40点 ＋ 記述60点）／ 提出先：Moodle</strong></p>
+<p>Colab <code>13_pca.ipynb</code> を実行したうえで答えること。</p>
+<hr />
+<h3 id="a10-440">パートA：選択問題（自動採点・各10点 ×4＝40点）<a class="headerlink" href="#a10-440" title="Permanent link">&para;</a></h3>
+<p><strong>A1.</strong> PCA（主成分分析）の目的として<strong>最も適切</strong>なのは？
+- (ア) たくさんの変数を、情報をなるべく保ったまま少数の軸（主成分）にまとめる
+- (イ) 2つの変数の因果関係を証明する
+- (ウ) 欠損値を埋める</p>
+<p><strong>A2.</strong> 5つの生活史変数のPCAで、第1主成分の寄与率は約何%だったか。
+- (ア) 約13%　(イ) 約74%　(ウ) 約100%</p>
+<p><strong>A3.</strong> 第1主成分は「体重・妊娠期間・離乳日齢・最長寿命が＋、<strong>一腹産子数だけが−</strong>」という負荷だった。この軸の命名として<strong>最も妥当</strong>なのは？
+- (ア) 生息地の広さ
+- (イ) 生活史の「速い－遅い」（長く生きて少なく産むか、短く生きてたくさん産むか）
+- (ウ) 分類群の新しさ</p>
+<p><strong>A4.</strong> PCAについて<strong>正しい</strong>のは？
+- (ア) PCAでは情報はいっさい失われない
+- (イ) 主成分には必ずはっきりした意味がある
+- (ウ) 次元を削減すると一部の情報は失われ、主成分の意味づけは人間の解釈による</p>
+<hr />
+<h3 id="bai60">パートB：記述問題（AIフィードバック対象・60点）<a class="headerlink" href="#bai60" title="Permanent link">&para;</a></h3>
+<div class="admonition warning">
+<p class="admonition-title">【全記述に共通・重要】自分の出力を引用すること</p>
+<p>記述には、今日のColabで確認した数値を最低1つ引用すること（例：「第1主成分の寄与率は73.6%」「2主成分で累積87%」「一腹産子数の負荷は−0.39」「ヒト科が右端に来た」）。<strong>引用がない記述は満点になりません。</strong></p>
+</div>
+<p><strong>B1.（30点）</strong> 今日のPCAの結果（寄与率と負荷）を読んで、<strong>第1主成分が「何を表す軸」か</strong>を、負荷の符号（どの変数が＋でどの変数が−か）を根拠に説明し、あなた自身の言葉で<strong>命名</strong>しなさい。</p>
+<p><strong>B2.（30点）</strong> 友人が「PCAを使えば、たくさんの変数を2次元にまとめても情報は何も失われないし、出てきた主成分には必ずはっきりした意味がある」と言っている。今日の結果（累積寄与率など）をふまえて、この考えの<strong>どこが間違いか</strong>を2点指摘しなさい。</p>
+<blockquote>
+<p>目安：B1・B2あわせて350〜550字。<strong>自分の言葉</strong>で書くこと。</p>
 </blockquote>
 <div class="admonition abstract">
 <p class="admonition-title">次回予告</p>

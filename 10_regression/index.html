@@ -691,6 +691,45 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#moodle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        今日の課題（Moodle提出）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="今日の課題（Moodle提出）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a10-440" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        パートA：選択・数値問題（自動採点・各10点 ×4＝40点）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bai60" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        パートB：記述問題（AIフィードバック対象・60点）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -955,6 +994,45 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#moodle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        今日の課題（Moodle提出）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="今日の課題（Moodle提出）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a10-440" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        パートA：選択・数値問題（自動採点・各10点 ×4＝40点）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bai60" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        パートB：記述問題（AIフィードバック対象・60点）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -977,6 +1055,16 @@
 <p>データを「数式（モデル）」で説明する ―― ただし、当てはまりの良さは良いモデルの証明ではない</p>
 </blockquote>
 <hr />
+<!-- LINKS:START -->
+<div class="admonition info">
+<p class="admonition-title">今日のリンク</p>
+<ul>
+<li><a href="https://colab.research.google.com/github/aonoa68/toukei-1/blob/main/colab/10_regression.ipynb">📓 Colabノートを開く（10_regression.ipynb）</a></li>
+<li>📝 今日の課題は<strong>このページの末尾</strong>にあります。解答の提出は Moodle の「第10回 課題」へ</li>
+</ul>
+</div>
+<!-- LINKS:END -->
+
 <h2 id="_1">この回のゴール<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <ul>
 <li>単回帰の式（切片・傾き）と決定係数 R² を読める</li>
@@ -1180,6 +1268,37 @@
 <blockquote>
 <p><strong>モデルは現実の近似。「当てはまりの良さ」は「良いモデル」ではない。</strong>
 係数を因果と読まず、範囲外を予測せず、残差を見る。</p>
+</blockquote>
+<hr />
+<h2 id="moodle">今日の課題（Moodle提出）<a class="headerlink" href="#moodle" title="Permanent link">&para;</a></h2>
+<p><strong>配点：100点（自動採点40点 ＋ 記述60点）／ 提出先：Moodle</strong></p>
+<p>Colab <code>10_regression.ipynb</code> を実行したうえで答えること。</p>
+<hr />
+<h3 id="a10-440">パートA：選択・数値問題（自動採点・各10点 ×4＝40点）<a class="headerlink" href="#a10-440" title="Permanent link">&para;</a></h3>
+<p><strong>A1.</strong> 単回帰「log行動圏 ≈ −3.883 + 0.933 × log体重」の <strong>傾き0.933</strong> の意味として<strong>最も正しい</strong>のは？
+- (ア) 体重が0.933倍の種の行動圏
+- (イ) 体重が10倍になると、予測される行動圏は約8.6倍になる
+- (ウ) 行動圏が必ず0.933km²になる</p>
+<p><strong>A2.</strong> 「体重」だけのモデルに、行動圏と<strong>無関係なでたらめの乱数列</strong>を50本足すと、R²はどうなったか。
+- (ア) 0.36 のまま変わらない　(イ) 0.36 → 0.41 に上がった　(ウ) 0.36 → 0.10 に下がった</p>
+<p><strong>A3.</strong> A2の結果から言えることとして<strong>最も適切</strong>なのは？
+- (ア) R²が高いほど常に良いモデルだ
+- (イ) 変数を足せばR²は上がるので、R²の高さだけでモデルの良さは判断できない
+- (ウ) でたらめな乱数は行動圏を予測できる</p>
+<p><strong>A4.</strong> この回帰式に「勉強20時間/日」を入れると予測点は196点になった。ここから分かることは？
+- (ア) 20時間勉強すれば196点取れる
+- (イ) データの範囲外（外挿）では予測は信用できない
+- (ウ) モデルが間違っている</p>
+<hr />
+<h3 id="bai60">パートB：記述問題（AIフィードバック対象・60点）<a class="headerlink" href="#bai60" title="Permanent link">&para;</a></h3>
+<div class="admonition warning">
+<p class="admonition-title">【全記述に共通・重要】自分の出力を引用すること</p>
+<p>記述には、今日のColabで確認した数値を最低1つ引用すること（例：「勉強の傾きは7.5」「でたらめ20本でR²が0.36→0.41」「勉強20hで予測196点」）。<strong>引用がない記述は満点になりません。</strong></p>
+</div>
+<p><strong>B1.（30点）</strong> ある人が「重回帰でR²=0.95の高いモデルができた。変数を30個入れたら当てはまりが良くなった。これは素晴らしいモデルだ」と言った。この主張の<strong>問題点</strong>を、今日学んだ「R²と変数の数の関係」「過学習」の観点から指摘しなさい。</p>
+<p><strong>B2.（30点）</strong> 「体重→行動圏」の回帰式（傾き0.933）について、<strong>この予測を使ってはいけない場面・信じすぎてはいけない点</strong>を2つ挙げ、それぞれなぜかを説明しなさい。（ヒント：因果・外挿・残差・R²のうちから）</p>
+<blockquote>
+<p>目安：B1・B2あわせて350〜550字。<strong>自分の言葉</strong>で書くこと。</p>
 </blockquote>
 <div class="admonition abstract">
 <p class="admonition-title">次回予告</p>

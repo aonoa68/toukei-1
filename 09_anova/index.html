@@ -647,6 +647,45 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#moodle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        今日の課題（Moodle提出）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="今日の課題（Moodle提出）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a10-440" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        パートA：選択問題（自動採点・各10点 ×4＝40点）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bai60" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        パートB：記述問題（AIフィードバック対象・60点）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -921,6 +960,45 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#moodle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        今日の課題（Moodle提出）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="今日の課題（Moodle提出）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a10-440" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        パートA：選択問題（自動採点・各10点 ×4＝40点）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bai60" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        パートB：記述問題（AIフィードバック対象・60点）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -943,6 +1021,16 @@
 <p>3つ以上を比べるとき、t検定を繰り返してはいけない ―― 偽陽性の罠</p>
 </blockquote>
 <hr />
+<!-- LINKS:START -->
+<div class="admonition info">
+<p class="admonition-title">今日のリンク</p>
+<ul>
+<li><a href="https://colab.research.google.com/github/aonoa68/toukei-1/blob/main/colab/09_anova.ipynb">📓 Colabノートを開く（09_anova.ipynb）</a></li>
+<li>📝 今日の課題は<strong>このページの末尾</strong>にあります。解答の提出は Moodle の「第9回 課題」へ</li>
+</ul>
+</div>
+<!-- LINKS:END -->
+
 <h2 id="_1">この回のゴール<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <ul>
 <li>検定を繰り返すと偽陽性（多重比較の罠）が増えることを説明できる</li>
@@ -1112,6 +1200,39 @@ ANOVAが言うのは「<strong>どこかに</strong>差がある」だけ。ど�
 <blockquote>
 <p><strong>群が3つ以上なら、t検定を繰り返さない。まずANOVAで一括判定。</strong>
 「有意」は『どこかに差』であって『全部違う』ではない。</p>
+</blockquote>
+<hr />
+<h2 id="moodle">今日の課題（Moodle提出）<a class="headerlink" href="#moodle" title="Permanent link">&para;</a></h2>
+<p><strong>配点：100点（自動採点40点 ＋ 記述60点）／ 提出先：Moodle</strong></p>
+<p>Colab <code>09_anova.ipynb</code> を実行したうえで答えること。</p>
+<hr />
+<h3 id="a10-440">パートA：選択問題（自動採点・各10点 ×4＝40点）<a class="headerlink" href="#a10-440" title="Permanent link">&para;</a></h3>
+<p><strong>A1.</strong> 本当はどの群も差がないのに、群（検定回数）を 2→3→5→10 と増やして全ペアt検定すると、「最低1つ有意」になった割合はどうなったか。
+- (ア) ずっと5%で変わらない
+- (イ) 約6%→12%→30%→64% と増えた
+- (ウ) 約64%→30%→12%→6% と減った</p>
+<p><strong>A2.</strong> なぜ3群以上で「全ペアt検定」を避けるべきか。<strong>最も適切</strong>なのは？
+- (ア) 計算が面倒だから
+- (イ) 検定を繰り返すほど、まぐれで有意になる偽陽性が増えるから
+- (ウ) t検定は2群でも使えないから</p>
+<p><strong>A3.</strong> ANOVA（分散分析）が判定するのは何か。<strong>最も適切</strong>なのは？
+- (ア) どの2つの群が違うかを正確に特定する
+- (イ) 「どこかに差があるか」を1回でまとめて判定する
+- (ウ) 効果量を計算する</p>
+<p><strong>A4.</strong> 「ANOVAが有意（p&lt;0.05）だった」。ここから<strong>正しく言える</strong>のは？
+- (ア) すべての群が互いに異なる
+- (イ) どこかに差がある。どのペアかは事後検定で確かめる必要がある
+- (ウ) 群1が最も大きい</p>
+<hr />
+<h3 id="bai60">パートB：記述問題（AIフィードバック対象・60点）<a class="headerlink" href="#bai60" title="Permanent link">&para;</a></h3>
+<div class="admonition warning">
+<p class="admonition-title">【全記述に共通・重要】自分の出力を引用すること</p>
+<p>記述には、今日のColabで確認した数値を最低1つ引用すること（例：「10群では64%がまぐれで有意」「3科の体重のANOVAはF=151.89」「月降水量ではF=0.08, p=0.92」）。<strong>引用がない記述は満点になりません。</strong></p>
+</div>
+<p><strong>B1.（30点）</strong> ある研究者が、<strong>6種類のダイエット食品</strong>それぞれについて「食べた群 vs 食べない群」で個別にt検定を行い、「6つのうち1つで p&lt;0.05 が出たので、その食品には効果がある」と発表した。この分析の<strong>何が問題か</strong>を、今日学んだ多重比較の観点から指摘し、<strong>どうすべきだったか</strong>を述べなさい。</p>
+<p><strong>B2.（30点）</strong> 3つの科の生息地の月降水量は、平均が 158.7 / 161.3 / 154.8 mm と少し違って見えたのに、ANOVAでは「差があるとは言えない」（F=0.08, p=0.92）という結果だった。<strong>見かけの平均差があるのに「差なし」</strong>になるのはなぜか、F値（群間のばらつきと群内のばらつき）の考え方を使って説明しなさい。</p>
+<blockquote>
+<p>目安：B1・B2あわせて350〜550字。<strong>自分の言葉</strong>で書くこと。</p>
 </blockquote>
 <div class="admonition abstract">
 <p class="admonition-title">次回予告</p>

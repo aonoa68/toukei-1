@@ -583,6 +583,45 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#moodle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        今日の課題（Moodle提出）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="今日の課題（Moodle提出）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a10-440" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        パートA：選択問題（自動採点・各10点 ×4＝40点）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bai60" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        パートB：記述問題（AIフィードバック対象・60点）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -955,6 +994,45 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#moodle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        今日の課題（Moodle提出）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="今日の課題（Moodle提出）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a10-440" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        パートA：選択問題（自動採点・各10点 ×4＝40点）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bai60" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        パートB：記述問題（AIフィードバック対象・60点）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -977,6 +1055,16 @@
 <p>なぜ「一部」から「全体」を語れるのか ―― 推測統計のはじまり</p>
 </blockquote>
 <hr />
+<!-- LINKS:START -->
+<div class="admonition info">
+<p class="admonition-title">今日のリンク</p>
+<ul>
+<li><a href="https://colab.research.google.com/github/aonoa68/toukei-1/blob/main/colab/06_sampling_clt.ipynb">📓 Colabノートを開く（06_sampling_clt.ipynb）</a></li>
+<li>📝 今日の課題は<strong>このページの末尾</strong>にあります。解答の提出は Moodle の「第6回 課題」へ</li>
+</ul>
+</div>
+<!-- LINKS:END -->
+
 <h2 id="_1">この回のゴール<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <ul>
 <li>母集団と標本の違いを説明できる</li>
@@ -1202,6 +1290,37 @@
 ただし「無作為に集めた」ことが大前提 ―― 数の多さは偏りを直さない。</p>
 <p><strong>教科書に書いてある目安（n=30）を、自分のデータで確かめた。そして通用しなかった。</strong>
 目安は目安であって、法則ではない。<strong>確かめる手段を、あなたはもう持っている。</strong></p>
+</blockquote>
+<hr />
+<h2 id="moodle">今日の課題（Moodle提出）<a class="headerlink" href="#moodle" title="Permanent link">&para;</a></h2>
+<p><strong>配点：100点（自動採点40点 ＋ 記述60点）／ 提出先：Moodle</strong></p>
+<p>Colab <code>06_sampling_clt.ipynb</code> を実行したうえで答えること。</p>
+<hr />
+<h3 id="a10-440">パートA：選択問題（自動採点・各10点 ×4＝40点）<a class="headerlink" href="#a10-440" title="Permanent link">&para;</a></h3>
+<p><strong>A1.</strong> 中心極限定理（CLT）について<strong>正しい</strong>のは？
+- (ア) 標本を取ると、標本そのものが正規分布になる
+- (イ) 母集団がどんな形でも、<strong>標本平均の分布</strong>は正規分布に近づく
+- (ウ) 母集団が正規分布のときだけ、標本平均も正規分布になる</p>
+<p><strong>A2.</strong> 標本サイズ n を 5 → 30 → 100 と増やしたとき、<strong>標本平均の分布</strong>に起きたことは？
+- (ア) 母平均から遠ざかって広がった
+- (イ) 母平均の周りにギュッと締まった（ばらつきが小さくなった）
+- (ウ) 形も位置も変わらなかった</p>
+<p><strong>A3.</strong> 標準誤差は <span class="arithmatex">\( SE = \sigma/\sqrt{n} \)</span>。標本サイズ n を <strong>4倍</strong>にすると、SE はおよそ何倍になるか。
+- (ア) 4倍　(イ) 2倍　(ウ) 1/2倍　(エ) 1/4倍</p>
+<p><strong>A4.</strong> 「アンケートをとにかくたくさん集めれば、偏りは消えて正確になる」。この考えの<strong>問題点</strong>として最も適切なのは？
+- (ア) 正しい。数が多いほど必ず正確になる
+- (イ) 偏った集め方（例：答えやすい人ばかり）だと、数を増やしても偏りは直らない
+- (ウ) 数が多いと計算が大変になるだけ</p>
+<hr />
+<h3 id="bai60">パートB：記述問題（AIフィードバック対象・60点）<a class="headerlink" href="#bai60" title="Permanent link">&para;</a></h3>
+<div class="admonition warning">
+<p class="admonition-title">【全記述に共通・重要】自分の出力を引用すること</p>
+<p>記述には、今日のColabで確認した数値を最低1つ引用すること（例：「母集団の歪度0.91が標本平均では0.20に下がった」「n=30で標本平均のSDは約52、σ/√n と一致」）。<strong>引用がない記述は満点になりません。</strong></p>
+</div>
+<p><strong>B1.（30点）</strong> 今日のシミュレーションで、標本サイズ n を 5・30・100 と増やした。<strong>標本平均の分布に何が起きたか</strong>を、「ばらつき（標準誤差）」と「分布の形（正規への近づき）」の2点に触れて説明しなさい。</p>
+<p><strong>B2.（30点）</strong> 「視聴率は、全国数千万世帯のうちたった数百世帯を調べて出している」。なぜ<strong>そんな少数で全国の傾向を語れる</strong>のか、中心極限定理の言葉を使って説明しなさい。また、その推測が成り立つために<strong>絶対に必要な条件</strong>を1つ挙げなさい。</p>
+<blockquote>
+<p>目安：B1・B2あわせて350〜550字。<strong>自分の言葉</strong>で書くこと。</p>
 </blockquote>
 <div class="admonition abstract">
 <p class="admonition-title">次回予告</p>

@@ -631,6 +631,45 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#moodle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        今日の課題（Moodle提出）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="今日の課題（Moodle提出）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a10-440" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        パートA：選択問題（自動採点・各10点 ×4＝40点）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bai60" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        パートB：記述問題（AIフィードバック対象・60点）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -943,6 +982,45 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#moodle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        今日の課題（Moodle提出）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="今日の課題（Moodle提出）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a10-440" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        パートA：選択問題（自動採点・各10点 ×4＝40点）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bai60" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        パートB：記述問題（AIフィードバック対象・60点）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -965,6 +1043,16 @@
 <p>「差がある」とは何か ―― そして、p値という誤解されやすい数</p>
 </blockquote>
 <hr />
+<!-- LINKS:START -->
+<div class="admonition info">
+<p class="admonition-title">今日のリンク</p>
+<ul>
+<li><a href="https://colab.research.google.com/github/aonoa68/toukei-1/blob/main/colab/08_ttest.ipynb">📓 Colabノートを開く（08_ttest.ipynb）</a></li>
+<li>📝 今日の課題は<strong>このページの末尾</strong>にあります。解答の提出は Moodle の「第8回 課題」へ</li>
+</ul>
+</div>
+<!-- LINKS:END -->
+
 <h2 id="_1">この回のゴール<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <ul>
 <li>帰無仮説・対立仮説と、検定の背理法的なロジックを説明できる</li>
@@ -1175,6 +1263,43 @@
 <blockquote>
 <p><strong>「差がある」＝「偶然では説明しにくい」。それ以上でも以下でもない。</strong>
 p値の小ささは効果の大きさを意味しない。<strong>必ず効果量も見る。</strong></p>
+</blockquote>
+<hr />
+<h2 id="moodle">今日の課題（Moodle提出）<a class="headerlink" href="#moodle" title="Permanent link">&para;</a></h2>
+<p><strong>配点：100点（自動採点40点 ＋ 記述60点）／ 提出先：Moodle</strong></p>
+<p>Colab <code>08_ttest.ipynb</code> を実行したうえで答えること。</p>
+<hr />
+<h3 id="a10-440">パートA：選択問題（自動採点・各10点 ×4＝40点）<a class="headerlink" href="#a10-440" title="Permanent link">&para;</a></h3>
+<p><strong>A1.</strong> 帰無仮説とは何か。<strong>最も適切</strong>なのは？
+- (ア) 「差がある」とまず仮定すること
+- (イ) 「差はない（偶然だ）」とまず仮定すること
+- (ウ) 効果量のこと</p>
+<p><strong>A2.</strong> p値の意味として<strong>最も正しい</strong>のは？
+- (ア) 帰無仮説が正しい確率
+- (イ) 帰無仮説が正しいと仮定したとき、観測以上の差が出る確率
+- (ウ) 効果がどれくらい大きいかを表す値</p>
+<p><strong>A3.</strong> 真の差が「2点」で固定のまま、各群の人数 n を 20→100→500 と増やすと、有意（p&lt;0.05）になる割合はどう変わったか。
+- (ア) 8%→23%→80% と増えた
+- (イ) ずっと5%で変わらない
+- (ウ) 80%→23%→8% と減った</p>
+<p><strong>A4.</strong> 「旧世界ザル vs 新世界ザルの体重差は効果量 d=4.40、保護区の内外の差は d=0.18」。ここから言えることは？
+- (ア) p値さえ小さければ効果量は見なくてよい
+- (イ) 有意であることと効果が大きいことは別で、効果量も見る必要がある
+- (ウ) d が小さいほど効果が大きい</p>
+<hr />
+<h3 id="bai60">パートB：記述問題（AIフィードバック対象・60点）<a class="headerlink" href="#bai60" title="Permanent link">&para;</a></h3>
+<div class="admonition warning">
+<p class="admonition-title">【全記述に共通・重要】自分の出力を引用すること</p>
+<p>記述には、今日のColabで確認した数値を最低1つ引用すること（例：「n=500で有意割合80%」「旧世界 vs 新世界の効果量d=4.40」「p=8.4×10⁻²⁷」）。<strong>引用がない記述は満点になりません。</strong></p>
+</div>
+<p><strong>B1.（30点）</strong> あるニュースが次のように報じた。</p>
+<blockquote>
+<p>「サプリXを飲んだ群は飲まない群より体重が<strong>0.2kg</strong>多く減り、<strong>統計的に有意（p&lt;0.01）</strong>だった。だからサプリXには<strong>大きなダイエット効果</strong>がある。」</p>
+</blockquote>
+<p>この主張の<strong>どこが問題か</strong>を、今日学んだ「p値」「効果量」「サンプルサイズ」の観点から指摘しなさい。（ヒント：p&lt;0.01 は何を意味し、何を意味しないか。0.2kgは大きいか）</p>
+<p><strong>B2.（30点）</strong> 「t検定で p&lt;0.05 が出た。これで帰無仮説が間違いだと<strong>証明</strong>できた」。この言い方の、<strong>言い過ぎ</strong>な点を説明しなさい。p値と「証明」、第一種の誤り（偽陽性）の言葉を使うこと。</p>
+<blockquote>
+<p>目安：B1・B2あわせて350〜550字。<strong>自分の言葉</strong>で書くこと。</p>
 </blockquote>
 <div class="admonition abstract">
 <p class="admonition-title">次回予告</p>

@@ -582,6 +582,45 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#moodle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        今日の課題（Moodle提出）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="今日の課題（Moodle提出）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a10-440" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        パートA：選択問題（自動採点・各10点 ×4＝40点）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bai60" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        パートB：記述問題（AIフィードバック対象・60点）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -899,6 +938,45 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#moodle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        今日の課題（Moodle提出）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="今日の課題（Moodle提出）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a10-440" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        パートA：選択問題（自動採点・各10点 ×4＝40点）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bai60" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        パートB：記述問題（AIフィードバック対象・60点）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -921,6 +999,16 @@
 <p>「信頼区間95%」の、本当の意味 ―― ほとんどの人が誤解している</p>
 </blockquote>
 <hr />
+<!-- LINKS:START -->
+<div class="admonition info">
+<p class="admonition-title">今日のリンク</p>
+<ul>
+<li><a href="https://colab.research.google.com/github/aonoa68/toukei-1/blob/main/colab/07_estimation.ipynb">📓 Colabノートを開く（07_estimation.ipynb）</a></li>
+<li>📝 今日の課題は<strong>このページの末尾</strong>にあります。解答の提出は Moodle の「第7回 課題」へ</li>
+</ul>
+</div>
+<!-- LINKS:END -->
+
 <h2 id="_1">この回のゴール<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <ul>
 <li>点推定と区間推定の違いを説明できる</li>
@@ -1055,6 +1143,39 @@
 <blockquote>
 <p><strong>母平均は固定。ランダムなのは区間のほう。</strong>
 「95%」は、この区間作りを100回やれば約95回当たる、という手続きの当たり率。</p>
+</blockquote>
+<hr />
+<h2 id="moodle">今日の課題（Moodle提出）<a class="headerlink" href="#moodle" title="Permanent link">&para;</a></h2>
+<p><strong>配点：100点（自動採点40点 ＋ 記述60点）／ 提出先：Moodle</strong></p>
+<p>Colab <code>07_estimation.ipynb</code> を実行したうえで答えること。</p>
+<hr />
+<h3 id="a10-440">パートA：選択問題（自動採点・各10点 ×4＝40点）<a class="headerlink" href="#a10-440" title="Permanent link">&para;</a></h3>
+<p><strong>A1.</strong> 「95%信頼区間」の意味として<strong>最も正しい</strong>のは？
+- (ア) 真の母平均が、95%の確率でこの1本の区間の中にある
+- (イ) 同じ手続きで区間作りを繰り返すと、作った区間の約95%が母平均を含む
+- (ウ) 標本の95%がこの区間の中にある</p>
+<p><strong>A2.</strong> シミュレーションで95%信頼区間を100本作ったとき、母平均を含んだのは<strong>およそ何本</strong>か。
+- (ア) 50本　(イ) 68本　(ウ) 95本　(エ) 100本</p>
+<p><strong>A3.</strong> 母平均 μ について<strong>正しい</strong>のは？
+- (ア) μ は標本ごとに確率的に動く
+- (イ) μ は固定された定数で、動くのは標本ごとに作られる区間のほう
+- (ウ) μ は95%の確率でしか存在しない</p>
+<p><strong>A4.</strong> 信頼度を 95% → 99% に上げると、信頼区間の幅は？
+- (ア) 狭くなる　(イ) 広くなる　(ウ) 変わらない</p>
+<hr />
+<h3 id="bai60">パートB：記述問題（AIフィードバック対象・60点）<a class="headerlink" href="#bai60" title="Permanent link">&para;</a></h3>
+<div class="admonition warning">
+<p class="admonition-title">【全記述に共通・重要】自分の出力を引用すること</p>
+<p>記述には、今日のColabで確認した数値を最低1つ引用すること（例：「100本中95本が母平均を含んだ」「95%CIの半幅は約102」）。<strong>引用がない記述は満点になりません。</strong></p>
+</div>
+<p><strong>B1.（30点）</strong> 次の説明文は、よくある<strong>誤り</strong>を含んでいる。<strong>どこが誤りか</strong>を指摘し、<strong>正しい説明に書き直し</strong>なさい。</p>
+<blockquote>
+<p>「95%信頼区間 [478, 682] が得られた。これは、<strong>真の母平均がこの区間の中にある確率が95%</strong>だということを意味する。」</p>
+</blockquote>
+<p>（ヒント：母平均は固定か、確率的に動くか。ランダムなのは何か。シミュレーションの結果をふまえて）</p>
+<p><strong>B2.（30点）</strong> 「もっと確実に当てたいなら、信頼度を99%にすればいい」。これは一理あるが、<strong>何と引き換え</strong>になるのか。さらに、もし「100%確実な区間」を作ろうとすると何が起きるか。<strong>信頼度と区間の幅の関係</strong>を説明しなさい。</p>
+<blockquote>
+<p>目安：B1・B2あわせて350〜550字。<strong>自分の言葉</strong>で書くこと。</p>
 </blockquote>
 <div class="admonition abstract">
 <p class="admonition-title">次回予告</p>
