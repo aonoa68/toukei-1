@@ -7,6 +7,7 @@
 
 <!-- LINKS:START -->
 !!! info "今日のリンク"
+    - [📊 スライドを開く](slides/12.html)
     - [📓 Colabノートを開く（12_bayes.ipynb）](https://colab.research.google.com/github/aonoa68/toukei-1/blob/main/colab/12_bayes.ipynb)
     - 📝 今日の課題は**このページの末尾**にあります。解答の提出は Moodle の「第12回 課題」へ
 <!-- LINKS:END -->
