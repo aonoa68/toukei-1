@@ -990,6 +990,10 @@
 </div>
 <!-- LINKS:END -->
 
+<div class="admonition tip">
+<p class="admonition-title">考え方をガイドで確かめる</p>
+<p>この回の考え方は、統計の考え方ガイドの<a href="https://aonoa68.github.io/teaching/guide/regression/">「回帰とモデル」</a>でも解説しています。霊長類のデータを動かしながら確かめられます。</p>
+</div>
 <h2 id="_1">この回のゴール<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <ul>
 <li>過学習（手元に合わせすぎて未知データに弱くなる）を説明できる</li>
@@ -1115,20 +1119,28 @@ AICは<strong>差</strong>で比べる相対指標で、複雑さには<strong>�
 <p>Colab <code>11_aic.ipynb</code> を実行したうえで答えること。</p>
 <hr />
 <h3 id="a10-440">パートA：選択問題（自動採点・各10点 ×4＝40点）<a class="headerlink" href="#a10-440" title="Permanent link">&para;</a></h3>
-<p><strong>A1.</strong> 過学習が起きると、訓練データへの当てはまり（訓練R²）とテストデータの予測誤差はそれぞれどうなるか。
-- (ア) 訓練R²は上がり続けるが、テスト誤差は途中から悪化する
-- (イ) 両方とも良くなり続ける
-- (ウ) 訓練R²が下がり、テスト誤差も下がる</p>
-<p><strong>A2.</strong> AIC（赤池情報量規準）の説明として<strong>最も正しい</strong>のは？
-- (ア) 当てはまりの良さに、複雑さ（変数の多さ）のペナルティを足した指標で、<strong>小さいほど良い</strong>
-- (イ) 大きいほど良いモデルだ
-- (ウ) R²と同じもの</p>
-<p><strong>A3.</strong> 3モデルで R²最大は「M3（でたらめ入り）」、AIC最小は「M2」だった。<strong>採用すべき</strong>モデルは？
-- (ア) R²が最大の M3　(イ) AICが最小の M2　(ウ) 変数が最も多い M3</p>
-<p><strong>A4.</strong> AICの使い方として<strong>正しい</strong>のは？
-- (ア) AICの絶対値が小さいほど、それ自体に意味がある
-- (イ) AICは相対指標で、同じデータで作ったモデル間の<strong>差</strong>で比べる
-- (ウ) 変数を増やせばAICは必ず下がる</p>
+<p><strong>A1.</strong> 過学習が起きると、訓練データへの当てはまり（訓練R²）とテストデータの予測誤差はそれぞれどうなるか。</p>
+<ul>
+<li>(ア) 訓練R²は上がり続けるが、テスト誤差は途中から悪化する</li>
+<li>(イ) 両方とも良くなり続ける</li>
+<li>(ウ) 訓練R²が下がり、テスト誤差も下がる</li>
+</ul>
+<p><strong>A2.</strong> AIC（赤池情報量規準）の説明として<strong>最も正しい</strong>のは？</p>
+<ul>
+<li>(ア) 当てはまりの良さに、複雑さ（変数の多さ）のペナルティを足した指標で、<strong>小さいほど良い</strong></li>
+<li>(イ) 大きいほど良いモデルだ</li>
+<li>(ウ) R²と同じもの</li>
+</ul>
+<p><strong>A3.</strong> 3モデルで R²最大は「M3（でたらめ入り）」、AIC最小は「M2」だった。<strong>採用すべき</strong>モデルは？</p>
+<ul>
+<li>(ア) R²が最大の M3　(イ) AICが最小の M2　(ウ) 変数が最も多い M3</li>
+</ul>
+<p><strong>A4.</strong> AICの使い方として<strong>正しい</strong>のは？</p>
+<ul>
+<li>(ア) AICの絶対値が小さいほど、それ自体に意味がある</li>
+<li>(イ) AICは相対指標で、同じデータで作ったモデル間の<strong>差</strong>で比べる</li>
+<li>(ウ) 変数を増やせばAICは必ず下がる</li>
+</ul>
 <hr />
 <h3 id="bai60">パートB：記述問題（AIフィードバック対象・60点）<a class="headerlink" href="#bai60" title="Permanent link">&para;</a></h3>
 <div class="admonition warning">

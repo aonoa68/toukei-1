@@ -1034,6 +1034,10 @@
 </div>
 <!-- LINKS:END -->
 
+<div class="admonition tip">
+<p class="admonition-title">考え方をガイドで確かめる</p>
+<p>この回の考え方は、統計の考え方ガイドの<a href="https://aonoa68.github.io/teaching/guide/testing/">「仮説検定とp値」</a>でも解説しています。霊長類のデータを動かしながら確かめられます。</p>
+</div>
 <h2 id="_1">この回のゴール<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <ul>
 <li>検定を繰り返すと偽陽性（多重比較の罠）が増えることを説明できる</li>
@@ -1211,22 +1215,30 @@ ANOVAが言うのは「<strong>どこかに</strong>差がある」だけ。ど�
 <p>Colab <code>09_anova.ipynb</code> を実行したうえで答えること。</p>
 <hr />
 <h3 id="a10-440">パートA：選択問題（自動採点・各10点 ×4＝40点）<a class="headerlink" href="#a10-440" title="Permanent link">&para;</a></h3>
-<p><strong>A1.</strong> 本当はどの群も差がないのに、群（検定回数）を 2→3→5→10 と増やして全ペアt検定すると、「最低1つ有意」になった割合はどうなったか。
-- (ア) ずっと5%で変わらない
-- (イ) 約6%→12%→30%→64% と増えた
-- (ウ) 約64%→30%→12%→6% と減った</p>
-<p><strong>A2.</strong> なぜ3群以上で「全ペアt検定」を避けるべきか。<strong>最も適切</strong>なのは？
-- (ア) 計算が面倒だから
-- (イ) 検定を繰り返すほど、まぐれで有意になる偽陽性が増えるから
-- (ウ) t検定は2群でも使えないから</p>
-<p><strong>A3.</strong> ANOVA（分散分析）が判定するのは何か。<strong>最も適切</strong>なのは？
-- (ア) どの2つの群が違うかを正確に特定する
-- (イ) 「どこかに差があるか」を1回でまとめて判定する
-- (ウ) 効果量を計算する</p>
-<p><strong>A4.</strong> 「ANOVAが有意（p&lt;0.05）だった」。ここから<strong>正しく言える</strong>のは？
-- (ア) すべての群が互いに異なる
-- (イ) どこかに差がある。どのペアかは事後検定で確かめる必要がある
-- (ウ) 群1が最も大きい</p>
+<p><strong>A1.</strong> 本当はどの群も差がないのに、群（検定回数）を 2→3→5→10 と増やして全ペアt検定すると、「最低1つ有意」になった割合はどうなったか。</p>
+<ul>
+<li>(ア) ずっと5%で変わらない</li>
+<li>(イ) 約6%→12%→30%→64% と増えた</li>
+<li>(ウ) 約64%→30%→12%→6% と減った</li>
+</ul>
+<p><strong>A2.</strong> なぜ3群以上で「全ペアt検定」を避けるべきか。<strong>最も適切</strong>なのは？</p>
+<ul>
+<li>(ア) 計算が面倒だから</li>
+<li>(イ) 検定を繰り返すほど、まぐれで有意になる偽陽性が増えるから</li>
+<li>(ウ) t検定は2群でも使えないから</li>
+</ul>
+<p><strong>A3.</strong> ANOVA（分散分析）が判定するのは何か。<strong>最も適切</strong>なのは？</p>
+<ul>
+<li>(ア) どの2つの群が違うかを正確に特定する</li>
+<li>(イ) 「どこかに差があるか」を1回でまとめて判定する</li>
+<li>(ウ) 効果量を計算する</li>
+</ul>
+<p><strong>A4.</strong> 「ANOVAが有意（p&lt;0.05）だった」。ここから<strong>正しく言える</strong>のは？</p>
+<ul>
+<li>(ア) すべての群が互いに異なる</li>
+<li>(イ) どこかに差がある。どのペアかは事後検定で確かめる必要がある</li>
+<li>(ウ) 群1が最も大きい</li>
+</ul>
 <hr />
 <h3 id="bai60">パートB：記述問題（AIフィードバック対象・60点）<a class="headerlink" href="#bai60" title="Permanent link">&para;</a></h3>
 <div class="admonition warning">

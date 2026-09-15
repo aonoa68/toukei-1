@@ -1012,6 +1012,10 @@
 </div>
 <!-- LINKS:END -->
 
+<div class="admonition tip">
+<p class="admonition-title">考え方をガイドで確かめる</p>
+<p>この回の考え方は、統計の考え方ガイドの<a href="https://aonoa68.github.io/teaching/guide/correlation/">「相関と因果」</a>、<a href="https://aonoa68.github.io/teaching/guide/visualize/">「グラフで見る」</a>でも解説しています。霊長類のデータを動かしながら確かめられます。</p>
+</div>
 <h2 id="_1">この回のゴール<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <ul>
 <li>散布図と相関係数 r で2変数の関係を読める</li>
@@ -1186,20 +1190,28 @@
 <p>Colab <code>05_correlation.ipynb</code> を実行したうえで答えること。今回の記述は <strong>「批判的に考える」ことが主役</strong>。</p>
 <hr />
 <h3 id="a10-440">パートA：選択問題（自動採点・各10点 ×4＝40点）<a class="headerlink" href="#a10-440" title="Permanent link">&para;</a></h3>
-<p><strong>A1.</strong> 霊長類データで「体重」と「行動圏」（ともに対数）の相関係数 r に<strong>最も近い</strong>のは？
-- (ア) 0.0　(イ) 0.7　(ウ) −0.7　(エ) 1.0</p>
-<p><strong>A2.</strong> 「離乳日齢」と「行動圏」は r≈0.66 だったが、<strong>体重を統制すると相関がほぼ0（0.05）に</strong>なった。この現象の説明として<strong>最も適切</strong>なのは？
-- (ア) 乳離れが遅いことが、広い行動圏を直接もたらしている
-- (イ) 「体の大きさ」という第三の変数が、離乳日齢と行動圏の両方を動かしていた（交絡）
-- (ウ) 計算ミス</p>
-<p><strong>A3.</strong> アンスコムの四重奏が教えることとして<strong>最も適切</strong>なのは？
-- (ア) 相関係数 r が同じなら、データの中身も同じ
-- (イ) r が同じでも、散布図の形はまったく違うことがある。だから必ず図を見る
-- (ウ) r は常に信用できない</p>
-<p><strong>A4.</strong> 「<code>y = x²</code> の放物線データで r ≈ 0 だった」。ここから言える、相関係数の<strong>限界</strong>は？
-- (ア) r はデータ数が多いと0になる
-- (イ) r は直線的な関係しか測れず、曲がった関係は見逃す
-- (ウ) 放物線には関係がない</p>
+<p><strong>A1.</strong> 霊長類データで「体重」と「行動圏」（ともに対数）の相関係数 r に<strong>最も近い</strong>のは？</p>
+<ul>
+<li>(ア) 0.0　(イ) 0.7　(ウ) −0.7　(エ) 1.0</li>
+</ul>
+<p><strong>A2.</strong> 「離乳日齢」と「行動圏」は r≈0.66 だったが、<strong>体重を統制すると相関がほぼ0（0.05）に</strong>なった。この現象の説明として<strong>最も適切</strong>なのは？</p>
+<ul>
+<li>(ア) 乳離れが遅いことが、広い行動圏を直接もたらしている</li>
+<li>(イ) 「体の大きさ」という第三の変数が、離乳日齢と行動圏の両方を動かしていた（交絡）</li>
+<li>(ウ) 計算ミス</li>
+</ul>
+<p><strong>A3.</strong> アンスコムの四重奏が教えることとして<strong>最も適切</strong>なのは？</p>
+<ul>
+<li>(ア) 相関係数 r が同じなら、データの中身も同じ</li>
+<li>(イ) r が同じでも、散布図の形はまったく違うことがある。だから必ず図を見る</li>
+<li>(ウ) r は常に信用できない</li>
+</ul>
+<p><strong>A4.</strong> 「<code>y = x²</code> の放物線データで r ≈ 0 だった」。ここから言える、相関係数の<strong>限界</strong>は？</p>
+<ul>
+<li>(ア) r はデータ数が多いと0になる</li>
+<li>(イ) r は直線的な関係しか測れず、曲がった関係は見逃す</li>
+<li>(ウ) 放物線には関係がない</li>
+</ul>
 <hr />
 <h3 id="bai60">パートB：記述問題（AIフィードバック対象・60点）<a class="headerlink" href="#bai60" title="Permanent link">&para;</a></h3>
 <div class="admonition warning">

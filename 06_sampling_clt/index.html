@@ -576,6 +576,17 @@
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
+        よくある誤解
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
         まとめ
       
     </span>
@@ -987,6 +998,17 @@
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
+        よくある誤解
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
         まとめ
       
     </span>
@@ -1068,6 +1090,15 @@
 </div>
 <!-- LINKS:END -->
 
+<div class="admonition abstract">
+<p class="admonition-title">一言でいうと</p>
+<p>でたらめに選んだ一部の平均は、全体の平均のまわりに、決まった形で散らばる。だから一部を調べるだけで、全体を「どれくらいの誤差で」言えるかまでわかる。
+ただし、その「でたらめに選ぶ」が崩れると、数をいくら増やしても直らない。</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">考え方をガイドで確かめる</p>
+<p>この回の考え方は、統計の考え方ガイドの<a href="https://aonoa68.github.io/teaching/guide/sampling/">「標本から全体を知る」</a>でも解説しています。霊長類のデータを動かしながら確かめられます。</p>
+</div>
 <h2 id="_1">この回のゴール<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <ul>
 <li>母集団と標本の違いを説明できる</li>
@@ -1253,7 +1284,24 @@
 それに気づけるのは、対象を知っている人間だけである。</p>
 </blockquote>
 <hr />
-<h2 id="_3">まとめ<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<h2 id="_3">よくある誤解<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<div class="admonition failure">
+<p class="admonition-title">「標本をたくさん取れば、標本そのものが正規分布になる」</p>
+<p>正規分布に近づくのは、標本平均を何度も集めた<strong>分布</strong>のほうである。1回の標本の中身は、母集団と同じく右に歪んだまま（§5）。混同すると、自分のデータに正規分布を前提にした手法を当てはめてしまう。</p>
+</div>
+<div class="admonition failure">
+<p class="admonition-title">「n が30あれば、正規分布とみなしてよい」</p>
+<p>霊長類の体重（歪度 <strong>7.60</strong>）では、n=30 の標本平均の分布にまだ歪度 <strong>1.49</strong> が残った（§4の表）。30は母集団がそこそこ対称なときの目安で、必要な n は母集団の歪み方で決まる。対数にすれば n=5 で十分だった。</p>
+</div>
+<div class="admonition failure">
+<p class="admonition-title">「数を集めれば、偏りも消える」</p>
+<p>消えない。偏った選び方をすれば、何回くり返しても、n をいくら増やしても、標本平均は母平均からずれたままになる（§6）。今日の「母集団」265種も、376種のうち<strong>体重が測られた種</strong>だけである。</p>
+</div>
+<div class="admonition failure">
+<p class="admonition-title">「みんなが同じ答えなら、それだけ確かだ」</p>
+<p>中心極限定理も <span class="arithmatex">\( SE=\sigma/\sqrt{n} \)</span> も、一つひとつの標本が<strong>独立</strong>に選ばれていることを前提にしている。互いに影響し合って答えをそろえた集団では、人数を増やしても、ばらつきはある所で下げ止まり、精度はほとんど上がらない（→ 統計学Ⅱ 第6回）。</p>
+</div>
+<h2 id="_4">まとめ<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
@@ -1300,25 +1348,33 @@
 <p>Colab <code>06_sampling_clt.ipynb</code> を実行したうえで答えること。</p>
 <hr />
 <h3 id="a10-440">パートA：選択問題（自動採点・各10点 ×4＝40点）<a class="headerlink" href="#a10-440" title="Permanent link">&para;</a></h3>
-<p><strong>A1.</strong> 中心極限定理（CLT）について<strong>正しい</strong>のは？
-- (ア) 標本を取ると、標本そのものが正規分布になる
-- (イ) 母集団がどんな形でも、<strong>標本平均の分布</strong>は正規分布に近づく
-- (ウ) 母集団が正規分布のときだけ、標本平均も正規分布になる</p>
-<p><strong>A2.</strong> 標本サイズ n を 5 → 30 → 100 と増やしたとき、<strong>標本平均の分布</strong>に起きたことは？
-- (ア) 母平均から遠ざかって広がった
-- (イ) 母平均の周りにギュッと締まった（ばらつきが小さくなった）
-- (ウ) 形も位置も変わらなかった</p>
-<p><strong>A3.</strong> 標準誤差は <span class="arithmatex">\( SE = \sigma/\sqrt{n} \)</span>。標本サイズ n を <strong>4倍</strong>にすると、SE はおよそ何倍になるか。
-- (ア) 4倍　(イ) 2倍　(ウ) 1/2倍　(エ) 1/4倍</p>
-<p><strong>A4.</strong> 「アンケートをとにかくたくさん集めれば、偏りは消えて正確になる」。この考えの<strong>問題点</strong>として最も適切なのは？
-- (ア) 正しい。数が多いほど必ず正確になる
-- (イ) 偏った集め方（例：答えやすい人ばかり）だと、数を増やしても偏りは直らない
-- (ウ) 数が多いと計算が大変になるだけ</p>
+<p><strong>A1.</strong> 中心極限定理（CLT）について<strong>正しい</strong>のは？</p>
+<ul>
+<li>(ア) 標本を取ると、標本そのものが正規分布になる</li>
+<li>(イ) 母集団がどんな形でも、<strong>標本平均の分布</strong>は正規分布に近づく</li>
+<li>(ウ) 母集団が正規分布のときだけ、標本平均も正規分布になる</li>
+</ul>
+<p><strong>A2.</strong> 標本サイズ n を 5 → 30 → 100 と増やしたとき、<strong>標本平均の分布</strong>に起きたことは？</p>
+<ul>
+<li>(ア) 母平均から遠ざかって広がった</li>
+<li>(イ) 母平均の周りにギュッと締まった（ばらつきが小さくなった）</li>
+<li>(ウ) 形も位置も変わらなかった</li>
+</ul>
+<p><strong>A3.</strong> 標準誤差は <span class="arithmatex">\( SE = \sigma/\sqrt{n} \)</span>。標本サイズ n を <strong>4倍</strong>にすると、SE はおよそ何倍になるか。</p>
+<ul>
+<li>(ア) 4倍　(イ) 2倍　(ウ) 1/2倍　(エ) 1/4倍</li>
+</ul>
+<p><strong>A4.</strong> 「アンケートをとにかくたくさん集めれば、偏りは消えて正確になる」。この考えの<strong>問題点</strong>として最も適切なのは？</p>
+<ul>
+<li>(ア) 正しい。数が多いほど必ず正確になる</li>
+<li>(イ) 偏った集め方（例：答えやすい人ばかり）だと、数を増やしても偏りは直らない</li>
+<li>(ウ) 数が多いと計算が大変になるだけ</li>
+</ul>
 <hr />
 <h3 id="bai60">パートB：記述問題（AIフィードバック対象・60点）<a class="headerlink" href="#bai60" title="Permanent link">&para;</a></h3>
 <div class="admonition warning">
 <p class="admonition-title">【全記述に共通・重要】自分の出力を引用すること</p>
-<p>記述には、今日のColabで確認した数値を最低1つ引用すること（例：「母集団の歪度0.91が標本平均では0.20に下がった」「n=30で標本平均のSDは約52、σ/√n と一致」）。<strong>引用がない記述は満点になりません。</strong></p>
+<p>記述には、今日のColabで確認した数値を最低1つ引用すること（例：「母集団の歪度7.60が、n=30の標本平均では約1.5に下がった」「n=30で標本平均のSDは約2,400g、σ/√n の2,394gとほぼ一致」）。<strong>引用がない記述は満点になりません。</strong></p>
 </div>
 <p><strong>B1.（30点）</strong> 今日のシミュレーションで、標本サイズ n を 5・30・100 と増やした。<strong>標本平均の分布に何が起きたか</strong>を、「ばらつき（標準誤差）」と「分布の形（正規への近づき）」の2点に触れて説明しなさい。</p>
 <p><strong>B2.（30点）</strong> 「視聴率は、全国数千万世帯のうちたった数百世帯を調べて出している」。なぜ<strong>そんな少数で全国の傾向を語れる</strong>のか、中心極限定理の言葉を使って説明しなさい。また、その推測が成り立つために<strong>絶対に必要な条件</strong>を1つ挙げなさい。</p>
