@@ -15,6 +15,9 @@
     - 課題の本文は**このページの末尾**にあります
 <!-- LINKS:END -->
 
+!!! tip "考え方をガイドで確かめる"
+    この回の考え方は、統計の考え方ガイドの[「相関と因果」](https://aonoa68.github.io/teaching/guide/correlation/)、[「グラフで見る」](https://aonoa68.github.io/teaching/guide/visualize/)でも解説しています。霊長類のデータを動かしながら確かめられます。
+
 ## この回のゴール
 
 - 散布図と相関係数 r で2変数の関係を読める
