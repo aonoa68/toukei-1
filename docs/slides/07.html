@@ -65,20 +65,20 @@ table { font-size: 0.8em; }
 <thead>
 <tr>
 <th>標本</th>
-<th>点推定</th>
-<th>母平均(619)とのズレ</th>
+<th style="text-align:right">点推定</th>
+<th style="text-align:right">母平均(5,881 g)とのズレ</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>1</td>
-<td>580</td>
-<td>−39</td>
+<td style="text-align:right">4,365 g</td>
+<td style="text-align:right">−1,516</td>
 </tr>
 <tr>
 <td>2</td>
-<td>632</td>
-<td>+13</td>
+<td style="text-align:right">12,809 g</td>
+<td style="text-align:right">+6,928</td>
 </tr>
 </tbody>
 </table>
@@ -98,7 +98,7 @@ table { font-size: 0.8em; }
 <header>統計学Ⅰ（B）2026　第7回</header>
 <h2 id="%E5%8C%BA%E9%96%93%E6%8E%A8%E5%AE%9A-%E2%80%95%E2%80%95-%E5%B9%85%E3%82%92%E6%8C%81%E3%81%9F%E3%81%9B%E3%82%8B">区間推定 ―― 幅を持たせる</h2>
 <p><span is="marp-span" data-auto-scaling="downscale-only" class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mn>95</mn><mi mathvariant="normal">%</mi><mtext>信頼区間</mtext><mo>=</mo><mover accent="true"><mi>x</mi><mo>ˉ</mo></mover><mo>±</mo><mn>1.96</mn><mo>×</mo><mi>S</mi><mi>E</mi></mrow><annotation encoding="application/x-tex">95\%\text{信頼区間} = \bar{x} \pm 1.96 \times SE 
-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8056em;vertical-align:-0.0556em;"></span><span class="mord">95%</span><span class="mord text"><span class="mord cjk_fallback">信頼区間</span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.5678em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathnormal">x</span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.2222em;"><span class="mord">ˉ</span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">±</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">1.96</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0576em;">S</span><span class="mord mathnormal" style="margin-right:0.0576em;">E</span></span></span></span></span></p><p>例：x̄=580, SE≈52 → <strong>[478, 682]</strong>（母平均619を含む）</p>
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8056em;vertical-align:-0.0556em;"></span><span class="mord">95%</span><span class="mord text"><span class="mord cjk_fallback">信頼区間</span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.5678em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathnormal">x</span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.2222em;"><span class="mord">ˉ</span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">±</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">1.96</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0576em;">S</span><span class="mord mathnormal" style="margin-right:0.0576em;">E</span></span></span></span></span></p><p>例：x̄=5,184 g, SE≈2,394 → <strong>[493, 9,875]</strong>（母平均5,881を含む）</p>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="5" data-paginate="true" data-header="統計学Ⅰ（B）2026　第7回" data-theme="default" data-style="section { font-size: 27px; }
 h1 { color: #00695c; }
@@ -115,7 +115,7 @@ table { font-size: 0.8em; }
 <h2 id="95%E3%81%A8%E3%81%AF%E4%BD%95%E3%81%AE%E7%A2%BA%E7%8E%87">「95%」とは何の確率？</h2>
 <h2 id="span-classbig%E6%AF%8D%E5%B9%B3%E5%9D%87%CE%BC%E3%81%AF%E5%9B%BA%E5%AE%9A%E5%8B%95%E3%81%8B%E3%81%AA%E3%81%84span"><span class="big">母平均μは固定。動かない。</span></h2>
 <ul>
-<li>μ=619 も、区間[478,682]も、計算すれば固定</li>
+<li>μ=5,881 g も、区間[493, 9,875]も、計算すれば固定</li>
 <li>固定値が固定区間に「95%で入る」は無意味</li>
 <li><strong>ランダムなのは区間のほう</strong>（標本ごとに動く）</li>
 </ul>
