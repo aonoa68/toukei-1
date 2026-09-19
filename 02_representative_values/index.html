@@ -999,6 +999,7 @@
 <li>平均・中央値・最頻値の<strong>性質の違い</strong>を説明できる</li>
 <li>分布が歪むと、平均が「真ん中」を表さなくなることを理解する</li>
 <li>外れ値が平均をどれだけ動かすかを知り、「外れ値は消していいのか」を判断できる</li>
+<li><strong>発展</strong>：平均が「二乗のズレ」を、中央値が「絶対値のズレ」を最小にすることを、自分で導ける</li>
 </ul>
 <p>到達目標との対応：<strong>G1（記述統計）</strong>。</p>
 <hr />
@@ -1111,6 +1112,37 @@
 </ul>
 <p>迷ったら「消す」より「<strong>中央値で報告する</strong>」「外れ値ありとなしの両方を示す」ほうが誠実なことが多い。</p>
 </div>
+<hr />
+<details class="note" open="open">
+<summary>導出①：平均は「二乗のズレ」を最小にする点</summary>
+<p>データ <span class="arithmatex">\( x_1,\dots,x_n \)</span> を1つの値 <span class="arithmatex">\( c \)</span> で代表させる。「代表としての良さ」を、<strong>ズレの二乗の合計</strong>で測ることにする。</p>
+<div class="arithmatex">\[ S(c) \;=\; \sum_{i=1}^{n} (x_i - c)^2 \]</div>
+<p>これを最小にする <span class="arithmatex">\( c \)</span> を探す。平均を <span class="arithmatex">\( \bar{x} \)</span> として、各項に <span class="arithmatex">\( -\bar{x}+\bar{x} \)</span> を挟んで展開すると、</p>
+<div class="arithmatex">\[ S(c) \;=\; \sum_{i=1}^{n} \bigl\{(x_i-\bar{x}) + (\bar{x}-c)\bigr\}^2 \;=\; \sum_{i=1}^{n}(x_i-\bar{x})^2 \;+\; 2(\bar{x}-c)\sum_{i=1}^{n}(x_i-\bar{x}) \;+\; n(\bar{x}-c)^2 \]</div>
+<p>真ん中の項は消える。平均の定義より <span class="arithmatex">\( \sum x_i = n\bar{x} \)</span> なので、<span class="arithmatex">\( \sum (x_i-\bar{x}) = \sum x_i - n\bar{x} = 0 \)</span> だからである（第3回でもう一度扱う）。残るのは</p>
+<div class="arithmatex">\[ S(c) \;=\; \underbrace{\sum_{i=1}^{n}(x_i-\bar{x})^2}_{c \text{ に無関係}} \;+\; \underbrace{n(\bar{x}-c)^2}_{0 \text{ 以上}} \]</div>
+<p>第2項は二乗だから0以上で、<strong>0になるのは <span class="arithmatex">\( c=\bar{x} \)</span> のときだけ</strong>。したがって <span class="arithmatex">\( S(c) \)</span> は <span class="arithmatex">\( c=\bar{x} \)</span> で最小になる。</p>
+<p>微分は使っていない。平方完成をしただけである。</p>
+<p><strong>数値で確かめる</strong>：霊長類265種の体重で <span class="arithmatex">\( S(\bar{x}) = 4.554\times10^{10} \)</span>、<span class="arithmatex">\( S(\text{中央値}) = 4.774\times10^{10} \)</span>（1.048倍）。二乗のズレで測ると、中央値は平均に負ける。</p>
+<p><strong>使った数学</strong>：平方完成、総和の分配（微I）。</p>
+</details>
+<details class="note" open="open">
+<summary>導出②：中央値は「絶対値のズレ」を最小にする点</summary>
+<p>今度はズレを二乗せず、<strong>絶対値の合計</strong>で測ってみる。</p>
+<div class="arithmatex">\[ A(c) \;=\; \sum_{i=1}^{n} |x_i - c| \]</div>
+<p><span class="arithmatex">\( c \)</span> をほんの少し右に動かして <span class="arithmatex">\( c+\varepsilon \)</span> にしたとき、<span class="arithmatex">\( A \)</span> はどう変わるか。</p>
+<ul>
+<li><span class="arithmatex">\( c \)</span> より<strong>左</strong>にある点（<span class="arithmatex">\( k_{\text{左}} \)</span> 個）からは <span class="arithmatex">\( \varepsilon \)</span> ずつ<strong>遠ざかる</strong> → 合計 <span class="arithmatex">\( +k_{\text{左}}\,\varepsilon \)</span></li>
+<li><span class="arithmatex">\( c \)</span> より<strong>右</strong>にある点（<span class="arithmatex">\( k_{\text{右}} \)</span> 個）へは <span class="arithmatex">\( \varepsilon \)</span> ずつ<strong>近づく</strong> → 合計 <span class="arithmatex">\( -k_{\text{右}}\,\varepsilon \)</span></li>
+</ul>
+<p>差し引きすると、変化は <span class="arithmatex">\( (k_{\text{左}} - k_{\text{右}})\,\varepsilon \)</span> である。</p>
+<p>つまり右に動かして得をするのは、<strong>右にある点のほうが多いとき</strong>だけ。左右の個数が釣り合う場所まで来ると、どちらへ動かしても損になる。その場所が<strong>中央値</strong>である。</p>
+<p>この議論で、値の大きさは一度も使っていない。使ったのは「左に何個・右に何個」という<strong>順位</strong>だけだ。だから右端のゴリラが149kgであろうと1,490kgであろうと、中央値は動かない。<strong>第3節で見た「中央値は外れ値に強い」の正体が、これである。</strong></p>
+<p><strong>数値で確かめる</strong>：同じ265種で <span class="arithmatex">\( A(\text{中央値}) = 1.313\times10^{6} \)</span>、<span class="arithmatex">\( A(\bar{x}) = 1.431\times10^{6} \)</span>（1.090倍）。絶対値のズレで測ると、今度は平均が中央値に負ける。中央値の左右は132種ずつだった。</p>
+<p><strong>使った数学</strong>：場合分けと数え上げ（微I）。順序だけを使い、値の差の大きさは使わない。</p>
+</details>
+<p><strong>平均と中央値は、どちらも「真ん中」である。違うのは「ズレ」の測り方のほうだ。</strong> 二乗で測れば平均が、絶対値で測れば中央値が最適になる。どちらが正しいかという問題ではなく、<strong>何をズレと呼ぶかを先に決めている</strong>のである。</p>
+<p>ただし第2節で見たとおり、山が2つある分布では、どちらの意味の「真ん中」も「よくいる霊長類」を指さない。<strong>最適であることと、代表していることは、別である。</strong></p>
 <hr />
 <h2 id="4-3">4. 対称な分布なら、3つは一致する<a class="headerlink" href="#4-3" title="Permanent link">&para;</a></h2>
 <p>歪んでいるからズレるのであって、いつもズレるわけではない。同じデータセットの中でも、ほぼ左右対称な<code>妊娠期間日</code>では：</p>

@@ -1077,6 +1077,7 @@
 <li>単回帰の式（切片・傾き）と決定係数 R² を読める</li>
 <li>重回帰で「他を一定にしたときの関連（統制）」を理解する</li>
 <li><strong>R²の罠・係数の罠・外挿の罠</strong>を知り、回帰結果を批判的に解釈できる</li>
+<li><strong>発展</strong>：最小二乗法から傾き <span class="arithmatex">\( b=S_{xy}/S_{xx} \)</span> と切片 <span class="arithmatex">\( a=\bar{y}-b\bar{x} \)</span> を導き、単回帰では <span class="arithmatex">\( R^2=r^2 \)</span> になることを、自分で示せる</li>
 </ul>
 <p>到達目標との対応：<strong>G3（Pythonで解析）・G2（批判的検証）</strong>。</p>
 <hr />
@@ -1099,6 +1100,38 @@
 <li><strong>切片 = −3.883</strong>：log体重が0（＝1g）のときの予測値</li>
 <li><strong>決定係数 R² = 0.462</strong>：行動圏のばらつきの約46%をモデルが説明</li>
 </ul>
+<details class="note" open="open">
+<summary>導出①：傾きと切片は、どこから出てくるのか（最小二乗法）</summary>
+<p>直線 <span class="arithmatex">\( y = a + bx \)</span> を引くとき、「当てはまりが良い」を<strong>縦のズレの二乗和が最小</strong>と決める。この決め方が最小二乗法である。</p>
+<div class="arithmatex">\[ Q(a,b) \;=\; \sum_{i=1}^{n}\bigl(y_i - a - b x_i\bigr)^2 \]</div>
+<p>まず a について。<span class="arithmatex">\( Q \)</span> を a で微分して 0 とおくと <span class="arithmatex">\( -2\sum (y_i - a - bx_i) = 0 \)</span>、両辺を n で割って</p>
+<div class="arithmatex">\[ a \;=\; \bar{y} - b\bar{x} \]</div>
+<p>次に b について同じことをすると <span class="arithmatex">\( -2\sum x_i (y_i - a - bx_i) = 0 \)</span>。ここに <span class="arithmatex">\( a=\bar{y}-b\bar{x} \)</span> を入れて整理すると、</p>
+<div class="arithmatex">\[ b \;=\; \frac{\sum (x_i-\bar{x})(y_i-\bar{y})}{\sum (x_i-\bar{x})^2} \;=\; \frac{S_{xy}}{S_{xx}} \]</div>
+<p><strong>傾きは「x と y の共分散 ÷ x の分散」</strong>である。微分を知らなくてもよい。<span class="arithmatex">\( Q \)</span> は b について下に凸の二次式なので、<strong>平方完成して頂点を読めば同じ答えが出る</strong>。</p>
+<p><span class="arithmatex">\( a=\bar{y}-b\bar{x} \)</span> を直線の式に戻すと <span class="arithmatex">\( y = \bar{y} + b(x-\bar{x}) \)</span>。x に <span class="arithmatex">\( \bar{x} \)</span> を入れると y は <span class="arithmatex">\( \bar{y} \)</span>。つまり<strong>回帰直線は必ず点 <span class="arithmatex">\( (\bar{x},\bar{y}) \)</span> を通る</strong>。平均の点は、どんなデータでも直線の上にある。</p>
+<p><strong>数値で確かめる</strong>：この回のデータ（n=153種、両対数）で <span class="arithmatex">\( S_{xy}/S_{xx} = 0.9333 \)</span>、<span class="arithmatex">\( \bar{y}-b\bar{x} = -3.8830 \)</span>。本文の傾き 0.933・切片 −3.883 に一致する。</p>
+<p><strong>使った数学</strong>：二次式の最小化（微I：偏微分、または平方完成）。総和の記号操作（線I）。</p>
+</details>
+<details class="note" open="open">
+<summary>導出②：単回帰の <span class="arithmatex">\( R^2 \)</span> は、相関係数 r の二乗にすぎない</summary>
+<p>決定係数は「全体のばらつきのうち、モデルが説明できた割合」と定義される。</p>
+<div class="arithmatex">\[ R^2 \;=\; 1 - \frac{\sum (y_i-\hat{y}_i)^2}{\sum (y_i-\bar{y})^2} \;=\; 1 - \frac{SS_{\text{残差}}}{SS_{\text{全体}}} \]</div>
+<p>予測値は導出①より <span class="arithmatex">\( \hat{y}_i = \bar{y} + b(x_i-\bar{x}) \)</span> なので、残差平方和は</p>
+<div class="arithmatex">\[ \sum (y_i-\hat{y}_i)^2 \;=\; \sum \bigl[(y_i-\bar{y}) - b(x_i-\bar{x})\bigr]^2 \;=\; S_{yy} - 2bS_{xy} + b^2 S_{xx} \]</div>
+<p>ここに <span class="arithmatex">\( b=S_{xy}/S_{xx} \)</span> を代入すると、後ろの2項がまとまって</p>
+<div class="arithmatex">\[ \sum (y_i-\hat{y}_i)^2 \;=\; S_{yy} - \frac{S_{xy}^{\,2}}{S_{xx}} \]</div>
+<p>よって</p>
+<div class="arithmatex">\[ R^2 \;=\; 1 - \frac{S_{yy} - S_{xy}^{\,2}/S_{xx}}{S_{yy}} \;=\; \frac{S_{xy}^{\,2}}{S_{xx}S_{yy}} \;=\; r^2 \]</div>
+<p><strong>説明変数が1つのとき、<span class="arithmatex">\( R^2 \)</span> は相関係数 r を二乗しただけのものである。</strong> 第5回で見た r と、今日の <span class="arithmatex">\( R^2 \)</span> は別々の量ではない。</p>
+<p><strong>数値で確かめる</strong>：この回のデータで <span class="arithmatex">\( r = 0.6799 \)</span>、その二乗は 0.4623。本文の <span class="arithmatex">\( R^2 = 0.462 \)</span> に一致する。</p>
+<div class="admonition warning">
+<p class="admonition-title">これは『R² が何を測っているか』を示しただけ</p>
+<p>この導出が言っているのは「<span class="arithmatex">\( R^2 \)</span> は r の二乗である」ということだけで、<strong><span class="arithmatex">\( R^2 \)</span> が高いモデルが正しい、という意味はまったく含まない</strong>。</p>
+<p>しかも説明変数が2つ以上になれば <span class="arithmatex">\( R^2 \)</span> はもう <span class="arithmatex">\( r^2 \)</span> ではなくなり、<strong>変数を足すだけで必ず上がる</strong>ようになる。なぜそうなるかは、次の §3「R²の罠」で見る。</p>
+</div>
+<p><strong>使った数学</strong>：平方の展開と総和（線I）。相関係数の定義（第5回）。</p>
+</details>
 <h3 id="_2">両対数のときの傾きは「何倍になるか」を表す<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
 <p>傾き <strong>0.933</strong> は、両方を対数にしているので<strong>足し算ではなくかけ算</strong>の関係を意味する。</p>
 <table>
@@ -1119,7 +1152,7 @@
 </tr>
 <tr>
 <td>100倍</td>
-<td>73.6倍</td>
+<td>73.5倍</td>
 </tr>
 </tbody>
 </table>
@@ -1187,6 +1220,16 @@
 <hr />
 <h2 id="4">4. 残差を見る習慣 ／ 外挿の危険<a class="headerlink" href="#4" title="Permanent link">&para;</a></h2>
 <p><strong>残差</strong>＝実際の値 − 予測値。残差を予測値に対してプロットし、偏った模様がないか確認するのが作法（ランダムに散っていれば良い兆候）。</p>
+<details class="note" open="open">
+<summary>導出③：残差の和が 0 になるのは、偶然ではない</summary>
+<p>導出①で a と b を決めたとき、実は次の2本の式を 0 とおいていた（<span class="arithmatex">\( e_i = y_i - a - bx_i \)</span> は残差）。</p>
+<div class="arithmatex">\[ \sum_{i=1}^{n} e_i \;=\; 0, \qquad \sum_{i=1}^{n} x_i e_i \;=\; 0 \]</div>
+<p>上は a についての条件、下は b についての条件そのものである。つまり<strong>最小二乗法で引いた直線では、残差の和は必ず 0 になり、残差と x の積和も必ず 0 になる</strong>。2本を合わせると <span class="arithmatex">\( \sum (x_i-\bar{x})e_i = 0 \)</span>、すなわち<strong>残差と x は必ず無相関</strong>である。</p>
+<p>ここが大事なところだ。残差と x が無相関であることは、<strong>モデルが良いことの証拠ではない</strong>。どんなに見当違いな直線でも、最小二乗法で引いた以上は必ずそうなる。最初から保証されていることを確認しても、何も分からない。</p>
+<p>だから残差プロットで探すのは「相関があるかどうか」ではない。<strong>直線では捉えられない形</strong>、つまり曲がり・ばらつきの偏り・飛び抜けた点である。これらは残差と x の相関が 0 のままでも、平気で現れる。</p>
+<p><strong>数値で確かめる</strong>：この回の回帰で、残差の和も、残差と log体重 の相関も、絶対値が <span class="arithmatex">\( 10^{-12} \)</span> より小さくなる。どちらも数値計算の丸め誤差の範囲で 0 である（細かい桁は計算環境によって変わる）。</p>
+<p><strong>使った数学</strong>：最小化の条件式（微I）。積和が 0 ＝ 直交（線I）。</p>
+</details>
 <h3 id="_3">残差は「外れ」ではなく「発見」でもある<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
 <p>予測から最も外れているのは <strong>Erythrocebus patas（パタスモンキー）</strong>。8kgの体格から予測される行動圏の <strong>約49倍</strong>（28.2km²）を使っている。</p>
 <p>これはデータの誤りだろうか。<strong>そうではない。</strong>パタスモンキーは森林ではなく<strong>サバンナで地上生活する</strong>霊長類で、散在する食物を求めて広大な範囲を移動することが知られている。</p>
@@ -1290,7 +1333,7 @@
 </ul>
 <p><strong>A2.</strong> 「体重」だけのモデルに、行動圏と<strong>無関係なでたらめの乱数列</strong>を50本足すと、R²はどうなったか。</p>
 <ul>
-<li>(ア) 0.36 のまま変わらない　(イ) 0.36 → 0.41 に上がった　(ウ) 0.36 → 0.10 に下がった</li>
+<li>(ア) 0.46 のまま変わらない　(イ) 0.46 → 0.67 に上がった　(ウ) 0.46 → 0.10 に下がった</li>
 </ul>
 <p><strong>A3.</strong> A2の結果から言えることとして<strong>最も適切</strong>なのは？</p>
 <ul>
@@ -1298,9 +1341,9 @@
 <li>(イ) 変数を足せばR²は上がるので、R²の高さだけでモデルの良さは判断できない</li>
 <li>(ウ) でたらめな乱数は行動圏を予測できる</li>
 </ul>
-<p><strong>A4.</strong> この回帰式に「勉強20時間/日」を入れると予測点は196点になった。ここから分かることは？</p>
+<p><strong>A4.</strong> この回帰式に体重 1,000,000 g（1トン）を入れると、予測される行動圏は 52.1 km² になった。ここから分かることは？</p>
 <ul>
-<li>(ア) 20時間勉強すれば196点取れる</li>
+<li>(ア) 1トンの霊長類の行動圏は 52.1 km² である</li>
 <li>(イ) データの範囲外（外挿）では予測は信用できない</li>
 <li>(ウ) モデルが間違っている</li>
 </ul>
@@ -1308,7 +1351,7 @@
 <h3 id="bai60">パートB：記述問題（AIフィードバック対象・60点）<a class="headerlink" href="#bai60" title="Permanent link">&para;</a></h3>
 <div class="admonition warning">
 <p class="admonition-title">【全記述に共通・重要】自分の出力を引用すること</p>
-<p>記述には、今日のColabで確認した数値を最低1つ引用すること（例：「勉強の傾きは7.5」「でたらめ20本でR²が0.36→0.41」「勉強20hで予測196点」）。<strong>引用がない記述は満点になりません。</strong></p>
+<p>記述には、今日のColabで確認した数値を最低1つ引用すること（例：「体重の傾きは0.933」「でたらめ50本でR²が0.462→0.665」「体重1トンで予測52.1km²」）。<strong>引用がない記述は満点になりません。</strong></p>
 </div>
 <p><strong>B1.（30点）</strong> ある人が「重回帰でR²=0.95の高いモデルができた。変数を30個入れたら当てはまりが良くなった。これは素晴らしいモデルだ」と言った。この主張の<strong>問題点</strong>を、今日学んだ「R²と変数の数の関係」「過学習」の観点から指摘しなさい。</p>
 <p><strong>B2.（30点）</strong> 「体重→行動圏」の回帰式（傾き0.933）について、<strong>この予測を使ってはいけない場面・信じすぎてはいけない点</strong>を2つ挙げ、それぞれなぜかを説明しなさい。（ヒント：因果・外挿・残差・R²のうちから）</p>

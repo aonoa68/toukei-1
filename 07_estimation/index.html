@@ -1086,7 +1086,7 @@
 </details>
 <details class="note" open="open">
 <summary>導出②：標準誤差 <span class="arithmatex">\( SE=\sigma/\sqrt{n} \)</span> はどこから来るか</summary>
-<p>分散は、<strong>独立な</strong>確率変数の和について加法的（<span class="arithmatex">\( \mathrm{Var}[X+Y]=\mathrm{Var}[X]+\mathrm{Var}[Y]\)</span>）で、定数倍は二乗で効く（<span class="arithmatex">\( \mathrm{Var}[aX]=a^2\mathrm{Var}[X]\)</span>）。各 <span class="arithmatex">\( X_i \)</span> の分散を <span class="arithmatex">\( \sigma^2 \)</span> とすると、</p>
+<p>この結果は第6回で導いた。要点を再掲する。分散は、<strong>独立な</strong>確率変数の和について加法的（<span class="arithmatex">\( \mathrm{Var}[X+Y]=\mathrm{Var}[X]+\mathrm{Var}[Y]\)</span>）で、定数倍は二乗で効く（<span class="arithmatex">\( \mathrm{Var}[aX]=a^2\mathrm{Var}[X]\)</span>）。各 <span class="arithmatex">\( X_i \)</span> の分散を <span class="arithmatex">\( \sigma^2 \)</span> とすると、</p>
 <div class="arithmatex">\[ \mathrm{Var}[\bar{X}] \;=\; \mathrm{Var}\!\left[\frac{1}{n}\sum_{i=1}^{n} X_i\right] \;=\; \frac{1}{n^2}\sum_{i=1}^{n}\mathrm{Var}[X_i] \;=\; \frac{1}{n^2}\cdot n\sigma^2 \;=\; \frac{\sigma^2}{n} \]</div>
 <p>平方根を取ると <span class="arithmatex">\( \mathrm{SD}[\bar{X}] = \sigma/\sqrt{n} \)</span>。これが<strong>標準誤差</strong>である。</p>
 <p>ここから「n を4倍にすると SE は半分」が出る。<span class="arithmatex">\( \sqrt{4}=2 \)</span> だからで、経験則ではなく式の帰結である。</p>

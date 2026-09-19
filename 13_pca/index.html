@@ -1021,6 +1021,7 @@
 <li>次元削減（多くの変数を少数の軸にまとめる）の発想を理解する</li>
 <li>PCAの寄与率と負荷を読み、主成分に意味を与えられる</li>
 <li>「PCAは情報を失う」「主成分に必ず意味があるとは限らない」を理解する</li>
+<li><strong>発展</strong>：第1主成分が「射影の分散が最大になる方向」であることを、2変数の場合に自分で導ける</li>
 </ul>
 <p>到達目標との対応：<strong>G4・G3</strong>。</p>
 <hr />
@@ -1036,6 +1037,63 @@
 <p>前処理を2つ行う。① 何桁にもまたがる量なので<strong>対数</strong>にする ② 単位が違う（g・日・月・頭）ので<strong>標準化</strong>する。</p>
 <p>PCAは、これら5次元のデータを、<strong>ばらつき（情報）が最も大きい方向</strong>に新しい軸を引き直す。最初の軸（第1主成分）が一番多くの情報を持ち、次の軸（第2主成分）がその次…と続く。少数の軸だけ残せば<strong>次元を削減</strong>できる。</p>
 <p>（変数ごとに単位が違う（時間・%・日）ので、まず<strong>標準化</strong>して土俵をそろえる。）</p>
+<details class="note" open="open">
+<summary>導出①：第1主成分とは「射影したときの分散が最大になる方向」のこと</summary>
+<p>「ばらつきが最大の方向」という言い方を、式にしてみる。変数が2つの場合なら、三角関数だけで最後まで行ける。</p>
+<p>標準化した2変数を <span class="arithmatex">\( z_1, z_2 \)</span> とする。標準化してあるので <span class="arithmatex">\( \mathrm{Var}[z_1]=\mathrm{Var}[z_2]=1 \)</span> で、共分散は相関係数 <span class="arithmatex">\( r \)</span> そのものになる。</p>
+<p>角度 <span class="arithmatex">\( \theta \)</span> の向きの軸に各点を<strong>射影</strong>した値は、</p>
+<div class="arithmatex">\[ y(\theta) \;=\; \cos\theta \cdot z_1 \;+\; \sin\theta \cdot z_2 \]</div>
+<p>この <span class="arithmatex">\( y \)</span> の分散を展開する。第7回の導出②では独立を仮定したので共分散の項が消えたが、<strong>今回は消えない</strong>。2変数の関係こそが知りたいものだからである。</p>
+<div class="arithmatex">\[ \mathrm{Var}[y] \;=\; \cos^{2}\!\theta\,\mathrm{Var}[z_1] \;+\; \sin^{2}\!\theta\,\mathrm{Var}[z_2] \;+\; 2\cos\theta\sin\theta\,\mathrm{Cov}[z_1,z_2] \]</div>
+<p><span class="arithmatex">\( \mathrm{Var}[z_1]=\mathrm{Var}[z_2]=1 \)</span>、<span class="arithmatex">\( \mathrm{Cov}[z_1,z_2]=r \)</span> を入れ、<span class="arithmatex">\( \cos^{2}\theta+\sin^{2}\theta=1 \)</span> と倍角の公式 <span class="arithmatex">\( 2\sin\theta\cos\theta=\sin 2\theta \)</span> を使うと、</p>
+<div class="arithmatex">\[ \mathrm{Var}[y] \;=\; 1 \;+\; r\sin 2\theta \]</div>
+<p>あとは <span class="arithmatex">\( \sin 2\theta \)</span> が最大（＝1）になる角度を選ぶだけである。<span class="arithmatex">\( 2\theta = 90^\circ \)</span>、つまり</p>
+<div class="arithmatex">\[ \theta = 45^\circ \quad \text{のとき最大値} \quad 1 + r \]</div>
+<p>これが第1主成分である。直交する <span class="arithmatex">\( \theta=135^\circ \)</span> では <span class="arithmatex">\( \sin 2\theta = -1 \)</span> となり、最小値 <span class="arithmatex">\( 1-r \)</span>。こちらが第2主成分になる。</p>
+<p>式から読めることがもう一つある。<strong>相関が強いほど第1主成分は強くなる</strong>。<span class="arithmatex">\( r \)</span> が大きいほど <span class="arithmatex">\( 1+r \)</span> は大きい。逆に <span class="arithmatex">\( r=0 \)</span> なら、どの向きに射影しても分散は1のままで、<strong>軸を選ぶ意味がなくなる</strong>。PCAが効くのは変数どうしが関係しあっているときだけ、というのがここで分かる。</p>
+<p><strong>数値で確かめる</strong>：この授業のデータで、対数をとって標準化した体重と離乳日齢の相関は <span class="arithmatex">\( r = 0.872 \)</span>。式によれば最大分散は <span class="arithmatex">\( 1+r = 1.872 \)</span>、その角度は45°のはずである。実際に角度を変えて射影の分散を計算すると、</p>
+<table>
+<thead>
+<tr>
+<th><span class="arithmatex">\( \theta \)</span></th>
+<th style="text-align: right;">射影した値の分散</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0°</td>
+<td style="text-align: right;">1.000</td>
+</tr>
+<tr>
+<td>30°</td>
+<td style="text-align: right;">1.755</td>
+</tr>
+<tr>
+<td><strong>45°</strong></td>
+<td style="text-align: right;"><strong>1.872</strong></td>
+</tr>
+<tr>
+<td>60°</td>
+<td style="text-align: right;">1.755</td>
+</tr>
+<tr>
+<td>90°</td>
+<td style="text-align: right;">1.000</td>
+</tr>
+<tr>
+<td>135°</td>
+<td style="text-align: right;">0.128</td>
+</tr>
+</tbody>
+</table>
+<p>最大は45°で 1.872、最小は135°で <span class="arithmatex">\( 1-r = 0.128 \)</span>。この2変数でPCAを実行すると、第1主成分の方向として (0.707, 0.707) が返ってくる。これはちょうど45°の向きである。<strong>「分散最大の方向を探す」という定義が、そのまま答えになっている。</strong></p>
+<div class="admonition note">
+<p class="admonition-title">変数が3つ以上になると</p>
+<p>変数が増えると、方向を角度1つでは書けなくなる。上の最大化は<strong>固有値問題</strong>（分散共分散行列の固有ベクトルを求める問題）という形になり、解き方は変わる。</p>
+<p>だが<strong>探しているものは同じ</strong>で、「射影の分散が最大になる方向」である。多変数の微分（ラグランジュの未定乗数法）を学ぶと、ここが一般の次元へつながる。それはこの地図で扱う統計数理の範囲外なので、名前だけ挙げておく。</p>
+</div>
+<p><strong>使った数学</strong>：分散の展開（共分散の項つき）と、三角関数の倍角公式。2変数なら、これだけで第1主成分に届く。</p>
+</details>
 <h3 id="_2">寄与率：各軸がどれだけ情報を持つか<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
@@ -1064,6 +1122,60 @@
 </tbody>
 </table>
 <p><strong>第1主成分だけで全体の約74%</strong>、第2主成分まで合わせると約87%。5次元の本質は、ほぼ<strong>2次元</strong>に圧縮できる。</p>
+<details class="note" open="open">
+<summary>導出②：寄与率は「固有値の割合」である</summary>
+<p>主成分は、もとの変数を回転させて引き直した軸である。回転させても、<strong>データ全体のばらつきの総量は変わらない</strong>。座標の取り方を変えただけで、情報が増えたり減ったりはしない。だから各主成分の分散を全部足すと、もとの変数の分散の合計に戻る。</p>
+<div class="arithmatex">\[ \underbrace{\lambda_1 + \lambda_2 + \cdots + \lambda_p}_{\text{各主成分の分散}} \;=\; \underbrace{\mathrm{Var}[z_1] + \cdots + \mathrm{Var}[z_p]}_{\text{もとの変数の分散}} \]</div>
+<p>ここで <span class="arithmatex">\( \lambda_i \)</span> は第 i 主成分の分散で、<strong>固有値</strong>と呼ばれる量にあたる。導出①の2変数の例では、<span class="arithmatex">\( \lambda_1 = 1+r \)</span>、<span class="arithmatex">\( \lambda_2 = 1-r \)</span> で、合計はちょうど 2、つまり変数の個数だった。</p>
+<p>今回は標準化してあるので、各変数の分散はちょうど1。変数は5つなので、右辺は <span class="arithmatex">\( 1 \times 5 = 5 \)</span> である。<strong>分けるべき情報の総量が5と決まっている</strong>。あとはそれを5本の軸がどう分け合うかという話になり、</p>
+<div class="arithmatex">\[ \text{第 i 主成分の寄与率} \;=\; \frac{\lambda_i}{\lambda_1+\cdots+\lambda_p} \;=\; \frac{\lambda_i}{5} \]</div>
+<p>寄与率を「その軸が説明する情報の割合」と呼べるのは、<strong>分母が全体の総量になっているから</strong>である。</p>
+<p><strong>数値で確かめる</strong>：今回の5変数（n=89種）で計算すると、</p>
+<table>
+<thead>
+<tr>
+<th>主成分</th>
+<th style="text-align: right;">固有値 <span class="arithmatex">\( \lambda \)</span></th>
+<th style="text-align: right;"><span class="arithmatex">\( \lambda/5 \)</span> ＝ 寄与率</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>第1</td>
+<td style="text-align: right;">3.68</td>
+<td style="text-align: right;">73.6%</td>
+</tr>
+<tr>
+<td>第2</td>
+<td style="text-align: right;">0.67</td>
+<td style="text-align: right;">13.4%</td>
+</tr>
+<tr>
+<td>第3</td>
+<td style="text-align: right;">0.29</td>
+<td style="text-align: right;">5.8%</td>
+</tr>
+<tr>
+<td>第4</td>
+<td style="text-align: right;">0.24</td>
+<td style="text-align: right;">4.8%</td>
+</tr>
+<tr>
+<td>第5</td>
+<td style="text-align: right;">0.12</td>
+<td style="text-align: right;">2.4%</td>
+</tr>
+<tr>
+<td><strong>合計</strong></td>
+<td style="text-align: right;"><strong>5.00</strong></td>
+<td style="text-align: right;"><strong>100%</strong></td>
+</tr>
+</tbody>
+</table>
+<p>上の表の 73.6%・13.4% は、こうして出てきた値である。</p>
+<p>第1主成分の固有値 3.68 は、「1変数ぶんの情報＝1」の 3.68 倍にあたる。<strong>5変数ぶんの情報のうち、3.68変数ぶんを1本の軸が持っている</strong>と読める。逆に第5主成分は 0.12 で、1変数ぶんにも満たない。</p>
+<p><strong>使った数学</strong>：分散の総和が回転で変わらないこと、割合の定義。固有値そのものの計算は機械に任せてよい。</p>
+</details>
 <hr />
 <h2 id="2">2. 主成分の命名 ―― 負荷を読む<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
 <p>第1主成分が「何の軸」かは、各変数の効き方（<strong>負荷</strong>）を見て、人間が<strong>命名</strong>する。</p>

@@ -999,6 +999,7 @@
 <li>過学習（手元に合わせすぎて未知データに弱くなる）を説明できる</li>
 <li>AICの考え方（当てはまり ＋ 複雑さのペナルティ）を理解し、モデル比較に使える</li>
 <li>「R²最大のモデル」と「AIC最小のモデル」が違うことを知る</li>
+<li><strong>発展</strong>：<span class="arithmatex">\( -2\log L \)</span> がなぜ残差平方和で書けるのかを導き、ペナルティ <span class="arithmatex">\( 2k \)</span> が何を補正しているかを説明できる</li>
 </ul>
 <p>到達目標との対応：<strong>G4（AICでモデル選択）</strong>。</p>
 <hr />
@@ -1011,12 +1012,12 @@
 <h2 id="1">1. 過学習を、目で見る<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
 <p>データを <strong>訓練用（7割）</strong> と <strong>テスト用（3割）</strong> に分ける。訓練用だけでモデルを作り、見せていないテスト用でどれだけ予測できるかを測る。本物の変数に「でたらめ列」を足していくと：</p>
 <ul>
-<li><strong>訓練R²</strong>（手元への当てはまり）：でたらめを足すほど <strong>上がり続ける</strong>（0.42 → 0.47）</li>
-<li><strong>テスト誤差 RMSE</strong>（未知データの予測のズレ・小さいほど良い）：途中までは下がるが、<strong>ある点から悪化していく</strong>（U字）</li>
+<li><strong>訓練R²</strong>（手元への当てはまり）：でたらめを足すほど <strong>上がり続ける</strong>（でたらめ0本で 0.748、20本で 0.809）</li>
+<li><strong>テスト誤差 RMSE</strong>（未知データの予測のズレ・小さいほど良い）：でたらめを足すほど <strong>悪化していく</strong>（0.474 → 0.541）</li>
 </ul>
 <div class="admonition danger">
 <p class="admonition-title">これが過学習</p>
-<p>当てはまり（訓練R²）は上がり続けるのに、予測（テスト誤差）は途中から悪化する。
+<p>当てはまり（訓練R²）は上がり続けるのに、予測（テスト誤差）は悪化していく。
 手元のデータに合わせすぎて、未知のデータに弱くなる。
 <strong>「当てはまりの良さ（R²）」と「予測の良さ」は別物。R²を最大化してはいけない。</strong></p>
 </div>
@@ -1030,47 +1031,96 @@
 <li><strong>AICが小さいモデルほど良い</strong>＝「当てはまり」と「複雑さ」のバランスが最良</li>
 </ul>
 <p>これは <strong>オッカムの剃刀</strong>（同じ説明力なら単純なほうを選べ）の定量化だ。</p>
+<details class="note" open="open">
+<summary>導出①：なぜ「当てはまりの良さ」を残差平方和で測ってよいのか</summary>
+<p>第1項の <span class="arithmatex">\( L \)</span> は<strong>尤度</strong>、つまり「そのモデルのもとで、手元のデータが得られる確率密度」である。</p>
+<p>誤差が平均 0・分散 <span class="arithmatex">\( \sigma^2 \)</span> の正規分布に従うと仮定すると、各観測の確率密度は</p>
+<div class="arithmatex">\[ f(y_i) \;=\; \frac{1}{\sqrt{2\pi\sigma^2}}\exp\!\left(-\frac{e_i^{\,2}}{2\sigma^2}\right), \qquad e_i = y_i - \hat{y}_i \]</div>
+<p>観測が独立なら尤度はこれらの<strong>積</strong>になる。対数を取ると積は和に変わるので、</p>
+<div class="arithmatex">\[ \log L \;=\; -\frac{n}{2}\log(2\pi) \;-\; \frac{n}{2}\log \sigma^2 \;-\; \frac{1}{2\sigma^2}\sum_{i=1}^{n} e_i^{\,2} \]</div>
+<p>ここで <span class="arithmatex">\( \sigma^2 \)</span> を、データから推定した値 <span class="arithmatex">\( \hat{\sigma}^2 = RSS/n \)</span>（<span class="arithmatex">\( RSS=\sum e_i^{\,2} \)</span> は残差平方和）で置き換える。すると最後の項はちょうど <span class="arithmatex">\( -n/2 \)</span> という定数になり、</p>
+<div class="arithmatex">\[ -2\log L \;=\; n\log\!\left(\frac{RSS}{n}\right) \;+\; n\bigl(\log 2\pi + 1\bigr) \]</div>
+<p>右辺の第2項は n だけで決まる。<strong>同じデータで比べるかぎり、どのモデルでも同じ値</strong>なので、モデル間の差を取ると消えてしまう。残るのは <span class="arithmatex">\( n\log(RSS/n) \)</span> だけである。</p>
+<p><strong>これが、当てはまりの良さを残差平方和で測ってよい理由</strong>だ。RSS が小さいほど <span class="arithmatex">\( -2\log L \)</span> が小さく、AIC も小さくなる。第10回の最小二乗法（RSS を最小にする）と、ここでの最尤法が、正規分布の仮定のもとで同じものになっていることも見てとれる。</p>
+<p><strong>数値で確かめる</strong>：M2（体重+集団+密度、n=137）で、統計ソフトが出す対数尤度から計算した <span class="arithmatex">\( -2\log L \)</span> は 176.1602。RSS から上の式で手計算しても 176.1602 で、一致する。</p>
+<div class="admonition note">
+<p class="admonition-title">この式は『誤差が正規分布』を使っている</p>
+<p><span class="arithmatex">\( -2\log L = n\log(RSS/n) + \text{定数} \)</span> という形になるのは、誤差を正規分布と仮定したからである。別の分布を仮定すれば、当てはまりの測り方も変わる。AIC そのものは正規分布に限らず使えるが、そのときの <span class="arithmatex">\( \log L \)</span> は<strong>その分布で計算し直す</strong>必要がある。</p>
+</div>
+<p><strong>使った数学</strong>：指数関数と対数の性質（微I）。独立な事象の確率の積（統計学Ⅱ 第2回）。</p>
+</details>
+<details class="note" open="open">
+<summary>導出②：ペナルティ <span class="arithmatex">\( 2k \)</span> は、何を補正しているのか</summary>
+<p>本当に知りたいのは「<strong>まだ見ていないデータ</strong>にどれだけ当たるか」である。ところが手元にあるのは1組のデータだけで、そこからパラメータを推定し、<strong>その同じデータで</strong>当てはまりを測っている。</p>
+<p>このやり方では、当てはまりは必ず<strong>実力より良く出る</strong>。推定の段階で、そのデータにたまたま乗っていた偶然のでこぼこにまで合わせてしまうからだ。パラメータが多いほど、合わせられる余地は増える。第10回で、でたらめな乱数を足すだけで <span class="arithmatex">\( R^2 \)</span> が上がったのは、これが起きていたからである。</p>
+<div class="arithmatex">\[ \underbrace{-2\log L(\hat{\theta})}_{\text{手元での当てはまり（楽観的）}} \;\approx\; \underbrace{\text{未知データでの当てはまり}}_{\text{本当に知りたい量}} \;-\; \underbrace{2k}_{\text{楽観のぶん}} \]</div>
+<p>赤池弘次が示したのは、<strong>この「楽観のぶん」が、標本が大きいときにはパラメータ数 k でおよそ書け、<span class="arithmatex">\( -2\log L \)</span> の尺度では <span class="arithmatex">\( 2k \)</span> になる</strong>ということである。だから手元の当てはまりに <span class="arithmatex">\( 2k \)</span> を足し戻せば、未知データでの当てはまりの見積もりが得られる。</p>
+<div class="arithmatex">\[ \text{AIC} \;=\; -2\log L(\hat{\theta}) \;+\; 2k \]</div>
+<p>ペナルティは「複雑なモデルは嫌いだ」という好みではない。<strong>手元のデータで測ったせいで生じた偏りを、差し引いているだけ</strong>である。</p>
+<div class="admonition warning">
+<p class="admonition-title">なぜちょうど <span class="arithmatex">\( 2k \)</span> なのかは、この科目では導かない</p>
+<p>この <span class="arithmatex">\( 2k \)</span> は、カルバック・ライブラー情報量という「2つの分布のズレ」を測る量を、標本が大きいときに展開して出てくる近似である。その導出には多変数のテイラー展開と行列の計算が必要で、<strong>この授業で扱う統計数理の範囲外</strong>になる。ここでは「楽観のぶんがパラメータ数で書ける」という筋道までを確認するにとどめる。</p>
+<p>また「標本が大きいとき」の近似なので、<strong>n が小さいと補正が足りない</strong>。そのときは AICc という修正版を使う。</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">k に分散 <span class="arithmatex">\( \sigma^2 \)</span> を数えるかどうか</p>
+<p>パラメータ数 k に、切片や傾きだけでなく誤差分散 <span class="arithmatex">\( \sigma^2 \)</span> を数えるかは流儀が分かれ、統計ソフトによって AIC の値が 2 だけずれることがある。ただし <span class="arithmatex">\( \sigma^2 \)</span> はどのモデルにも1つずつあるので、<strong>同じ流儀で揃えて比べるかぎり、モデル間の差は変わらない</strong>。AIC を差で読む（次節）のは、こうした事情のためでもある。</p>
+</div>
+<p><strong>使った数学</strong>：期待値とバイアスの考え方（第7回の不偏性と同じ発想）。厳密な導出には多変数の近似（微II以降）。</p>
+</details>
 <h3 id="3">3つのモデルを比べる<a class="headerlink" href="#3" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
 <th>モデル</th>
-<th>R²（当てはまり）</th>
-<th>AIC（小さいほど良い）</th>
+<th style="text-align: right;">変数の数</th>
+<th style="text-align: right;">R²（当てはまり）</th>
+<th style="text-align: right;">AIC（小さいほど良い）</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>M1 勉強のみ</td>
-<td>0.363</td>
-<td>2896.4</td>
+<td>M1 体重のみ</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.468</td>
+<td style="text-align: right;">281.4</td>
 </tr>
 <tr>
-<td>M2 勉強+睡眠+SNS</td>
-<td>0.377</td>
-<td><strong>2891.2（最小）</strong></td>
+<td>M2 体重+集団+密度</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">0.746</td>
+<td style="text-align: right;"><strong>184.2（最小）</strong></td>
 </tr>
 <tr>
 <td>M3 M2+でたらめ10本</td>
-<td><strong>0.386（最大）</strong></td>
-<td>2905.8</td>
+<td style="text-align: right;">13</td>
+<td style="text-align: right;"><strong>0.775（最大）</strong></td>
+<td style="text-align: right;">187.7</td>
 </tr>
 </tbody>
 </table>
-<p><strong>R²が最大なのは M3（でたらめ入り）。でもAICが最小＝採用すべきは M2。一致しない！</strong></p>
+<p><strong>R²が最大なのは M3（でたらめ入り、0.775）。でもAICが最小＝採用すべきは M2（184.2）。一致しない！</strong></p>
 <ul>
-<li>M1→M2：本物の変数（睡眠・SNS）を足したらAICは<strong>下がった</strong>（役立つ変数は歓迎）</li>
-<li>M2→M3：でたらめを足したらR²は上がったがAICは<strong>上がった</strong>（中身のない複雑さは罰する）</li>
+<li>M1→M2：本物の変数（集団サイズ・個体群密度）を足したらAICは 281 → 184 と大きく<strong>下がった</strong>（役立つ変数は歓迎）</li>
+<li>M2→M3：でたらめを足したらR²は上がったがAICは 184 → 188 と<strong>上がった</strong>（中身のない複雑さは罰する）</li>
 </ul>
 <p>AICは「R²の罠」に引っかからず、過学習しないモデルを選んでくれる。</p>
 <hr />
 <h2 id="3-aic">3. AICの使い方の作法<a class="headerlink" href="#3-aic" title="Permanent link">&para;</a></h2>
 <ul>
-<li><strong>AICは相対指標</strong>。<strong>絶対値そのものに意味はない</strong>（2891という数字単体は何も語らない）。<strong>モデル間の差</strong>で比べる。</li>
-<li>差が大きいほど優劣は明確（目安：差が2以上で意味あり、10以上で決定的）。</li>
+<li><strong>AICは相対指標</strong>。<strong>絶対値そのものに意味はない</strong>（184.2という数字単体は何も語らない）。<strong>モデル間の差</strong>で比べる。</li>
+<li>差が大きいほど優劣は明確（目安：差が2以上で意味あり、10以上で決定的）。今回の M2 と M3 の差は 3.5 なので「M2のほうが良い」と言える程度、M1 と M2 の差は 97 でこちらは決定的である。</li>
 <li>比べるモデルは<strong>同じデータ・同じ目的変数</strong>で作ること。</li>
 <li>AICが小さい＝予測が良いの見積もりであって、<strong>真のモデルを当てる保証ではない</strong>。候補の中での相対的ベスト。</li>
 </ul>
+<details class="note" open="open">
+<summary>導出③：「差が2」「差が10」は、どこから来た数字か</summary>
+<p>上の「差が2以上で意味あり、10以上で決定的」は、<strong>理論から一意に決まる境目ではない</strong>。元になっているのは、AIC の差から計算する次の量である。</p>
+<div class="arithmatex">\[ w_i \;\propto\; \exp\!\left(-\frac{\Delta_i}{2}\right), \qquad \Delta_i = \text{AIC}_i - \text{AIC}_{\text{最小}} \]</div>
+<p>差 <span class="arithmatex">\( \Delta \)</span> が 2 なら <span class="arithmatex">\( e^{-1} = 0.37 \)</span>、差が 10 なら <span class="arithmatex">\( e^{-5} = 0.0067 \)</span>。つまり「差が2のモデルは最良モデルの4割弱の重み、差が10なら1%未満」という<strong>連続的な目盛り</strong>であって、2 や 10 のところに崖があるわけではない。</p>
+<p><strong>「差が2以上なら意味がある」は、この連続的な目盛りを現場で使いやすいように区切った経験則である。</strong> 理論的な帰結ではない。だから、差が 1.9 と 2.1 で結論を反転させるような使い方をしてはいけない。差が小さいときの正しい態度は、「どちらとも決められない」と言うことである。</p>
+<p><strong>使った数学</strong>：指数関数（微I）。</p>
+</details>
 <div class="admonition warning">
 <p class="admonition-title">よくある誤り</p>
 <p>「AICの絶対値が小さい/大きいことに意味がある」「変数は多いほど良い」――どちらも誤り。
@@ -1121,7 +1171,7 @@ AICは<strong>差</strong>で比べる相対指標で、複雑さには<strong>�
 <h3 id="a10-440">パートA：選択問題（自動採点・各10点 ×4＝40点）<a class="headerlink" href="#a10-440" title="Permanent link">&para;</a></h3>
 <p><strong>A1.</strong> 過学習が起きると、訓練データへの当てはまり（訓練R²）とテストデータの予測誤差はそれぞれどうなるか。</p>
 <ul>
-<li>(ア) 訓練R²は上がり続けるが、テスト誤差は途中から悪化する</li>
+<li>(ア) 訓練R²は上がり続けるが、テスト誤差は悪化していく</li>
 <li>(イ) 両方とも良くなり続ける</li>
 <li>(ウ) 訓練R²が下がり、テスト誤差も下がる</li>
 </ul>
@@ -1145,7 +1195,7 @@ AICは<strong>差</strong>で比べる相対指標で、複雑さには<strong>�
 <h3 id="bai60">パートB：記述問題（AIフィードバック対象・60点）<a class="headerlink" href="#bai60" title="Permanent link">&para;</a></h3>
 <div class="admonition warning">
 <p class="admonition-title">【全記述に共通・重要】自分の出力を引用すること</p>
-<p>記述には、今日のColabで確認した数値を最低1つ引用すること（例：「M2のAICは2891で最小」「M3はR²最大0.386だがAICは2906」「でたらめを足すと訓練R²↑なのにテスト誤差↑」）。<strong>引用がない記述は満点になりません。</strong></p>
+<p>記述には、今日のColabで確認した数値を最低1つ引用すること（例：「M2のAICは184.2で最小」「M3はR²最大0.775だがAICは187.7」「でたらめを足すと訓練R²↑なのにテスト誤差↑」）。<strong>引用がない記述は満点になりません。</strong></p>
 </div>
 <p><strong>B1.（30点）</strong> 後輩が「3つのモデルを比べたら、R²はモデルCが一番高かった。だからCを使うべきだ」と言っている。<strong>なぜそれだけでは決められないのか</strong>、過学習とAICの観点から説明し、<strong>どう判断すべきか</strong>を述べなさい。</p>
 <p><strong>B2.（30点）</strong> 「変数はとにかくたくさん入れたほうが良いモデルになる」という考えは、なぜ間違いか。今日見た<strong>過学習</strong>（当てはまりと予測の食い違い）と、<strong>AICのペナルティ</strong>の両方を使って説明しなさい。あわせて「オッカムの剃刀」が何を言っているかにも触れること。</p>

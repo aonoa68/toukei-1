@@ -1043,6 +1043,7 @@
 <li>検定を繰り返すと偽陽性（多重比較の罠）が増えることを説明できる</li>
 <li>ANOVA（分散分析）で3群以上を一括判定できる</li>
 <li>F値の意味と、事後検定・補正の必要性を理解する</li>
+<li><strong>発展</strong>：偽陽性が増える式と、平方和の分解 <span class="arithmatex">\( SS_{\text{全体}}=SS_{\text{群間}}+SS_{\text{群内}} \)</span> を、自分で導ける</li>
 </ul>
 <p>到達目標との対応：<strong>G2</strong>。</p>
 <hr />
@@ -1096,6 +1097,58 @@
 10群なら6割以上がまぐれの「発見」。<strong>検定の回数を増やすほど、偽の発見が紛れ込む。</strong></p>
 </div>
 <p>だから3群以上を「全ペアt検定」してはいけない。</p>
+<details class="note" open="open">
+<summary>導出①：偽陽性はなぜ増えるのか（そして、この式の限界）</summary>
+<p>1回の検定で「本当は差がないのに有意」と誤る確率を <span class="arithmatex">\( \alpha \)</span> とする。誤らない確率は <span class="arithmatex">\( 1-\alpha \)</span>。</p>
+<p>いま <span class="arithmatex">\( m \)</span> 回の検定を行い、<strong>それらが互いに独立だと仮定する</strong>。すると「m回とも誤らない」確率は積になる。</p>
+<div class="arithmatex">\[ \Pr(\text{1つも誤らない}) \;=\; (1-\alpha)^m \]</div>
+<p>よって「少なくとも1つはまぐれで有意」になる確率は、その余事象で</p>
+<div class="arithmatex">\[ \Pr(\text{最低1つ有意}) \;=\; 1-(1-\alpha)^m \]</div>
+<p>群数が <span class="arithmatex">\( k \)</span> なら、全ペアの数は <span class="arithmatex">\( m = \binom{k}{2} = \dfrac{k(k-1)}{2} \)</span>。k が増えると m は二次で増えるので、この確率は急速に1に近づく。<strong>「検定を繰り返すほど偽の発見が増える」は、この積の形の帰結である。</strong></p>
+<div class="admonition warning">
+<p class="admonition-title">この式は『独立』を使っている。だが全ペア検定は独立ではない</p>
+<p>上の式は m 回の検定が互いに独立なときのものである。しかし<strong>全ペアt検定は独立ではない</strong>。オマキ vs クモ と オマキ vs コビト は、どちらも同じオマキザル科のデータを共有している。片方がたまたま外れた標本を引けば、もう片方も同じ方向に引きずられる。検定どうしが正に相関するのだ。</p>
+<p>実際、上の表の実測値と式の値はずれている。</p>
+<table>
+<thead>
+<tr>
+<th>群数 k</th>
+<th>ペア数 m</th>
+<th><span class="arithmatex">\( 1-(1-\alpha)^m \)</span></th>
+<th>本文の実測</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2</td>
+<td>1</td>
+<td>5.0%</td>
+<td>約 6%</td>
+</tr>
+<tr>
+<td>3</td>
+<td>3</td>
+<td>14.3%</td>
+<td>約 12%</td>
+</tr>
+<tr>
+<td>5</td>
+<td>10</td>
+<td>40.1%</td>
+<td>約 30%</td>
+</tr>
+<tr>
+<td>10</td>
+<td>45</td>
+<td>90.1%</td>
+<td>約 64%</td>
+</tr>
+</tbody>
+</table>
+<p>k が大きいほど実測が式を下回る。検定が正に相関していると「どれか1つが当たる」機会は独立のときより少なくなるからである。<strong>この式は増え方の勢いを示す目安であって、正確な偽陽性率ではない。</strong> 正確に扱うには、検定統計量の同時分布を考える必要がある（テューキー法などはそれを行っている）。</p>
+</div>
+<p><strong>使った数学</strong>：余事象の確率と積の法則（微I・確率の基礎）、組み合わせ <span class="arithmatex">\( \binom{k}{2} \)</span>（線I・離散数学）。</p>
+</details>
 <hr />
 <h2 id="3-anova-1">3. ANOVA ―― まず1回で「どこかに差があるか」<a class="headerlink" href="#3-anova-1" title="Permanent link">&para;</a></h2>
 <p>分散分析（ANOVA）は、3群以上を<strong>一度の検定</strong>で「<strong>どこかに差があるか</strong>」だけを判定する。検定を繰り返さないので偽陽性が増えない。</p>
@@ -1161,6 +1214,32 @@
 <li>F が大きい ＝ グループ間の差が個人差より大きい → 「差がある」</li>
 <li>F が1前後 ＝ グループの違いは個人差の範囲 → 「差があるとは言えない」（今回）</li>
 </ul>
+<details class="note" open="open">
+<summary>導出②：ばらつきは、群間と群内にきれいに分かれる</summary>
+<p>全体のばらつき（総平方和）を、全体平均 <span class="arithmatex">\( \bar{x} \)</span> からのズレの二乗和で測る。各データ <span class="arithmatex">\( x_{ij} \)</span>（第 i 群の j 番目）のズレを、<strong>群平均 <span class="arithmatex">\( \bar{x}_i \)</span> を経由して</strong>2つに分ける。</p>
+<div class="arithmatex">\[ x_{ij}-\bar{x} \;=\; \underbrace{(x_{ij}-\bar{x}_i)}_{\text{群内のズレ}} \;+\; \underbrace{(\bar{x}_i-\bar{x})}_{\text{群間のズレ}} \]</div>
+<p>両辺を二乗して全データで合計すると、交差項が現れる。</p>
+<div class="arithmatex">\[ \sum_i\sum_j (x_{ij}-\bar{x})^2 = \sum_i\sum_j (x_{ij}-\bar{x}_i)^2 + \sum_i\sum_j(\bar{x}_i-\bar{x})^2 + 2\sum_i (\bar{x}_i-\bar{x})\sum_j (x_{ij}-\bar{x}_i) \]</div>
+<p>ここで最後の項に注目する。内側の <span class="arithmatex">\( \sum_j (x_{ij}-\bar{x}_i) \)</span> は、<strong>その群の中での偏差の和</strong>である。第3回で見たとおり、平均からの偏差を足すと必ず 0 になる。だから交差項は丸ごと消える。残るのは</p>
+<div class="arithmatex">\[ SS_{\text{全体}} \;=\; SS_{\text{群内}} \;+\; SS_{\text{群間}} \]</div>
+<p><strong>ばらつきは、群の中のばらつきと、群どうしのばらつきに、余りなく分解できる。</strong> ANOVA という名前（分散分析）はこの分解に由来する。差を見るのに「分散」を調べるのは遠回りに見えるが、実際にはこの等式があるからこそ、1回の比較で全群をまとめて扱える。</p>
+<p><strong>数値で確かめる</strong>：3科の体重（対数）では <span class="arithmatex">\( SS_{\text{全体}} = 31.6682 \)</span>、<span class="arithmatex">\( SS_{\text{群間}} = 26.0865 \)</span>、<span class="arithmatex">\( SS_{\text{群内}} = 5.5817 \)</span>。後者2つの和は 31.6682 で、総和と小数点以下14桁まで一致する。</p>
+<p><strong>使った数学</strong>：二乗の展開と二重和の入れ替え（線I）、偏差の和がゼロという性質（第3回）。</p>
+</details>
+<details class="note" open="open">
+<summary>導出③：F は「ばらつきの比」――なぜ1が基準になるのか</summary>
+<p>平方和は、足すデータが多いほど大きくなる。そのまま比べては不公平なので、それぞれの<strong>自由度</strong>で割って1個あたりに直す。これが平均平方である。</p>
+<div class="arithmatex">\[ MS_{\text{群間}} = \frac{SS_{\text{群間}}}{k-1}, \qquad MS_{\text{群内}} = \frac{SS_{\text{群内}}}{N-k}, \qquad F = \frac{MS_{\text{群間}}}{MS_{\text{群内}}} \]</div>
+<p>自由度が <span class="arithmatex">\( k-1 \)</span> と <span class="arithmatex">\( N-k \)</span> なのは、導出①（第8回）と同じ理由である。群間では全体平均を、群内では各群の平均を、データから計算して使ってしまっている。</p>
+<p>ここが要点である。<strong>帰無仮説（どの群も同じ母集団）が正しいとき、分子と分母はどちらも同じ <span class="arithmatex">\( \sigma^2 \)</span> の不偏推定になる。</strong> 第8回の導出①で見たとおり、自由度で割った二乗和の期待値は <span class="arithmatex">\( \sigma^2 \)</span> だからだ。同じものを2通りに見積もって割り算しているのだから、比は 1 のあたりに来る。</p>
+<p>群に本当の差があると、<span class="arithmatex">\( \bar{x}_i \)</span> どうしが離れるので分子だけが膨らむ。分母は群内の個人差のままである。だから <strong>F が大きい＝群間のばらつきが個人差では説明しきれない</strong>、となる。</p>
+<p><strong>数値で確かめる</strong>：3科の体重では <span class="arithmatex">\( MS_{\text{群間}} = 13.0433 \)</span>（自由度2）、<span class="arithmatex">\( MS_{\text{群内}} = 0.0859 \)</span>（自由度65）で、比は F = 151.89。また、差のない3群を同じ標本サイズで2万回つくると F の平均は 1.037 となり、理論値 <span class="arithmatex">\( df_2/(df_2-2) = 1.032 \)</span> とほぼ一致する（中央値は 0.698 で、分布が右に裾を引いているため平均より小さい）。</p>
+<div class="admonition note">
+<p class="admonition-title">F 分布そのものは扱わない</p>
+<p>「F がいくつ以上なら有意か」を決めるには F 分布の密度関数が要る。これは2つの <span class="arithmatex">\( \chi^2 \)</span> 分布の比として定まるもので、<strong>このコースでは扱わない</strong>。ここで導けるのは F の<strong>作り方</strong>と、なぜ1が基準になるのかまでである。</p>
+</div>
+<p><strong>使った数学</strong>：自由度による標準化（微I）、期待値の線形性、第8回の導出①。</p>
+</details>
 <hr />
 <h2 id="4-anova">4. ANOVAが有意だったら ―― 事後検定と補正<a class="headerlink" href="#4-anova" title="Permanent link">&para;</a></h2>
 <p>ANOVAが教えるのは「<strong>どこかに</strong>差がある」まで。<strong>どのペアか</strong>は別途調べる（事後検定）。その際も検定を繰り返すので、有意水準を厳しくする補正をかける。</p>

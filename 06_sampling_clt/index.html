@@ -1104,6 +1104,7 @@
 <li>母集団と標本の違いを説明できる</li>
 <li><strong>中心極限定理（CLT）</strong>：母集団がどんな形でも、標本平均の分布は正規分布に近づくことを体感する</li>
 <li>標準誤差 <span class="arithmatex">\( SE = \sigma/\sqrt{n} \)</span> を理解し、「数の多さは偏りを直さない」ことを知る</li>
+<li><strong>発展</strong>：<span class="arithmatex">\( \mathbb{E}[\bar{X}]=\mu \)</span> と <span class="arithmatex">\( \mathrm{Var}[\bar{X}]=\sigma^2/n \)</span> から <span class="arithmatex">\( SE=\sigma/\sqrt{n} \)</span> を、自分で導ける</li>
 </ul>
 <p>到達目標との対応：<strong>G1（記述統計から推測統計への橋）</strong>。</p>
 <hr />
@@ -1218,6 +1219,24 @@
 </tbody>
 </table>
 <p>n を <strong>4倍</strong>にすると SE は <strong>半分</strong>。だから「精度を2倍にするには4倍のデータが要る」。データを増やす効果は、増やすほど鈍くなる。</p>
+<details class="note" open="open">
+<summary>導出①：<span class="arithmatex">\( SE=\sigma/\sqrt{n} \)</span> はどこから来るか</summary>
+<p>標本 <span class="arithmatex">\( X_1,\dots,X_n \)</span> を母集団から<strong>独立に同じ分布で</strong>選ぶ。各 <span class="arithmatex">\( X_i \)</span> について <span class="arithmatex">\( \mathbb{E}[X_i]=\mu \)</span>、<span class="arithmatex">\( \mathrm{Var}[X_i]=\sigma^2 \)</span>。</p>
+<p><strong>まず、当て方が偏っていないこと。</strong>期待値は和と定数倍について線形（<span class="arithmatex">\( \mathbb{E}[aX+bY]=a\mathbb{E}[X]+b\mathbb{E}[Y]\)</span>）なので、</p>
+<div class="arithmatex">\[ \mathbb{E}[\bar{X}] \;=\; \mathbb{E}\!\left[\frac{1}{n}\sum_{i=1}^{n} X_i\right] \;=\; \frac{1}{n}\sum_{i=1}^{n}\mathbb{E}[X_i] \;=\; \frac{1}{n}\cdot n\mu \;=\; \mu \]</div>
+<p>§3で見た「標本平均の平均が母平均とほぼ一致する」は、この式の実測である。</p>
+<p><strong>次に、ばらつき。</strong>分散は<strong>独立な</strong>確率変数の和について加法的（<span class="arithmatex">\( \mathrm{Var}[X+Y]=\mathrm{Var}[X]+\mathrm{Var}[Y]\)</span>）で、定数倍は二乗で効く（<span class="arithmatex">\( \mathrm{Var}[aX]=a^2\mathrm{Var}[X]\)</span>）。したがって、</p>
+<div class="arithmatex">\[ \mathrm{Var}[\bar{X}] \;=\; \mathrm{Var}\!\left[\frac{1}{n}\sum_{i=1}^{n} X_i\right] \;=\; \frac{1}{n^2}\sum_{i=1}^{n}\mathrm{Var}[X_i] \;=\; \frac{1}{n^2}\cdot n\sigma^2 \;=\; \frac{\sigma^2}{n} \]</div>
+<p>平方根を取ると <span class="arithmatex">\( \mathrm{SD}[\bar{X}] = \sigma/\sqrt{n} \)</span>。これが<strong>標準誤差</strong>である。</p>
+<p><strong>すぐ上の「n を4倍にすると SE は半分」は、ここから出る。</strong><span class="arithmatex">\( \sqrt{4}=2 \)</span> だからで、経験則ではなく式の帰結である。上の表の SE の理論値が 5,863 → 2,394 → 1,311 → 586 と動くのも、すべてこの式に n を入れた値だ。</p>
+<p><strong>数値で確かめる</strong>：この母集団から n=30 を20万回選ぶと、標本平均の平均は 5,879 g（母平均 5,881 g）、標本平均の分散の実測は 5,703,853 で、理論値 <span class="arithmatex">\( \sigma^2/n = 5{,}728{,}867 \)</span> の 0.996 倍。</p>
+<div class="admonition warning">
+<p class="admonition-title">この式は『独立』を使っている</p>
+<p>分散の加法性が成り立つのは、<span class="arithmatex">\( X_i \)</span> が互いに独立（または無相関）のときだけ。§6で扱う「みんなが空気を読んで答えがそろう」状況では独立性が壊れ、この式は成り立たない。</p>
+<p>なお、<strong>期待値のほうは独立を使っていない。</strong>当て方が偏らないこと（<span class="arithmatex">\( \mathbb{E}[\bar{X}]=\mu \)</span>）は独立でなくても成り立つが、ばらつきの式（<span class="arithmatex">\( \sigma^2/n \)</span>）は独立に頼っている。前提が崩れたとき先に狂うのは、当て方ではなく<strong>精度の見積もり</strong>のほうである。</p>
+</div>
+<p><strong>使った数学</strong>：期待値の線形性、分散の加法性と定数倍（微I）。総和の記号操作（線I）。</p>
+</details>
 <p><strong>そして注目すべきは、右の2列の進み方の違いである。</strong>ばらつきは 1/√n できれいに縮むのに、<strong>歪みはなかなか取れない</strong>。n=500 でもまだ0.3残っている。</p>
 <div class="admonition warning">
 <p class="admonition-title">CLTが言っていること・言っていないこと</p>
@@ -1250,6 +1269,29 @@
 <p><strong>対数にすると、n=5 の時点でもう十分に対称。</strong>生のスケールで n=500 かけても届かなかった水準である。</p>
 <p><strong>同じデータ、同じ標本サイズ。違うのは尺度だけ。</strong>どの尺度で分析するかは、必要なデータ量を左右する実務的な判断でもある。</p>
 <p>（ただし注意：対数の平均を戻しても元の平均にはならない。対数で分析すると「幾何平均」の話になる。何を推定したいのかで選ぶこと。）</p>
+<details class="note" open="open">
+<summary>導出②：中心極限定理は、何を仮定して何を主張しているか</summary>
+<p>標本平均 <span class="arithmatex">\( \bar{X} \)</span> から、その平均 <span class="arithmatex">\( \mu \)</span> を引き、その標準偏差 <span class="arithmatex">\( \sigma/\sqrt{n} \)</span> で割る。これを<strong>標準化</strong>という。</p>
+<div class="arithmatex">\[ Z \;=\; \frac{\bar{X}-\mu}{\sigma/\sqrt{n}} \]</div>
+<p>導出①の結果を入れるだけで、この Z の平均と分散が出る。期待値の線形性から、</p>
+<div class="arithmatex">\[ \mathbb{E}[Z] \;=\; \frac{\mathbb{E}[\bar{X}]-\mu}{\sigma/\sqrt{n}} \;=\; \frac{\mu-\mu}{\sigma/\sqrt{n}} \;=\; 0 \]</div>
+<p>定数倍が二乗で効くことから、</p>
+<div class="arithmatex">\[ \mathrm{Var}[Z] \;=\; \frac{\mathrm{Var}[\bar{X}]}{\sigma^2/n} \;=\; \frac{\sigma^2/n}{\sigma^2/n} \;=\; 1 \]</div>
+<p><strong>n がいくつであっても、Z の平均は0、分散は1である。</strong>ここまで分布の形は一切使っていない。</p>
+<p>そのうえで、中心極限定理が主張しているのは次のことである。</p>
+<ul>
+<li><strong>仮定</strong>：<span class="arithmatex">\( X_i \)</span> が互いに独立に同じ分布から選ばれ、その分散が有限であること。<strong>母集団の形は問わない。</strong></li>
+<li><strong>主張</strong>：n を大きくしていくと、<strong>この Z の分布が標準正規分布 <span class="arithmatex">\( N(0,1) \)</span> に近づく</strong>。</li>
+<li><strong>言っていないこと</strong>：「n がいくつ以上なら正規分布になる」とは言っていない。どのくらいの n で足りるかは、母集団がどれだけ歪んでいるかで決まる。</li>
+</ul>
+<p>平均0・分散1は n によらず成り立つのに、<strong>形が正規に近づくのは n を増やしたときだけ</strong>。上の表で、ばらつきが <span class="arithmatex">\( 1/\sqrt{n} \)</span> できれいに縮むのに歪度が 7.60 → 1.49 → 0.30 とゆっくりしか下がらないのは、この2つが別のことだからである。<strong>この区別が、「n=30ルール」を鵜呑みにしないための鍵になる。</strong></p>
+<div class="admonition note">
+<p class="admonition-title">定理そのものの証明は、この科目では扱わない</p>
+<p>中心極限定理の証明には特性関数（積率母関数）が必要で、これはこの授業で扱う統計数理の範囲外である。ここで示したのは「何が仮定で何が結論か」という<strong>定理の読み方</strong>であって、定理の証明ではない。</p>
+</div>
+<p>第7回では、この Z が正規分布に近いことを使って、母平均を挟む区間（信頼区間）を作る。</p>
+<p><strong>使った数学</strong>：期待値の線形性と分散の定数倍（微I）、標準化というスケール変換（線I）。</p>
+</details>
 <hr />
 <h2 id="5">5. 大事な区別：「標本そのもの」≠「標本平均の分布」<a class="headerlink" href="#5" title="Permanent link">&para;</a></h2>
 <div class="admonition warning">

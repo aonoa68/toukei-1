@@ -1065,6 +1065,7 @@
 <li>帰無仮説・対立仮説と、検定の背理法的なロジックを説明できる</li>
 <li>t検定を実行し、p値を<strong>正しく</strong>解釈できる</li>
 <li>「p値 ≠ 効果の大きさ」「有意 ≠ 重要」を理解し、効果量も見る習慣をつける</li>
+<li><strong>発展</strong>：不偏分散がなぜ <span class="arithmatex">\( n-1 \)</span> で割るのか、t 統計量がどこから来るのかを、自分で導ける</li>
 </ul>
 <p>到達目標との対応：<strong>G2（このコースの中核）</strong>。</p>
 <hr />
@@ -1134,6 +1135,36 @@
 <p>旧世界か新世界かで決まるのではない。<strong>新世界ザルの中に、小型のオマキザル科と大型のクモザル科が両方いる</strong>からである。</p>
 <p><strong>同じデータ・同じ手法で、比べる相手を変えただけで結論が正反対になる。</strong>「何と何を比べるか」は検定にかける前の<strong>あなたの判断</strong>であり、統計は「その比較が妥当か」を教えてくれない。</p>
 </div>
+<details class="note" open="open">
+<summary>導出①：なぜ <span class="arithmatex">\( n-1 \)</span> で割るのか（不偏分散）</summary>
+<p>標本からばらつきを見積もるとき、分散は <span class="arithmatex">\( s^2 = \frac{1}{n-1}\sum (X_i-\bar{X})^2 \)</span> と、<span class="arithmatex">\( n \)</span> ではなく <span class="arithmatex">\( n-1 \)</span> で割る。なぜか。</p>
+<p>偏差の二乗和を、母平均 <span class="arithmatex">\( \mu \)</span> からのズレに書き換える。<span class="arithmatex">\( X_i-\bar{X} = (X_i-\mu)-(\bar{X}-\mu) \)</span> と分けて展開すると、</p>
+<div class="arithmatex">\[ \sum_{i=1}^{n}(X_i-\bar{X})^2 \;=\; \sum_{i=1}^{n}(X_i-\mu)^2 \;-\; n(\bar{X}-\mu)^2 \]</div>
+<p>（交差項は <span class="arithmatex">\( \sum (X_i-\bar{X})=0 \)</span>、つまり<strong>偏差の和がゼロ</strong>になることから消える。第3回で「そのまま足すと打ち消し合う」と確認した、あの性質である。）</p>
+<p>ここで両辺の期待値を取る。右辺の第1項は <span class="arithmatex">\( \mathbb{E}[(X_i-\mu)^2]=\sigma^2 \)</span> が <span class="arithmatex">\( n \)</span> 個で <span class="arithmatex">\( n\sigma^2 \)</span>。第2項は、<strong>第7回の導出②</strong>で得た <span class="arithmatex">\( \mathbb{E}[(\bar{X}-\mu)^2]=\mathrm{Var}[\bar{X}]=\sigma^2/n \)</span> を使って <span class="arithmatex">\( n\cdot\sigma^2/n = \sigma^2 \)</span>。よって</p>
+<div class="arithmatex">\[ \mathbb{E}\!\left[\sum_{i=1}^{n}(X_i-\bar{X})^2\right] \;=\; n\sigma^2 - \sigma^2 \;=\; (n-1)\,\sigma^2 \]</div>
+<p>だから <span class="arithmatex">\( n-1 \)</span> で割れば期待値がちょうど <span class="arithmatex">\( \sigma^2 \)</span> になる。<span class="arithmatex">\( n \)</span> で割ると系統的に小さめに出る。</p>
+<p><strong>なぜ1つ減るのか</strong>：二乗和の中心に、母平均 <span class="arithmatex">\( \mu \)</span> ではなく<strong>データから計算した</strong> <span class="arithmatex">\( \bar{X} \)</span> を使っている。<span class="arithmatex">\( \bar{X} \)</span> はデータに一番近い位置に自分で寄っていくので、ズレが本来より小さく見える。その「使ってしまった1つ分」が自由度 <span class="arithmatex">\( n-1 \)</span> である。</p>
+<p><strong>数値で確かめる</strong>：この母集団から n=30 を20万回とると、<span class="arithmatex">\( \sum(X_i-\bar{X})^2 \)</span> の平均は 4,979,270,647。<span class="arithmatex">\( (n-1)\sigma^2 = 29\sigma^2 \)</span> は 4,984,114,411（比 0.999）。n で割ると 165,975,688 となり母分散 171,866,014 を下回るが、n−1 で割ると 171,698,988 でほぼ一致する。</p>
+<p><strong>使った数学</strong>：二乗和の展開と総和の記号操作（線I）、期待値の線形性（微I）、第7回で導いた <span class="arithmatex">\( \mathrm{Var}[\bar{X}]=\sigma^2/n \)</span>。</p>
+</details>
+<details class="note" open="open">
+<summary>導出②：t 統計量はどこから来るか</summary>
+<p>第7回の導出③で、母標準偏差 <span class="arithmatex">\( \sigma \)</span> が既知なら</p>
+<div class="arithmatex">\[ Z \;=\; \frac{\bar{X}-\mu}{\sigma/\sqrt{n}} \;\approx\; N(0,1) \]</div>
+<p>が使えることを見た。しかし実際に <span class="arithmatex">\( \sigma \)</span> が分かっていることはまずない。そこで導出①の <span class="arithmatex">\( s \)</span> を代わりに置く。</p>
+<div class="arithmatex">\[ t \;=\; \frac{\bar{X}-\mu}{s/\sqrt{n}} \]</div>
+<p>形は同じでも、中身が変わっている。<span class="arithmatex">\( Z \)</span> では分母が<strong>定数</strong>だったが、<span class="arithmatex">\( t \)</span> では分母の <span class="arithmatex">\( s \)</span> も標本ごとに揺れる<strong>確率変数</strong>である。分子と分母の両方が揺れるぶん、この比は <span class="arithmatex">\( Z \)</span> より極端な値を取りやすい。つまり<strong>裾が重い</strong>。これが自由度 <span class="arithmatex">\( n-1 \)</span> の <strong>t 分布</strong>である。自由度が <span class="arithmatex">\( n-1 \)</span> なのは、導出①と同じ理由で <span class="arithmatex">\( s \)</span> が <span class="arithmatex">\( \bar{X} \)</span> を使って計算されているからだ。</p>
+<p>2群の差を見るときも発想は同じで、分子を「2群の平均の差」、分母を「その差の標準誤差」に置き換える。</p>
+<div class="arithmatex">\[ t \;=\; \frac{\bar{X}_1-\bar{X}_2}{\;\widehat{SE}(\bar{X}_1-\bar{X}_2)\;} \]</div>
+<p>n が大きくなると <span class="arithmatex">\( s \)</span> は <span class="arithmatex">\( \sigma \)</span> に近づくので、t 分布は正規分布に近づく。第7回で使った 1.96 は、その極限の値である。</p>
+<div class="admonition note">
+<p class="admonition-title">分母の作り方は一通りではない</p>
+<p>2群の <span class="arithmatex">\( \widehat{SE} \)</span> には流儀がある。両群の分散が等しいと仮定してまとめる形（Student）と、仮定せずに別々に扱う形（<strong>Welch</strong>）である。上の「オナガザル科 vs オマキザル科」の t = 20.03 は Welch で計算した値で、等分散を仮定すると t = 23.03 になる。実際この2群は標本分散が 0.046 と 0.093 で2倍ほど違うため、仮定を置かない Welch のほうが安全である。</p>
+<p>なお t 分布の密度関数そのものを導くには、<span class="arithmatex">\( \chi^2 \)</span> 分布と確率変数の比の分布が必要になる。<strong>このコースでは扱わない</strong>（統計学Ⅱ 第7回で形を確認する）。</p>
+</div>
+<p><strong>使った数学</strong>：標準化（線I的なスケール変換）、確率変数の比という見方（微I）。</p>
+</details>
 <hr />
 <h2 id="3-p">3. p値の意味を、正しく<a class="headerlink" href="#3-p" title="Permanent link">&para;</a></h2>
 <p>ここで誤解を3つ、はっきり打ち消す。</p>
@@ -1203,6 +1234,19 @@
 <blockquote>
 <p><strong>p値は「偶然かどうか」、効果量は「どれくらいか」。</strong>論文でも報告書でも、<strong>両方を書く</strong>。</p>
 </blockquote>
+<details class="note" open="open">
+<summary>導出③：なぜ効果量は単位を変えても動かないのか</summary>
+<p>Cohen's d は、2群の平均の差を、群内のばらつき（合併標準偏差 <span class="arithmatex">\( s_p \)</span>）で割ったものである。</p>
+<div class="arithmatex">\[ d \;=\; \frac{\bar{x}_1-\bar{x}_2}{s_p}, \qquad s_p=\sqrt{\frac{(n_1-1)s_1^2+(n_2-1)s_2^2}{n_1+n_2-2}} \]</div>
+<p>ここで単位を変える。g を kg にするのは、全データを <span class="arithmatex">\( c=1/1000 \)</span> 倍することである。平均は <span class="arithmatex">\( c \)</span> 倍、標準偏差も <span class="arithmatex">\( c \)</span> 倍になるので、</p>
+<div class="arithmatex">\[ d' \;=\; \frac{c\bar{x}_1-c\bar{x}_2}{c\,s_p} \;=\; \frac{c(\bar{x}_1-\bar{x}_2)}{c\,s_p} \;=\; d \]</div>
+<p>分子と分母で <span class="arithmatex">\( c \)</span> が約分される。<strong>d は「標準偏差何個分の差か」という比なので、ものさしの目盛りを取り替えても変わらない。</strong> これが「標準化された効果量」と呼ばれる理由である。</p>
+<p>ここが p値との決定的な違いになる。t 統計量には <span class="arithmatex">\( \sqrt{n} \)</span> が入っていて、</p>
+<div class="arithmatex">\[ t \;\approx\; d \times \sqrt{\frac{n_1 n_2}{n_1+n_2}} \]</div>
+<p>という関係にある。<strong>d が同じでも、n を増やせば t は大きくなり、p は小さくなる。</strong> 第4節で「真の差は常に0.2kgなのに n を増やすほど有意になった」のは、この式そのものである。d は n を含まないので動かない。だから両方を見る必要がある。</p>
+<p><strong>数値で確かめる</strong>：オナガザル科とオマキザル科の体重で、g のまま計算しても kg に直しても d = 2.2464 で同じ。対数スケールでも log10(g) と log10(kg) のどちらでも d = 4.4012 で一致する（対数では単位の変更が平行移動になるため、差も標準偏差も変わらない）。</p>
+<p><strong>使った数学</strong>：定数倍に対する平均と標準偏差の振る舞い（微I）、約分という比の性質。</p>
+</details>
 <hr />
 <h2 id="6-2">6. 2種類の誤り<a class="headerlink" href="#6-2" title="Permanent link">&para;</a></h2>
 <p>検定は完璧ではない。間違え方が2つある。</p>

@@ -987,6 +987,7 @@
 <li>ベイズの確率観（信念の度合い）と、頻度論との違いを説明できる</li>
 <li>事前確率・尤度・事後確率と、ベイズ更新の流れを理解する</li>
 <li>陽性的中率を計算し、「事前情報を無視すると直感が外れる」ことを体感する</li>
+<li><strong>発展</strong>：ベイズの定理を条件付き確率の定義から導き、仮説が有限個なら四則演算だけで事後確率を出せる</li>
 </ul>
 <p>到達目標との対応：<strong>G4（ベイズ推定の基礎）</strong>。</p>
 <hr />
@@ -1032,6 +1033,65 @@
 <li><strong>尤度</strong>：そのパラメータならデータが出やすいか（病気なら陽性が出やすさ）</li>
 <li><strong>事後確率</strong>：データを見たあとに更新された信念</li>
 </ul>
+<details class="note" open="open">
+<summary>導出①：ベイズの定理は、条件付き確率の定義を書き換えただけ</summary>
+<p>条件付き確率の定義は1本しかない。「B が起きたもとでの A の確率」は、</p>
+<div class="arithmatex">\[ P(A\mid B) \;=\; \frac{P(A\cap B)}{P(B)} \]</div>
+<p>A と B を入れ替えても、同じ定義がそのまま使える。</p>
+<div class="arithmatex">\[ P(B\mid A) \;=\; \frac{P(A\cap B)}{P(A)} \]</div>
+<p>どちらの式にも <span class="arithmatex">\( P(A\cap B) \)</span> が入っている。それぞれを <span class="arithmatex">\( P(A\cap B) \)</span> について解くと、</p>
+<div class="arithmatex">\[ P(A\cap B) \;=\; P(A\mid B)\,P(B) \;=\; P(B\mid A)\,P(A) \]</div>
+<p>右の2つが等しいので、両辺を <span class="arithmatex">\( P(B) \)</span> で割れば、</p>
+<div class="arithmatex">\[ P(A\mid B) \;=\; \frac{P(B\mid A)\,P(A)}{P(B)} \]</div>
+<p>これがベイズの定理である。<strong>新しい仮定は1つも入れていない。</strong>条件付き確率の定義を2通りに書いて、共通部分を消しただけである。「定理」という名前がついているが、中身は定義の書き換えにすぎない。</p>
+<p>A を「病気」、B を「陽性」と読めば、この節の最初に挙げた式そのものになる。</p>
+<p><strong>使った数学</strong>：条件付き確率の定義と、等式の変形だけ。微分も積分も使っていない。</p>
+</details>
+<details class="note" open="open">
+<summary>導出②：検査の問題を、式に入れて解く</summary>
+<p>記号を決める。<span class="arithmatex">\( D \)</span> を「病気である」、<span class="arithmatex">\( + \)</span> を「検査が陽性」とする。与えられているのは次の3つ。</p>
+<ul>
+<li>事前確率（有病率）　<span class="arithmatex">\( P(D) = 0.01 \)</span></li>
+<li>尤度（感度）　<span class="arithmatex">\( P(+\mid D) = 0.99 \)</span></li>
+<li>偽陽性率（＝ 1 − 特異度）　<span class="arithmatex">\( P(+\mid \text{健康}) = 0.01 \)</span></li>
+</ul>
+<p>分母の <span class="arithmatex">\( P(+) \)</span> は与えられていないので、<strong>陽性になる2つの道筋</strong>に分けて自分で作る。病気で陽性になる道と、健康なのに陽性になる道である。</p>
+<div class="arithmatex">\[ P(+) \;=\; P(+\mid D)P(D) \;+\; P(+\mid \text{健康})P(\text{健康}) \]</div>
+<p>数を入れると、</p>
+<div class="arithmatex">\[ P(+) \;=\; 0.99\times0.01 \;+\; 0.01\times0.99 \;=\; 0.0099 + 0.0099 \;=\; 0.0198 \]</div>
+<p>2つの項が<strong>まったく同じ大きさ</strong>になっている。ここが直感の外れどころである。あとは導出①の式に代入するだけ。</p>
+<div class="arithmatex">\[ P(D\mid +) \;=\; \frac{P(+\mid D)P(D)}{P(+)} \;=\; \frac{0.0099}{0.0198} \;=\; \frac{1}{2} \;=\; 50\% \]</div>
+<p>1万人の表で数えた <span class="arithmatex">\( 99/198 \)</span> と同じ値である。あの表は、この式を人数に直して数えたものだった。</p>
+<p><strong>事前確率だけを動かすと、結論はこう変わる</strong>（感度・特異度は99%のまま動かさない）。</p>
+<table>
+<thead>
+<tr>
+<th>有病率 <span class="arithmatex">\( P(D) \)</span></th>
+<th style="text-align: right;">陽性的中率 <span class="arithmatex">\( P(D\mid +) \)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0.1%</td>
+<td style="text-align: right;">9.0%</td>
+</tr>
+<tr>
+<td>1%</td>
+<td style="text-align: right;">50.0%</td>
+</tr>
+<tr>
+<td>10%</td>
+<td style="text-align: right;">91.7%</td>
+</tr>
+<tr>
+<td>50%</td>
+<td style="text-align: right;">99.0%</td>
+</tr>
+</tbody>
+</table>
+<p>検査の性能はまったく変えていない。<strong>変えたのは事前確率だけ</strong>である。それでも結論は9%から99%まで動く。「検査が99%正確」という一文だけでは、陽性という結果の意味は決まらない。</p>
+<p><strong>使った数学</strong>：場合分けして足す（全確率の公式）と、導出①への代入。四則演算のみ。</p>
+</details>
 <hr />
 <h2 id="2-vs-2">2. 頻度論 vs ベイズ ―― 2つの世界観<a class="headerlink" href="#2-vs-2" title="Permanent link">&para;</a></h2>
 <table>
@@ -1102,6 +1162,48 @@
 </tbody>
 </table>
 <p>データが増えるほど信念は締まり、真値0.7の近くに絞り込まれる。<strong>これがベイズ更新：データを見るたびに信念を上書きしていく。</strong></p>
+<details class="note" open="open">
+<summary>導出③：仮説が2つしかないなら、ベイズは分数の計算で終わる</summary>
+<p>上のコインでは θ が 0〜1 のどこでもよいとした。ここでは話を思い切って絞り、<strong>θ は 1/4 か 3/4 のどちらかだ</strong>と分かっている場合を考える。どちらかは分からないので、事前は五分五分（<span class="arithmatex">\( P(\theta=1/4)=P(\theta=3/4)=1/2 \)</span>）とする。</p>
+<p>3回投げて、<strong>3回とも表</strong>が出た。それぞれの仮説のもとで、この結果の出やすさ（尤度）は、</p>
+<div class="arithmatex">\[ P(\text{表表表}\mid \theta=\tfrac{3}{4}) = \left(\tfrac{3}{4}\right)^{3} = \tfrac{27}{64}, \qquad P(\text{表表表}\mid \theta=\tfrac{1}{4}) = \left(\tfrac{1}{4}\right)^{3} = \tfrac{1}{64} \]</div>
+<p>導出①の式に入れる。分母は導出②と同じく、2つの道筋に分けて作る。</p>
+<div class="arithmatex">\[ P\!\left(\theta=\tfrac{3}{4}\,\middle|\,\text{表表表}\right) \;=\; \frac{\tfrac{1}{2}\cdot\tfrac{27}{64}}{\tfrac{1}{2}\cdot\tfrac{27}{64} \;+\; \tfrac{1}{2}\cdot\tfrac{1}{64}} \;=\; \frac{27}{27+1} \;=\; \frac{27}{28} \;\approx\; 96.4\% \]</div>
+<p>事前の <span class="arithmatex">\( 1/2 \)</span> も、分母の <span class="arithmatex">\( 64 \)</span> も、約分で消えた。<strong>残ったのは尤度の比 27 : 1 だけ</strong>である。</p>
+<p>1回ずつ更新しても、同じ値にたどり着く。前回の事後を次の事前として使えばよい。</p>
+<table>
+<thead>
+<tr>
+<th>表が出た回数</th>
+<th style="text-align: right;"><span class="arithmatex">\( P(\theta=3/4) \)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0（事前）</td>
+<td style="text-align: right;">1/2 ＝ 50.0%</td>
+</tr>
+<tr>
+<td>1</td>
+<td style="text-align: right;">3/4 ＝ 75.0%</td>
+</tr>
+<tr>
+<td>2</td>
+<td style="text-align: right;">9/10 ＝ 90.0%</td>
+</tr>
+<tr>
+<td>3</td>
+<td style="text-align: right;">27/28 ＝ 96.4%</td>
+</tr>
+</tbody>
+</table>
+<p>まとめて計算しても、1回ずつ更新しても、行き着く先は同じ <span class="arithmatex">\( 27/28 \)</span> である。更新の順番や刻み方は、結論を変えない。</p>
+<div class="admonition success">
+<p class="admonition-title">ベイズに微積分は要らない</p>
+<p>この計算に出てきたのは、分数のかけ算と足し算だけである。積分も、確率密度も、共役事前分布も使っていない。</p>
+<p>上の第3節で Beta 分布が出てきたのは、θ を 0〜1 の<strong>連続値</strong>として置いたからであって、ベイズという考え方そのものが微積分を要求しているわけではない。<strong>仮説が有限個なら、ベイズ推論は四則演算だけで完結する。</strong></p>
+</div>
+</details>
 <hr />
 <h2 id="4">4. 「事前は主観だから非科学的」？<a class="headerlink" href="#4" title="Permanent link">&para;</a></h2>
 <p>よくある批判。だが――<strong>事前が違っても、データが増えれば事後はほぼ一致する</strong>。同じ100回の結果（表75回）を、正反対の事前を持つ2人が見ると：</p>

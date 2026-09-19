@@ -987,6 +987,7 @@
 <li>分散・標準偏差が「何を測っているか」を説明できる</li>
 <li>偏差値の正体（平均50・SD10に置き直した相対位置）を理解する</li>
 <li>正規分布の 68-95-99.7 則を知り、<strong>「正規だと仮定してよいか」を自分で確かめる</strong></li>
+<li><strong>発展</strong>：偏差の和が0になること、<span class="arithmatex">\( s^2 = \overline{x^2} - \bar{x}^2 \)</span>、偏差値の平均が50・SDが10になることを、自分で導ける</li>
 </ul>
 <p>到達目標との対応：<strong>G1（記述統計）</strong>。</p>
 <hr />
@@ -1010,6 +1011,34 @@
 <p class="admonition-title">なぜ二乗？　なぜルート？</p>
 <p>二乗は「符号を消して、大きいズレをより重く見る」ため。ルートは「日²を日に戻して、人間が読める単位にする」ため。<strong>だから普段はSDを使う。</strong></p>
 </div>
+<details class="note" open="open">
+<summary>導出①：偏差の合計は、必ず 0 になる</summary>
+<p>「偏差をそのまま足すと0になる」のは、このデータがたまたまそうだったのではない。<strong>どんなデータでも必ずそうなる。</strong></p>
+<div class="arithmatex">\[ \sum_{i=1}^{n} (x_i - \bar{x}) \;=\; \sum_{i=1}^{n} x_i \;-\; n\bar{x} \]</div>
+<p>ここで平均の定義 <span class="arithmatex">\( \bar{x} = \frac{1}{n}\sum x_i \)</span> を裏返すと <span class="arithmatex">\( \sum x_i = n\bar{x} \)</span>。代入すれば</p>
+<div class="arithmatex">\[ \sum_{i=1}^{n} (x_i - \bar{x}) \;=\; n\bar{x} - n\bar{x} \;=\; 0 \]</div>
+<p>データがどれだけ歪んでいても、外れ値がいくつあっても、この和は0である。<strong>だから「偏差をそのまま平均する」という測り方は、ばらつきの指標として使いものにならない。</strong> 打ち消しを止める工夫が要る。</p>
+<p>工夫は二乗だけではない。<strong>絶対値を取る</strong>という手もある（それが第2回で中央値につながった測り方だった）。ここで二乗を選ぶと、この先の分散・標準誤差・正規分布がきれいにつながる。</p>
+<p><strong>数値で確かめる</strong>：妊娠期間日（146種）で <span class="arithmatex">\( \sum (x_i-\bar{x}) = -3.4\times10^{-12} \)</span>。厳密には0で、残っているのは計算機の丸め誤差である。</p>
+<p><strong>使った数学</strong>：総和の分配と平均の定義（微I）。</p>
+</details>
+<details class="note" open="open">
+<summary>導出②：分散は「二乗の平均 引く 平均の二乗」でも出せる</summary>
+<p>分散の定義は「偏差の二乗の平均」である。</p>
+<div class="arithmatex">\[ s^2 \;=\; \frac{1}{n}\sum_{i=1}^{n} (x_i - \bar{x})^2 \]</div>
+<p>中身を展開してみる。</p>
+<div class="arithmatex">\[ \frac{1}{n}\sum_{i=1}^{n} \bigl(x_i^2 - 2\bar{x}x_i + \bar{x}^2\bigr) \;=\; \frac{1}{n}\sum_{i=1}^{n} x_i^2 \;-\; 2\bar{x}\cdot\frac{1}{n}\sum_{i=1}^{n} x_i \;+\; \bar{x}^2 \]</div>
+<p>真ん中の <span class="arithmatex">\( \frac{1}{n}\sum x_i \)</span> は <span class="arithmatex">\( \bar{x} \)</span> そのものだから、第2項は <span class="arithmatex">\( -2\bar{x}^2 \)</span> になる。まとめると</p>
+<div class="arithmatex">\[ s^2 \;=\; \overline{x^2} \;-\; \bar{x}^2 \]</div>
+<p>「<strong>二乗の平均 引く 平均の二乗</strong>」。データを1回なめるだけで <span class="arithmatex">\( \sum x_i \)</span> と <span class="arithmatex">\( \sum x_i^2 \)</span> を同時に貯められるので、電卓の時代や、大量のデータを一度しか読めない場面ではこちらが使われる。</p>
+<p><strong>数値で確かめる</strong>：妊娠期間日で、定義どおりの <span class="arithmatex">\( \frac{1}{n}\sum(x_i-\bar{x})^2 = 1417.4576 \)</span>、展開形の <span class="arithmatex">\( \overline{x^2}-\bar{x}^2 = 1417.4576 \)</span>。一致する。</p>
+<div class="admonition warning">
+<p class="admonition-title">n で割るか、n−1 で割るか</p>
+<p>いま導いた <span class="arithmatex">\( s^2 \)</span> は <strong>n で割る</strong>定義で、値は 1,417.46 である。ところが下の表の分散は <strong>1,427.2</strong>。食い違っているのではなく、<strong>割る数が違う</strong>。表の値は <strong>n−1 で割る</strong>定義（不偏分散）で、<code>pandas</code> の <code>var()</code> はこちらを既定にしている。</p>
+<p>146種では比が <span class="arithmatex">\( 146/145 \)</span>、0.7%の違いでしかない。どちらを使うかは、<strong>手元のデータそのものを記述したいのか、背後の母集団を推定したいのか</strong>で決まる。推定の話は第7回、n−1 でなければならない理由は第8回で扱う。</p>
+</div>
+<p><strong>使った数学</strong>：総和の分配と二項展開（微I）。</p>
+</details>
 <p>霊長類の <code>妊娠期間日</code>（146種）：</p>
 <table>
 <thead>
@@ -1039,6 +1068,20 @@
 <h2 id="3">3. 偏差値の正体<a class="headerlink" href="#3" title="Permanent link">&para;</a></h2>
 <p>偏差値は、値を <strong>平均50・標準偏差10</strong> のものさしに置き直しただけ。</p>
 <div class="arithmatex">\[ 偏差値 = 50 + 10 \times \frac{あなたの値 - 平均}{標準偏差} \]</div>
+<details class="note" open="open">
+<summary>導出③：偏差値の平均が50・標準偏差が10になる理由</summary>
+<p>偏差値は、元の値 <span class="arithmatex">\( x \)</span> を <span class="arithmatex">\( z = 50 + 10\cdot\frac{x-\bar{x}}{s} \)</span> に置き換えたものである。よく見るとこれは <span class="arithmatex">\( x \)</span> の<strong>一次式</strong>（<span class="arithmatex">\( ax+b \)</span> の形）でしかない。</p>
+<p>一次変換に対して、平均と標準偏差は次の規則に従う。</p>
+<div class="arithmatex">\[ \overline{ax+b} \;=\; a\bar{x} + b, \qquad \mathrm{SD}[ax+b] \;=\; |a|\,\mathrm{SD}[x] \]</div>
+<p>平均は足した分だけずれる。標準偏差は定数倍だけが効き、<strong>平行移動 <span class="arithmatex">\( b \)</span> の影響を受けない</strong>。ばらつきは、全体をまるごと動かしても変わらないからである。</p>
+<p>偏差値は <span class="arithmatex">\( a = 10/s \)</span>、<span class="arithmatex">\( b = 50 - 10\bar{x}/s \)</span> の一次変換だから、</p>
+<div class="arithmatex">\[ \bar{z} \;=\; \frac{10}{s}\bar{x} + 50 - \frac{10\bar{x}}{s} \;=\; 50, \qquad \mathrm{SD}[z] \;=\; \frac{10}{s}\cdot s \;=\; 10 \]</div>
+<p><strong>どんなデータでも、必ず</strong>平均50・標準偏差10になる。テストが易しくても難しくても、受験者がどれだけ優秀でも、偏差値の平均は50である。偏差値が測っているのは学力の絶対量ではなく、<strong>その集団の中での位置</strong>だ、というのはこの式の帰結である。</p>
+<p>そしてここが肝心な点だ。<strong>この導出には、分布の形が一度も出てこない。</strong> だから歪んだデータに使っても、平均50・SD10という性質はそのまま保たれる。ゴリラの159.2も、式としては何も壊れていない。</p>
+<p>壊れるのはその先――「偏差値60なら上位約16%」という<strong>読み替え</strong>のほうである。そこで初めて正規分布を仮定しているからだ。<strong>式が成り立つことと、意味が通ることは、別である。</strong></p>
+<p><strong>数値で確かめる</strong>：妊娠期間日を偏差値に直すと、平均 50.000、標準偏差 10.000。丸め誤差の範囲で厳密に一致する。</p>
+<p><strong>使った数学</strong>：一次変換に対する平均と標準偏差の規則（微I）。</p>
+</details>
 <p>「平均からSD何個分ずれているか」を 50 中心に表したもの。<strong>これを霊長類の体重でやると、壊れる。</strong></p>
 <table>
 <thead>

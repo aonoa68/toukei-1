@@ -1021,6 +1021,7 @@
 <li>散布図と相関係数 r で2変数の関係を読める</li>
 <li><strong>相関 ≠ 因果</strong>であることを、交絡・逆因果・偶然の観点から説明できる</li>
 <li>相関を見たときに「対抗仮説（第三の変数）」を立てて批判的に検証できる</li>
+<li><strong>発展</strong>：<span class="arithmatex">\( r \)</span> が標準化した値の積の平均であることと、<span class="arithmatex">\( -1 \le r \le 1 \)</span> を、自分で導ける</li>
 </ul>
 <p>到達目標との対応：<strong>G1（記述）・G2（批判的検証の入口）</strong>。</p>
 <hr />
@@ -1061,6 +1062,34 @@
 <p>体重・行動圏などは種によって数千倍違う。第3回でやったとおり、こういう量は<strong>対数の目盛り</strong>で扱う（そうしないとゴリラ1種が図を支配し、アンスコムのIV型になる）。以下の r はすべて対数変換後の値。</p>
 </div>
 <p><strong>体重 と 行動圏</strong>：r ≈ <strong>0.68</strong>（n=153種）。体の大きい種ほど広い範囲を使う ―― 大きい動物はたくさん食べる必要があるから、というのは<strong>納得のいく</strong>関係だ。</p>
+<details class="note" open="open">
+<summary>導出①：相関係数 r は「標準化した値の積の平均」である</summary>
+<p>2つの変数を、それぞれ<strong>標準化</strong>する。<span class="arithmatex">\( z_{x_i} = (x_i-\bar{x})/s_x \)</span>、<span class="arithmatex">\( z_{y_i} = (y_i-\bar{y})/s_y \)</span>。標準化すると平均0・標準偏差1になり、<strong>単位が消える</strong>（第3回の偏差値と同じ操作）。</p>
+<p>r の定義は、共分散を両者の標準偏差で割ったものである。</p>
+<div class="arithmatex">\[ r \;=\; \frac{\frac{1}{n}\sum_{i=1}^{n}(x_i-\bar{x})(y_i-\bar{y})}{s_x s_y} \]</div>
+<p>分母の <span class="arithmatex">\( s_x s_y \)</span> を、分子の2つの因子に1つずつ配ると、</p>
+<div class="arithmatex">\[ r \;=\; \frac{1}{n}\sum_{i=1}^{n} \frac{x_i-\bar{x}}{s_x}\cdot\frac{y_i-\bar{y}}{s_y} \;=\; \frac{1}{n}\sum_{i=1}^{n} z_{x_i} z_{y_i} \]</div>
+<p>つまり r は「<strong>標準化した2つの値の積の平均</strong>」である。両方とも平均より上（または両方とも下）の個体は積が正、片方だけ上の個体は積が負。r はその符号つきの積をならしたものだ。</p>
+<p>ここから「<strong>r は単位に依存しない</strong>」が出る。体重を g から kg に直しても、標準化の段階で倍率が消えるので r は変わらない。上の注記で対数に直すと r が変わるのは、対数変換が単なる倍率変更ではなく、値の<strong>並び方</strong>そのものを変えるからである。</p>
+<p><strong>数値で確かめる</strong>：体重 × 行動圏（ともに対数、n=153）では、共分散を割る定義でも、標準化した積の平均でも、どちらも r = 0.6799 になる。</p>
+<p><strong>使った数学</strong>：平均・標準偏差の定義（微I）、総和の記号操作と定数の括り出し（線I）。</p>
+</details>
+<details class="note" open="open">
+<summary>導出②：なぜ r は −1 と +1 の間に収まるのか</summary>
+<p><strong>二乗は負にならない。</strong>必要なのはこれだけである。</p>
+<p>標準偏差1に揃えた定義から <span class="arithmatex">\( \sum z_{x_i}^2 = n \)</span>、<span class="arithmatex">\( \sum z_{y_i}^2 = n \)</span>。また導出①より <span class="arithmatex">\( \sum z_{x_i} z_{y_i} = nr \)</span>。</p>
+<p>差の二乗和を展開すると、</p>
+<div class="arithmatex">\[ \sum_{i=1}^{n}(z_{x_i}-z_{y_i})^2 \;=\; \sum z_{x_i}^2 - 2\sum z_{x_i}z_{y_i} + \sum z_{y_i}^2 \;=\; n - 2nr + n \;=\; 2n-2nr \]</div>
+<p>左辺は二乗の和だから0以上。よって <span class="arithmatex">\( 2n-2nr \ge 0 \)</span>、すなわち <strong><span class="arithmatex">\( r \le 1 \)</span></strong>。</p>
+<p>同じように和の二乗和を展開すると <span class="arithmatex">\( \sum (z_{x_i}+z_{y_i})^2 = 2n+2nr \ge 0 \)</span> で、<strong><span class="arithmatex">\( r \ge -1 \)</span></strong>。合わせて <span class="arithmatex">\( -1 \le r \le 1 \)</span> が出る。</p>
+<p><strong>等号はいつ成り立つか。</strong><span class="arithmatex">\( r=1 \)</span> は <span class="arithmatex">\( \sum(z_{x_i}-z_{y_i})^2 = 0 \)</span>、つまりすべての個体で <span class="arithmatex">\( z_{x_i}=z_{y_i} \)</span> のときだけ。標準化した値が完全に一致する、すなわち y が x の<strong>正の一次式</strong>で書けるときである。<span class="arithmatex">\( r=-1 \)</span> は <span class="arithmatex">\( z_{x_i}=-z_{y_i} \)</span> で、負の傾きの直線。<strong>「r = ±1 は完全な直線関係」という言い方は、この等号条件から来ている。</strong></p>
+<p><strong>数値で確かめる</strong>：体重 × 行動圏（対数、n=153、r=0.6799）では <span class="arithmatex">\( \sum(z_x-z_y)^2 = 97.95 \)</span> で、<span class="arithmatex">\( 2n-2nr = 97.95 \)</span>。一致する。そしてこれが0より大きいぶんだけ、r は1に届いていない。</p>
+<div class="admonition note">
+<p class="admonition-title">r が測っているのは直線関係の強さだけ</p>
+<p>この導出が保証するのは「r が −1 から 1 に収まること」と「両端が直線に対応すること」であって、<strong>r の大小がどちらを原因と見なすべきかは一切語らない</strong>。交絡があれば r は大きく出るし（§4）、直線でない関係なら r は小さく出る（§5）。導出は「r が何を測っているか」を正確にするためのものであり、因果の判断は式の外側の問題である。</p>
+</div>
+<p><strong>使った数学</strong>：二乗の非負性、展開と総和の整理（微I・線I）。</p>
+</details>
 <hr />
 <h2 id="3">3. 「乳離れが遅い種ほど、広く動きまわる」？<a class="headerlink" href="#3" title="Permanent link">&para;</a></h2>
 <p><code>離乳日齢</code>（子が乳離れするまでの日数）と <code>行動圏km2</code> の相関：r ≈ <strong>0.66</strong>（n=97種）。</p>
