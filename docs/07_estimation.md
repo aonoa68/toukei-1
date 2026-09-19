@@ -77,7 +77,7 @@ $$ 95\%\text{信頼区間} = \bar{x} \pm 1.96 \times SE $$
 
 ???+ note "導出②：標準誤差 \( SE=\sigma/\sqrt{n} \) はどこから来るか"
 
-    分散は、**独立な**確率変数の和について加法的（\( \mathrm{Var}[X+Y]=\mathrm{Var}[X]+\mathrm{Var}[Y]\)）で、定数倍は二乗で効く（\( \mathrm{Var}[aX]=a^2\mathrm{Var}[X]\)）。各 \( X_i \) の分散を \( \sigma^2 \) とすると、
+    この結果は第6回で導いた。要点を再掲する。分散は、**独立な**確率変数の和について加法的（\( \mathrm{Var}[X+Y]=\mathrm{Var}[X]+\mathrm{Var}[Y]\)）で、定数倍は二乗で効く（\( \mathrm{Var}[aX]=a^2\mathrm{Var}[X]\)）。各 \( X_i \) の分散を \( \sigma^2 \) とすると、
 
     $$ \mathrm{Var}[\bar{X}] \;=\; \mathrm{Var}\!\left[\frac{1}{n}\sum_{i=1}^{n} X_i\right] \;=\; \frac{1}{n^2}\sum_{i=1}^{n}\mathrm{Var}[X_i] \;=\; \frac{1}{n^2}\cdot n\sigma^2 \;=\; \frac{\sigma^2}{n} $$
 
