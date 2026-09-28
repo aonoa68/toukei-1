@@ -1,0 +1,1479 @@
+
+<!doctype html>
+<html lang="ja" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="北星学園大学「統計学Ⅰ（B）」2026年度 後期 授業資料">
+      
+      
+        <meta name="author" content="小野原 彩香">
+      
+      
+        <link rel="canonical" href="https://aonoa68.github.io/toukei-1/13_pca/">
+      
+      
+        <link rel="prev" href="../12_bayes/">
+      
+      
+        <link rel="next" href="../14_synthesis/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>第13回 多変量解析PCA - 統計学Ⅰ</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#13-pca" class="md-skip">
+          コンテンツにスキップ
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="ヘッダー">
+    <a href=".." title="統計学Ⅰ" class="md-header__button md-logo" aria-label="統計学Ⅰ" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            統計学Ⅰ
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              第13回 多変量解析PCA
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="ダークモードに切り替え"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="ダークモードに切り替え" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="ライトモードに切り替え"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="ライトモードに切り替え" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="検索" placeholder="検索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="検索">
+        
+        <button type="reset" class="md-search__icon md-icon" title="クリア" aria-label="クリア" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            検索を初期化
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="ナビゲーション" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="統計学Ⅰ" class="md-nav__button md-logo" aria-label="統計学Ⅰ" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    統計学Ⅰ
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ホーム
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01_guidance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第01回 直感の敗北
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02_representative_values/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第02回 代表値の嘘
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_variability/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第03回 ばらつき
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04_python_intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第04回 Python入門
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05_correlation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第05回 相関と因果
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06_sampling_clt/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第06回 標本とCLT
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07_estimation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第07回 推定と信頼区間
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08_ttest/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第08回 仮説検定とt検定
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09_anova/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第09回 分散分析ANOVA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10_regression/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第10回 回帰分析
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11_aic/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第11回 モデル選択とAIC
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12_bayes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第12回 ベイズ統計の入り口
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第13回 多変量解析PCA
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第13回 多変量解析PCA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        この回のゴール
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0. フック
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-pca" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 主成分分析（PCA）の発想
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. 主成分分析（PCA）の発想">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        寄与率：各軸がどれだけ情報を持つか
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 主成分の命名 ―― 負荷を読む
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 2次元に圧縮して可視化
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 大事な注意
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        まとめ
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#moodle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        今日の課題（Moodle提出）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="今日の課題（Moodle提出）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a10-440" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        パートA：選択問題（自動採点・各10点 ×4＝40点）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bai60" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        パートB：記述問題（AIフィードバック対象・60点）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../14_synthesis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第14回 総括
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        この回のゴール
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0. フック
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-pca" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 主成分分析（PCA）の発想
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. 主成分分析（PCA）の発想">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        寄与率：各軸がどれだけ情報を持つか
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 主成分の命名 ―― 負荷を読む
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 2次元に圧縮して可視化
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 大事な注意
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        まとめ
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#moodle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        今日の課題（Moodle提出）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="今日の課題（Moodle提出）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a10-440" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        パートA：選択問題（自動採点・各10点 ×4＝40点）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bai60" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        パートB：記述問題（AIフィードバック対象・60点）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="13-pca">第13回　多変量解析への招待：主成分分析（PCA）<a class="headerlink" href="#13-pca" title="Permanent link">&para;</a></h1>
+<p><strong>1/12（火）Ⅱ講 10:35〜12:15・B402教室</strong></p>
+<blockquote>
+<p>たくさんの変数の背後にある、少数の軸を見つける ―― 次元を削減して本質を見る</p>
+</blockquote>
+<hr />
+<!-- LINKS:START -->
+<div class="admonition info">
+<p class="admonition-title">今日のリンク</p>
+<ul>
+<li><a href="../slides/13.html">📊 スライドを開く</a></li>
+<li><a href="https://colab.research.google.com/github/aonoa68/toukei-1/blob/main/colab/13_pca.ipynb">📓 Colabノートを開く（13_pca.ipynb）</a></li>
+<li><a href="https://moodle.hokusei.ac.jp/mod/assign/view.php?id=990634">📝 課題を提出する（Moodle・第13回）</a></li>
+<li>課題の本文は<strong>このページの末尾</strong>にあります</li>
+</ul>
+</div>
+<!-- LINKS:END -->
+
+<div class="admonition tip">
+<p class="admonition-title">考え方をガイドで確かめる</p>
+<p>この回の考え方は、統計の考え方ガイドの<a href="https://aonoa68.github.io/teaching/guide/regression/">「回帰とモデル」</a>でも解説しています。霊長類のデータを動かしながら確かめられます。</p>
+</div>
+<h2 id="_1">この回のゴール<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<ul>
+<li>次元削減（多くの変数を少数の軸にまとめる）の発想を理解する</li>
+<li>PCAの寄与率と負荷を読み、主成分に意味を与えられる</li>
+<li>「PCAは情報を失う」「主成分に必ず意味があるとは限らない」を理解する</li>
+<li><strong>発展</strong>：第1主成分が「射影の分散が最大になる方向」であることを、2変数の場合に自分で導ける</li>
+</ul>
+<p>到達目標との対応：<strong>G4・G3</strong>。</p>
+<hr />
+<h2 id="0">0. フック<a class="headerlink" href="#0" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>霊長類データには、体重・妊娠期間・離乳日齢・寿命・産子数… とたくさんの変数がある。
+全部の関係を一度に見るのは無理（変数5個でも散布図は10通り、10個なら45通り）。
+これらの背後にある「本当の軸」は、いくつあるのだろう？</p>
+</blockquote>
+<hr />
+<h2 id="1-pca">1. 主成分分析（PCA）の発想<a class="headerlink" href="#1-pca" title="Permanent link">&para;</a></h2>
+<p><strong>生活史</strong>に関する5つの変数を使う：<strong>体重・妊娠期間・離乳日齢・最長寿命・一腹産子数</strong>。</p>
+<p>前処理を2つ行う。① 何桁にもまたがる量なので<strong>対数</strong>にする ② 単位が違う（g・日・月・頭）ので<strong>標準化</strong>する。</p>
+<p>PCAは、これら5次元のデータを、<strong>ばらつき（情報）が最も大きい方向</strong>に新しい軸を引き直す。最初の軸（第1主成分）が一番多くの情報を持ち、次の軸（第2主成分）がその次…と続く。少数の軸だけ残せば<strong>次元を削減</strong>できる。</p>
+<p>（変数ごとに単位が違う（時間・%・日）ので、まず<strong>標準化</strong>して土俵をそろえる。）</p>
+<details class="note" open="open">
+<summary>導出①：第1主成分とは「射影したときの分散が最大になる方向」のこと</summary>
+<p>「ばらつきが最大の方向」という言い方を、式にしてみる。変数が2つの場合なら、三角関数だけで最後まで行ける。</p>
+<p>標準化した2変数を <span class="arithmatex">\( z_1, z_2 \)</span> とする。標準化してあるので <span class="arithmatex">\( \mathrm{Var}[z_1]=\mathrm{Var}[z_2]=1 \)</span> で、共分散は相関係数 <span class="arithmatex">\( r \)</span> そのものになる。</p>
+<p>角度 <span class="arithmatex">\( \theta \)</span> の向きの軸に各点を<strong>射影</strong>した値は、</p>
+<div class="arithmatex">\[ y(\theta) \;=\; \cos\theta \cdot z_1 \;+\; \sin\theta \cdot z_2 \]</div>
+<p>この <span class="arithmatex">\( y \)</span> の分散を展開する。第7回の導出②では独立を仮定したので共分散の項が消えたが、<strong>今回は消えない</strong>。2変数の関係こそが知りたいものだからである。</p>
+<div class="arithmatex">\[ \mathrm{Var}[y] \;=\; \cos^{2}\!\theta\,\mathrm{Var}[z_1] \;+\; \sin^{2}\!\theta\,\mathrm{Var}[z_2] \;+\; 2\cos\theta\sin\theta\,\mathrm{Cov}[z_1,z_2] \]</div>
+<p><span class="arithmatex">\( \mathrm{Var}[z_1]=\mathrm{Var}[z_2]=1 \)</span>、<span class="arithmatex">\( \mathrm{Cov}[z_1,z_2]=r \)</span> を入れ、<span class="arithmatex">\( \cos^{2}\theta+\sin^{2}\theta=1 \)</span> と倍角の公式 <span class="arithmatex">\( 2\sin\theta\cos\theta=\sin 2\theta \)</span> を使うと、</p>
+<div class="arithmatex">\[ \mathrm{Var}[y] \;=\; 1 \;+\; r\sin 2\theta \]</div>
+<p>あとは <span class="arithmatex">\( \sin 2\theta \)</span> が最大（＝1）になる角度を選ぶだけである。<span class="arithmatex">\( 2\theta = 90^\circ \)</span>、つまり</p>
+<div class="arithmatex">\[ \theta = 45^\circ \quad \text{のとき最大値} \quad 1 + r \]</div>
+<p>これが第1主成分である。直交する <span class="arithmatex">\( \theta=135^\circ \)</span> では <span class="arithmatex">\( \sin 2\theta = -1 \)</span> となり、最小値 <span class="arithmatex">\( 1-r \)</span>。こちらが第2主成分になる。</p>
+<p>式から読めることがもう一つある。<strong>相関が強いほど第1主成分は強くなる</strong>。<span class="arithmatex">\( r \)</span> が大きいほど <span class="arithmatex">\( 1+r \)</span> は大きい。逆に <span class="arithmatex">\( r=0 \)</span> なら、どの向きに射影しても分散は1のままで、<strong>軸を選ぶ意味がなくなる</strong>。PCAが効くのは変数どうしが関係しあっているときだけ、というのがここで分かる。</p>
+<p><strong>数値で確かめる</strong>：この授業のデータで、対数をとって標準化した体重と離乳日齢の相関は <span class="arithmatex">\( r = 0.872 \)</span>。式によれば最大分散は <span class="arithmatex">\( 1+r = 1.872 \)</span>、その角度は45°のはずである。実際に角度を変えて射影の分散を計算すると、</p>
+<table>
+<thead>
+<tr>
+<th><span class="arithmatex">\( \theta \)</span></th>
+<th style="text-align: right;">射影した値の分散</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0°</td>
+<td style="text-align: right;">1.000</td>
+</tr>
+<tr>
+<td>30°</td>
+<td style="text-align: right;">1.755</td>
+</tr>
+<tr>
+<td><strong>45°</strong></td>
+<td style="text-align: right;"><strong>1.872</strong></td>
+</tr>
+<tr>
+<td>60°</td>
+<td style="text-align: right;">1.755</td>
+</tr>
+<tr>
+<td>90°</td>
+<td style="text-align: right;">1.000</td>
+</tr>
+<tr>
+<td>135°</td>
+<td style="text-align: right;">0.128</td>
+</tr>
+</tbody>
+</table>
+<p>最大は45°で 1.872、最小は135°で <span class="arithmatex">\( 1-r = 0.128 \)</span>。この2変数でPCAを実行すると、第1主成分の方向として (0.707, 0.707) が返ってくる。これはちょうど45°の向きである。<strong>「分散最大の方向を探す」という定義が、そのまま答えになっている。</strong></p>
+<div class="admonition note">
+<p class="admonition-title">変数が3つ以上になると</p>
+<p>変数が増えると、方向を角度1つでは書けなくなる。上の最大化は<strong>固有値問題</strong>（分散共分散行列の固有ベクトルを求める問題）という形になり、解き方は変わる。</p>
+<p>だが<strong>探しているものは同じ</strong>で、「射影の分散が最大になる方向」である。多変数の微分（ラグランジュの未定乗数法）を学ぶと、ここが一般の次元へつながる。それはこの地図で扱う統計数理の範囲外なので、名前だけ挙げておく。</p>
+</div>
+<p><strong>使った数学</strong>：分散の展開（共分散の項つき）と、三角関数の倍角公式。2変数なら、これだけで第1主成分に届く。</p>
+</details>
+<h3 id="_2">寄与率：各軸がどれだけ情報を持つか<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>主成分</th>
+<th>寄与率</th>
+<th>累積</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>第1主成分</td>
+<td><strong>73.6%</strong></td>
+<td>73.6%</td>
+</tr>
+<tr>
+<td>第2主成分</td>
+<td>13.4%</td>
+<td>87.0%</td>
+</tr>
+<tr>
+<td>第3〜5主成分</td>
+<td>…</td>
+<td>100%</td>
+</tr>
+</tbody>
+</table>
+<p><strong>第1主成分だけで全体の約74%</strong>、第2主成分まで合わせると約87%。5次元の本質は、ほぼ<strong>2次元</strong>に圧縮できる。</p>
+<details class="note" open="open">
+<summary>導出②：寄与率は「固有値の割合」である</summary>
+<p>主成分は、もとの変数を回転させて引き直した軸である。回転させても、<strong>データ全体のばらつきの総量は変わらない</strong>。座標の取り方を変えただけで、情報が増えたり減ったりはしない。だから各主成分の分散を全部足すと、もとの変数の分散の合計に戻る。</p>
+<div class="arithmatex">\[ \underbrace{\lambda_1 + \lambda_2 + \cdots + \lambda_p}_{\text{各主成分の分散}} \;=\; \underbrace{\mathrm{Var}[z_1] + \cdots + \mathrm{Var}[z_p]}_{\text{もとの変数の分散}} \]</div>
+<p>ここで <span class="arithmatex">\( \lambda_i \)</span> は第 i 主成分の分散で、<strong>固有値</strong>と呼ばれる量にあたる。導出①の2変数の例では、<span class="arithmatex">\( \lambda_1 = 1+r \)</span>、<span class="arithmatex">\( \lambda_2 = 1-r \)</span> で、合計はちょうど 2、つまり変数の個数だった。</p>
+<p>今回は標準化してあるので、各変数の分散はちょうど1。変数は5つなので、右辺は <span class="arithmatex">\( 1 \times 5 = 5 \)</span> である。<strong>分けるべき情報の総量が5と決まっている</strong>。あとはそれを5本の軸がどう分け合うかという話になり、</p>
+<div class="arithmatex">\[ \text{第 i 主成分の寄与率} \;=\; \frac{\lambda_i}{\lambda_1+\cdots+\lambda_p} \;=\; \frac{\lambda_i}{5} \]</div>
+<p>寄与率を「その軸が説明する情報の割合」と呼べるのは、<strong>分母が全体の総量になっているから</strong>である。</p>
+<p><strong>数値で確かめる</strong>：今回の5変数（n=89種）で計算すると、</p>
+<table>
+<thead>
+<tr>
+<th>主成分</th>
+<th style="text-align: right;">固有値 <span class="arithmatex">\( \lambda \)</span></th>
+<th style="text-align: right;"><span class="arithmatex">\( \lambda/5 \)</span> ＝ 寄与率</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>第1</td>
+<td style="text-align: right;">3.68</td>
+<td style="text-align: right;">73.6%</td>
+</tr>
+<tr>
+<td>第2</td>
+<td style="text-align: right;">0.67</td>
+<td style="text-align: right;">13.4%</td>
+</tr>
+<tr>
+<td>第3</td>
+<td style="text-align: right;">0.29</td>
+<td style="text-align: right;">5.8%</td>
+</tr>
+<tr>
+<td>第4</td>
+<td style="text-align: right;">0.24</td>
+<td style="text-align: right;">4.8%</td>
+</tr>
+<tr>
+<td>第5</td>
+<td style="text-align: right;">0.12</td>
+<td style="text-align: right;">2.4%</td>
+</tr>
+<tr>
+<td><strong>合計</strong></td>
+<td style="text-align: right;"><strong>5.00</strong></td>
+<td style="text-align: right;"><strong>100%</strong></td>
+</tr>
+</tbody>
+</table>
+<p>上の表の 73.6%・13.4% は、こうして出てきた値である。</p>
+<p>第1主成分の固有値 3.68 は、「1変数ぶんの情報＝1」の 3.68 倍にあたる。<strong>5変数ぶんの情報のうち、3.68変数ぶんを1本の軸が持っている</strong>と読める。逆に第5主成分は 0.12 で、1変数ぶんにも満たない。</p>
+<p><strong>使った数学</strong>：分散の総和が回転で変わらないこと、割合の定義。固有値そのものの計算は機械に任せてよい。</p>
+</details>
+<hr />
+<h2 id="2">2. 主成分の命名 ―― 負荷を読む<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
+<p>第1主成分が「何の軸」かは、各変数の効き方（<strong>負荷</strong>）を見て、人間が<strong>命名</strong>する。</p>
+<table>
+<thead>
+<tr>
+<th>変数</th>
+<th>第1主成分</th>
+<th>第2主成分</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>体重</td>
+<td>+0.48</td>
+<td>+0.21</td>
+</tr>
+<tr>
+<td>妊娠期間</td>
+<td>+0.45</td>
+<td>−0.26</td>
+</tr>
+<tr>
+<td>離乳日齢</td>
+<td>+0.48</td>
+<td>+0.12</td>
+</tr>
+<tr>
+<td>最長寿命</td>
+<td>+0.42</td>
+<td>+0.57</td>
+</tr>
+<tr>
+<td>一腹産子数</td>
+<td><strong>−0.39</strong></td>
+<td>+0.74</td>
+</tr>
+</tbody>
+</table>
+<p>4つが同じ向きで、<strong>産子数だけが逆向き</strong>。言葉にすると ――</p>
+<blockquote>
+<p><strong>＋の側</strong>：体が大きく、妊娠が長く、乳離れが遅く、長生きし、<strong>一度に少ししか産まない</strong>
+<strong>−の側</strong>：体が小さく、妊娠が短く、乳離れが早く、短命で、<strong>一度にたくさん産む</strong></p>
+</blockquote>
+<p>これは生物学で <strong>生活史の「速い－遅い」連続体（fast–slow continuum）</strong> と呼ばれるものである。速い戦略＝短く生きてたくさん産む（数で勝負）、遅い戦略＝長く生きて少なく産んで大事に育てる（質で勝負）。</p>
+<div class="admonition success">
+<p class="admonition-title">PCAが隠れた軸を浮かび上がらせた</p>
+<p>もともと別々だった5つの変数の背後に、<strong>1本の“生き方”の軸</strong>が隠れていた。
+これが<strong>次元削減＝本質の抽出</strong>。</p>
+</div>
+<hr />
+<h2 id="3-2">3. 2次元に圧縮して可視化<a class="headerlink" href="#3-2" title="Permanent link">&para;</a></h2>
+<p>各種を第1主成分（速い－遅い）と第2主成分の2軸で配置し、<strong>科ごとに色を変える</strong>。5次元の散布図は描けないが、2次元なら一目で構造が分かる。</p>
+<p><strong>注意：PCAには「科」の情報を一切与えていない。</strong>5つの数値だけから軸を作った。それなのに ――</p>
+<table>
+<thead>
+<tr>
+<th>科</th>
+<th style="text-align: right;">第1主成分の平均</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>コビトキツネザル科</td>
+<td style="text-align: right;">−4.31</td>
+</tr>
+<tr>
+<td>ガラゴ科</td>
+<td style="text-align: right;">−2.07</td>
+</tr>
+<tr>
+<td>オマキザル科</td>
+<td style="text-align: right;">−1.19</td>
+</tr>
+<tr>
+<td>キツネザル科</td>
+<td style="text-align: right;">−0.80</td>
+</tr>
+<tr>
+<td>オナガザル科</td>
+<td style="text-align: right;">+1.02</td>
+</tr>
+<tr>
+<td>クモザル科</td>
+<td style="text-align: right;">+1.32</td>
+</tr>
+<tr>
+<td>テナガザル科</td>
+<td style="text-align: right;">+1.96</td>
+</tr>
+<tr>
+<td><strong>ヒト科</strong></td>
+<td style="text-align: right;"><strong>+3.50</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>分類群が一直線に並んだ。</strong>そして最も「遅い」5種はすべてヒト科で、その頂点が <strong><code>Homo sapiens</code>（+4.15）</strong>である。反対の端はネズミキツネザル（−5.55）。</p>
+<div class="admonition note">
+<p class="admonition-title">PCAは「ヒトは特別だ」と教えたわけではない</p>
+<p>5つの数値を、ばらつきが最大になる向きに並べ直しただけである。結果として分類群が並び、ヒトが端に来た。<strong>それをどう意味づけるかは、人間の仕事</strong>である。</p>
+</div>
+<hr />
+<h2 id="4">4. 大事な注意<a class="headerlink" href="#4" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>PCAは情報を失う</strong>。今回、第1・第2主成分で説明できたのは約<strong>87%</strong>。残りの<strong>約13%は捨てている</strong>。圧縮はタダではない。</li>
+<li><strong>主成分に必ず意味があるとは限らない</strong>。第1主成分は「速い－遅い」と読めたが、<strong>第2主成分（13.4%）は簡単には命名できない</strong>（産子数と寿命が同じ向きに乗っており、生活史の軸では説明しにくい）。現実のデータでは「何だかよく分からない軸」のほうが多い。<strong>意味づけ（命名）は人間の解釈</strong>で、数学が保証するものではない。</li>
+<li><strong>使った89種は「5変数すべてに記録がある種」だけ</strong>である（全376種の24%）。第6回で見たとおり、よく研究された種に偏っている。<strong>この軸は、よく調べられた霊長類の軸</strong>である。</li>
+<li>主成分の<strong>向き（符号）は反転することがある</strong>（数学的には同じ）。</li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">よくある誤り</p>
+<p>「PCAで情報は失われない」「主成分には必ずはっきりした意味がある」――どちらも誤り。
+圧縮には情報の損失が伴い、意味づけは人間の解釈に委ねられる。</p>
+</div>
+<hr />
+<h2 id="_3">まとめ<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>概念</th>
+<th>ひとこと</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>次元削減</td>
+<td>たくさんの変数を、少数の軸（主成分）にまとめる</td>
+</tr>
+<tr>
+<td>主成分</td>
+<td>ばらつき（情報）が最大の方向に引いた新しい軸</td>
+</tr>
+<tr>
+<td>寄与率</td>
+<td>各主成分が説明する情報の割合（第1主成分74%・累積87%）</td>
+</tr>
+<tr>
+<td>負荷と命名</td>
+<td>各変数の効き方を見て、人間が軸に意味を与える（例：速い－遅い）</td>
+</tr>
+<tr>
+<td>❌ 誤り</td>
+<td>PCAで情報は失われない／主成分には必ず明確な意味がある</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>PCAは『たくさんの変数の背後にある少数の軸』を見つける道具。</strong>
+ただし情報は一部失われ、軸の意味づけは人間の解釈。
+<strong>軸を計算するのは機械だが、軸に名前を与えるのは人間だ。ここで直感が戻ってくる。だから命名は「こう呼べそうだ」で止めず、負荷量という証拠に紐づける。次回、この14回を通して何が変わったのかを振り返る。</strong></p>
+</blockquote>
+<hr />
+<h2 id="moodle">今日の課題（Moodle提出）<a class="headerlink" href="#moodle" title="Permanent link">&para;</a></h2>
+<p><strong>配点：100点（自動採点40点 ＋ 記述60点）／ 提出先：Moodle</strong></p>
+<p>Colab <code>13_pca.ipynb</code> を実行したうえで答えること。</p>
+<hr />
+<h3 id="a10-440">パートA：選択問題（自動採点・各10点 ×4＝40点）<a class="headerlink" href="#a10-440" title="Permanent link">&para;</a></h3>
+<p><strong>A1.</strong> PCA（主成分分析）の目的として<strong>最も適切</strong>なのは？</p>
+<ul>
+<li>(ア) たくさんの変数を、情報をなるべく保ったまま少数の軸（主成分）にまとめる</li>
+<li>(イ) 2つの変数の因果関係を証明する</li>
+<li>(ウ) 欠損値を埋める</li>
+</ul>
+<p><strong>A2.</strong> 5つの生活史変数のPCAで、第1主成分の寄与率は約何%だったか。</p>
+<ul>
+<li>(ア) 約13%　(イ) 約74%　(ウ) 約100%</li>
+</ul>
+<p><strong>A3.</strong> 第1主成分は「体重・妊娠期間・離乳日齢・最長寿命が＋、<strong>一腹産子数だけが−</strong>」という負荷だった。この軸の命名として<strong>最も妥当</strong>なのは？</p>
+<ul>
+<li>(ア) 生息地の広さ</li>
+<li>(イ) 生活史の「速い－遅い」（長く生きて少なく産むか、短く生きてたくさん産むか）</li>
+<li>(ウ) 分類群の新しさ</li>
+</ul>
+<p><strong>A4.</strong> PCAについて<strong>正しい</strong>のは？</p>
+<ul>
+<li>(ア) PCAでは情報はいっさい失われない</li>
+<li>(イ) 主成分には必ずはっきりした意味がある</li>
+<li>(ウ) 次元を削減すると一部の情報は失われ、主成分の意味づけは人間の解釈による</li>
+</ul>
+<hr />
+<h3 id="bai60">パートB：記述問題（AIフィードバック対象・60点）<a class="headerlink" href="#bai60" title="Permanent link">&para;</a></h3>
+<div class="admonition warning">
+<p class="admonition-title">【全記述に共通・重要】自分の出力を引用すること</p>
+<p>記述には、今日のColabで確認した数値を最低1つ引用すること（例：「第1主成分の寄与率は73.6%」「2主成分で累積87%」「一腹産子数の負荷は−0.39」「ヒト科が右端に来た」）。<strong>引用がない記述は満点になりません。</strong></p>
+</div>
+<p><strong>B1.（30点）</strong> 今日のPCAの結果（寄与率と負荷）を読んで、<strong>第1主成分が「何を表す軸」か</strong>を、負荷の符号（どの変数が＋でどの変数が−か）を根拠に説明し、あなた自身の言葉で<strong>命名</strong>しなさい。</p>
+<p><strong>B2.（30点）</strong> 友人が「PCAを使えば、たくさんの変数を2次元にまとめても情報は何も失われないし、出てきた主成分には必ずはっきりした意味がある」と言っている。今日の結果（累積寄与率など）をふまえて、この考えの<strong>どこが間違いか</strong>を2点指摘しなさい。</p>
+<blockquote>
+<p>目安：B1・B2あわせて350〜550字。<strong>自分の言葉</strong>で書くこと。</p>
+</blockquote>
+<div class="admonition abstract">
+<p class="admonition-title">次回予告</p>
+<p>第14回「総括：不確実な世界で、孤高の意思決定をするための道具として」。第1回の直感クイズに戻り、14回で手に入れた道具を振り返る。最終回。</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  ページトップへ戻る
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="フッター" >
+        
+          
+          <a href="../12_bayes/" class="md-footer__link md-footer__link--prev" aria-label="前: 第12回 ベイズ統計の入り口">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                前
+              </span>
+              <div class="md-ellipsis">
+                第12回 ベイズ統計の入り口
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../14_synthesis/" class="md-footer__link md-footer__link--next" aria-label="次: 第14回 総括">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                次
+              </span>
+              <div class="md-ellipsis">
+                第14回 総括
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.instant", "navigation.tracking", "navigation.top", "navigation.footer", "search.suggest", "search.highlight", "content.code.copy", "toc.follow"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u30b3\u30d4\u30fc\u3057\u307e\u3057\u305f", "clipboard.copy": "\u30af\u30ea\u30c3\u30d7\u30dc\u30fc\u30c9\u3078\u30b3\u30d4\u30fc", "search.result.more.one": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3082\u30461\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.more.other": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3042\u3068#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.none": "\u4f55\u3082\u898b\u3064\u304b\u308a\u307e\u305b\u3093\u3067\u3057\u305f", "search.result.one": "1\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.other": "#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.placeholder": "\u691c\u7d22\u30ad\u30fc\u30ef\u30fc\u30c9\u3092\u5165\u529b\u3057\u3066\u304f\u3060\u3055\u3044", "search.result.term.missing": "\u691c\u7d22\u306b\u542b\u307e\u308c\u306a\u3044", "select.version": "\u30d0\u30fc\u30b8\u30e7\u30f3\u5207\u308a\u66ff\u3048"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

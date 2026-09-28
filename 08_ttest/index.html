@@ -1,0 +1,1473 @@
+
+<!doctype html>
+<html lang="ja" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="北星学園大学「統計学Ⅰ（B）」2026年度 後期 授業資料">
+      
+      
+        <meta name="author" content="小野原 彩香">
+      
+      
+        <link rel="canonical" href="https://aonoa68.github.io/toukei-1/08_ttest/">
+      
+      
+        <link rel="prev" href="../07_estimation/">
+      
+      
+        <link rel="next" href="../09_anova/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>第08回 仮説検定とt検定 - 統計学Ⅰ</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#08-1t" class="md-skip">
+          コンテンツにスキップ
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="ヘッダー">
+    <a href=".." title="統計学Ⅰ" class="md-header__button md-logo" aria-label="統計学Ⅰ" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            統計学Ⅰ
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              第08回 仮説検定とt検定
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="ダークモードに切り替え"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="ダークモードに切り替え" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="ライトモードに切り替え"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="ライトモードに切り替え" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="検索" placeholder="検索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="検索">
+        
+        <button type="reset" class="md-search__icon md-icon" title="クリア" aria-label="クリア" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            検索を初期化
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="ナビゲーション" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="統計学Ⅰ" class="md-nav__button md-logo" aria-label="統計学Ⅰ" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    統計学Ⅰ
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ホーム
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01_guidance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第01回 直感の敗北
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02_representative_values/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第02回 代表値の嘘
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_variability/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第03回 ばらつき
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04_python_intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第04回 Python入門
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05_correlation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第05回 相関と因果
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06_sampling_clt/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第06回 標本とCLT
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07_estimation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第07回 推定と信頼区間
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第08回 仮説検定とt検定
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第08回 仮説検定とt検定
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        この回のゴール
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0. フック
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 帰無仮説 ―― 背理法で考える
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-t" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. t検定をやってみる（明確な差の例）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. t検定をやってみる（明確な差の例）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        対照：差がない例も、同じデータの中にある
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-p" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. p値の意味を、正しく
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-p-n" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. p値の脆さ ―― 同じ差でも n で変わる
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-cohens-d" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 効果量（Cohen's d）―― 「大きさ」を測る
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. 2種類の誤り
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        まとめ
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#moodle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        今日の課題（Moodle提出）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="今日の課題（Moodle提出）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a10-440" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        パートA：選択問題（自動採点・各10点 ×4＝40点）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bai60" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        パートB：記述問題（AIフィードバック対象・60点）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09_anova/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第09回 分散分析ANOVA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10_regression/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第10回 回帰分析
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11_aic/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第11回 モデル選択とAIC
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12_bayes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第12回 ベイズ統計の入り口
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13_pca/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第13回 多変量解析PCA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../14_synthesis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第14回 総括
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        この回のゴール
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0. フック
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 帰無仮説 ―― 背理法で考える
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-t" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. t検定をやってみる（明確な差の例）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. t検定をやってみる（明確な差の例）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        対照：差がない例も、同じデータの中にある
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-p" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. p値の意味を、正しく
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-p-n" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. p値の脆さ ―― 同じ差でも n で変わる
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-cohens-d" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 効果量（Cohen's d）―― 「大きさ」を測る
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. 2種類の誤り
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        まとめ
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#moodle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        今日の課題（Moodle提出）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="今日の課題（Moodle提出）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a10-440" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        パートA：選択問題（自動採点・各10点 ×4＝40点）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bai60" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        パートB：記述問題（AIフィードバック対象・60点）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="08-1t">第08回　仮説検定(1)：帰無仮説とt検定<a class="headerlink" href="#08-1t" title="Permanent link">&para;</a></h1>
+<p><strong>11/24（火）Ⅱ講 10:35〜12:15・B402教室</strong></p>
+<blockquote>
+<p>「差がある」とは何か ―― そして、p値という誤解されやすい数</p>
+</blockquote>
+<hr />
+<!-- LINKS:START -->
+<div class="admonition info">
+<p class="admonition-title">今日のリンク</p>
+<ul>
+<li><a href="../slides/08.html">📊 スライドを開く</a></li>
+<li><a href="https://colab.research.google.com/github/aonoa68/toukei-1/blob/main/colab/08_ttest.ipynb">📓 Colabノートを開く（08_ttest.ipynb）</a></li>
+<li><a href="https://moodle.hokusei.ac.jp/mod/assign/view.php?id=990629">📝 課題を提出する（Moodle・第8回）</a></li>
+<li>課題の本文は<strong>このページの末尾</strong>にあります</li>
+</ul>
+</div>
+<!-- LINKS:END -->
+
+<div class="admonition tip">
+<p class="admonition-title">考え方をガイドで確かめる</p>
+<p>この回の考え方は、統計の考え方ガイドの<a href="https://aonoa68.github.io/teaching/guide/testing/">「仮説検定とp値」</a>でも解説しています。霊長類のデータを動かしながら確かめられます。</p>
+</div>
+<h2 id="_1">この回のゴール<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<ul>
+<li>帰無仮説・対立仮説と、検定の背理法的なロジックを説明できる</li>
+<li>t検定を実行し、p値を<strong>正しく</strong>解釈できる</li>
+<li>「p値 ≠ 効果の大きさ」「有意 ≠ 重要」を理解し、効果量も見る習慣をつける</li>
+<li><strong>発展</strong>：不偏分散がなぜ <span class="arithmatex">\( n-1 \)</span> で割るのか、t 統計量がどこから来るのかを、自分で導ける</li>
+</ul>
+<p>到達目標との対応：<strong>G2（このコースの中核）</strong>。</p>
+<hr />
+<h2 id="0">0. フック<a class="headerlink" href="#0" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>保護区の中と外で、同じ種のサルの体重を測った。<strong>保護区の中のほうが平均0.2kg重かった。</strong>
+これは「保護区に効果があった」のか、「たまたま」なのか？</p>
+</blockquote>
+<p>直感では決められない。0.2kgは大きい？小さい？――この問いに答えるのが<strong>仮説検定</strong>だ。</p>
+<hr />
+<h2 id="1">1. 帰無仮説 ―― 背理法で考える<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
+<p>検定は背理法に似ている。</p>
+<ol>
+<li>まず「<strong>差はない（偶然だ）</strong>」と仮定する。これが <strong>帰無仮説</strong>。</li>
+<li>その仮定のもとで、<strong>観測されたような差が起きる確率</strong>を計算する。これが <strong>p値</strong>。</li>
+<li>p値がとても小さい（＝偶然ではめったに起きない）なら、「差はない」という仮定のほうが間違っていた、と考える。これを「<strong>有意差がある</strong>」という。</li>
+</ol>
+<blockquote>
+<p>「差がある」＝「<strong>偶然では説明しにくいほどの差だった</strong>」の言い換え。</p>
+</blockquote>
+<hr />
+<h2 id="2-t">2. t検定をやってみる（明確な差の例）<a class="headerlink" href="#2-t" title="Permanent link">&para;</a></h2>
+<p>霊長類の進化を語るとき、大きな区分が <strong>旧世界ザル</strong>（アフリカ・アジア）と <strong>新世界ザル</strong>（中南米）である。両者は3,000万年以上前に分かれた。この2つの科で<strong>体重に差があるか</strong>を調べる。第3回のとおり体重は対数で扱う。</p>
+<table>
+<thead>
+<tr>
+<th>科</th>
+<th>体重の中央値（n）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>オナガザル科（旧世界）</td>
+<td>7,226 g（92種）</td>
+</tr>
+<tr>
+<td>オマキザル科（新世界）</td>
+<td>492 g（39種）</td>
+</tr>
+</tbody>
+</table>
+<p>t検定の結果：<strong>t = 20.03、p ≈ 8.4 × 10⁻²⁷</strong>（ほぼ0）。</p>
+<p>「差はない」と仮定すると、これほどの差（中央値で約15倍）は偶然ではまず起きない → <strong>有意差あり</strong>。</p>
+<h3 id="_2">対照：差がない例も、同じデータの中にある<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<p>今度は <strong>オナガザル科（旧世界）と クモザル科（新世界）</strong> を比べる。クモザル科も新世界ザルだが、大型の種が多い。</p>
+<table>
+<thead>
+<tr>
+<th>科</th>
+<th>体重の中央値（n）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>オナガザル科</td>
+<td>7,226 g（92種）</td>
+</tr>
+<tr>
+<td>クモザル科</td>
+<td>6,652 g（16種）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>t = −0.02、p = 0.98。</strong> まったく差があると言えない。</p>
+<div class="admonition warning">
+<p class="admonition-title">何と何を比べるかは、検定の外側</p>
+<p>旧世界か新世界かで決まるのではない。<strong>新世界ザルの中に、小型のオマキザル科と大型のクモザル科が両方いる</strong>からである。</p>
+<p><strong>同じデータ・同じ手法で、比べる相手を変えただけで結論が正反対になる。</strong>「何と何を比べるか」は検定にかける前の<strong>あなたの判断</strong>であり、統計は「その比較が妥当か」を教えてくれない。</p>
+</div>
+<details class="note" open="open">
+<summary>導出①：なぜ <span class="arithmatex">\( n-1 \)</span> で割るのか（不偏分散）</summary>
+<p>標本からばらつきを見積もるとき、分散は <span class="arithmatex">\( s^2 = \frac{1}{n-1}\sum (X_i-\bar{X})^2 \)</span> と、<span class="arithmatex">\( n \)</span> ではなく <span class="arithmatex">\( n-1 \)</span> で割る。なぜか。</p>
+<p>偏差の二乗和を、母平均 <span class="arithmatex">\( \mu \)</span> からのズレに書き換える。<span class="arithmatex">\( X_i-\bar{X} = (X_i-\mu)-(\bar{X}-\mu) \)</span> と分けて展開すると、</p>
+<div class="arithmatex">\[ \sum_{i=1}^{n}(X_i-\bar{X})^2 \;=\; \sum_{i=1}^{n}(X_i-\mu)^2 \;-\; n(\bar{X}-\mu)^2 \]</div>
+<p>（交差項は <span class="arithmatex">\( \sum (X_i-\bar{X})=0 \)</span>、つまり<strong>偏差の和がゼロ</strong>になることから消える。第3回で「そのまま足すと打ち消し合う」と確認した、あの性質である。）</p>
+<p>ここで両辺の期待値を取る。右辺の第1項は <span class="arithmatex">\( \mathbb{E}[(X_i-\mu)^2]=\sigma^2 \)</span> が <span class="arithmatex">\( n \)</span> 個で <span class="arithmatex">\( n\sigma^2 \)</span>。第2項は、<strong>第7回の導出②</strong>で得た <span class="arithmatex">\( \mathbb{E}[(\bar{X}-\mu)^2]=\mathrm{Var}[\bar{X}]=\sigma^2/n \)</span> を使って <span class="arithmatex">\( n\cdot\sigma^2/n = \sigma^2 \)</span>。よって</p>
+<div class="arithmatex">\[ \mathbb{E}\!\left[\sum_{i=1}^{n}(X_i-\bar{X})^2\right] \;=\; n\sigma^2 - \sigma^2 \;=\; (n-1)\,\sigma^2 \]</div>
+<p>だから <span class="arithmatex">\( n-1 \)</span> で割れば期待値がちょうど <span class="arithmatex">\( \sigma^2 \)</span> になる。<span class="arithmatex">\( n \)</span> で割ると系統的に小さめに出る。</p>
+<p><strong>なぜ1つ減るのか</strong>：二乗和の中心に、母平均 <span class="arithmatex">\( \mu \)</span> ではなく<strong>データから計算した</strong> <span class="arithmatex">\( \bar{X} \)</span> を使っている。<span class="arithmatex">\( \bar{X} \)</span> はデータに一番近い位置に自分で寄っていくので、ズレが本来より小さく見える。その「使ってしまった1つ分」が自由度 <span class="arithmatex">\( n-1 \)</span> である。</p>
+<p><strong>数値で確かめる</strong>：この母集団から n=30 を20万回とると、<span class="arithmatex">\( \sum(X_i-\bar{X})^2 \)</span> の平均は 4,979,270,647。<span class="arithmatex">\( (n-1)\sigma^2 = 29\sigma^2 \)</span> は 4,984,114,411（比 0.999）。n で割ると 165,975,688 となり母分散 171,866,014 を下回るが、n−1 で割ると 171,698,988 でほぼ一致する。</p>
+<p><strong>使った数学</strong>：二乗和の展開と総和の記号操作（線I）、期待値の線形性（微I）、第7回で導いた <span class="arithmatex">\( \mathrm{Var}[\bar{X}]=\sigma^2/n \)</span>。</p>
+</details>
+<details class="note" open="open">
+<summary>導出②：t 統計量はどこから来るか</summary>
+<p>第7回の導出③で、母標準偏差 <span class="arithmatex">\( \sigma \)</span> が既知なら</p>
+<div class="arithmatex">\[ Z \;=\; \frac{\bar{X}-\mu}{\sigma/\sqrt{n}} \;\approx\; N(0,1) \]</div>
+<p>が使えることを見た。しかし実際に <span class="arithmatex">\( \sigma \)</span> が分かっていることはまずない。そこで導出①の <span class="arithmatex">\( s \)</span> を代わりに置く。</p>
+<div class="arithmatex">\[ t \;=\; \frac{\bar{X}-\mu}{s/\sqrt{n}} \]</div>
+<p>形は同じでも、中身が変わっている。<span class="arithmatex">\( Z \)</span> では分母が<strong>定数</strong>だったが、<span class="arithmatex">\( t \)</span> では分母の <span class="arithmatex">\( s \)</span> も標本ごとに揺れる<strong>確率変数</strong>である。分子と分母の両方が揺れるぶん、この比は <span class="arithmatex">\( Z \)</span> より極端な値を取りやすい。つまり<strong>裾が重い</strong>。これが自由度 <span class="arithmatex">\( n-1 \)</span> の <strong>t 分布</strong>である。自由度が <span class="arithmatex">\( n-1 \)</span> なのは、導出①と同じ理由で <span class="arithmatex">\( s \)</span> が <span class="arithmatex">\( \bar{X} \)</span> を使って計算されているからだ。</p>
+<p>2群の差を見るときも発想は同じで、分子を「2群の平均の差」、分母を「その差の標準誤差」に置き換える。</p>
+<div class="arithmatex">\[ t \;=\; \frac{\bar{X}_1-\bar{X}_2}{\;\widehat{SE}(\bar{X}_1-\bar{X}_2)\;} \]</div>
+<p>n が大きくなると <span class="arithmatex">\( s \)</span> は <span class="arithmatex">\( \sigma \)</span> に近づくので、t 分布は正規分布に近づく。第7回で使った 1.96 は、その極限の値である。</p>
+<div class="admonition note">
+<p class="admonition-title">分母の作り方は一通りではない</p>
+<p>2群の <span class="arithmatex">\( \widehat{SE} \)</span> には流儀がある。両群の分散が等しいと仮定してまとめる形（Student）と、仮定せずに別々に扱う形（<strong>Welch</strong>）である。上の「オナガザル科 vs オマキザル科」の t = 20.03 は Welch で計算した値で、等分散を仮定すると t = 23.03 になる。実際この2群は標本分散が 0.046 と 0.093 で2倍ほど違うため、仮定を置かない Welch のほうが安全である。</p>
+<p>なお t 分布の密度関数そのものを導くには、<span class="arithmatex">\( \chi^2 \)</span> 分布と確率変数の比の分布が必要になる。<strong>このコースでは扱わない</strong>（統計学Ⅱ 第7回で形を確認する）。</p>
+</div>
+<p><strong>使った数学</strong>：標準化（線I的なスケール変換）、確率変数の比という見方（微I）。</p>
+</details>
+<hr />
+<h2 id="3-p">3. p値の意味を、正しく<a class="headerlink" href="#3-p" title="Permanent link">&para;</a></h2>
+<p>ここで誤解を3つ、はっきり打ち消す。</p>
+<ul>
+<li>❌ <strong>p値は「帰無仮説が正しい確率」ではない</strong>。p値は「帰無仮説が正しいと<strong>仮定したとき</strong>に、観測以上の差が出る確率」。</li>
+<li>❌ <strong>p値は「効果の大きさ」ではない</strong>。p=0.001 でも差は小さいことがある。</li>
+<li>❌ <strong>「有意（p&lt;0.05）＝重要」ではない</strong>。有意は「偶然では説明しにくい」だけ。</li>
+</ul>
+<hr />
+<h2 id="4-p-n">4. p値の脆さ ―― 同じ差でも n で変わる<a class="headerlink" href="#4-p-n" title="Permanent link">&para;</a></h2>
+<p>冒頭のフックに戻る。保護区の外6.0kg・中6.2kg、<strong>真の差はたった0.2kgで固定</strong>。そこから n 頭ずつ捕獲して測る、を2000回くりかえし、有意（p&lt;0.05）になった割合を見る。</p>
+<table>
+<thead>
+<tr>
+<th>各群の頭数 n</th>
+<th>有意になった割合</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>20</td>
+<td>約 8%</td>
+</tr>
+<tr>
+<td>100</td>
+<td>約 23%</td>
+</tr>
+<tr>
+<td>500</td>
+<td>約 80%</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition danger">
+<p class="admonition-title">効果は同じ。n が違うだけ</p>
+<p>真の差は常に0.2kg。なのに <strong>n を増やすほど「有意」になりやすい</strong>。
+つまり、サンプルを増やすだけで小さな差でも「有意差あり」を作れてしまう。
+<strong>「p&lt;0.05だった」だけでは、効果が大きいことの証明にはならない。</strong></p>
+</div>
+<hr />
+<h2 id="5-cohens-d">5. 効果量（Cohen's d）―― 「大きさ」を測る<a class="headerlink" href="#5-cohens-d" title="Permanent link">&para;</a></h2>
+<p>p値とは別に、差の大きさ自体を標準化したのが <strong>効果量 d</strong>（差が標準偏差いくつ分か）。目安：0.2小・0.5中・0.8大。</p>
+<table>
+<thead>
+<tr>
+<th>比較</th>
+<th>効果量 d</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>旧世界 vs 新世界（オマキザル科）</td>
+<td><strong>4.40</strong>（けた外れに大きい）</td>
+</tr>
+<tr>
+<td>旧世界 vs クモザル科</td>
+<td><strong>−0.00</strong>（実質ゼロ）</td>
+</tr>
+<tr>
+<td>保護区の内外（0.2kgの差）</td>
+<td><strong>0.18</strong>（小さい効果）</td>
+</tr>
+</tbody>
+</table>
+<p>d = 4.40 は目安の「0.8で大」をはるかに超えている。群内のばらつき4個分以上も離れているということ。</p>
+<p>一方、保護区の例は d = 0.18。<strong>n さえ増やせば有意にできるが、生物学的にはごくわずかな差</strong>である。<strong>有意 ≠ 効果が大きい。</strong> だから検定では、p値と一緒に<strong>必ず効果量も見る</strong>。</p>
+<blockquote>
+<p><strong>p値は「偶然かどうか」、効果量は「どれくらいか」。</strong>論文でも報告書でも、<strong>両方を書く</strong>。</p>
+</blockquote>
+<details class="note" open="open">
+<summary>導出③：なぜ効果量は単位を変えても動かないのか</summary>
+<p>Cohen's d は、2群の平均の差を、群内のばらつき（合併標準偏差 <span class="arithmatex">\( s_p \)</span>）で割ったものである。</p>
+<div class="arithmatex">\[ d \;=\; \frac{\bar{x}_1-\bar{x}_2}{s_p}, \qquad s_p=\sqrt{\frac{(n_1-1)s_1^2+(n_2-1)s_2^2}{n_1+n_2-2}} \]</div>
+<p>ここで単位を変える。g を kg にするのは、全データを <span class="arithmatex">\( c=1/1000 \)</span> 倍することである。平均は <span class="arithmatex">\( c \)</span> 倍、標準偏差も <span class="arithmatex">\( c \)</span> 倍になるので、</p>
+<div class="arithmatex">\[ d' \;=\; \frac{c\bar{x}_1-c\bar{x}_2}{c\,s_p} \;=\; \frac{c(\bar{x}_1-\bar{x}_2)}{c\,s_p} \;=\; d \]</div>
+<p>分子と分母で <span class="arithmatex">\( c \)</span> が約分される。<strong>d は「標準偏差何個分の差か」という比なので、ものさしの目盛りを取り替えても変わらない。</strong> これが「標準化された効果量」と呼ばれる理由である。</p>
+<p>ここが p値との決定的な違いになる。t 統計量には <span class="arithmatex">\( \sqrt{n} \)</span> が入っていて、</p>
+<div class="arithmatex">\[ t \;\approx\; d \times \sqrt{\frac{n_1 n_2}{n_1+n_2}} \]</div>
+<p>という関係にある。<strong>d が同じでも、n を増やせば t は大きくなり、p は小さくなる。</strong> 第4節で「真の差は常に0.2kgなのに n を増やすほど有意になった」のは、この式そのものである。d は n を含まないので動かない。だから両方を見る必要がある。</p>
+<p><strong>数値で確かめる</strong>：オナガザル科とオマキザル科の体重で、g のまま計算しても kg に直しても d = 2.2464 で同じ。対数スケールでも log10(g) と log10(kg) のどちらでも d = 4.4012 で一致する（対数では単位の変更が平行移動になるため、差も標準偏差も変わらない）。</p>
+<p><strong>使った数学</strong>：定数倍に対する平均と標準偏差の振る舞い（微I）、約分という比の性質。</p>
+</details>
+<hr />
+<h2 id="6-2">6. 2種類の誤り<a class="headerlink" href="#6-2" title="Permanent link">&para;</a></h2>
+<p>検定は完璧ではない。間違え方が2つある。</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>本当は差がない</th>
+<th>本当は差がある</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>「差あり」と判定</td>
+<td><strong>第一種の誤り（偽陽性）</strong></td>
+<td>正解</td>
+</tr>
+<tr>
+<td>「差なし」と判定</td>
+<td>正解</td>
+<td><strong>第二種の誤り（見逃し）</strong></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>有意水準 α = 0.05</strong>：本当は差がないのに「差あり」と誤る確率を5%まで許す基準。</li>
+<li>だから「有意」でも、<strong>20回に1回は偶然の偽陽性</strong>かもしれない。検定を何度も繰り返せば偽陽性は増える（→第9回）。</li>
+</ul>
+<hr />
+<h2 id="_3">まとめ<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>概念</th>
+<th>ひとこと</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>帰無仮説</td>
+<td>まず「差はない（偶然）」と仮定する</td>
+</tr>
+<tr>
+<td>p値</td>
+<td>帰無仮説のもとで観測以上の差が出る確率</td>
+</tr>
+<tr>
+<td>有意差</td>
+<td>p&lt;0.05 ＝「偶然では説明しにくい」</td>
+</tr>
+<tr>
+<td>❌ よくある誤り</td>
+<td>p値=帰無仮説が正しい確率／有意=効果大／n増やせば必ず有意</td>
+</tr>
+<tr>
+<td>効果量 d</td>
+<td>差の大きさ。有意とは別に必ず見る</td>
+</tr>
+<tr>
+<td>α・2種の誤り</td>
+<td>偽陽性5%を許す基準。検定の繰り返しに注意</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>「差がある」＝「偶然では説明しにくい」。それ以上でも以下でもない。</strong>
+p値の小ささは効果の大きさを意味しない。<strong>必ず効果量も見る。</strong></p>
+</blockquote>
+<hr />
+<h2 id="moodle">今日の課題（Moodle提出）<a class="headerlink" href="#moodle" title="Permanent link">&para;</a></h2>
+<p><strong>配点：100点（自動採点40点 ＋ 記述60点）／ 提出先：Moodle</strong></p>
+<p>Colab <code>08_ttest.ipynb</code> を実行したうえで答えること。</p>
+<hr />
+<h3 id="a10-440">パートA：選択問題（自動採点・各10点 ×4＝40点）<a class="headerlink" href="#a10-440" title="Permanent link">&para;</a></h3>
+<p><strong>A1.</strong> 帰無仮説とは何か。<strong>最も適切</strong>なのは？</p>
+<ul>
+<li>(ア) 「差がある」とまず仮定すること</li>
+<li>(イ) 「差はない（偶然だ）」とまず仮定すること</li>
+<li>(ウ) 効果量のこと</li>
+</ul>
+<p><strong>A2.</strong> p値の意味として<strong>最も正しい</strong>のは？</p>
+<ul>
+<li>(ア) 帰無仮説が正しい確率</li>
+<li>(イ) 帰無仮説が正しいと仮定したとき、観測以上の差が出る確率</li>
+<li>(ウ) 効果がどれくらい大きいかを表す値</li>
+</ul>
+<p><strong>A3.</strong> 真の差が「2点」で固定のまま、各群の人数 n を 20→100→500 と増やすと、有意（p&lt;0.05）になる割合はどう変わったか。</p>
+<ul>
+<li>(ア) 8%→23%→80% と増えた</li>
+<li>(イ) ずっと5%で変わらない</li>
+<li>(ウ) 80%→23%→8% と減った</li>
+</ul>
+<p><strong>A4.</strong> 「旧世界ザル vs 新世界ザルの体重差は効果量 d=4.40、保護区の内外の差は d=0.18」。ここから言えることは？</p>
+<ul>
+<li>(ア) p値さえ小さければ効果量は見なくてよい</li>
+<li>(イ) 有意であることと効果が大きいことは別で、効果量も見る必要がある</li>
+<li>(ウ) d が小さいほど効果が大きい</li>
+</ul>
+<hr />
+<h3 id="bai60">パートB：記述問題（AIフィードバック対象・60点）<a class="headerlink" href="#bai60" title="Permanent link">&para;</a></h3>
+<div class="admonition warning">
+<p class="admonition-title">【全記述に共通・重要】自分の出力を引用すること</p>
+<p>記述には、今日のColabで確認した数値を最低1つ引用すること（例：「n=500で有意割合80%」「旧世界 vs 新世界の効果量d=4.40」「p=8.4×10⁻²⁷」）。<strong>引用がない記述は満点になりません。</strong></p>
+</div>
+<p><strong>B1.（30点）</strong> あるニュースが次のように報じた。</p>
+<blockquote>
+<p>「サプリXを飲んだ群は飲まない群より体重が<strong>0.2kg</strong>多く減り、<strong>統計的に有意（p&lt;0.01）</strong>だった。だからサプリXには<strong>大きなダイエット効果</strong>がある。」</p>
+</blockquote>
+<p>この主張の<strong>どこが問題か</strong>を、今日学んだ「p値」「効果量」「サンプルサイズ」の観点から指摘しなさい。（ヒント：p&lt;0.01 は何を意味し、何を意味しないか。0.2kgは大きいか）</p>
+<p><strong>B2.（30点）</strong> 「t検定で p&lt;0.05 が出た。これで帰無仮説が間違いだと<strong>証明</strong>できた」。この言い方の、<strong>言い過ぎ</strong>な点を説明しなさい。p値と「証明」、第一種の誤り（偽陽性）の言葉を使うこと。</p>
+<blockquote>
+<p>目安：B1・B2あわせて350〜550字。<strong>自分の言葉</strong>で書くこと。</p>
+</blockquote>
+<div class="admonition abstract">
+<p class="admonition-title">次回予告</p>
+<p>第9回「仮説検定(2)：分散分析（ANOVA）」。3つ以上の群を比べるとき、t検定を繰り返すと何が起きるか。偽陽性が爆発する罠と、その回避法へ。</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  ページトップへ戻る
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="フッター" >
+        
+          
+          <a href="../07_estimation/" class="md-footer__link md-footer__link--prev" aria-label="前: 第07回 推定と信頼区間">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                前
+              </span>
+              <div class="md-ellipsis">
+                第07回 推定と信頼区間
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../09_anova/" class="md-footer__link md-footer__link--next" aria-label="次: 第09回 分散分析ANOVA">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                次
+              </span>
+              <div class="md-ellipsis">
+                第09回 分散分析ANOVA
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.instant", "navigation.tracking", "navigation.top", "navigation.footer", "search.suggest", "search.highlight", "content.code.copy", "toc.follow"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u30b3\u30d4\u30fc\u3057\u307e\u3057\u305f", "clipboard.copy": "\u30af\u30ea\u30c3\u30d7\u30dc\u30fc\u30c9\u3078\u30b3\u30d4\u30fc", "search.result.more.one": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3082\u30461\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.more.other": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3042\u3068#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.none": "\u4f55\u3082\u898b\u3064\u304b\u308a\u307e\u305b\u3093\u3067\u3057\u305f", "search.result.one": "1\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.other": "#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.placeholder": "\u691c\u7d22\u30ad\u30fc\u30ef\u30fc\u30c9\u3092\u5165\u529b\u3057\u3066\u304f\u3060\u3055\u3044", "search.result.term.missing": "\u691c\u7d22\u306b\u542b\u307e\u308c\u306a\u3044", "select.version": "\u30d0\u30fc\u30b8\u30e7\u30f3\u5207\u308a\u66ff\u3048"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

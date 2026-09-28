@@ -1,0 +1,1315 @@
+
+<!doctype html>
+<html lang="ja" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="北星学園大学「統計学Ⅰ（B）」2026年度 後期 授業資料">
+      
+      
+        <meta name="author" content="小野原 彩香">
+      
+      
+        <link rel="canonical" href="https://aonoa68.github.io/toukei-1/11_aic/">
+      
+      
+        <link rel="prev" href="../10_regression/">
+      
+      
+        <link rel="next" href="../12_bayes/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>第11回 モデル選択とAIC - 統計学Ⅰ</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#11-aic" class="md-skip">
+          コンテンツにスキップ
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="ヘッダー">
+    <a href=".." title="統計学Ⅰ" class="md-header__button md-logo" aria-label="統計学Ⅰ" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            統計学Ⅰ
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              第11回 モデル選択とAIC
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="ダークモードに切り替え"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="ダークモードに切り替え" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="ライトモードに切り替え"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="ライトモードに切り替え" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="検索" placeholder="検索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="検索">
+        
+        <button type="reset" class="md-search__icon md-icon" title="クリア" aria-label="クリア" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            検索を初期化
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="ナビゲーション" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="統計学Ⅰ" class="md-nav__button md-logo" aria-label="統計学Ⅰ" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    統計学Ⅰ
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ホーム
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01_guidance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第01回 直感の敗北
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02_representative_values/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第02回 代表値の嘘
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_variability/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第03回 ばらつき
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04_python_intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第04回 Python入門
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05_correlation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第05回 相関と因果
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06_sampling_clt/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第06回 標本とCLT
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07_estimation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第07回 推定と信頼区間
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08_ttest/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第08回 仮説検定とt検定
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09_anova/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第09回 分散分析ANOVA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10_regression/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第10回 回帰分析
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第11回 モデル選択とAIC
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第11回 モデル選択とAIC
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        この回のゴール
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0. フック
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 過学習を、目で見る
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-aic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. AIC ―― テストデータ無しで「予測の良さ」を見積もる
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. AIC ―― テストデータ無しで「予測の良さ」を見積もる">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3つのモデルを比べる
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-aic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. AICの使い方の作法
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        まとめ
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#moodle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        今日の課題（Moodle提出）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="今日の課題（Moodle提出）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a10-440" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        パートA：選択問題（自動採点・各10点 ×4＝40点）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bai60" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        パートB：記述問題（AIフィードバック対象・60点）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12_bayes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第12回 ベイズ統計の入り口
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13_pca/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第13回 多変量解析PCA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../14_synthesis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第14回 総括
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        この回のゴール
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0. フック
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 過学習を、目で見る
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-aic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. AIC ―― テストデータ無しで「予測の良さ」を見積もる
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. AIC ―― テストデータ無しで「予測の良さ」を見積もる">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3つのモデルを比べる
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-aic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. AICの使い方の作法
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        まとめ
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#moodle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        今日の課題（Moodle提出）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="今日の課題（Moodle提出）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a10-440" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        パートA：選択問題（自動採点・各10点 ×4＝40点）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bai60" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        パートB：記述問題（AIフィードバック対象・60点）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="11-aic">第11回　モデル選択とAIC<a class="headerlink" href="#11-aic" title="Permanent link">&para;</a></h1>
+<p><strong>12/15（火）Ⅱ講 10:35〜12:15・B402教室</strong></p>
+<blockquote>
+<p>当てはまりの良さ vs 複雑さ ―― オッカムの剃刀の定量化</p>
+</blockquote>
+<hr />
+<!-- LINKS:START -->
+<div class="admonition info">
+<p class="admonition-title">今日のリンク</p>
+<ul>
+<li><a href="../slides/11.html">📊 スライドを開く</a></li>
+<li><a href="https://colab.research.google.com/github/aonoa68/toukei-1/blob/main/colab/11_aic.ipynb">📓 Colabノートを開く（11_aic.ipynb）</a></li>
+<li><a href="https://moodle.hokusei.ac.jp/mod/assign/view.php?id=990632">📝 課題を提出する（Moodle・第11回）</a></li>
+<li>課題の本文は<strong>このページの末尾</strong>にあります</li>
+</ul>
+</div>
+<!-- LINKS:END -->
+
+<div class="admonition tip">
+<p class="admonition-title">考え方をガイドで確かめる</p>
+<p>この回の考え方は、統計の考え方ガイドの<a href="https://aonoa68.github.io/teaching/guide/regression/">「回帰とモデル」</a>でも解説しています。霊長類のデータを動かしながら確かめられます。</p>
+</div>
+<h2 id="_1">この回のゴール<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<ul>
+<li>過学習（手元に合わせすぎて未知データに弱くなる）を説明できる</li>
+<li>AICの考え方（当てはまり ＋ 複雑さのペナルティ）を理解し、モデル比較に使える</li>
+<li>「R²最大のモデル」と「AIC最小のモデル」が違うことを知る</li>
+<li><strong>発展</strong>：<span class="arithmatex">\( -2\log L \)</span> がなぜ残差平方和で書けるのかを導き、ペナルティ <span class="arithmatex">\( 2k \)</span> が何を補正しているかを説明できる</li>
+</ul>
+<p>到達目標との対応：<strong>G4（AICでモデル選択）</strong>。</p>
+<hr />
+<h2 id="0">0. フック<a class="headerlink" href="#0" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>変数を増やせば R² は上がり続ける（第10回）。
+じゃあ思いつく変数を全部入れればいい？　それで“未来”は当たるの？</p>
+</blockquote>
+<hr />
+<h2 id="1">1. 過学習を、目で見る<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
+<p>データを <strong>訓練用（7割）</strong> と <strong>テスト用（3割）</strong> に分ける。訓練用だけでモデルを作り、見せていないテスト用でどれだけ予測できるかを測る。本物の変数に「でたらめ列」を足していくと：</p>
+<ul>
+<li><strong>訓練R²</strong>（手元への当てはまり）：でたらめを足すほど <strong>上がり続ける</strong>（でたらめ0本で 0.748、20本で 0.809）</li>
+<li><strong>テスト誤差 RMSE</strong>（未知データの予測のズレ・小さいほど良い）：でたらめを足すほど <strong>悪化していく</strong>（0.474 → 0.541）</li>
+</ul>
+<div class="admonition danger">
+<p class="admonition-title">これが過学習</p>
+<p>当てはまり（訓練R²）は上がり続けるのに、予測（テスト誤差）は悪化していく。
+手元のデータに合わせすぎて、未知のデータに弱くなる。
+<strong>「当てはまりの良さ（R²）」と「予測の良さ」は別物。R²を最大化してはいけない。</strong></p>
+</div>
+<hr />
+<h2 id="2-aic">2. AIC ―― テストデータ無しで「予測の良さ」を見積もる<a class="headerlink" href="#2-aic" title="Permanent link">&para;</a></h2>
+<p>毎回データを分けるのは大変。<strong>AIC（赤池情報量規準）</strong> は、<strong>手元のデータだけ</strong>から予測の良さを見積もる指標。</p>
+<div class="arithmatex">\[ \text{AIC} = \underbrace{-2 \times (\text{当てはまりの良さ})}_{\text{良いほど小}} + \underbrace{2 \times (\text{パラメータの数})}_{\text{複雑さのペナルティ}} \]</div>
+<ul>
+<li>当てはまりが良いほど第1項が小さい（AIC下がる）</li>
+<li>変数を増やすほど第2項が大きい（AIC上がる＝ペナルティ）</li>
+<li><strong>AICが小さいモデルほど良い</strong>＝「当てはまり」と「複雑さ」のバランスが最良</li>
+</ul>
+<p>これは <strong>オッカムの剃刀</strong>（同じ説明力なら単純なほうを選べ）の定量化だ。</p>
+<details class="note" open="open">
+<summary>導出①：なぜ「当てはまりの良さ」を残差平方和で測ってよいのか</summary>
+<p>第1項の <span class="arithmatex">\( L \)</span> は<strong>尤度</strong>、つまり「そのモデルのもとで、手元のデータが得られる確率密度」である。</p>
+<p>誤差が平均 0・分散 <span class="arithmatex">\( \sigma^2 \)</span> の正規分布に従うと仮定すると、各観測の確率密度は</p>
+<div class="arithmatex">\[ f(y_i) \;=\; \frac{1}{\sqrt{2\pi\sigma^2}}\exp\!\left(-\frac{e_i^{\,2}}{2\sigma^2}\right), \qquad e_i = y_i - \hat{y}_i \]</div>
+<p>観測が独立なら尤度はこれらの<strong>積</strong>になる。対数を取ると積は和に変わるので、</p>
+<div class="arithmatex">\[ \log L \;=\; -\frac{n}{2}\log(2\pi) \;-\; \frac{n}{2}\log \sigma^2 \;-\; \frac{1}{2\sigma^2}\sum_{i=1}^{n} e_i^{\,2} \]</div>
+<p>ここで <span class="arithmatex">\( \sigma^2 \)</span> を、データから推定した値 <span class="arithmatex">\( \hat{\sigma}^2 = RSS/n \)</span>（<span class="arithmatex">\( RSS=\sum e_i^{\,2} \)</span> は残差平方和）で置き換える。すると最後の項はちょうど <span class="arithmatex">\( -n/2 \)</span> という定数になり、</p>
+<div class="arithmatex">\[ -2\log L \;=\; n\log\!\left(\frac{RSS}{n}\right) \;+\; n\bigl(\log 2\pi + 1\bigr) \]</div>
+<p>右辺の第2項は n だけで決まる。<strong>同じデータで比べるかぎり、どのモデルでも同じ値</strong>なので、モデル間の差を取ると消えてしまう。残るのは <span class="arithmatex">\( n\log(RSS/n) \)</span> だけである。</p>
+<p><strong>これが、当てはまりの良さを残差平方和で測ってよい理由</strong>だ。RSS が小さいほど <span class="arithmatex">\( -2\log L \)</span> が小さく、AIC も小さくなる。第10回の最小二乗法（RSS を最小にする）と、ここでの最尤法が、正規分布の仮定のもとで同じものになっていることも見てとれる。</p>
+<p><strong>数値で確かめる</strong>：M2（体重+集団+密度、n=137）で、統計ソフトが出す対数尤度から計算した <span class="arithmatex">\( -2\log L \)</span> は 176.1602。RSS から上の式で手計算しても 176.1602 で、一致する。</p>
+<div class="admonition note">
+<p class="admonition-title">この式は『誤差が正規分布』を使っている</p>
+<p><span class="arithmatex">\( -2\log L = n\log(RSS/n) + \text{定数} \)</span> という形になるのは、誤差を正規分布と仮定したからである。別の分布を仮定すれば、当てはまりの測り方も変わる。AIC そのものは正規分布に限らず使えるが、そのときの <span class="arithmatex">\( \log L \)</span> は<strong>その分布で計算し直す</strong>必要がある。</p>
+</div>
+<p><strong>使った数学</strong>：指数関数と対数の性質（微I）。独立な事象の確率の積（統計学Ⅱ 第2回）。</p>
+</details>
+<details class="note" open="open">
+<summary>導出②：ペナルティ <span class="arithmatex">\( 2k \)</span> は、何を補正しているのか</summary>
+<p>本当に知りたいのは「<strong>まだ見ていないデータ</strong>にどれだけ当たるか」である。ところが手元にあるのは1組のデータだけで、そこからパラメータを推定し、<strong>その同じデータで</strong>当てはまりを測っている。</p>
+<p>このやり方では、当てはまりは必ず<strong>実力より良く出る</strong>。推定の段階で、そのデータにたまたま乗っていた偶然のでこぼこにまで合わせてしまうからだ。パラメータが多いほど、合わせられる余地は増える。第10回で、でたらめな乱数を足すだけで <span class="arithmatex">\( R^2 \)</span> が上がったのは、これが起きていたからである。</p>
+<div class="arithmatex">\[ \underbrace{-2\log L(\hat{\theta})}_{\text{手元での当てはまり（楽観的）}} \;\approx\; \underbrace{\text{未知データでの当てはまり}}_{\text{本当に知りたい量}} \;-\; \underbrace{2k}_{\text{楽観のぶん}} \]</div>
+<p>赤池弘次が示したのは、<strong>この「楽観のぶん」が、標本が大きいときにはパラメータ数 k でおよそ書け、<span class="arithmatex">\( -2\log L \)</span> の尺度では <span class="arithmatex">\( 2k \)</span> になる</strong>ということである。だから手元の当てはまりに <span class="arithmatex">\( 2k \)</span> を足し戻せば、未知データでの当てはまりの見積もりが得られる。</p>
+<div class="arithmatex">\[ \text{AIC} \;=\; -2\log L(\hat{\theta}) \;+\; 2k \]</div>
+<p>ペナルティは「複雑なモデルは嫌いだ」という好みではない。<strong>手元のデータで測ったせいで生じた偏りを、差し引いているだけ</strong>である。</p>
+<div class="admonition warning">
+<p class="admonition-title">なぜちょうど <span class="arithmatex">\( 2k \)</span> なのかは、この科目では導かない</p>
+<p>この <span class="arithmatex">\( 2k \)</span> は、カルバック・ライブラー情報量という「2つの分布のズレ」を測る量を、標本が大きいときに展開して出てくる近似である。その導出には多変数のテイラー展開と行列の計算が必要で、<strong>この授業で扱う統計数理の範囲外</strong>になる。ここでは「楽観のぶんがパラメータ数で書ける」という筋道までを確認するにとどめる。</p>
+<p>また「標本が大きいとき」の近似なので、<strong>n が小さいと補正が足りない</strong>。そのときは AICc という修正版を使う。</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">k に分散 <span class="arithmatex">\( \sigma^2 \)</span> を数えるかどうか</p>
+<p>パラメータ数 k に、切片や傾きだけでなく誤差分散 <span class="arithmatex">\( \sigma^2 \)</span> を数えるかは流儀が分かれ、統計ソフトによって AIC の値が 2 だけずれることがある。ただし <span class="arithmatex">\( \sigma^2 \)</span> はどのモデルにも1つずつあるので、<strong>同じ流儀で揃えて比べるかぎり、モデル間の差は変わらない</strong>。AIC を差で読む（次節）のは、こうした事情のためでもある。</p>
+</div>
+<p><strong>使った数学</strong>：期待値とバイアスの考え方（第7回の不偏性と同じ発想）。厳密な導出には多変数の近似（微II以降）。</p>
+</details>
+<h3 id="3">3つのモデルを比べる<a class="headerlink" href="#3" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>モデル</th>
+<th style="text-align: right;">変数の数</th>
+<th style="text-align: right;">R²（当てはまり）</th>
+<th style="text-align: right;">AIC（小さいほど良い）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>M1 体重のみ</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.468</td>
+<td style="text-align: right;">281.4</td>
+</tr>
+<tr>
+<td>M2 体重+集団+密度</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">0.746</td>
+<td style="text-align: right;"><strong>184.2（最小）</strong></td>
+</tr>
+<tr>
+<td>M3 M2+でたらめ10本</td>
+<td style="text-align: right;">13</td>
+<td style="text-align: right;"><strong>0.775（最大）</strong></td>
+<td style="text-align: right;">187.7</td>
+</tr>
+</tbody>
+</table>
+<p><strong>R²が最大なのは M3（でたらめ入り、0.775）。でもAICが最小＝採用すべきは M2（184.2）。一致しない！</strong></p>
+<ul>
+<li>M1→M2：本物の変数（集団サイズ・個体群密度）を足したらAICは 281 → 184 と大きく<strong>下がった</strong>（役立つ変数は歓迎）</li>
+<li>M2→M3：でたらめを足したらR²は上がったがAICは 184 → 188 と<strong>上がった</strong>（中身のない複雑さは罰する）</li>
+</ul>
+<p>AICは「R²の罠」に引っかからず、過学習しないモデルを選んでくれる。</p>
+<hr />
+<h2 id="3-aic">3. AICの使い方の作法<a class="headerlink" href="#3-aic" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>AICは相対指標</strong>。<strong>絶対値そのものに意味はない</strong>（184.2という数字単体は何も語らない）。<strong>モデル間の差</strong>で比べる。</li>
+<li>差が大きいほど優劣は明確（目安：差が2以上で意味あり、10以上で決定的）。今回の M2 と M3 の差は 3.5 なので「M2のほうが良い」と言える程度、M1 と M2 の差は 97 でこちらは決定的である。</li>
+<li>比べるモデルは<strong>同じデータ・同じ目的変数</strong>で作ること。</li>
+<li>AICが小さい＝予測が良いの見積もりであって、<strong>真のモデルを当てる保証ではない</strong>。候補の中での相対的ベスト。</li>
+</ul>
+<details class="note" open="open">
+<summary>導出③：「差が2」「差が10」は、どこから来た数字か</summary>
+<p>上の「差が2以上で意味あり、10以上で決定的」は、<strong>理論から一意に決まる境目ではない</strong>。元になっているのは、AIC の差から計算する次の量である。</p>
+<div class="arithmatex">\[ w_i \;\propto\; \exp\!\left(-\frac{\Delta_i}{2}\right), \qquad \Delta_i = \text{AIC}_i - \text{AIC}_{\text{最小}} \]</div>
+<p>差 <span class="arithmatex">\( \Delta \)</span> が 2 なら <span class="arithmatex">\( e^{-1} = 0.37 \)</span>、差が 10 なら <span class="arithmatex">\( e^{-5} = 0.0067 \)</span>。つまり「差が2のモデルは最良モデルの4割弱の重み、差が10なら1%未満」という<strong>連続的な目盛り</strong>であって、2 や 10 のところに崖があるわけではない。</p>
+<p><strong>「差が2以上なら意味がある」は、この連続的な目盛りを現場で使いやすいように区切った経験則である。</strong> 理論的な帰結ではない。だから、差が 1.9 と 2.1 で結論を反転させるような使い方をしてはいけない。差が小さいときの正しい態度は、「どちらとも決められない」と言うことである。</p>
+<p><strong>使った数学</strong>：指数関数（微I）。</p>
+</details>
+<div class="admonition warning">
+<p class="admonition-title">よくある誤り</p>
+<p>「AICの絶対値が小さい/大きいことに意味がある」「変数は多いほど良い」――どちらも誤り。
+AICは<strong>差</strong>で比べる相対指標で、複雑さには<strong>ペナルティ</strong>がかかる。</p>
+</div>
+<hr />
+<h2 id="_2">まとめ<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>概念</th>
+<th>ひとこと</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>過学習</td>
+<td>手元に合わせすぎて未知データに弱くなる（訓練R²↑なのにテスト誤差↑）</td>
+</tr>
+<tr>
+<td>当てはまり vs 予測</td>
+<td>R²最大化はダメ。狙うのは未知データの予測</td>
+</tr>
+<tr>
+<td>AIC</td>
+<td>−2×当てはまり ＋ 2×パラメータ数。小さいほど良い</td>
+</tr>
+<tr>
+<td>オッカムの剃刀</td>
+<td>同じ説明力なら単純なモデルを選ぶ。AICはその定量化</td>
+</tr>
+<tr>
+<td>❌ 誤り</td>
+<td>AICの絶対値に意味がある／変数は多いほど良い</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>R²最大のモデルとAIC最小のモデルは違う。</strong>
+良いモデルは「当てはまり」ではなく「当てはまりと複雑さのバランス」で選ぶ。
+<strong>手元のデータによく合う説明ほど正しく思える ―― これが第1回の確証バイアスの、モデル選択における現れ方である。AICは「単純なほうを選べ」という規律を、好みではなく数式で与える。</strong></p>
+</blockquote>
+<hr />
+<h2 id="moodle">今日の課題（Moodle提出）<a class="headerlink" href="#moodle" title="Permanent link">&para;</a></h2>
+<p><strong>配点：100点（自動採点40点 ＋ 記述60点）／ 提出先：Moodle</strong></p>
+<p>Colab <code>11_aic.ipynb</code> を実行したうえで答えること。</p>
+<hr />
+<h3 id="a10-440">パートA：選択問題（自動採点・各10点 ×4＝40点）<a class="headerlink" href="#a10-440" title="Permanent link">&para;</a></h3>
+<p><strong>A1.</strong> 過学習が起きると、訓練データへの当てはまり（訓練R²）とテストデータの予測誤差はそれぞれどうなるか。</p>
+<ul>
+<li>(ア) 訓練R²は上がり続けるが、テスト誤差は悪化していく</li>
+<li>(イ) 両方とも良くなり続ける</li>
+<li>(ウ) 訓練R²が下がり、テスト誤差も下がる</li>
+</ul>
+<p><strong>A2.</strong> AIC（赤池情報量規準）の説明として<strong>最も正しい</strong>のは？</p>
+<ul>
+<li>(ア) 当てはまりの良さに、複雑さ（変数の多さ）のペナルティを足した指標で、<strong>小さいほど良い</strong></li>
+<li>(イ) 大きいほど良いモデルだ</li>
+<li>(ウ) R²と同じもの</li>
+</ul>
+<p><strong>A3.</strong> 3モデルで R²最大は「M3（でたらめ入り）」、AIC最小は「M2」だった。<strong>採用すべき</strong>モデルは？</p>
+<ul>
+<li>(ア) R²が最大の M3　(イ) AICが最小の M2　(ウ) 変数が最も多い M3</li>
+</ul>
+<p><strong>A4.</strong> AICの使い方として<strong>正しい</strong>のは？</p>
+<ul>
+<li>(ア) AICの絶対値が小さいほど、それ自体に意味がある</li>
+<li>(イ) AICは相対指標で、同じデータで作ったモデル間の<strong>差</strong>で比べる</li>
+<li>(ウ) 変数を増やせばAICは必ず下がる</li>
+</ul>
+<hr />
+<h3 id="bai60">パートB：記述問題（AIフィードバック対象・60点）<a class="headerlink" href="#bai60" title="Permanent link">&para;</a></h3>
+<div class="admonition warning">
+<p class="admonition-title">【全記述に共通・重要】自分の出力を引用すること</p>
+<p>記述には、今日のColabで確認した数値を最低1つ引用すること（例：「M2のAICは184.2で最小」「M3はR²最大0.775だがAICは187.7」「でたらめを足すと訓練R²↑なのにテスト誤差↑」）。<strong>引用がない記述は満点になりません。</strong></p>
+</div>
+<p><strong>B1.（30点）</strong> 後輩が「3つのモデルを比べたら、R²はモデルCが一番高かった。だからCを使うべきだ」と言っている。<strong>なぜそれだけでは決められないのか</strong>、過学習とAICの観点から説明し、<strong>どう判断すべきか</strong>を述べなさい。</p>
+<p><strong>B2.（30点）</strong> 「変数はとにかくたくさん入れたほうが良いモデルになる」という考えは、なぜ間違いか。今日見た<strong>過学習</strong>（当てはまりと予測の食い違い）と、<strong>AICのペナルティ</strong>の両方を使って説明しなさい。あわせて「オッカムの剃刀」が何を言っているかにも触れること。</p>
+<blockquote>
+<p>目安：B1・B2あわせて350〜550字。<strong>自分の言葉</strong>で書くこと。</p>
+</blockquote>
+<div class="admonition abstract">
+<p class="admonition-title">次回予告</p>
+<p>第12回「ベイズ統計の入り口」。これまでの頻度論とは違う、もう一つの確率の見方。データで信念を更新する、ベイズの考え方へ。</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  ページトップへ戻る
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="フッター" >
+        
+          
+          <a href="../10_regression/" class="md-footer__link md-footer__link--prev" aria-label="前: 第10回 回帰分析">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                前
+              </span>
+              <div class="md-ellipsis">
+                第10回 回帰分析
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../12_bayes/" class="md-footer__link md-footer__link--next" aria-label="次: 第12回 ベイズ統計の入り口">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                次
+              </span>
+              <div class="md-ellipsis">
+                第12回 ベイズ統計の入り口
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.instant", "navigation.tracking", "navigation.top", "navigation.footer", "search.suggest", "search.highlight", "content.code.copy", "toc.follow"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u30b3\u30d4\u30fc\u3057\u307e\u3057\u305f", "clipboard.copy": "\u30af\u30ea\u30c3\u30d7\u30dc\u30fc\u30c9\u3078\u30b3\u30d4\u30fc", "search.result.more.one": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3082\u30461\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.more.other": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3042\u3068#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.none": "\u4f55\u3082\u898b\u3064\u304b\u308a\u307e\u305b\u3093\u3067\u3057\u305f", "search.result.one": "1\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.other": "#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.placeholder": "\u691c\u7d22\u30ad\u30fc\u30ef\u30fc\u30c9\u3092\u5165\u529b\u3057\u3066\u304f\u3060\u3055\u3044", "search.result.term.missing": "\u691c\u7d22\u306b\u542b\u307e\u308c\u306a\u3044", "select.version": "\u30d0\u30fc\u30b8\u30e7\u30f3\u5207\u308a\u66ff\u3048"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

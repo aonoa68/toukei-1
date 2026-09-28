@@ -1,0 +1,1471 @@
+
+<!doctype html>
+<html lang="ja" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="北星学園大学「統計学Ⅰ（B）」2026年度 後期 授業資料">
+      
+      
+        <meta name="author" content="小野原 彩香">
+      
+      
+        <link rel="canonical" href="https://aonoa68.github.io/toukei-1/10_regression/">
+      
+      
+        <link rel="prev" href="../09_anova/">
+      
+      
+        <link rel="next" href="../11_aic/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>第10回 回帰分析 - 統計学Ⅰ</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#10" class="md-skip">
+          コンテンツにスキップ
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="ヘッダー">
+    <a href=".." title="統計学Ⅰ" class="md-header__button md-logo" aria-label="統計学Ⅰ" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            統計学Ⅰ
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              第10回 回帰分析
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="ダークモードに切り替え"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="ダークモードに切り替え" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="ライトモードに切り替え"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="ライトモードに切り替え" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="検索" placeholder="検索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="検索">
+        
+        <button type="reset" class="md-search__icon md-icon" title="クリア" aria-label="クリア" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            検索を初期化
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="ナビゲーション" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="統計学Ⅰ" class="md-nav__button md-logo" aria-label="統計学Ⅰ" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    統計学Ⅰ
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ホーム
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01_guidance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第01回 直感の敗北
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02_representative_values/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第02回 代表値の嘘
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_variability/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第03回 ばらつき
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04_python_intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第04回 Python入門
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05_correlation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第05回 相関と因果
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06_sampling_clt/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第06回 標本とCLT
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07_estimation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第07回 推定と信頼区間
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08_ttest/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第08回 仮説検定とt検定
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09_anova/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第09回 分散分析ANOVA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第10回 回帰分析
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第10回 回帰分析
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        この回のゴール
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0. フック
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 単回帰
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. 単回帰">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        両対数のときの傾きは「何倍になるか」を表す
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 重回帰 ―― 複数の説明変数で
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-r2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. R²の罠 ―― 変数を足せば、必ず上がる
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 残差を見る習慣 ／ 外挿の危険
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. 残差を見る習慣 ／ 外挿の危険">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        残差は「外れ」ではなく「発見」でもある
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        外挿の危険
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        まとめ
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#moodle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        今日の課題（Moodle提出）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="今日の課題（Moodle提出）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a10-440" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        パートA：選択・数値問題（自動採点・各10点 ×4＝40点）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bai60" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        パートB：記述問題（AIフィードバック対象・60点）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11_aic/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第11回 モデル選択とAIC
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12_bayes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第12回 ベイズ統計の入り口
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13_pca/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第13回 多変量解析PCA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../14_synthesis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第14回 総括
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        この回のゴール
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0. フック
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 単回帰
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. 単回帰">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        両対数のときの傾きは「何倍になるか」を表す
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 重回帰 ―― 複数の説明変数で
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-r2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. R²の罠 ―― 変数を足せば、必ず上がる
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 残差を見る習慣 ／ 外挿の危険
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. 残差を見る習慣 ／ 外挿の危険">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        残差は「外れ」ではなく「発見」でもある
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        外挿の危険
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        まとめ
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#moodle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        今日の課題（Moodle提出）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="今日の課題（Moodle提出）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a10-440" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        パートA：選択・数値問題（自動採点・各10点 ×4＝40点）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bai60" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        パートB：記述問題（AIフィードバック対象・60点）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="10">第10回　回帰分析：単回帰と重回帰<a class="headerlink" href="#10" title="Permanent link">&para;</a></h1>
+<p><strong>12/8（火）Ⅱ講 10:35〜12:15・B402教室</strong></p>
+<blockquote>
+<p>データを「数式（モデル）」で説明する ―― ただし、当てはまりの良さは良いモデルの証明ではない</p>
+</blockquote>
+<hr />
+<!-- LINKS:START -->
+<div class="admonition info">
+<p class="admonition-title">今日のリンク</p>
+<ul>
+<li><a href="../slides/10.html">📊 スライドを開く</a></li>
+<li><a href="https://colab.research.google.com/github/aonoa68/toukei-1/blob/main/colab/10_regression.ipynb">📓 Colabノートを開く（10_regression.ipynb）</a></li>
+<li><a href="https://moodle.hokusei.ac.jp/mod/assign/view.php?id=990631">📝 課題を提出する（Moodle・第10回）</a></li>
+<li>課題の本文は<strong>このページの末尾</strong>にあります</li>
+</ul>
+</div>
+<!-- LINKS:END -->
+
+<div class="admonition tip">
+<p class="admonition-title">考え方をガイドで確かめる</p>
+<p>この回の考え方は、統計の考え方ガイドの<a href="https://aonoa68.github.io/teaching/guide/regression/">「回帰とモデル」</a>でも解説しています。霊長類のデータを動かしながら確かめられます。</p>
+</div>
+<h2 id="_1">この回のゴール<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<ul>
+<li>単回帰の式（切片・傾き）と決定係数 R² を読める</li>
+<li>重回帰で「他を一定にしたときの関連（統制）」を理解する</li>
+<li><strong>R²の罠・係数の罠・外挿の罠</strong>を知り、回帰結果を批判的に解釈できる</li>
+<li><strong>発展</strong>：最小二乗法から傾き <span class="arithmatex">\( b=S_{xy}/S_{xx} \)</span> と切片 <span class="arithmatex">\( a=\bar{y}-b\bar{x} \)</span> を導き、単回帰では <span class="arithmatex">\( R^2=r^2 \)</span> になることを、自分で示せる</li>
+</ul>
+<p>到達目標との対応：<strong>G3（Pythonで解析）・G2（批判的検証）</strong>。</p>
+<hr />
+<h2 id="0">0. フック<a class="headerlink" href="#0" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>「<strong>草食か雑食か</strong>が分かれば、その種の<strong>行動圏の広さ</strong>を予測できるだろうか？」</p>
+</blockquote>
+<p>散布図に直線を引いて予測してみると――<strong>R² = 0.0001</strong>。栄養段階では行動圏をまったく説明できなかった。</p>
+<p>では<strong>体重</strong>なら？</p>
+<div class="admonition note">
+<p class="admonition-title">今日も対数で扱う</p>
+<p>体重も行動圏も種によって数千倍違う。第3回・第5回と同じ理由で、両方とも対数の目盛りで扱う。</p>
+</div>
+<hr />
+<h2 id="1">1. 単回帰<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
+<p>体重で行動圏を予測すると（n=153種）：</p>
+<div class="arithmatex">\[ \log(\text{行動圏}) \approx -3.883 + 0.933 \times \log(\text{体重}) \qquad (R^2 = 0.462) \]</div>
+<ul>
+<li><strong>回帰直線</strong>：データに最もよく当てはまる直線（最小二乗法＝縦のズレの二乗和を最小に）</li>
+<li><strong>切片 = −3.883</strong>：log体重が0（＝1g）のときの予測値</li>
+<li><strong>決定係数 R² = 0.462</strong>：行動圏のばらつきの約46%をモデルが説明</li>
+</ul>
+<details class="note" open="open">
+<summary>導出①：傾きと切片は、どこから出てくるのか（最小二乗法）</summary>
+<p>直線 <span class="arithmatex">\( y = a + bx \)</span> を引くとき、「当てはまりが良い」を<strong>縦のズレの二乗和が最小</strong>と決める。この決め方が最小二乗法である。</p>
+<div class="arithmatex">\[ Q(a,b) \;=\; \sum_{i=1}^{n}\bigl(y_i - a - b x_i\bigr)^2 \]</div>
+<p>まず a について。<span class="arithmatex">\( Q \)</span> を a で微分して 0 とおくと <span class="arithmatex">\( -2\sum (y_i - a - bx_i) = 0 \)</span>、両辺を n で割って</p>
+<div class="arithmatex">\[ a \;=\; \bar{y} - b\bar{x} \]</div>
+<p>次に b について同じことをすると <span class="arithmatex">\( -2\sum x_i (y_i - a - bx_i) = 0 \)</span>。ここに <span class="arithmatex">\( a=\bar{y}-b\bar{x} \)</span> を入れて整理すると、</p>
+<div class="arithmatex">\[ b \;=\; \frac{\sum (x_i-\bar{x})(y_i-\bar{y})}{\sum (x_i-\bar{x})^2} \;=\; \frac{S_{xy}}{S_{xx}} \]</div>
+<p><strong>傾きは「x と y の共分散 ÷ x の分散」</strong>である。微分を知らなくてもよい。<span class="arithmatex">\( Q \)</span> は b について下に凸の二次式なので、<strong>平方完成して頂点を読めば同じ答えが出る</strong>。</p>
+<p><span class="arithmatex">\( a=\bar{y}-b\bar{x} \)</span> を直線の式に戻すと <span class="arithmatex">\( y = \bar{y} + b(x-\bar{x}) \)</span>。x に <span class="arithmatex">\( \bar{x} \)</span> を入れると y は <span class="arithmatex">\( \bar{y} \)</span>。つまり<strong>回帰直線は必ず点 <span class="arithmatex">\( (\bar{x},\bar{y}) \)</span> を通る</strong>。平均の点は、どんなデータでも直線の上にある。</p>
+<p><strong>数値で確かめる</strong>：この回のデータ（n=153種、両対数）で <span class="arithmatex">\( S_{xy}/S_{xx} = 0.9333 \)</span>、<span class="arithmatex">\( \bar{y}-b\bar{x} = -3.8830 \)</span>。本文の傾き 0.933・切片 −3.883 に一致する。</p>
+<p><strong>使った数学</strong>：二次式の最小化（微I：偏微分、または平方完成）。総和の記号操作（線I）。</p>
+</details>
+<details class="note" open="open">
+<summary>導出②：単回帰の <span class="arithmatex">\( R^2 \)</span> は、相関係数 r の二乗にすぎない</summary>
+<p>決定係数は「全体のばらつきのうち、モデルが説明できた割合」と定義される。</p>
+<div class="arithmatex">\[ R^2 \;=\; 1 - \frac{\sum (y_i-\hat{y}_i)^2}{\sum (y_i-\bar{y})^2} \;=\; 1 - \frac{SS_{\text{残差}}}{SS_{\text{全体}}} \]</div>
+<p>予測値は導出①より <span class="arithmatex">\( \hat{y}_i = \bar{y} + b(x_i-\bar{x}) \)</span> なので、残差平方和は</p>
+<div class="arithmatex">\[ \sum (y_i-\hat{y}_i)^2 \;=\; \sum \bigl[(y_i-\bar{y}) - b(x_i-\bar{x})\bigr]^2 \;=\; S_{yy} - 2bS_{xy} + b^2 S_{xx} \]</div>
+<p>ここに <span class="arithmatex">\( b=S_{xy}/S_{xx} \)</span> を代入すると、後ろの2項がまとまって</p>
+<div class="arithmatex">\[ \sum (y_i-\hat{y}_i)^2 \;=\; S_{yy} - \frac{S_{xy}^{\,2}}{S_{xx}} \]</div>
+<p>よって</p>
+<div class="arithmatex">\[ R^2 \;=\; 1 - \frac{S_{yy} - S_{xy}^{\,2}/S_{xx}}{S_{yy}} \;=\; \frac{S_{xy}^{\,2}}{S_{xx}S_{yy}} \;=\; r^2 \]</div>
+<p><strong>説明変数が1つのとき、<span class="arithmatex">\( R^2 \)</span> は相関係数 r を二乗しただけのものである。</strong> 第5回で見た r と、今日の <span class="arithmatex">\( R^2 \)</span> は別々の量ではない。</p>
+<p><strong>数値で確かめる</strong>：この回のデータで <span class="arithmatex">\( r = 0.6799 \)</span>、その二乗は 0.4623。本文の <span class="arithmatex">\( R^2 = 0.462 \)</span> に一致する。</p>
+<div class="admonition warning">
+<p class="admonition-title">これは『R² が何を測っているか』を示しただけ</p>
+<p>この導出が言っているのは「<span class="arithmatex">\( R^2 \)</span> は r の二乗である」ということだけで、<strong><span class="arithmatex">\( R^2 \)</span> が高いモデルが正しい、という意味はまったく含まない</strong>。</p>
+<p>しかも説明変数が2つ以上になれば <span class="arithmatex">\( R^2 \)</span> はもう <span class="arithmatex">\( r^2 \)</span> ではなくなり、<strong>変数を足すだけで必ず上がる</strong>ようになる。なぜそうなるかは、次の §3「R²の罠」で見る。</p>
+</div>
+<p><strong>使った数学</strong>：平方の展開と総和（線I）。相関係数の定義（第5回）。</p>
+</details>
+<h3 id="_2">両対数のときの傾きは「何倍になるか」を表す<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<p>傾き <strong>0.933</strong> は、両方を対数にしているので<strong>足し算ではなくかけ算</strong>の関係を意味する。</p>
+<table>
+<thead>
+<tr>
+<th>体重が</th>
+<th>行動圏は</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2倍</td>
+<td>1.9倍</td>
+</tr>
+<tr>
+<td>10倍</td>
+<td><strong>8.6倍</strong></td>
+</tr>
+<tr>
+<td>100倍</td>
+<td>73.5倍</td>
+</tr>
+</tbody>
+</table>
+<p>傾きが1.0ちょうどなら「体重10倍で行動圏も10倍」。0.933はそれよりわずかに小さい ＝ <strong>大きい種ほど体重あたりの行動圏はやや狭い</strong>。</p>
+<p>この傾き（<strong>スケーリング指数</strong>）は生物学では意味のある量として扱われる。「体が大きいほど広い範囲が要る」ことは分かりきっているが、<strong>どういう比率で増えるのか</strong>を1つの数で表せるのが回帰の力である。</p>
+<div class="admonition warning">
+<p class="admonition-title">係数は因果ではない</p>
+<p>「体重10倍で行動圏8.6倍」は<strong>予測上の関連</strong>であって、「体重を増やせば行動圏が広がる」という<strong>因果の保証ではない</strong>（第5回）。観察データの回帰係数を因果効果と読んではいけない。</p>
+</div>
+<hr />
+<h2 id="2">2. 重回帰 ―― 複数の説明変数で<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
+<p>体重だけでなく<strong>集団サイズ</strong>も一緒に使う（n=149種）：</p>
+<div class="arithmatex">\[ \log(\text{行動圏}) \approx -3.358 + 0.568\times\log(\text{体重}) + 0.828\times\log(\text{集団サイズ}) \quad (R^2=0.601) \]</div>
+<p>重回帰では各係数が「<strong>他の変数を一定にしたときの</strong>、その変数の関連」を表す（＝統制）。</p>
+<p>R² が 0.46 → 0.60 に上がった。集団サイズには、体重だけでは説明できない情報がある。</p>
+<div class="admonition success">
+<p class="admonition-title">注目：体重の係数が 0.933 → 0.568 に下がった</p>
+<p>「集団サイズが同じ種どうしで比べたときの、体重の効果」はもっと小さい。単回帰のときの0.933には、<strong>集団サイズの効果が混ざり込んでいた</strong>（大きい種は大きな群れを作りがち）。</p>
+<p>これが第5回でやった<strong>統制</strong>そのものである。<strong>重回帰は、統制を式の中で行う道具でもある。</strong></p>
+</div>
+<p>さらに <code>個体群密度</code> を足すと <strong>R² = 0.746</strong>（n=137種）。個体群密度の係数は <strong>−0.573</strong> で負 ―― 密に住んでいる種ほど、一頭あたりの行動圏は狭い。</p>
+<p>よく当てはまっている ―― ように見える。<strong>ここで立ち止まる。</strong></p>
+<hr />
+<h2 id="3-r2">3. R²の罠 ―― 変数を足せば、必ず上がる<a class="headerlink" href="#3-r2" title="Permanent link">&para;</a></h2>
+<p>ここが今日の核心。<strong>説明変数を足すと、R²は必ず上がる（決して下がらない）。</strong> たとえそれが<strong>まったく無意味な数字</strong>でも。</p>
+<p>行動圏と無関係な「でたらめな乱数の列」を体重に足していくと：</p>
+<table>
+<thead>
+<tr>
+<th>足したでたらめ列</th>
+<th>R²</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0本</td>
+<td>0.462</td>
+</tr>
+<tr>
+<td>1本</td>
+<td>0.472</td>
+</tr>
+<tr>
+<td>5本</td>
+<td>0.501</td>
+</tr>
+<tr>
+<td>20本</td>
+<td>0.509</td>
+</tr>
+<tr>
+<td>50本</td>
+<td><strong>0.665</strong></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition danger">
+<p class="admonition-title">R²が高い ≠ 良いモデル</p>
+<p>中身がゴミの乱数を50本足すだけで、R²は 0.46 → 0.67 に上がった。
+当てはまり（R²）を上げたいだけなら、変数をたくさん入れればいい。だがそれは<strong>手元のデータに合わせすぎた</strong>だけで、<strong>未来の予測は良くならない</strong>。これが <strong>過学習</strong> の入り口。</p>
+<p>しかも今回は n=153種しかない。<strong>データの数に対して変数が多いほど、この効き方は激しくなる。</strong></p>
+<p>§2でR²が0.75まで上がったのを見て「良いモデルだ」と思ったなら ―― いま同じことが起きていないと、どうやって言えるだろうか。</p>
+</div>
+<p>「当てはまりの良さ」と「モデルの複雑さ」をどう釣り合わせるか ―― それが<strong>次回（第11回 AIC）</strong>のテーマ。</p>
+<hr />
+<h2 id="4">4. 残差を見る習慣 ／ 外挿の危険<a class="headerlink" href="#4" title="Permanent link">&para;</a></h2>
+<p><strong>残差</strong>＝実際の値 − 予測値。残差を予測値に対してプロットし、偏った模様がないか確認するのが作法（ランダムに散っていれば良い兆候）。</p>
+<details class="note" open="open">
+<summary>導出③：残差の和が 0 になるのは、偶然ではない</summary>
+<p>導出①で a と b を決めたとき、実は次の2本の式を 0 とおいていた（<span class="arithmatex">\( e_i = y_i - a - bx_i \)</span> は残差）。</p>
+<div class="arithmatex">\[ \sum_{i=1}^{n} e_i \;=\; 0, \qquad \sum_{i=1}^{n} x_i e_i \;=\; 0 \]</div>
+<p>上は a についての条件、下は b についての条件そのものである。つまり<strong>最小二乗法で引いた直線では、残差の和は必ず 0 になり、残差と x の積和も必ず 0 になる</strong>。2本を合わせると <span class="arithmatex">\( \sum (x_i-\bar{x})e_i = 0 \)</span>、すなわち<strong>残差と x は必ず無相関</strong>である。</p>
+<p>ここが大事なところだ。残差と x が無相関であることは、<strong>モデルが良いことの証拠ではない</strong>。どんなに見当違いな直線でも、最小二乗法で引いた以上は必ずそうなる。最初から保証されていることを確認しても、何も分からない。</p>
+<p>だから残差プロットで探すのは「相関があるかどうか」ではない。<strong>直線では捉えられない形</strong>、つまり曲がり・ばらつきの偏り・飛び抜けた点である。これらは残差と x の相関が 0 のままでも、平気で現れる。</p>
+<p><strong>数値で確かめる</strong>：この回の回帰で、残差の和も、残差と log体重 の相関も、絶対値が <span class="arithmatex">\( 10^{-12} \)</span> より小さくなる。どちらも数値計算の丸め誤差の範囲で 0 である（細かい桁は計算環境によって変わる）。</p>
+<p><strong>使った数学</strong>：最小化の条件式（微I）。積和が 0 ＝ 直交（線I）。</p>
+</details>
+<h3 id="_3">残差は「外れ」ではなく「発見」でもある<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p>予測から最も外れているのは <strong>Erythrocebus patas（パタスモンキー）</strong>。8kgの体格から予測される行動圏の <strong>約49倍</strong>（28.2km²）を使っている。</p>
+<p>これはデータの誤りだろうか。<strong>そうではない。</strong>パタスモンキーは森林ではなく<strong>サバンナで地上生活する</strong>霊長類で、散在する食物を求めて広大な範囲を移動することが知られている。</p>
+<div class="admonition success">
+<p class="admonition-title">残差の大きい点は、モデルが捉えていない何かを教えてくれる</p>
+<p>「当てはまりが悪い」で終わらせず、<strong>なぜ外れたのかを見に行く</strong>。そこにこそ、平均的な傾向では見えない現象がある。</p>
+</div>
+<h3 id="_4">外挿の危険<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<p>モデルを当てはめた体重の範囲は <strong>48g 〜 112,589g</strong>。その外を予測してはいけない。</p>
+<table>
+<thead>
+<tr>
+<th>式に入れる体重</th>
+<th>予測される行動圏</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1,000,000 g</td>
+<td>52.1 km²</td>
+<td>1トンの霊長類</td>
+</tr>
+<tr>
+<td>1 g</td>
+<td>0.0001 km²</td>
+<td>1gの霊長類</td>
+</tr>
+<tr>
+<td>3,000,000 g</td>
+<td>145.2 km²</td>
+<td>アフリカゾウ（霊長類ですらない）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>式はどんな数字を入れても答えを返す。エラーは出ない。</strong>しかし1トンの霊長類も1gの霊長類も存在しない。</p>
+<div class="admonition danger">
+<p class="admonition-title">外れ値と外挿は、違う</p>
+<p>外れ値は「ありえない値かどうか」を人間が判断できた（第2回：ゴリラ149kgは本物、−999gは誤り）。
+<strong>外挿は、出てきた数字が正しいかどうか確かめる相手がそもそも存在しない。</strong></p>
+</div>
+<hr />
+<h2 id="_5">まとめ<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>概念</th>
+<th>ひとこと</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>単回帰</td>
+<td>y ≈ 切片 + 傾き×x。傾き＝xが1増えると予測がいくつ増えるか</td>
+</tr>
+<tr>
+<td>両対数の傾き</td>
+<td>「何倍になるか」を表す（体重10倍 → 行動圏8.6倍）</td>
+</tr>
+<tr>
+<td>決定係数 R²</td>
+<td>ばらつきのうちモデルが説明できた割合（0〜1）</td>
+</tr>
+<tr>
+<td>重回帰</td>
+<td>複数の説明変数。各係数は「他を一定にしたとき」の関連（＝統制）</td>
+</tr>
+<tr>
+<td>❌ R²の罠</td>
+<td>変数を足せばR²は必ず上がる。<strong>でたらめ50本で0.46→0.67</strong></td>
+</tr>
+<tr>
+<td>❌ 係数の罠</td>
+<td>回帰係数＝予測上の関連。因果の保証ではない</td>
+</tr>
+<tr>
+<td>❌ 外挿の罠</td>
+<td>データ範囲の外は予測できない（1トンの霊長類はいない）</td>
+</tr>
+<tr>
+<td>残差</td>
+<td>実際−予測。偏りを見る。<strong>大きな残差は発見の入り口</strong>（パタスモンキー）</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>モデルは現実の近似。「当てはまりの良さ」は「良いモデル」ではない。</strong>
+係数を因果と読まず、範囲外を予測せず、残差を見る。</p>
+</blockquote>
+<hr />
+<h2 id="moodle">今日の課題（Moodle提出）<a class="headerlink" href="#moodle" title="Permanent link">&para;</a></h2>
+<p><strong>配点：100点（自動採点40点 ＋ 記述60点）／ 提出先：Moodle</strong></p>
+<p>Colab <code>10_regression.ipynb</code> を実行したうえで答えること。</p>
+<hr />
+<h3 id="a10-440">パートA：選択・数値問題（自動採点・各10点 ×4＝40点）<a class="headerlink" href="#a10-440" title="Permanent link">&para;</a></h3>
+<p><strong>A1.</strong> 単回帰「log行動圏 ≈ −3.883 + 0.933 × log体重」の <strong>傾き0.933</strong> の意味として<strong>最も正しい</strong>のは？</p>
+<ul>
+<li>(ア) 体重が0.933倍の種の行動圏</li>
+<li>(イ) 体重が10倍になると、予測される行動圏は約8.6倍になる</li>
+<li>(ウ) 行動圏が必ず0.933km²になる</li>
+</ul>
+<p><strong>A2.</strong> 「体重」だけのモデルに、行動圏と<strong>無関係なでたらめの乱数列</strong>を50本足すと、R²はどうなったか。</p>
+<ul>
+<li>(ア) 0.46 のまま変わらない　(イ) 0.46 → 0.67 に上がった　(ウ) 0.46 → 0.10 に下がった</li>
+</ul>
+<p><strong>A3.</strong> A2の結果から言えることとして<strong>最も適切</strong>なのは？</p>
+<ul>
+<li>(ア) R²が高いほど常に良いモデルだ</li>
+<li>(イ) 変数を足せばR²は上がるので、R²の高さだけでモデルの良さは判断できない</li>
+<li>(ウ) でたらめな乱数は行動圏を予測できる</li>
+</ul>
+<p><strong>A4.</strong> この回帰式に体重 1,000,000 g（1トン）を入れると、予測される行動圏は 52.1 km² になった。ここから分かることは？</p>
+<ul>
+<li>(ア) 1トンの霊長類の行動圏は 52.1 km² である</li>
+<li>(イ) データの範囲外（外挿）では予測は信用できない</li>
+<li>(ウ) モデルが間違っている</li>
+</ul>
+<hr />
+<h3 id="bai60">パートB：記述問題（AIフィードバック対象・60点）<a class="headerlink" href="#bai60" title="Permanent link">&para;</a></h3>
+<div class="admonition warning">
+<p class="admonition-title">【全記述に共通・重要】自分の出力を引用すること</p>
+<p>記述には、今日のColabで確認した数値を最低1つ引用すること（例：「体重の傾きは0.933」「でたらめ50本でR²が0.462→0.665」「体重1トンで予測52.1km²」）。<strong>引用がない記述は満点になりません。</strong></p>
+</div>
+<p><strong>B1.（30点）</strong> ある人が「重回帰でR²=0.95の高いモデルができた。変数を30個入れたら当てはまりが良くなった。これは素晴らしいモデルだ」と言った。この主張の<strong>問題点</strong>を、今日学んだ「R²と変数の数の関係」「過学習」の観点から指摘しなさい。</p>
+<p><strong>B2.（30点）</strong> 「体重→行動圏」の回帰式（傾き0.933）について、<strong>この予測を使ってはいけない場面・信じすぎてはいけない点</strong>を2つ挙げ、それぞれなぜかを説明しなさい。（ヒント：因果・外挿・残差・R²のうちから）</p>
+<blockquote>
+<p>目安：B1・B2あわせて350〜550字。<strong>自分の言葉</strong>で書くこと。</p>
+</blockquote>
+<div class="admonition abstract">
+<p class="admonition-title">次回予告</p>
+<p>第11回「モデル選択とAIC」。R²の罠を乗り越える。「当てはまりの良さ」と「モデルの複雑さ」のトレードオフを、AICで定量化する。オッカムの剃刀。</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  ページトップへ戻る
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="フッター" >
+        
+          
+          <a href="../09_anova/" class="md-footer__link md-footer__link--prev" aria-label="前: 第09回 分散分析ANOVA">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                前
+              </span>
+              <div class="md-ellipsis">
+                第09回 分散分析ANOVA
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../11_aic/" class="md-footer__link md-footer__link--next" aria-label="次: 第11回 モデル選択とAIC">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                次
+              </span>
+              <div class="md-ellipsis">
+                第11回 モデル選択とAIC
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.instant", "navigation.tracking", "navigation.top", "navigation.footer", "search.suggest", "search.highlight", "content.code.copy", "toc.follow"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u30b3\u30d4\u30fc\u3057\u307e\u3057\u305f", "clipboard.copy": "\u30af\u30ea\u30c3\u30d7\u30dc\u30fc\u30c9\u3078\u30b3\u30d4\u30fc", "search.result.more.one": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3082\u30461\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.more.other": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3042\u3068#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.none": "\u4f55\u3082\u898b\u3064\u304b\u308a\u307e\u305b\u3093\u3067\u3057\u305f", "search.result.one": "1\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.other": "#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.placeholder": "\u691c\u7d22\u30ad\u30fc\u30ef\u30fc\u30c9\u3092\u5165\u529b\u3057\u3066\u304f\u3060\u3055\u3044", "search.result.term.missing": "\u691c\u7d22\u306b\u542b\u307e\u308c\u306a\u3044", "select.version": "\u30d0\u30fc\u30b8\u30e7\u30f3\u5207\u308a\u66ff\u3048"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
