@@ -415,10 +415,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#4-3" class="md-nav__link">
+  <a href="#4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. 対称な分布なら、3つは一致する
+        4. 分布によっては、平均と中央値が近くなる
       
     </span>
   </a>
@@ -895,10 +895,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#4-3" class="md-nav__link">
+  <a href="#4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. 対称な分布なら、3つは一致する
+        4. 分布によっては、平均と中央値が近くなる
       
     </span>
   </a>
@@ -1031,6 +1031,7 @@
 </tr>
 </tbody>
 </table>
+<p>中央値は、データ数が<strong>奇数なら真ん中の値</strong>、<strong>偶数なら真ん中2つの平均</strong>と定める。今回もヒト科を除いた258種や妊娠期間146種では偶数個の場合を使っている。</p>
 <p>どれも「代表値」だが、<strong>別物</strong>だ。そして――どれを選ぶかで、データの語る物語が変わる。</p>
 <hr />
 <h2 id="2">2. 平均は、一部の巨体に吊り上げられる<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
@@ -1063,15 +1064,54 @@
 </table>
 <p><strong>平均は中央値のほぼ2倍。</strong> 最大と最小の差は<strong>4,800倍</strong>ある。</p>
 <div class="admonition note">
-<p class="admonition-title">なぜズレるのか</p>
-<p>体重の分布は<strong>右に長い裾を引く</strong>（少数の大型類人猿が右端にいる）。平均はすべての値を足し込むので、極端に大きい値に<strong>引っ張られる</strong>。中央値は「順位」だけを見るので、右端が何kgだろうと真ん中は動かない。</p>
+<p class="admonition-title">この「平均」が何の平均かを確認しておく</p>
+<p>使っているのは PanTHERIA という<strong>種単位</strong>のデータで、<strong>1行が1種</strong>である。したがってこの平均は「世界中のサルを1頭ずつ数えた平均体重」ではなく、<strong>体重の値が得られている265種を同じ重みで扱った要約</strong>である。個体数による重み付けはしていない。</p>
+<p>また全376種のうち体重が使えるのは265種、妊娠期間は146種というように、<strong>使える種数は列ごとに違う</strong>。</p>
 </div>
-<p>これは体重だけの話ではない。<strong>年収・地価・SNSのフォロワー数・都市の人口</strong>――右に裾を引くデータは世の中にあふれている。これらを「平均」で語るのは、たいてい誇張になる。</p>
+<div class="admonition note">
+<p class="admonition-title">なぜズレるのか</p>
+<p>体重の分布は<strong>右に長い裾を引く</strong>（少数の大型類人猿が右端にいる）。平均はすべての値を足し込むので、極端に大きい値に<strong>引っ張られる</strong>。中央値は「順位」だけを見るので、<strong>右端の値がいくら大きくても</strong>、真ん中の順位の種が変わらなければ動かない。</p>
+<p>区別しておこう。<strong>極端な値の大きさを変えること</strong>（149kg→1,490kg）では中央値は動かない。しかし<strong>観測そのものを足したり抜いたりすること</strong>（7種を除く）では、データ数と真ん中の順位が変わるので中央値も動く。次節で実際に209g動く。</p>
+</div>
+<p>これは体重だけの話ではない。<strong>年収・地価・SNSのフォロワー数・都市の人口</strong>――右に裾を引くデータは世の中にあふれている。</p>
+<p>ただし注意してほしい。<strong>平均そのものが誤りなのではない</strong>。「平均年収」を〈年収順に並べたときの真ん中の世帯〉や〈いちばん多くの世帯がいる年収〉と読んでしまうことが誤りなのである。総額を人数で割った値を知りたいなら、平均はまさにその値を与える。要約したい中身に合う代表値を選び、<strong>それが何を意味するかを添えて報告する</strong>――これが正しい構えだ。この理由は第5節で、数学の形ではっきりする。</p>
 <div class="admonition danger">
-<p class="admonition-title">さらに厄介なこと ―― この分布は「二山」である</p>
-<p>対数の目盛りで区切り直すと、山が<strong>2つ</strong>あることが分かる。400g〜1,400gあたりの小型のサル・キツネザルの山と、5,039〜7,696gに55種が集中する山（正体はオナガザル科92種）。</p>
-<p>そして<strong>中央値3,006gは、その2つの山の「谷間」に落ちている。</strong>つまり ――</p>
-<p><strong>平均も中央値も最頻値も、「よくいる霊長類」を指していない。</strong>山が2つあるとき、1つの代表値で答えようとすること自体が間違いである。</p>
+<p class="admonition-title">さらに厄介なこと ―― 集中が1か所ではない</p>
+<p>対数の目盛りで20区分に区切り直すと、集中が<strong>複数</strong>あることが分かる。400g〜1,400gあたりの小型のサル・キツネザルのまとまりと、5,039〜7,696gに55種が集中するまとまり（正体はオナガザル科92種）。</p>
+<p>このとき、代表値がどこに落ちるかを実際に数えておこう。</p>
+<table>
+<thead>
+<tr>
+<th>体重の帯（対数20区分）</th>
+<th style="text-align: right;">種数</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1,414〜2,159g</td>
+<td style="text-align: right;">9</td>
+<td></td>
+</tr>
+<tr>
+<td>2,159〜3,299g</td>
+<td style="text-align: right;"><strong>24</strong></td>
+<td>← 中央値 3,006g はここ</td>
+</tr>
+<tr>
+<td>3,299〜5,039g</td>
+<td style="text-align: right;">20</td>
+<td></td>
+</tr>
+<tr>
+<td>5,039〜7,696g</td>
+<td style="text-align: right;"><strong>55</strong></td>
+<td>← 平均 5,881g はここ。最多の帯</td>
+</tr>
+</tbody>
+</table>
+<p>よく誤解されるが、<strong>中央値は「谷」に落ちているわけではない</strong>。この区切り方では中央値の帯（24種）は両隣（9種・20種）より多い。<strong>平均にいたっては最多の帯に入っている</strong>。</p>
+<p>それでも問題は残る。<strong>どれか1つの代表値だけでは、「小型のまとまりと中型のまとまりがある」という分布の形そのものが伝わらない</strong>。代表値を出すこと自体が間違いなのではなく、<strong>代表値だけでは足りない</strong>のである。だからヒストグラムを併せて見る。</p>
 </div>
 <hr />
 <h2 id="3">3. 外れ値は平均を動かし、中央値は動かさない<a class="headerlink" href="#3" title="Permanent link">&para;</a></h2>
@@ -1100,14 +1140,17 @@
 </tr>
 </tbody>
 </table>
-<p>たった7種（全体の2.6%）を抜いただけで<strong>平均は1,754g動く</strong>のに、<strong>中央値は209gしか動かない</strong>。動いた量の比は約<strong>8.4倍</strong>。中央値は外れ値に強い。この性質を <strong>頑健（robust）</strong> と呼ぶ。</p>
+<p>たった7種（全体の2.6%）を抜いただけで<strong>平均は1,754g動く</strong>のに、<strong>中央値は209gしか動かない</strong>。動いた量の比は約<strong>8.4倍</strong>。中央値のほうが極端な値の影響を<strong>受けにくい</strong>。この性質を <strong>頑健（robust）</strong> と呼ぶ。</p>
+<p>なお、ここで得た平均4,127gは「全265種の平均」ではなく、<strong>ヒト科を除いた258種という別の対象集合の平均</strong>である。対象を変えたなら、そう書く。</p>
 <h3 id="_2">「外れ値は消していいのか」問題<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
 <div class="admonition warning">
 <p class="admonition-title">消す前に、理由を言えるか</p>
 <p>外れ値の扱いには<strong>説明責任</strong>がある。</p>
 <ul>
-<li><strong>入力ミス・測定ミス</strong>（元データには体重 <strong>−999g</strong> という値が実際に入っている。これは「未測定」を表す符号）→ 訂正するか除外してよい。理由が明確。</li>
-<li><strong>本物の極端な値</strong>（ヒガシゴリラは<strong>本当に149kgある</strong>）→ 勝手に消したら<strong>データの捏造</strong>。</li>
+<li><strong>欠測コード</strong>（元データの体重 <strong>−999</strong> がこれ。PanTHERIA の仕様で「<strong>情報がない</strong>」ことを表すために意図的に使われている符号であって、入力ミスではない）→ 実測値として計算に入れるのが誤り。<strong>欠測値に置き換える</strong>のが正しい処理。</li>
+<li><strong>入力・測定の誤り</strong>（本当に間違って記録された値）→ 原資料で確認して訂正する。訂正できず除外するなら、<strong>その理由を書き残す</strong>。</li>
+<li><strong>本物の極端な値</strong>（ヒガシゴリラは<strong>本当に149kgある</strong>）→ 大きいという理由だけで消してはいけない。頑健な要約を使うか、対象範囲を限定するなら<strong>その目的と手続きを示す</strong>。</li>
+<li><strong>対象範囲の限定は、それ自体は不正ではない。</strong>「ヒト科を除く霊長類」を分析対象だと明示するなら問題ない。まずいのは、<strong>結論に都合の悪いデータを黙って落として結果を歪めること</strong>（恣意的な除外による歪曲）である。なお研究倫理では、存在しないデータを作る「捏造」と、既存のデータ・結果を加工する「改ざん」は区別される。</li>
 <li><strong>「平均を下げたい／上げたいから消す」は禁じ手。</strong> 結論に都合よくデータを削るのは統計的誤用の典型。</li>
 </ul>
 <p>迷ったら「消す」より「<strong>中央値で報告する</strong>」「外れ値ありとなしの両方を示す」ほうが誠実なことが多い。</p>
@@ -1123,34 +1166,49 @@
 <div class="arithmatex">\[ S(c) \;=\; \underbrace{\sum_{i=1}^{n}(x_i-\bar{x})^2}_{c \text{ に無関係}} \;+\; \underbrace{n(\bar{x}-c)^2}_{0 \text{ 以上}} \]</div>
 <p>第2項は二乗だから0以上で、<strong>0になるのは <span class="arithmatex">\( c=\bar{x} \)</span> のときだけ</strong>。したがって <span class="arithmatex">\( S(c) \)</span> は <span class="arithmatex">\( c=\bar{x} \)</span> で最小になる。</p>
 <p>微分は使っていない。平方完成をしただけである。</p>
-<p><strong>数値で確かめる</strong>：霊長類265種の体重で <span class="arithmatex">\( S(\bar{x}) = 4.554\times10^{10} \)</span>、<span class="arithmatex">\( S(\text{中央値}) = 4.774\times10^{10} \)</span>（1.048倍）。二乗のズレで測ると、中央値は平均に負ける。</p>
+<p><strong>数値で確かめる</strong>：霊長類265種の体重で <span class="arithmatex">\( S(\bar{x}) = 4.554\times10^{10} \)</span>、<span class="arithmatex">\( S(\text{中央値}) = 4.773\times10^{10} \)</span>（1.048倍）。二乗のズレで測ると、中央値は平均に負ける。</p>
 <p><strong>使った数学</strong>：平方完成、総和の分配（微I）。</p>
 </details>
 <details class="note" open="open">
 <summary>導出②：中央値は「絶対値のズレ」を最小にする点</summary>
 <p>今度はズレを二乗せず、<strong>絶対値の合計</strong>で測ってみる。</p>
 <div class="arithmatex">\[ A(c) \;=\; \sum_{i=1}^{n} |x_i - c| \]</div>
-<p><span class="arithmatex">\( c \)</span> をほんの少し右に動かして <span class="arithmatex">\( c+\varepsilon \)</span> にしたとき、<span class="arithmatex">\( A \)</span> はどう変わるか。</p>
+<p><span class="arithmatex">\( c \)</span> をほんの少し右に動かして <span class="arithmatex">\( c+\varepsilon \)</span> にしたとき、<span class="arithmatex">\( A \)</span> はどう変わるか。<strong>ただし <span class="arithmatex">\( c \)</span> が観測値とちょうど重ならず、動かす途中でどの観測値もまたがない範囲で考える</strong>（折れ曲がりは観測値の上で起きる）。</p>
 <ul>
 <li><span class="arithmatex">\( c \)</span> より<strong>左</strong>にある点（<span class="arithmatex">\( k_{\text{左}} \)</span> 個）からは <span class="arithmatex">\( \varepsilon \)</span> ずつ<strong>遠ざかる</strong> → 合計 <span class="arithmatex">\( +k_{\text{左}}\,\varepsilon \)</span></li>
 <li><span class="arithmatex">\( c \)</span> より<strong>右</strong>にある点（<span class="arithmatex">\( k_{\text{右}} \)</span> 個）へは <span class="arithmatex">\( \varepsilon \)</span> ずつ<strong>近づく</strong> → 合計 <span class="arithmatex">\( -k_{\text{右}}\,\varepsilon \)</span></li>
 </ul>
 <p>差し引きすると、変化は <span class="arithmatex">\( (k_{\text{左}} - k_{\text{右}})\,\varepsilon \)</span> である。</p>
-<p>つまり右に動かして得をするのは、<strong>右にある点のほうが多いとき</strong>だけ。左右の個数が釣り合う場所まで来ると、どちらへ動かしても損になる。その場所が<strong>中央値</strong>である。</p>
-<p>この議論で、値の大きさは一度も使っていない。使ったのは「左に何個・右に何個」という<strong>順位</strong>だけだ。だから右端のゴリラが149kgであろうと1,490kgであろうと、中央値は動かない。<strong>第3節で見た「中央値は外れ値に強い」の正体が、これである。</strong></p>
+<p>つまり右に動かして得をするのは、<strong>右にある点のほうが多いとき</strong>だけ。左右の個数が釣り合うところで、それ以上動かしても得をしなくなる。その場所が<strong>中央値</strong>である。</p>
+<div class="admonition warning">
+<p class="admonition-title">個数が偶数のときは「1点」ではなく「区間」になる</p>
+<p>「釣り合ったらどちらへ動かしても損」は、いつでも正しいわけではない。データが <span class="arithmatex">\(0\)</span> と <span class="arithmatex">\(10\)</span> の2つだけなら</p>
+<div class="arithmatex">\[ |0-c| + |10-c| = 10 \qquad (0 \le c \le 10) \]</div>
+<p>で、<strong>0から10のどこでも同じ最小値</strong>になる。正確に書くとこうなる。並べ替えたデータを <span class="arithmatex">\( x_{(1)} \le \cdots \le x_{(n)} \)</span> として</p>
+<div class="arithmatex">\[ \underset{c}{\operatorname{argmin}} \sum_{i=1}^{n}|x_i-c| = \begin{cases} \{\,x_{(m+1)}\,\} &amp; (n = 2m+1) \\[4pt] [\,x_{(m)},\ x_{(m+1)}\,] &amp; (n = 2m) \end{cases} \]</div>
+<p>偶数個のとき、ふつう「中央値」として報告するのは、この<strong>最小化区間の中点</strong>である。</p>
+</div>
+<p>この議論で、値の大きさは一度も使っていない。使ったのは「左に何個・右に何個」という<strong>順位</strong>だけだ。だから右端のゴリラが149kgであろうと1,490kgであろうと、<strong>順位が変わらないかぎり</strong>中央値は動かない。<strong>第3節で見た「中央値は外れ値に強い」の正体が、これである。</strong></p>
 <p><strong>数値で確かめる</strong>：同じ265種で <span class="arithmatex">\( A(\text{中央値}) = 1.313\times10^{6} \)</span>、<span class="arithmatex">\( A(\bar{x}) = 1.431\times10^{6} \)</span>（1.090倍）。絶対値のズレで測ると、今度は平均が中央値に負ける。中央値の左右は132種ずつだった。</p>
 <p><strong>使った数学</strong>：場合分けと数え上げ（微I）。順序だけを使い、値の差の大きさは使わない。</p>
 </details>
 <p><strong>平均と中央値は、どちらも「真ん中」である。違うのは「ズレ」の測り方のほうだ。</strong> 二乗で測れば平均が、絶対値で測れば中央値が最適になる。どちらが正しいかという問題ではなく、<strong>何をズレと呼ぶかを先に決めている</strong>のである。</p>
 <p>ただし第2節で見たとおり、山が2つある分布では、どちらの意味の「真ん中」も「よくいる霊長類」を指さない。<strong>最適であることと、代表していることは、別である。</strong></p>
 <hr />
-<h2 id="4-3">4. 対称な分布なら、3つは一致する<a class="headerlink" href="#4-3" title="Permanent link">&para;</a></h2>
+<h2 id="4">4. 分布によっては、平均と中央値が近くなる<a class="headerlink" href="#4" title="Permanent link">&para;</a></h2>
 <p>歪んでいるからズレるのであって、いつもズレるわけではない。同じデータセットの中でも、ほぼ左右対称な<code>妊娠期間日</code>では：</p>
 <ul>
 <li>平均 164.4日 / 中央値 165.5日（歪度 −0.06）―― <strong>ほぼ一致</strong></li>
 </ul>
 <p><strong>列によって分布の形はまったく違う。</strong>「このデータは平均を使ってよいか」は、列ごとに判断することになる。</p>
-<p>対称な分布では「どれを使っても同じ」。<strong>だからこそ、まず分布の形（ヒストグラム）を見ることが先</strong>。形を見ずに平均だけ報告するのが、いちばん危ない。</p>
+<div class="admonition warning">
+<p class="admonition-title">「左右対称なら3つとも一致する」ではない</p>
+<p>正規分布のように、<strong>左右対称で・中心に山が1つだけある</strong>分布なら、平均・中央値・最頻値は一致する。だが<strong>左右対称というだけでは最頻値まで一致するとは限らない</strong>。</p>
+<p>たとえば <span class="arithmatex">\(1,\ 1,\ 2,\ 3,\ 4,\ 5,\ 5\)</span> は3を中心に完全に左右対称だが、平均と中央値は3、<strong>最頻値は1と5</strong>である。山が2つあれば、対称でも最頻値は中心に来ない。</p>
+<p>また、今回の妊娠期間で計算したのは平均と中央値だけで、最頻値は求めていない。ここで確かめられたのは「<strong>平均と中央値が近かった</strong>」ことである。</p>
+<p>歪度がほぼ0というだけでも左右対称とは確定できない。<strong>ヒストグラムと併せて見ること</strong>。</p>
+</div>
+<p>だからこそ、<strong>まず分布の形（ヒストグラム）を見ることが先</strong>である。形を見ずに平均だけ報告するのが、いちばん危ない。</p>
 <hr />
 <h2 id="_3">まとめ<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <table>
@@ -1208,25 +1266,27 @@
 <li>(イ) 必ず中央値を使わなければならない</li>
 <li>(ウ) 必ず最頻値を使わなければならない</li>
 </ul>
-<p><strong>A4.</strong> 「日本の世帯<strong>平均</strong>年収は◯◯万円」という報じ方の問題点として、<strong>最も適切</strong>なのは？</p>
+<p><strong>A4.</strong> 世帯年収の分布が右に歪んでいるとき、「世帯<strong>平均</strong>年収は◯◯万円」という数字を<strong>「年収順に並べた真ん中の世帯の年収」と受け取る</strong>ことの問題点として、<strong>最も適切</strong>なのは？</p>
 <ul>
 <li>(ア) 平均は計算が難しく、信頼できないから</li>
-<li>(イ) 少数の高所得世帯が平均を押し上げ、多数派の実感より高く見えるから</li>
+<li>(イ) 少数の高所得世帯が平均を押し上げるため、平均は順位上の真ん中より高くなりやすいから</li>
 <li>(ウ) 平均は外れ値に強すぎて、変化が分からないから</li>
 </ul>
 <hr />
 <h3 id="bai60">パートB：記述問題（AIフィードバック対象・60点）<a class="headerlink" href="#bai60" title="Permanent link">&para;</a></h3>
 <div class="admonition warning">
 <p class="admonition-title">【全記述に共通・重要】自分のノートの数字を引用すること</p>
-<p>各記述には、<strong>今日のColabであなたが確認した霊長類データの数値</strong>を最低1つ引用すること（例：「平均5,881gに対し中央値3,006g」「ヒト科を除くと平均が1,754g下がったが中央値は209gしか動かなかった」）。
-<strong>引用がない記述は、内容が良くても満点にはなりません。</strong> AIに書かせた一般論ではなく、自分で手を動かした答えを評価するためです。</p>
+<p>B1・B2とも、<strong>今日のColabで確認した霊長類データの性質と関連づけて</strong>説明すること。その際、根拠にした数値を最低1つ引用してください（例：「平均5,881gに対し中央値3,006g」「ヒト科を除くと平均が1,754g下がったが中央値は209gしか動かなかった」）。</p>
+<p>求めているのは数値の挿入ではなく、<strong>霊長類データで見た性質が、時給や外れ値の話にどうつながるのか</strong>の説明です。なおこれらの数値は本文にも載っているので、引用だけでは実行の確認にはなりません。</p>
 </div>
 <p><strong>B1.（30点）</strong> あなたは大学のアルバイト紹介ページに「この職場の時給」を<strong>1つの数字</strong>で載せる担当になった。ところが時給は、ほとんどが1,050円なのに、店長1人だけ2,500円だった。</p>
 <ul>
-<li>どの代表値（平均・中央値・最頻値）を載せるべきか</li>
-<li>なぜそれを選ぶのか。他の代表値だと何が起きるか</li>
+<li><strong>誰の、何を代表させたいのか</strong>（応募を考えている人が知りたいのは何か）</li>
+<li>その目的に対して、どの代表値（平均・中央値・最頻値）が合うか。<strong>なぜそれを選ぶのか</strong></li>
+<li>他の代表値だと何が起きるか</li>
 </ul>
 <p>を、具体的に4〜6文で説明しなさい。</p>
+<p>（このケースでは<strong>中央値でも最頻値でも1,050円</strong>になります。どちらを選んでも構いません。「店長は職種が違うので分けて表示する」のように、<strong>対象範囲を明示して分ける</strong>答えも評価します。見るのは代表値の名前ではなく、<strong>目的とその説明</strong>です）</p>
 <p><strong>B2.（30点）</strong> データの中に外れ値を見つけたとき、<strong>「除いてよい場合」と「除いてはいけない場合」</strong>を、それぞれ具体例を1つずつ挙げて説明しなさい。「外れ値はとりあえず消す」がなぜ危険かにも触れること。</p>
 <blockquote>
 <p>目安：B1・B2あわせて300〜500字。<strong>自分の言葉</strong>で書くこと。</p>
