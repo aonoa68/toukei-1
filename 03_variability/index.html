@@ -1,0 +1,1608 @@
+
+<!doctype html>
+<html lang="ja" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="北星学園大学「統計学Ⅰ（B）」2026年度 後期 授業資料">
+      
+      
+        <meta name="author" content="小野原 彩香">
+      
+      
+        <link rel="canonical" href="https://aonoa68.github.io/toukei-1/03_variability/">
+      
+      
+        <link rel="prev" href="../02_representative_values/">
+      
+      
+        <link rel="next" href="../04_python_intro/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>第03回 ばらつき - 統計学Ⅰ</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#03" class="md-skip">
+          コンテンツにスキップ
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="ヘッダー">
+    <a href=".." title="統計学Ⅰ" class="md-header__button md-logo" aria-label="統計学Ⅰ" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            統計学Ⅰ
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              第03回 ばらつき
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="ダークモードに切り替え"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="ダークモードに切り替え" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="ライトモードに切り替え"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="ライトモードに切り替え" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="検索" placeholder="検索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="検索">
+        
+        <button type="reset" class="md-search__icon md-icon" title="クリア" aria-label="クリア" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            検索を初期化
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="ナビゲーション" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="統計学Ⅰ" class="md-nav__button md-logo" aria-label="統計学Ⅰ" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    統計学Ⅰ
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ホーム
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01_guidance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第01回 直感の敗北
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02_representative_values/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第02回 代表値の嘘
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第03回 ばらつき
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第03回 ばらつき
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        この回のゴール
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        第2回の答案から ―― 冒頭で確認すること
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第2回の答案から ―― 冒頭で確認すること">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ① いちばん多かった ―― 「とりあえず消すのが危険な理由」を書いていない（3名）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ② 除いてよい／いけないの判定を取り違えた（4名）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ③ ヒト科を除いた比較を「外れ値除去の例」として引いた（2名）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ④ 与えられた数値を書き写し間違えた（1名）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        第3回につながること
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 平均だけでは、データは分からない
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 分散と標準偏差 ―― なぜ二乗するのか
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 偏差値の正体
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-68-95-997" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 正規分布と 68-95-99.7 則
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 正規分布は「仮定」であって、自然法則ではない
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        まとめ
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#moodle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        今日の課題（Moodle提出）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="今日の課題（Moodle提出）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a10-440" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        パートA：選択問題（各10点 ×4＝40点）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bai60" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        パートB：記述問題（AIフィードバック対象・60点）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04_python_intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第04回 Python入門
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05_correlation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第05回 相関と因果
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06_sampling_clt/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第06回 標本とCLT
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07_estimation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第07回 推定と信頼区間
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08_ttest/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第08回 仮説検定とt検定
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09_anova/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第09回 分散分析ANOVA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10_regression/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第10回 回帰分析
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11_aic/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第11回 モデル選択とAIC
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12_bayes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第12回 ベイズ統計の入り口
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13_pca/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第13回 多変量解析PCA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../14_synthesis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第14回 総括
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        この回のゴール
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        第2回の答案から ―― 冒頭で確認すること
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第2回の答案から ―― 冒頭で確認すること">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ① いちばん多かった ―― 「とりあえず消すのが危険な理由」を書いていない（3名）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ② 除いてよい／いけないの判定を取り違えた（4名）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ③ ヒト科を除いた比較を「外れ値除去の例」として引いた（2名）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ④ 与えられた数値を書き写し間違えた（1名）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        第3回につながること
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 平均だけでは、データは分からない
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 分散と標準偏差 ―― なぜ二乗するのか
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 偏差値の正体
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-68-95-997" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 正規分布と 68-95-99.7 則
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 正規分布は「仮定」であって、自然法則ではない
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        まとめ
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#moodle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        今日の課題（Moodle提出）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="今日の課題（Moodle提出）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a10-440" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        パートA：選択問題（各10点 ×4＝40点）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bai60" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        パートB：記述問題（AIフィードバック対象・60点）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="03">第03回　ばらつきを測る／正規分布という「仮定」<a class="headerlink" href="#03" title="Permanent link">&para;</a></h1>
+<p><strong>10/13（火）Ⅱ講 10:35〜12:15・B402教室</strong></p>
+<blockquote>
+<p>平均が同じでも、中身は別物 ―― 分散・標準偏差・偏差値、そして「正規分布」の責任</p>
+</blockquote>
+<hr />
+<!-- LINKS:START -->
+<div class="admonition info">
+<p class="admonition-title">今日のリンク</p>
+<ul>
+<li><a href="../slides/03.html">📊 スライドを開く</a></li>
+<li><a href="https://colab.research.google.com/github/aonoa68/toukei-1/blob/main/colab/03_variability.ipynb">📓 Colabノートを開く（03_variability.ipynb）</a></li>
+<li><a href="https://moodle.hokusei.ac.jp/mod/assign/view.php?id=990626">📝 課題を提出する（Moodle・第3回）</a></li>
+<li>課題の本文は<strong>このページの末尾</strong>にあります</li>
+</ul>
+</div>
+<!-- LINKS:END -->
+
+<div class="admonition tip">
+<p class="admonition-title">考え方をガイドで確かめる</p>
+<p>この回の考え方は、統計の考え方ガイドの<a href="https://aonoa68.github.io/teaching/guide/describe/">「データを要約する」</a>でも解説しています。霊長類のデータを動かしながら確かめられます。</p>
+</div>
+<h2 id="_1">この回のゴール<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<ul>
+<li>分散・標準偏差が「何を測っているか」を説明できる</li>
+<li>偏差値の正体（平均50・SD10に置き直した相対位置）を理解する</li>
+<li>正規分布の 68-95-99.7 則を知り、<strong>「正規だと仮定してよいか」を自分で確かめる</strong></li>
+<li><strong>発展</strong>：偏差の和が0になること、<span class="arithmatex">\( s^2 = \overline{x^2} - \bar{x}^2 \)</span>、偏差値の平均が50・SDが10になることを、自分で導ける</li>
+</ul>
+<p>到達目標との対応：<strong>G1（記述統計）</strong>。</p>
+<hr />
+<h2 id="2">第2回の答案から ―― 冒頭で確認すること<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
+<p>第2回の課題（代表値と外れ値）は、<strong>52名が提出し、記述は38名が満点</strong>だった。
+全体としてよく書けていたが、<strong>減点した14名のつまずきは4つの型に分かれる</strong>。
+どれも第3回（ばらつき）に直接ひびくので、先に確認しておく。</p>
+<h3 id="1-3">① いちばん多かった ―― 「とりあえず消すのが危険な理由」を書いていない（3名）<a class="headerlink" href="#1-3" title="Permanent link">&para;</a></h3>
+<p>B2は3点を求めていた。除いてよい例、除いてはいけない例、そして
+<strong>「外れ値はとりあえず消す」がなぜ危険か</strong>。3つ目を落とした答案が3名いた。</p>
+<p>例が2つ書けていれば半分は書けている。だが設問が聞いていたのは、
+<strong>判断の基準そのもの</strong>である。答えを1文にすると、こうなる。</p>
+<blockquote>
+<p>異常値（記録の誤り）と、本物の極端な値を<strong>区別せずに消すと、本物の情報まで失われる</strong>。
+だから、消す前に<strong>なぜその値が外れているのかを確かめる</strong>。</p>
+</blockquote>
+<h3 id="2-4">② 除いてよい／いけないの判定を取り違えた（4名）<a class="headerlink" href="#2-4" title="Permanent link">&para;</a></h3>
+<p>内訳はこうだった。</p>
+<table>
+<thead>
+<tr>
+<th>書かれていたこと</th>
+<th>どこが違うか</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>メルカリで10万円の出品は「相場に不相応だから除いてよい」</td>
+<td><strong>極端だから消す</strong>は、まさに禁じ手。その出品が実在するなら本物のデータ</td>
+</tr>
+<tr>
+<td>ゴリラの149kgは「中央値から大きく離れているから除いてよい」</td>
+<td>中央値から遠いことは理由にならない。149kgは本物の値</td>
+</tr>
+<tr>
+<td>入力ミスを「除いてはいけない」側に書いた（2名）</td>
+<td>入力ミスは<strong>除いてよい</strong>側</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition danger">
+<p class="admonition-title">判定の基準は「大きさ」ではない</p>
+<p>除いてよいのは次の3つだけである。</p>
+<ol>
+<li><strong>欠測コード</strong>（−999 のように、情報がないことを表すために置かれた符号）</li>
+<li><strong>入力・測定の誤り</strong>（確認して訂正、訂正できなければ理由を明示して除外）</li>
+<li><strong>対象範囲の限定</strong>（「ヒト科を除く霊長類」のように目的と手続きを明示する）</li>
+</ol>
+<p><strong>「平均から遠い」「中央値から離れている」「極端だ」は、どれも理由にならない。</strong>
+理由になるのは「その値が、測りたかったものを測れていない」という根拠である。</p>
+</div>
+<h3 id="3-2">③ ヒト科を除いた比較を「外れ値除去の例」として引いた（2名）<a class="headerlink" href="#3-2" title="Permanent link">&para;</a></h3>
+<p>授業で見た「ヒト科7種を除くと平均は1,754g動くが、中央値は209gしか動かない」は、
+<strong>外れ値を除いた例ではない</strong>。上の③にあたる<strong>対象範囲の限定</strong>である。</p>
+<ul>
+<li><strong>外れ値除去</strong>：ある値を「おかしい」と判断して取り除く</li>
+<li><strong>対象範囲の限定</strong>：「ヒト科以外の霊長類」という別の集団を分析対象と決める</li>
+</ul>
+<p>結論（平均は大きく動き、中央値はあまり動かない）は変わらない。
+だが<strong>やった操作が違う</strong>。この区別ができていた答案も1件あった。</p>
+<h3 id="4-1">④ 与えられた数値を書き写し間違えた（1名）<a class="headerlink" href="#4-1" title="Permanent link">&para;</a></h3>
+<p>課題のアルバイトの時給は <strong>1,050円</strong>だったが、1,500円として議論した答案があった。
+結論は変わらないが、代表値の話は「どの数字を代表させるか」なので、
+<strong>元の数字は正確に写す</strong>ことが前提になる。</p>
+<h3 id="3">第3回につながること<a class="headerlink" href="#3" title="Permanent link">&para;</a></h3>
+<p>今日は<strong>ばらつき（分散・標準偏差）</strong>を扱う。外れ値は、代表値よりも
+<strong>ばらつきに強く効く</strong>（二乗するので、遠い値の影響がさらに大きくなる）。
+①と②でつまずいた人は、今日の内容でも同じところで迷うことになる。</p>
+<hr />
+<h2 id="1">1. 平均だけでは、データは分からない<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
+<p>2か所の森で、サルの体重を30頭ずつ測った。<strong>どちらも平均6.0kg</strong>。同じような群れだろうか？</p>
+<ul>
+<li>森A：ほとんどの個体が6kg前後（SD ≈ 0）</li>
+<li>森B：半分が2kg、半分が10kg（SD ≈ 4.1）</li>
+</ul>
+<p>平均は同じでも中身は正反対。<strong>平均は分布の「位置」しか表さない。</strong> 足りないのは「どれだけ散らばっているか」＝<strong>ばらつき</strong>の情報だ。</p>
+<p>森Bはそもそも<strong>2つの別々の集団が混ざっている</strong>のかもしれない（第2回の「二山」の話とつながる）。</p>
+<div class="admonition note">
+<p class="admonition-title">何のばらつきを見ているのか</p>
+<p>この森の例で測っているのは <strong>1頭ずつの個体間のばらつき</strong>である。
+一方、このあと使う PanTHERIA は <strong>1行が1種</strong>なので、<strong>種と種のあいだのばらつき</strong>を見ることになる。
+「妊娠期間のSDが37.8日」は、<strong>種によって妊娠期間がこれだけ違う</strong>という意味であって、
+同じ種のメス個体ごとのばらつきではない。</p>
+<p>なお森Aはコード上、全30頭がちょうど6.0kgで<strong>SDが0</strong>である。
+SDが0のデータは<strong>偏差値を計算できない</strong>（0で割ることになる）。
+「どんなデータでも平均50・SD10になる」は、<strong>元のSDが0でないとき</strong>の話である。</p>
+</div>
+<hr />
+<h2 id="2_1">2. 分散と標準偏差 ―― なぜ二乗するのか<a class="headerlink" href="#2_1" title="Permanent link">&para;</a></h2>
+<p>ばらつきは「各データが平均からどれだけ離れているか」で測る。</p>
+<ol>
+<li>各データの <strong>平均からの差（偏差）</strong> を出す</li>
+<li>そのまま足すと <strong>プラスとマイナスが打ち消し合って必ず0</strong>になる → <strong>二乗</strong>してから平均する ＝ <strong>分散</strong></li>
+<li>二乗したままだと単位が「点²」で直感的でない → <strong>ルートを取って元の単位に戻す</strong> ＝ <strong>標準偏差（SD）</strong></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">なぜ二乗？　なぜルート？</p>
+<p>二乗は「符号を消して、大きいズレをより重く見る」ため。ルートは「日²を日に戻して、人間が読める単位にする」ため。<strong>だから普段はSDを使う。</strong></p>
+</div>
+<details class="note" open="open">
+<summary>導出①：偏差の合計は、必ず 0 になる</summary>
+<p>「偏差をそのまま足すと0になる」のは、このデータがたまたまそうだったのではない。<strong>どんなデータでも必ずそうなる。</strong></p>
+<div class="arithmatex">\[ \sum_{i=1}^{n} (x_i - \bar{x}) \;=\; \sum_{i=1}^{n} x_i \;-\; n\bar{x} \]</div>
+<p>ここで平均の定義 <span class="arithmatex">\( \bar{x} = \frac{1}{n}\sum x_i \)</span> を裏返すと <span class="arithmatex">\( \sum x_i = n\bar{x} \)</span>。代入すれば</p>
+<div class="arithmatex">\[ \sum_{i=1}^{n} (x_i - \bar{x}) \;=\; n\bar{x} - n\bar{x} \;=\; 0 \]</div>
+<p>データがどれだけ歪んでいても、外れ値がいくつあっても、この和は0である。<strong>だから「偏差をそのまま平均する」という測り方は、ばらつきの指標として使いものにならない。</strong> 打ち消しを止める工夫が要る。</p>
+<p>工夫は二乗だけではない。<strong>絶対値を取る</strong>という手もある（それが第2回で中央値につながった測り方だった）。ここで二乗を選ぶと、この先の分散・標準誤差・正規分布がきれいにつながる。</p>
+<p><strong>数値で確かめる</strong>：妊娠期間日（146種）で <span class="arithmatex">\( \sum (x_i-\bar{x}) = -3.4\times10^{-12} \)</span>。厳密には0で、残っているのは計算機の丸め誤差である。</p>
+<p><strong>使った数学</strong>：総和の分配と平均の定義（微I）。</p>
+</details>
+<details class="note" open="open">
+<summary>導出②：分散は「二乗の平均 引く 平均の二乗」でも出せる</summary>
+<p>分散の定義は「偏差の二乗の平均」である。</p>
+<div class="arithmatex">\[ s^2 \;=\; \frac{1}{n}\sum_{i=1}^{n} (x_i - \bar{x})^2 \]</div>
+<p>中身を展開してみる。</p>
+<div class="arithmatex">\[ \frac{1}{n}\sum_{i=1}^{n} \bigl(x_i^2 - 2\bar{x}x_i + \bar{x}^2\bigr) \;=\; \frac{1}{n}\sum_{i=1}^{n} x_i^2 \;-\; 2\bar{x}\cdot\frac{1}{n}\sum_{i=1}^{n} x_i \;+\; \bar{x}^2 \]</div>
+<p>真ん中の <span class="arithmatex">\( \frac{1}{n}\sum x_i \)</span> は <span class="arithmatex">\( \bar{x} \)</span> そのものだから、第2項は <span class="arithmatex">\( -2\bar{x}^2 \)</span> になる。まとめると</p>
+<div class="arithmatex">\[ s^2 \;=\; \overline{x^2} \;-\; \bar{x}^2 \]</div>
+<p>「<strong>二乗の平均 引く 平均の二乗</strong>」。データを1回なめるだけで <span class="arithmatex">\( \sum x_i \)</span> と <span class="arithmatex">\( \sum x_i^2 \)</span> を同時に貯められるので、電卓の時代や、大量のデータを一度しか読めない場面ではこちらが使われる。</p>
+<p><strong>数値で確かめる</strong>：妊娠期間日で、定義どおりの <span class="arithmatex">\( \frac{1}{n}\sum(x_i-\bar{x})^2 = 1417.4576 \)</span>、展開形の <span class="arithmatex">\( \overline{x^2}-\bar{x}^2 = 1417.4576 \)</span>。一致する。</p>
+<div class="admonition warning">
+<p class="admonition-title">n で割るか、n−1 で割るか</p>
+<p>いま導いた <span class="arithmatex">\( s^2 \)</span> は <strong>n で割る</strong>定義で、値は 1,417.46 である。ところが下の表の分散は <strong>1,427.2</strong>。食い違っているのではなく、<strong>割る数が違う</strong>。表の値は <strong>n−1 で割る</strong>定義（不偏分散）で、<code>pandas</code> の <code>var()</code> はこちらを既定にしている。</p>
+<p>146種では比が <span class="arithmatex">\( 146/145 \)</span>、0.7%の違いでしかない。どちらを使うかは、<strong>手元のデータそのものを記述したいのか、背後の母集団を推定したいのか</strong>で決まる。推定の話は第7回、n−1 でなければならない理由は第8回で扱う。</p>
+</div>
+<p><strong>使った数学</strong>：総和の分配と二項展開（微I）。</p>
+</details>
+<p>霊長類の <code>妊娠期間日</code>（146種）：</p>
+<table>
+<thead>
+<tr>
+<th>量</th>
+<th>値</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>平均</td>
+<td>164.4 日</td>
+</tr>
+<tr>
+<td>分散</td>
+<td>1,427.2（日²・読みにくい）</td>
+</tr>
+<tr>
+<td>標準偏差(SD)</td>
+<td><strong>37.8 日</strong>（元の単位・これを使う）</td>
+</tr>
+</tbody>
+</table>
+<p>SDは「平均からの<strong>標準的な散らばり幅</strong>」。平均±1SD（約127〜202日）に多くの種が収まる。</p>
+<p>ちなみにヒトの妊娠期間は約280日で、この平均から見ると <strong>+3SD</strong> ほど右にいる。霊長類の中ではかなり長いほうである。</p>
+<hr />
+<h2 id="3_1">3. 偏差値の正体<a class="headerlink" href="#3_1" title="Permanent link">&para;</a></h2>
+<p>偏差値は、値を <strong>平均50・標準偏差10</strong> のものさしに置き直しただけ。</p>
+<div class="arithmatex">\[ 偏差値 = 50 + 10 \times \frac{あなたの値 - 平均}{標準偏差} \]</div>
+<details class="note" open="open">
+<summary>導出③：偏差値の平均が50・標準偏差が10になる理由</summary>
+<p>偏差値は、元の値 <span class="arithmatex">\( x \)</span> を <span class="arithmatex">\( z = 50 + 10\cdot\frac{x-\bar{x}}{s} \)</span> に置き換えたものである。よく見るとこれは <span class="arithmatex">\( x \)</span> の<strong>一次式</strong>（<span class="arithmatex">\( ax+b \)</span> の形）でしかない。</p>
+<p>一次変換に対して、平均と標準偏差は次の規則に従う。</p>
+<div class="arithmatex">\[ \overline{ax+b} \;=\; a\bar{x} + b, \qquad \mathrm{SD}[ax+b] \;=\; |a|\,\mathrm{SD}[x] \]</div>
+<p>平均は足した分だけずれる。標準偏差は定数倍だけが効き、<strong>平行移動 <span class="arithmatex">\( b \)</span> の影響を受けない</strong>。ばらつきは、全体をまるごと動かしても変わらないからである。</p>
+<p>偏差値は <span class="arithmatex">\( a = 10/s \)</span>、<span class="arithmatex">\( b = 50 - 10\bar{x}/s \)</span> の一次変換だから、</p>
+<div class="arithmatex">\[ \bar{z} \;=\; \frac{10}{s}\bar{x} + 50 - \frac{10\bar{x}}{s} \;=\; 50, \qquad \mathrm{SD}[z] \;=\; \frac{10}{s}\cdot s \;=\; 10 \]</div>
+<p><strong>どんなデータでも、必ず</strong>平均50・標準偏差10になる。テストが易しくても難しくても、受験者がどれだけ優秀でも、偏差値の平均は50である。偏差値が測っているのは学力の絶対量ではなく、<strong>その集団の中での位置</strong>だ、というのはこの式の帰結である。</p>
+<p>そしてここが肝心な点だ。<strong>この導出には、分布の形が一度も出てこない。</strong> だから歪んだデータに使っても、平均50・SD10という性質はそのまま保たれる。ゴリラの159.2も、式としては何も壊れていない。</p>
+<p>壊れるのはその先――「偏差値60なら上位約16%」という<strong>読み替え</strong>のほうである。そこで初めて正規分布を仮定しているからだ。<strong>式が成り立つことと、意味が通ることは、別である。</strong></p>
+<p><strong>数値で確かめる</strong>：妊娠期間日を偏差値に直すと、平均 50.000、標準偏差 10.000。丸め誤差の範囲で厳密に一致する。</p>
+<p><strong>使った数学</strong>：一次変換に対する平均と標準偏差の規則（微I）。</p>
+</details>
+<p>「平均からSD何個分ずれているか」を 50 中心に表したもの。<strong>これを霊長類の体重でやると、壊れる。</strong></p>
+<table>
+<thead>
+<tr>
+<th>種</th>
+<th style="text-align: right;">体重</th>
+<th style="text-align: right;">生のスケール</th>
+<th style="text-align: right;">対数スケール</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ネズミキツネザル</td>
+<td style="text-align: right;">31 g</td>
+<td style="text-align: right;">45.5</td>
+<td style="text-align: right;">23.2</td>
+</tr>
+<tr>
+<td>ニホンザル</td>
+<td style="text-align: right;">10,115 g</td>
+<td style="text-align: right;">53.2</td>
+<td style="text-align: right;">59.9</td>
+</tr>
+<tr>
+<td>ヒト</td>
+<td style="text-align: right;">58,541 g</td>
+<td style="text-align: right;">90.1</td>
+<td style="text-align: right;">71.1</td>
+</tr>
+<tr>
+<td>ヒガシゴリラ</td>
+<td style="text-align: right;">149,325 g</td>
+<td style="text-align: right;"><strong>159.2</strong></td>
+<td style="text-align: right;">77.1</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition danger">
+<p class="admonition-title">偏差値159 という数字</p>
+<p>まともなテストでは出てこない値である。だが<strong>計算は何も壊れていない。</strong>
+導出③のとおり、偏差値の計算に分布の形は一切関係しない（標準偏差が0でなければ必ず計算できる）。
+159.2 は「平均より約10.9 SD 上」という事実を、そのまま表している。</p>
+<p><strong>仮定が要るのは、その先である。</strong>「偏差値60だから上位約16%」のように
+<strong>百分位に読み替える</strong>ときに、はじめて分布の形についての仮定が必要になる。</p>
+<p>そして反対の端も見てほしい。31gのネズミキツネザル（45.5）と10kgのニホンザル（53.2）は、たった8しか違わない。<strong>体重は324倍も違うのに</strong>である。</p>
+<p><strong>上は青天井、下は潰れる。</strong>対数の目盛りに変えれば全部 23〜78 に収まる。<strong>同じ種の同じ体重で、変えたのはものさしだけ。</strong></p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">偏差値の読み方</p>
+<p>偏差値60 = 平均より1SD上。ここまでは<strong>どんな分布でも正しい</strong>。
+これを「上位約16%」と読み替えてよいのは、<strong>分布が正規に近いときだけ</strong>である。</p>
+<p>偏差値は「値の大きさ」ではなく「<strong>集団の中での位置</strong>」。
+<strong>計算（標準化）と、百分位への読み替えを分けて考える</strong>こと。</p>
+</div>
+<hr />
+<h2 id="4-68-95-997">4. 正規分布と 68-95-99.7 則<a class="headerlink" href="#4-68-95-997" title="Permanent link">&para;</a></h2>
+<p><strong>正規分布</strong>は、左右対称な釣鐘型をした<strong>特定の分布</strong>である（左右対称で釣鐘型ならどれも正規、ではない）。正規分布なら、ばらつきの目安が決まっている：</p>
+<table>
+<thead>
+<tr>
+<th>範囲</th>
+<th>理論</th>
+<th>対数体重（実データ）</th>
+<th>生の体重（実データ）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>平均 ±1SD</td>
+<td>約 68%</td>
+<td>71.7%</td>
+<td>97.4%</td>
+</tr>
+<tr>
+<td>平均 ±2SD</td>
+<td>約 95%</td>
+<td>94.7%</td>
+<td>97.4%</td>
+</tr>
+<tr>
+<td>平均 ±3SD</td>
+<td>約 99.7%</td>
+<td>100.0%</td>
+<td>98.5%</td>
+</tr>
+</tbody>
+</table>
+<p><strong>対数の目盛りにした体重</strong>は、この3つの区間についてはほぼこの通りになる（歪度 −0.40）。</p>
+<div class="admonition warning">
+<p class="admonition-title">「中央の区間が合う」＝「正規分布でよい」ではない</p>
+<p>今回そろったのは<strong>平均±1・2・3SDに入る割合</strong>であって、分布のすべてではない。
+実際、対数体重で<strong>偏差値60を超えるのは265種中28種（10.6%）</strong>で、
+正規分布から予想される<strong>約15.9%</strong>とは差がある。</p>
+<p><strong>どの確率を、どれくらいの誤差で近似したいのか</strong>を決めないと、近似の良し悪しは判断できない。</p>
+</div>
+<p>一方、<strong>生のスケール</strong>（歪度 +7.60）はまったく合っていない。</p>
+<hr />
+<h2 id="5">5. 正規分布は「仮定」であって、自然法則ではない<a class="headerlink" href="#5" title="Permanent link">&para;</a></h2>
+<p>世の中のすべてが正規分布ではない。<strong>生のスケールの体重</strong>に正規分布を当てはめると――</p>
+<ul>
+<li>体重の歪度は <strong>+7.60</strong>（強く右に裾を引く）。対数にした後の −0.40 とは別世界。</li>
+<li>釣鐘型の正規曲線は、体重のヒストグラムに<strong>まったく合わない</strong>。</li>
+<li>そして <strong>平均 − 1SD = −7,254 g</strong>。<strong>体重がマイナスの動物はいない。</strong>当てはめた時点で、ありえない領域に確率を配ってしまっている。</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">正直に言うと、対数にしても「正規分布」ではない</p>
+<p>厳密に検定すると（Shapiro-Wilk）、対数スケールでも<strong>有意水準5%で正規性の帰無仮説が棄却される</strong>。
+検定が答えているのは「正規分布から得られたデータだという仮説を捨てるか」であって、
+<strong>近似が目的に対して十分かどうかではない</strong>（検定とp値は第8回で扱う・ここは発展）。妊娠期間日も歪度がほぼ0（−0.06）で見た目は左右対称なのに、山が尖りすぎていて棄却される。</p>
+<p><strong>左右対称であることと、正規分布であることは、同じではない。</strong></p>
+<p>では対数変換は無駄だったのか。そうではない。±1SDの実測が <strong>97.4% → 71.7%</strong>（理論68%）まで近づいたのは事実で、生のスケールよりはるかに使える。</p>
+<p><strong>正規分布は「現実の姿」ではなく「近似の道具」である。</strong>問うべきは「正規分布か（Yes/No）」ではなく、<strong>「この目的に対して、十分な近似か」</strong>。</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">「正規だと仮定する」ことの責任</p>
+<p>68-95-99.7則や、後で習う多くの手法は「正規分布である」ことを前提にしている。<strong>歪んだデータにそれを当てると、間違った結論になる。</strong>
+「正規分布だと仮定する」のは中立な前提ではなく、<strong>根拠を示すべき判断</strong>だ。まずヒストグラムを描いて形を見る、が鉄則。</p>
+</div>
+<hr />
+<h2 id="_2">まとめ<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>概念</th>
+<th>ひとこと</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>分散</td>
+<td>平均からの差を二乗して平均（単位は元の二乗）</td>
+</tr>
+<tr>
+<td>標準偏差(SD)</td>
+<td>分散のルート。ばらつきの標準的な幅（元の単位）</td>
+</tr>
+<tr>
+<td>偏差値</td>
+<td>平均50・SD10に置き直した相対位置。<strong>計算はどんな分布でもできる</strong>。上位何%かに読み替えるときだけ分布の仮定が要る（ゴリラ159）</td>
+</tr>
+<tr>
+<td>68-95-99.7則</td>
+<td>正規分布なら±1/2/3SDに68/95/99.7%（<strong>正規のときだけ</strong>）</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>平均は「位置」、SDは「幅」。両方見て初めてデータが分かる。</strong>
+正規分布は便利な仮定だが、当てはまるかは自分で確かめるもの。</p>
+<p><strong>同じデータでも、ものさしを変えれば偏差値は159にも77にもなる。</strong>
+数字が出てきたら、<strong>どんな仮定の上で計算されたのか</strong>を問う。</p>
+</blockquote>
+<hr />
+<h2 id="moodle">今日の課題（Moodle提出）<a class="headerlink" href="#moodle" title="Permanent link">&para;</a></h2>
+<p><strong>配点：100点（選択40点 ＋ 記述60点）／ 提出先：Moodle ／ 提出期限：次回授業の開始時刻まで</strong></p>
+<p>Colab <code>03_variability.ipynb</code> を実行したうえで答えること。</p>
+<hr />
+<h3 id="a10-440">パートA：選択問題（各10点 ×4＝40点）<a class="headerlink" href="#a10-440" title="Permanent link">&para;</a></h3>
+<p><strong>A1.</strong> 2つのクラスはどちらも平均60点。クラスXのSDは3点、クラスYのSDは25点だった。<strong>正しい</strong>のは？</p>
+<ul>
+<li>(ア) XとYは平均が同じなので、ほぼ同じクラスだ</li>
+<li>(イ) Yのほうが点のばらつきが大きい。ただし、極端な点の人数や分布の形までは平均とSDだけでは分からない</li>
+<li>(ウ) Xのほうがばらつきが大きい</li>
+</ul>
+<p><strong>A2.</strong> 標準偏差について<strong>正しい</strong>のは？</p>
+<ul>
+<li>(ア) 標準偏差は小さいほど良いクラスだといえる</li>
+<li>(イ) 標準偏差は「平均からの標準的な散らばりの幅」を表す</li>
+<li>(ウ) 標準偏差は平均と同じ意味で、どちらを使ってもよい</li>
+</ul>
+<p><strong>A3.</strong> あるテストは平均<strong>60点</strong>・標準偏差<strong>8点</strong>だった。<strong>76点</strong>を取った人の偏差値に<strong>最も近い</strong>のは？</p>
+<ul>
+<li>(ア) 50　(イ) 60　(ウ) 70　(エ) 80</li>
+</ul>
+<p><strong>A4.</strong> 「<strong>対数目盛りの体重</strong>では68-95-99.7則がだいたい成り立ったが、<strong>生の体重</strong>では成り立たなかった」。その理由として<strong>最も適切</strong>なのは？</p>
+<ul>
+<li>(ア) 生の体重はデータ数が少なかったから</li>
+<li>(イ) 生の体重の分布は右に大きく歪んでおり、<strong>この規則による区間割合の近似</strong>が合わないから</li>
+<li>(ウ) 68-95-99.7則はお金には使えない決まりだから</li>
+</ul>
+<hr />
+<h3 id="bai60">パートB：記述問題（AIフィードバック対象・60点）<a class="headerlink" href="#bai60" title="Permanent link">&para;</a></h3>
+<div class="admonition warning">
+<p class="admonition-title">【全記述に共通・重要】自分のノートの数字を引用すること</p>
+<p>各記述には、<strong>今日のColabで確認した数値</strong>を最低1つ引用すること（例：「妊娠期間日のSDは37.8日」「対数体重は±2SDに94.7%」「生の体重の歪度は+7.60」「ゴリラの偏差値は159.2」）。
+<strong>引用がない記述は、内容が良くても満点にはなりません。</strong></p>
+</div>
+<p><strong>B1.（30点）</strong> ある会社が2つの工場A・Bの製品の重さを測ったところ、<strong>どちらも平均500g</strong>だったが、AのSDは2g、BのSDは40gだった。「平均が同じだから品質も同じ」と言えるか。<strong>SDの意味に触れながら</strong>、どちらの工場が安定しているか、その理由とともに説明しなさい。</p>
+<p><strong>B2.（30点）</strong> 「<strong>対数目盛りの体重</strong>には正規分布（68-95-99.7則）がだいたい使えたのに、<strong>生の体重</strong>には使えなかった」のはなぜか。<strong>分布の形（歪み）</strong>という言葉を使って説明し、「データを見たら何でも正規分布だと仮定してよいわけではない」とはどういうことかを、自分の言葉で述べなさい。</p>
+<blockquote>
+<p>目安：B1・B2あわせて300〜500字。<strong>自分の言葉</strong>で書くこと。</p>
+<p><strong>字数は目安です。多少の過不足で減点はしません。</strong>見るのは、設問が挙げた要素（上の箇条書き）が書けているかどうかです。ただし要素が抜けていれば、その分は引きます。</p>
+</blockquote>
+<div class="admonition abstract">
+<p class="admonition-title">次回予告</p>
+<p>第4回「Python統計処理入門」。ここまで見てきた代表値・ばらつきを、いよいよ<strong>自分でコードを書いて</strong>求める。Colab・Pandas・NumPy の本格始動。</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  ページトップへ戻る
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="フッター" >
+        
+          
+          <a href="../02_representative_values/" class="md-footer__link md-footer__link--prev" aria-label="前: 第02回 代表値の嘘">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                前
+              </span>
+              <div class="md-ellipsis">
+                第02回 代表値の嘘
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../04_python_intro/" class="md-footer__link md-footer__link--next" aria-label="次: 第04回 Python入門">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                次
+              </span>
+              <div class="md-ellipsis">
+                第04回 Python入門
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.instant", "navigation.tracking", "navigation.top", "navigation.footer", "search.suggest", "search.highlight", "content.code.copy", "toc.follow"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u30b3\u30d4\u30fc\u3057\u307e\u3057\u305f", "clipboard.copy": "\u30af\u30ea\u30c3\u30d7\u30dc\u30fc\u30c9\u3078\u30b3\u30d4\u30fc", "search.result.more.one": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3082\u30461\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.more.other": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3042\u3068#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.none": "\u4f55\u3082\u898b\u3064\u304b\u308a\u307e\u305b\u3093\u3067\u3057\u305f", "search.result.one": "1\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.other": "#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.placeholder": "\u691c\u7d22\u30ad\u30fc\u30ef\u30fc\u30c9\u3092\u5165\u529b\u3057\u3066\u304f\u3060\u3055\u3044", "search.result.term.missing": "\u691c\u7d22\u306b\u542b\u307e\u308c\u306a\u3044", "select.version": "\u30d0\u30fc\u30b8\u30e7\u30f3\u5207\u308a\u66ff\u3048"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
