@@ -20,7 +20,7 @@ h2 { color: #00897b; }
 .big { font-size: 1.4em; font-weight: bold; color: #e8503a; }
 code { font-size: 0.95em; }
 table { font-size: 0.8em; }
-;" data-marpit-pagination-total="8" data-size="16:9">
+;" data-marpit-pagination-total="9" data-size="16:9">
 <header>統計学Ⅰ（B）2026　第4回</header>
 
 <h1 id="%E7%AC%AC4%E5%9B%9E-python%E7%B5%B1%E8%A8%88%E5%87%A6%E7%90%86%E5%85%A5%E9%96%80">第4回　Python統計処理入門</h1>
@@ -40,7 +40,7 @@ h2 { color: #00897b; }
 .big { font-size: 1.4em; font-weight: bold; color: #e8503a; }
 code { font-size: 0.95em; }
 table { font-size: 0.8em; }
-;" data-marpit-pagination-total="8" data-size="16:9">
+;" data-marpit-pagination-total="9" data-size="16:9">
 <header>統計学Ⅰ（B）2026　第4回</header>
 <h2 id="%E4%BB%8A%E6%97%A5%E3%81%8B%E3%82%89%E3%81%82%E3%81%AA%E3%81%9F%E3%81%8C%E3%82%B3%E3%83%BC%E3%83%89%E3%82%92%E6%9B%B8%E3%81%8F">今日から、あなたがコードを書く</h2>
 <p>ここまで電卓・グラフ用紙でやってきた人、お疲れさま。</p>
@@ -60,7 +60,7 @@ h2 { color: #00897b; }
 .big { font-size: 1.4em; font-weight: bold; color: #e8503a; }
 code { font-size: 0.95em; }
 table { font-size: 0.8em; }
-;" data-marpit-pagination-total="8" data-size="16:9">
+;" data-marpit-pagination-total="9" data-size="16:9">
 <header>統計学Ⅰ（B）2026　第4回</header>
 <h2 id="%E3%82%A8%E3%83%A9%E3%83%BC%E3%81%AF%E5%A4%B1%E6%95%97%E3%81%A7%E3%81%AF%E3%81%AA%E3%81%84">エラーは失敗ではない</h2>
 <p>エラーメッセージ＝「ここが違うよ」という<strong>お知らせ</strong></p>
@@ -83,7 +83,7 @@ h2 { color: #00897b; }
 .big { font-size: 1.4em; font-weight: bold; color: #e8503a; }
 code { font-size: 0.95em; }
 table { font-size: 0.8em; }
-;" data-marpit-pagination-total="8" data-size="16:9">
+;" data-marpit-pagination-total="9" data-size="16:9">
 <header>統計学Ⅰ（B）2026　第4回</header>
 <h2 id="%E3%83%87%E3%83%BC%E3%82%BF%E3%81%AF%E8%A1%A8%EF%BC%9D-dataframe">データは「表」＝ DataFrame</h2>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python">df = pd.read_csv(URL)   <span class="hljs-comment"># 表を読み込む</span>
@@ -105,14 +105,14 @@ h2 { color: #00897b; }
 .big { font-size: 1.4em; font-weight: bold; color: #e8503a; }
 code { font-size: 0.95em; }
 table { font-size: 0.8em; }
-;" data-marpit-pagination-total="8" data-size="16:9">
+;" data-marpit-pagination-total="9" data-size="16:9">
 <header>統計学Ⅰ（B）2026　第4回</header>
 <h2 id="%E4%BB%A3%E8%A1%A8%E5%80%A4%E3%82%92%E3%82%B3%E3%83%BC%E3%83%89%E3%81%A7%E7%AC%AC2%E5%9B%9E%E3%81%AE%E5%86%8D%E7%8F%BE">代表値をコードで（第2回の再現）</h2>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python">df[<span class="hljs-string">&quot;体重g&quot;</span>].mean()      <span class="hljs-comment"># 平均  → 5880.9</span>
 df[<span class="hljs-string">&quot;体重g&quot;</span>].median()    <span class="hljs-comment"># 中央値 → 3006.0</span>
+df[<span class="hljs-string">&quot;体重g&quot;</span>].mode()      <span class="hljs-comment"># 最頻値 → 992.4  ← ？</span>
 df[<span class="hljs-string">&quot;一腹産子数&quot;</span>].mode() <span class="hljs-comment"># 最頻値 → 1.01</span>
 </code></pre>
-<br />
 <p>電卓で出した値と<strong>同じ</strong>。違いは速さと正確さだけ。</p>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="6" data-paginate="true" data-header="統計学Ⅰ（B）2026　第4回" data-theme="default" data-style="section { font-size: 27px; }
@@ -127,16 +127,22 @@ h2 { color: #00897b; }
 .big { font-size: 1.4em; font-weight: bold; color: #e8503a; }
 code { font-size: 0.95em; }
 table { font-size: 0.8em; }
-;" data-marpit-pagination-total="8" data-size="16:9">
+;" data-marpit-pagination-total="9" data-size="16:9">
 <header>統計学Ⅰ（B）2026　第4回</header>
-<h2 id="%E3%81%B0%E3%82%89%E3%81%A4%E3%81%8D%E3%83%BB%E8%A6%81%E7%B4%84%E3%83%BB%E9%9B%86%E8%A8%88">ばらつき・要約・集計</h2>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python">df[<span class="hljs-string">&quot;妊娠期間日&quot;</span>].std()                  <span class="hljs-comment"># SD → 37.8</span>
-df[<span class="hljs-string">&quot;体重g&quot;</span>].describe()                  <span class="hljs-comment"># 一気に要約</span>
-df.groupby(<span class="hljs-string">&quot;科&quot;</span>)[<span class="hljs-string">&quot;体重g&quot;</span>].mean()        <span class="hljs-comment"># 科別平均</span>
-df.isna().<span class="hljs-built_in">sum</span>()                         <span class="hljs-comment"># 欠損の確認</span>
-plt.hist(df[<span class="hljs-string">&quot;体重g&quot;</span>].dropna())          <span class="hljs-comment"># グラフ1行</span>
-</code></pre>
-<p>手計算なら数十分 → <strong>一瞬</strong></p>
+<h2 id="%E6%9C%80%E9%A0%BB%E5%80%A4-9924-g-%E2%80%95%E2%80%95-%E5%8B%95%E3%81%8F%E3%81%91%E3%82%8C%E3%81%A9%E6%84%8F%E5%91%B3%E3%81%8C%E5%87%BA%E3%81%A6%E3%81%93%E3%81%AA%E3%81%84">最頻値 992.4 g ―― 動くけれど意味が出てこない</h2>
+<p>中央値は <strong>3,006 g</strong> なのに、最頻値は <strong>992.4 g</strong>。真ん中から遠い</p>
+<h3 id="%E3%81%AA%E3%81%9C">なぜ？</h3>
+<p>265種のうち <strong>992.4 g がたまたま6回</strong>出てきただけ<br />
+体重はほぼ連続量 → 255通りの値のうち2回以上出るのは6つだけ</p>
+<br />
+<p>いっぽう <strong>一腹産子数の 1.01</strong> は意味がある<br />
+209種のうち74種がこの値 →「ふつう一度に1頭産む」</p>
+<br />
+<h3 id="%E6%9C%80%E9%A0%BB%E5%80%A4%E3%81%8C%E4%BD%BF%E3%81%88%E3%82%8B%E3%81%AE%E3%81%AF%E5%90%8C%E3%81%98%E5%80%A4%E3%81%8C%E7%B9%B0%E3%82%8A%E8%BF%94%E3%81%97%E7%8F%BE%E3%82%8C%E3%82%8B%E3%83%87%E3%83%BC%E3%82%BF">最頻値が使えるのは、同じ値が繰り返し現れるデータ</h3>
+<blockquote>
+<p>第3回の偏差値159と同じ ――<br />
+<strong>計算が通ることと、意味が通ることは別</strong></p>
+</blockquote>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="7" data-paginate="true" data-header="統計学Ⅰ（B）2026　第4回" data-theme="default" data-style="section { font-size: 27px; }
 h1 { color: #00695c; }
@@ -150,7 +156,30 @@ h2 { color: #00897b; }
 .big { font-size: 1.4em; font-weight: bold; color: #e8503a; }
 code { font-size: 0.95em; }
 table { font-size: 0.8em; }
-;" data-marpit-pagination-total="8" data-size="16:9">
+;" data-marpit-pagination-total="9" data-size="16:9">
+<header>統計学Ⅰ（B）2026　第4回</header>
+<h2 id="%E3%81%B0%E3%82%89%E3%81%A4%E3%81%8D%E3%83%BB%E8%A6%81%E7%B4%84%E3%83%BB%E9%9B%86%E8%A8%88">ばらつき・要約・集計</h2>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python">df[<span class="hljs-string">&quot;妊娠期間日&quot;</span>].std()                  <span class="hljs-comment"># SD → 37.8</span>
+df[<span class="hljs-string">&quot;体重g&quot;</span>].describe()                  <span class="hljs-comment"># 一気に要約</span>
+df.groupby(<span class="hljs-string">&quot;科&quot;</span>)[<span class="hljs-string">&quot;体重g&quot;</span>].mean()        <span class="hljs-comment"># 科別平均</span>
+df.isna().<span class="hljs-built_in">sum</span>()                         <span class="hljs-comment"># 欠損の確認</span>
+plt.hist(df[<span class="hljs-string">&quot;体重g&quot;</span>].dropna())          <span class="hljs-comment"># グラフ1行</span>
+</code></pre>
+<p>手計算なら数十分 → <strong>一瞬</strong></p>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="8" data-paginate="true" data-header="統計学Ⅰ（B）2026　第4回" data-theme="default" data-style="section { font-size: 27px; }
+h1 { color: #00695c; }
+h2 { color: #00897b; }
+.big { font-size: 1.4em; font-weight: bold; color: #e8503a; }
+code { font-size: 0.95em; }
+table { font-size: 0.8em; }
+" lang="ja-JP" data-marpit-pagination="8" style="--paginate:true;--header:統計学Ⅰ（B）2026　第4回;--theme:default;--style:section { font-size: 27px; }
+h1 { color: #00695c; }
+h2 { color: #00897b; }
+.big { font-size: 1.4em; font-weight: bold; color: #e8503a; }
+code { font-size: 0.95em; }
+table { font-size: 0.8em; }
+;" data-marpit-pagination-total="9" data-size="16:9">
 <header>統計学Ⅰ（B）2026　第4回</header>
 <h2 id="%E3%81%BE%E3%81%A8%E3%82%81">まとめ</h2>
 <table>
@@ -188,19 +217,19 @@ table { font-size: 0.8em; }
 </tbody>
 </table>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="8" data-paginate="true" data-header="統計学Ⅰ（B）2026　第4回" data-class="lead" data-theme="default" data-style="section { font-size: 27px; }
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="9" data-paginate="true" data-header="統計学Ⅰ（B）2026　第4回" data-class="lead" data-theme="default" data-style="section { font-size: 27px; }
 h1 { color: #00695c; }
 h2 { color: #00897b; }
 .big { font-size: 1.4em; font-weight: bold; color: #e8503a; }
 code { font-size: 0.95em; }
 table { font-size: 0.8em; }
-" lang="ja-JP" class="lead" data-marpit-pagination="8" style="--paginate:true;--header:統計学Ⅰ（B）2026　第4回;--class:lead;--theme:default;--style:section { font-size: 27px; }
+" lang="ja-JP" class="lead" data-marpit-pagination="9" style="--paginate:true;--header:統計学Ⅰ（B）2026　第4回;--class:lead;--theme:default;--style:section { font-size: 27px; }
 h1 { color: #00695c; }
 h2 { color: #00897b; }
 .big { font-size: 1.4em; font-weight: bold; color: #e8503a; }
 code { font-size: 0.95em; }
 table { font-size: 0.8em; }
-;" data-marpit-pagination-total="8" data-size="16:9">
+;" data-marpit-pagination-total="9" data-size="16:9">
 <header>統計学Ⅰ（B）2026　第4回</header>
 
 <h1 id="%E3%81%BE%E3%81%A8%E3%82%81-1">まとめ</h1>
