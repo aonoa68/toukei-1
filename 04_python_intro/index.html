@@ -1101,11 +1101,24 @@
 <hr />
 <h2 id="3-2">3. 代表値をコードで（第2回の再現）<a class="headerlink" href="#3-2" title="Permanent link">&para;</a></h2>
 <p>第2回で手計算した3つの代表値は、メソッド1つで出る。</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">df</span><span class="p">[</span><span class="s2">&quot;体重g&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>    <span class="c1"># 平均  → 5880.9</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">df</span><span class="p">[</span><span class="s2">&quot;体重g&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">median</span><span class="p">()</span>  <span class="c1"># 中央値 → 3006.0</span>
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="n">df</span><span class="p">[</span><span class="s2">&quot;一腹産子数&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mode</span><span class="p">()</span>  <span class="c1"># 最頻値 → 1.01（連続値の体重では意味がない）</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">df</span><span class="p">[</span><span class="s2">&quot;体重g&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>        <span class="c1"># 平均   → 5880.9</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">df</span><span class="p">[</span><span class="s2">&quot;体重g&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">median</span><span class="p">()</span>      <span class="c1"># 中央値 → 3006.0</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="n">df</span><span class="p">[</span><span class="s2">&quot;体重g&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mode</span><span class="p">()</span>        <span class="c1"># 最頻値 → 992.4   ← この値の読み方に注意</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="n">df</span><span class="p">[</span><span class="s2">&quot;一腹産子数&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mode</span><span class="p">()</span>   <span class="c1"># 最頻値 → 1.01</span>
 </code></pre></div>
 <p>第2回で電卓を叩いて出した値と、同じになるはず。<strong>違いは速さと正確さだけ。</strong></p>
+<div class="admonition warning">
+<p class="admonition-title">最頻値が 992.4 g ―― 動くけれど、意味は出てこない</p>
+<p>中央値は 3,006 g なのに、最頻値は 992.4 g。真ん中からかけ離れている。</p>
+<p>理由は、<strong>265種のうち 992.4 g がたまたま6回出てきた</strong>からである。体重はほぼ連続した量なので、
+255通りある値のうち2回以上現れるものは6つしかない。つまり<strong>たまたま一番多かった値</strong>が
+選ばれただけで、分布の代表にはなっていない。</p>
+<p>いっぽう一腹産子数の 1.01 は意味がある。209種のうち74種がこの値で、
+「霊長類はふつう一度に1頭産む」という事実を表している。</p>
+<p><strong>最頻値が使えるのは、同じ値が繰り返し現れるデータ（カテゴリや離散値）である。</strong>
+連続量に <code>.mode()</code> を当てても、計算は通るが読めるものは出てこない。
+第3回の偏差値159と同じで、<strong>計算が通ることと意味が通ることは別</strong>である。</p>
+</div>
 <hr />
 <h2 id="4-3">4. ばらつきをコードで（第3回の再現）<a class="headerlink" href="#4-3" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">df</span><span class="p">[</span><span class="s2">&quot;妊娠期間日&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>   <span class="c1"># 標準偏差 → 37.8</span>
@@ -1151,7 +1164,7 @@
 </tr>
 <tr>
 <td>平均・中央値・最頻値</td>
-<td><code>.mean() .median() .mode()</code></td>
+<td><code>.mean() .median() .mode()</code>（<code>.mode()</code> は連続量には使えない）</td>
 </tr>
 <tr>
 <td>標準偏差・分散</td>
