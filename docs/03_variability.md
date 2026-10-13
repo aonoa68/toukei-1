@@ -13,7 +13,7 @@
     - [📓 Colabノートを開く（03_variability.ipynb）](https://colab.research.google.com/github/aonoa68/toukei-1/blob/main/colab/03_variability.ipynb)
     - [📝 課題を提出する（Moodle・第3回）](https://moodle.hokusei.ac.jp/mod/assign/view.php?id=990626)
     - 課題の本文は**このページの末尾**にあります
-    - [🤖 NotebookLMで復習する](https://notebook.google.com/notebook/309d39ed-4821-4002-8d8a-418dbc995aba)（この回の資料にAIが答えます）
+    - [🤖 NotebookLMで復習する](https://notebook.google.com/notebook/309d39ed-4821-4002-8d8a-418dbc995aba)（この回の内容をAIに質問できます）
 <!-- LINKS:END -->
 
 !!! tip "考え方をガイドで確かめる"
