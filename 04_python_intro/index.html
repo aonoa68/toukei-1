@@ -419,6 +419,34 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        前回の答案から
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="前回の答案から">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        今日につながること
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#0" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -518,7 +546,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
         まとめ
@@ -883,6 +911,34 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        前回の答案から
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="前回の答案から">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        今日につながること
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#0" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -982,7 +1038,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
         まとめ
@@ -1074,6 +1130,56 @@
 </ul>
 <p>到達目標との対応：<strong>G3（Pythonで自律的に解析）の本丸</strong>。第5回以降の相関・推定・検定は、すべてこの上に乗る。</p>
 <hr />
+<h2 id="_2">前回の答案から<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>第3回の記述（パートB・60点）は、<strong>満点が24名（49%）／平均57.0点</strong>だった。
+今回から「<strong>今日のColabで確認した数値を最低1つ引用すること</strong>」を実際に適用している。</p>
+<p>目立った型を4つ挙げる。いずれも、今日の内容に直接つながる。</p>
+<div class="admonition warning">
+<p class="admonition-title">① 自分のノートの数値を引いていない（13名・いちばん多い）</p>
+<p>内容は正しいのに点が止まった人がほとんどだった。象徴的だったのがこれ。</p>
+<blockquote>
+<p><strong>仮に</strong>生の体重の歪度が正の値であれば、右側に長い裾を持つ分布であることが分かる</p>
+</blockquote>
+<p>ノートに <strong>+7.60</strong> と出ているのに、仮定の話にしてしまっている。
+「生の体重の歪度は+7.60だった」と書けば、<strong>今日のデータについての事実</strong>になる。
+<strong>自分で出した数字は、仮定ではなく事実として使える。</strong></p>
+<p>惜しい形がもう1つ。「妊娠期間の<strong>歪度がほぼ０</strong>なのに正規分布ではなかった」――
+指摘としては今回いちばん鋭いのに、「ほぼ０」で止めたので通過しなかった。
+<strong>−0.06 と書けばよかっただけ</strong>である。</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">② 因果が逆 ―― 「正規分布を当てはめたから歪む」</p>
+<p>当てはめたから歪むのではない。<strong>もともと歪んでいる（+7.60）から当てはまらない。</strong>
+歪みはデータ側の性質で、正規分布を持ち出す前からそこにある。
+当てはめた結果として出てくるのは、平均−1SD＝<strong>−7,254g</strong> というありえない値のほう。</p>
+<p><strong>正しい順序</strong>：もともと右に歪んでいる → だから左右対称の正規分布が合わない → 当てはめると−7,254gが出る</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">③ SDの値から外れ値の有無を断定した</p>
+<blockquote>
+<p>SD=40という値は、<strong>極端に重い or 軽い製品の外れ値の存在によって</strong>大きくなっている</p>
+</blockquote>
+<p><strong>SDの値だけからは、外れ値があるのかどうかは決まらない。</strong>
+「一部に極端な値がある」場合と「全体が広く散らばっている」場合、どちらでもSD=40gになる
+（460gから540gまでなだらかに散らばっていても40gになる）。
+見分けるには<strong>ヒストグラムを見るしかない</strong>。今日の <code>8. グラフを1行で</code> が、まさにそのための道具である。</p>
+</div>
+<div class="admonition danger">
+<p class="admonition-title">④ 数値の取り違え ―― これが今日いちばん効く</p>
+<blockquote>
+<p>生のスケールの体重の<strong>歪み</strong>は <strong>7.254</strong> であった</p>
+</blockquote>
+<p>歪度 <strong>+7.60</strong>（単位なしの指標）と、平均−1SD＝<strong>−7,254g</strong>（単位はg）が混ざっている。
+7.254 という数字はノートのどこにもない。</p>
+<p><strong>数値を引くときは「何の数字で、単位は何か」を一緒に書く。</strong></p>
+</div>
+<h3 id="_3">今日につながること<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p>今日からは、数値を<strong>コードで出す</strong>。計算は一瞬で終わる。だが ――</p>
+<p><strong>コードは数字を出してくれるが、それが何の数字かは言ってくれない。</strong></p>
+<p><code>df["体重g"].mode()</code> が <code>992.4</code> を返しても、それが「意味のある最頻値」かどうかは画面には出ない。
+機械が出した数字に、<strong>何の数字で、単位は何で、それは信じてよいのか</strong>というラベルを貼るのが人間の仕事である。
+これが「<strong>計算は機械に、判断は人間に</strong>」の中身であり、今日の課題B1で聞いていることでもある。</p>
+<hr />
 <h2 id="0">0. 今日から方式が変わる<a class="headerlink" href="#0" title="Permanent link">&para;</a></h2>
 <p>第1〜3回は「読んで▶を押すだけ」だった。今日からは、<strong>空欄 <code>____</code> を自分で埋める</strong>。とはいえコードの大半は用意してあるので、入れるのは列名やメソッド名だけ。</p>
 <div class="admonition tip">
@@ -1149,7 +1255,7 @@
 </code></pre></div>
 <p>第2・3回で見たヒストグラムも、コードなら1行。日本語が□□に化けるときは、冒頭の <code>japanize-matplotlib</code> を実行したか確認する。</p>
 <hr />
-<h2 id="_2">まとめ<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h2 id="_4">まとめ<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
