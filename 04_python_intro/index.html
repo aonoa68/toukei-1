@@ -1150,9 +1150,12 @@
 <div class="admonition warning">
 <p class="admonition-title">② 因果が逆 ―― 「正規分布を当てはめたから歪む」</p>
 <p>当てはめたから歪むのではない。<strong>もともと歪んでいる（+7.60）から当てはまらない。</strong>
-歪みはデータ側の性質で、正規分布を持ち出す前からそこにある。
-当てはめた結果として出てくるのは、平均−1SD＝<strong>−7,254g</strong> というありえない値のほう。</p>
-<p><strong>正しい順序</strong>：もともと右に歪んでいる → だから左右対称の正規分布が合わない → 当てはめると−7,254gが出る</p>
+歪みはデータ側の性質で、正規分布を持ち出す前からそこにある。</p>
+<p>なお、平均−1SD＝<strong>−7,254g</strong>（5,881−13,135）という引き算そのものは、正規分布を仮定しなくてもできる。
+正規分布が関わるのは、その先の<strong>読み方</strong>である。「平均±1SDの中に約68%が入る」は左右対称の正規分布での話で、
+右に強く歪んだこの体重データを、そう読むことはできない。</p>
+<p><strong>正しい順序</strong>：もともと右に歪んでいる → だから左右対称の正規分布が合わない →
+「平均±1SDに約68%」という読み方ができない（下限が−7,254gという、ありえない値になる）</p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">③ SDの値から外れ値の有無を断定した</p>
@@ -1160,9 +1163,10 @@
 <p>SD=40という値は、<strong>極端に重い or 軽い製品の外れ値の存在によって</strong>大きくなっている</p>
 </blockquote>
 <p><strong>SDの値だけからは、外れ値があるのかどうかは決まらない。</strong>
-「一部に極端な値がある」場合と「全体が広く散らばっている」場合、どちらでもSD=40gになる
-（460gから540gまでなだらかに散らばっていても40gになる）。
-見分けるには<strong>ヒストグラムを見るしかない</strong>。今日の <code>8. グラフを1行で</code> が、まさにそのための道具である。</p>
+「一部に極端な値がある」場合でも、「平均500gを中心に全体が広く散らばっている」場合でも、
+SDが40gになることはある。
+見分けるには、<strong>値の散らばり方そのものを確かめる</strong>しかない。ヒストグラム（今日の <code>8. グラフを1行で</code>）・
+箱ひげ図・生データの点検が、まさにそのための道具である。</p>
 </div>
 <div class="admonition danger">
 <p class="admonition-title">④ 数値の取り違え ―― これが今日いちばん効く</p>
@@ -1188,9 +1192,9 @@
 </div>
 <hr />
 <h2 id="1-dataframe">1. データは「表」＝ DataFrame<a class="headerlink" href="#1-dataframe" title="Permanent link">&para;</a></h2>
-<p>CSVを読み込むと、Excelのような表になる。Pythonではこれを <strong>DataFrame</strong> と呼び、慣習的に <code>df</code> という名前を付ける。</p>
+<p>CSVを読み込むと、Excelのような表になる。Pandasでは、このような表形式のデータを <strong>DataFrame</strong> として扱い、慣習的に <code>df</code> という名前を付ける。</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">URL</span><span class="p">)</span>     <span class="c1"># 表を読み込む</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">df</span><span class="o">.</span><span class="n">shape</span>                  <span class="c1"># (行数=学生数, 列数)</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">df</span><span class="o">.</span><span class="n">shape</span>                  <span class="c1"># (行数=種数, 列数)</span>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nb">list</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>          <span class="c1"># 列名の一覧</span>
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>                 <span class="c1"># 先頭5行</span>
 </code></pre></div>
@@ -1210,27 +1214,43 @@
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">df</span><span class="p">[</span><span class="s2">&quot;体重g&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>        <span class="c1"># 平均   → 5880.9</span>
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">df</span><span class="p">[</span><span class="s2">&quot;体重g&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">median</span><span class="p">()</span>      <span class="c1"># 中央値 → 3006.0</span>
 <a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="n">df</span><span class="p">[</span><span class="s2">&quot;体重g&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mode</span><span class="p">()</span>        <span class="c1"># 最頻値 → 992.4   ← この値の読み方に注意</span>
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="n">df</span><span class="p">[</span><span class="s2">&quot;一腹産子数&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mode</span><span class="p">()</span>   <span class="c1"># 最頻値 → 1.01</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="n">df</span><span class="p">[</span><span class="s2">&quot;一腹産子数&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mode</span><span class="p">()</span>   <span class="c1"># 最頻値 → 1.01    ← これも読み方に注意</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="n">df</span><span class="p">[</span><span class="s2">&quot;科&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mode</span><span class="p">()</span>           <span class="c1"># 最頻値 → オナガザル科</span>
 </code></pre></div>
 <p>第2回で電卓を叩いて出した値と、同じになるはず。<strong>違いは速さと正確さだけ。</strong></p>
 <div class="admonition warning">
-<p class="admonition-title">最頻値が 992.4 g ―― 動くけれど、意味は出てこない</p>
-<p>中央値は 3,006 g なのに、最頻値は 992.4 g。真ん中からかけ離れている。</p>
-<p>理由は、<strong>265種のうち 992.4 g がたまたま6回出てきた</strong>からである。体重はほぼ連続した量なので、
-255通りある値のうち2回以上現れるものは6つしかない。つまり<strong>たまたま一番多かった値</strong>が
-選ばれただけで、分布の代表にはなっていない。</p>
-<p>いっぽう一腹産子数の 1.01 は意味がある。209種のうち74種がこの値で、
-「霊長類はふつう一度に1頭産む」という事実を表している。</p>
-<p><strong>最頻値が使えるのは、同じ値が繰り返し現れるデータ（カテゴリや離散値）である。</strong>
-連続量に <code>.mode()</code> を当てても、計算は通るが読めるものは出てこない。
-第3回の偏差値159と同じで、<strong>計算が通ることと意味が通ることは別</strong>である。</p>
+<p class="admonition-title">最頻値が 992.4 g ―― 計算は通る。では、何を表しているのか</p>
+<p><code>.mode()</code> が返すのは、<strong>データに最も多く記録されている値</strong>である。体重のような連続量では、
+測定の精度や丸め、データのまとめ方によって、同じ値が何回現れるかが変わる。</p>
+<p>このデータでは、体重の記録がある265種のうち 992.4 g が <strong>6種</strong> でいちばん多かった
+（255通りある値のうち、2回以上現れるものは6つしかない）。
+その6種は、いずれも<strong>同じ Callicebus 属</strong>である。なぜ同じ値になっているのかは、
+このCSVだけでは分からない（元の文献が共通、まとめ方、丸め……いろいろ考えられる）。</p>
+<p>中央値 3,006 g から離れていること自体は、誤りの証拠ではない。歪んだ分布では、
+中央値と最頻値が別の位置を指すのは普通のことである。言えるのは、
+<strong>992.4 g がいちばん多く記録されていても、それが体重分布の山や典型的な体重を表すとはかぎらない</strong>ということだ。
+ヒストグラムなども確かめて判断しよう。</p>
+<p>第3回の偏差値159と同じで、<strong>計算が通ることと、その数字をどう読めるかは別</strong>である。</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">一腹産子数が 1.01 ―― 1行が何を表しているか</p>
+<p><code>一腹産子数</code> の最頻値は <strong>1.01</strong>。子の数なのに小数になるのは、この列が
+<strong>種ごとに整理・調整された代表値</strong>だからである（出典のPanTHERIAは、複数の文献の値を
+条件をそろえてから、種ごとに1つの値にまとめている）。この表では1.01が <strong>74種</strong> に記録されている。</p>
+<p>だから「1.01頭生まれる」という意味ではない。また、ここで数えているのは<strong>種</strong>であって
+出産そのものではないので、この集計だけで「霊長類の出産はふつう1頭」を直接確かめたことにもならない。
+<strong>数値を解釈するときは、1行が何を表しているかにも注意する。</strong></p>
+<p>いっぽう、同じ値が繰り返し現れる列なら、最頻値はそのまま読める。<code>df["科"].mode()</code> は <strong>オナガザル科</strong>
+（<code>df["科"].value_counts()</code> で数えると132種）。これは「この表にいちばん多く入っている科」と、そのまま解釈できる。</p>
 </div>
 <hr />
 <h2 id="4-3">4. ばらつきをコードで（第3回の再現）<a class="headerlink" href="#4-3" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">df</span><span class="p">[</span><span class="s2">&quot;妊娠期間日&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>   <span class="c1"># 標準偏差 → 37.8</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">df</span><span class="p">[</span><span class="s2">&quot;妊娠期間日&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">var</span><span class="p">()</span>   <span class="c1"># 分散     → 1427.2</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">df</span><span class="p">[</span><span class="s2">&quot;妊娠期間日&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>   <span class="c1"># 標準偏差 → 37.8（日）</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">df</span><span class="p">[</span><span class="s2">&quot;妊娠期間日&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">var</span><span class="p">()</span>   <span class="c1"># 分散     → 1427.2（日²）</span>
 </code></pre></div>
-<p>第3回の「SD ≈ 37.8日」がそのまま出る。</p>
+<p>第3回の「SD ≈ 37.8日」がそのまま出る。分散はSDを2乗した量なので、<strong>単位も2乗</strong>になって 1,427.2 <strong>日²</strong> である。
+数字だけでなく単位まで一緒に見る、という第3回の約束は、コードでも同じ。
+なお <code>.std()</code> / <code>.var()</code> は、第3回で確認したとおり<strong>既定で分母に n−1 を使う</strong>（<code>ddof=0</code> と書けば n になる）。</p>
 <hr />
 <h2 id="5-describe">5. describe() ―― 一気に要約<a class="headerlink" href="#5-describe" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">df</span><span class="p">[</span><span class="s2">&quot;体重g&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
@@ -1245,10 +1265,17 @@
 <p><code>groupby("グループにする列")["集計する列"].集計関数()</code> という形。これは第9回（分散分析）への布石でもある。</p>
 <hr />
 <h2 id="7">7. 欠損を確認<a class="headerlink" href="#7" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">df</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>   <span class="c1"># 列ごとの欠損(未記入)の数</span>
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="c1"># 初産日齢: 273 / 出産間隔日: 267 / 新生児体重g: 259 …（体重gですら111種が未測定）</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">df</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>   <span class="c1"># 列ごとの欠損(値が記録されていない)の数</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="c1"># 初産日齢: 273 / 出産間隔日: 267 / 新生児体重g: 259 …（体重gですら111種が空欄）</span>
 </code></pre></div>
-<p><strong>本物の研究データは、こういう姿をしている。</strong>体重ですら111種が未測定で、初産日齢にいたっては273種が空欄である。現実のデータには必ず欠損がある。第6回で「この偏りが何を意味するか」を詳しく扱う。</p>
+<p><strong>本物の研究データは、こういう姿をしている。</strong>体重ですら111種が空欄で、初産日齢にいたっては273種が空欄である。
+ここでいう「欠損」は、<strong>このデータ表に値が記録されていない</strong>という意味である（一度も測られていないのか、
+文献から値を集められなかったのかまでは、この表からは分からない）。
+現実の研究データには、こうした欠損が含まれていることが多い。</p>
+<p><code>.mean()</code> や <code>.describe()</code> は、<strong>その列の欠損を除いて</strong>計算される。今日の体重の平均 5,880.9 g は、
+記録のある265種から出した平均である（<code>describe()</code> の count が265なのは、そのためだ）。
+欠損している種に何か特徴があれば、<strong>値がある種だけを集めた結果は、全体とずれる</strong>可能性がある。
+第6回で「この偏りが何を意味するか」を詳しく扱う。</p>
 <hr />
 <h2 id="8-1">8. グラフを1行で<a class="headerlink" href="#8-1" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;体重g&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">(),</span> <span class="n">bins</span><span class="o">=</span><span class="mi">40</span><span class="p">)</span>
@@ -1270,7 +1297,7 @@
 </tr>
 <tr>
 <td>平均・中央値・最頻値</td>
-<td><code>.mean() .median() .mode()</code>（<code>.mode()</code> は連続量には使えない）</td>
+<td><code>.mean() .median() .mode()</code>（<code>.mode()</code> は値の重複・丸めの影響に注意）</td>
 </tr>
 <tr>
 <td>標準偏差・分散</td>
