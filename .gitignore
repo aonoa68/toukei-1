@@ -8,3 +8,4 @@ __pycache__/
 colab/*_solved.ipynb
 統計学Ⅰ2026.pdf
 採点/
+slides/*.html
