@@ -13,6 +13,7 @@
     - [📓 Colabノートを開く（04_python_intro.ipynb）](https://colab.research.google.com/github/aonoa68/toukei-1/blob/main/colab/04_python_intro.ipynb)
     - [📝 課題を提出する（Moodle・第4回）](https://moodle.hokusei.ac.jp/mod/assign/view.php?id=990624)
     - 課題の本文は**このページの末尾**にあります
+    - [🤖 NotebookLMで復習する](https://notebook.google.com/notebook/b2e3b3f7-d6f4-4998-aed5-fa70e9e6a9d3)（この回の内容をAIに質問できます）
 <!-- LINKS:END -->
 
 ## この回のゴール
