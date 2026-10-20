@@ -1268,6 +1268,8 @@ SDが40gになることはある。
 <p>第3回の「SD ≈ 37.8日」がそのまま出る。分散はSDを2乗した量なので、<strong>単位も2乗</strong>になって 1,427.2 <strong>日²</strong> である。
 数字だけでなく単位まで一緒に見る、という第3回の約束は、コードでも同じ。
 なお <code>.std()</code> / <code>.var()</code> は、第3回で確認したとおり<strong>既定で分母に n−1 を使う</strong>（<code>ddof=0</code> と書けば n になる）。</p>
+<p>桁をそろえて表示したいときは、<code>print("標準偏差", round(df["妊娠期間日"].std(), 1), "日")</code> のように
+<strong>組み込みの <code>round(数値, 桁数)</code></strong> で囲む。</p>
 <hr />
 <h2 id="5-describe">5. describe() ―― 一気に要約<a class="headerlink" href="#5-describe" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">df</span><span class="p">[</span><span class="s2">&quot;体重g&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
