@@ -1191,6 +1191,22 @@ SDが40gになることはある。
 <p class="admonition-title">エラーは失敗ではない</p>
 <p>エラーメッセージは「ここが違うよ」という<strong>お知らせ</strong>。<code>KeyError</code> は列名のスペル違い、<code>SyntaxError</code> はカッコや全角・半角のことが多い。落ち着いて読めば、たいてい原因が書いてある。</p>
 </div>
+<div class="admonition info">
+<p class="admonition-title">ルール：エラーが直らないときは、AIに聞いてよい</p>
+<p>この授業では、<strong>エラーが出たときにAIに聞くことを認める</strong>。次のどちらでもよい。</p>
+<ul>
+<li><a href="https://m365.cloud.microsoft/chat">🤖 学内のCopilotを開く</a>（大学のアカウントでサインイン）
+  → <strong>エラーメッセージをそのままコピーして貼り</strong>、「これはどういう意味ですか」と聞く</li>
+<li><strong>Colabのエラー回復</strong>（エラー表示の近くに出る、Geminiにエラーを説明させるボタン）を使う</li>
+</ul>
+<p>条件は2つだけ。</p>
+<ol>
+<li><strong>エラーメッセージを自分でも読む。</strong> まず読んでから聞く</li>
+<li><strong>直ったコードを、何をどう直したのか自分の言葉で言えるようにする</strong></li>
+</ol>
+<p>課題B2は「詰まった点を1つ挙げ、何が原因で、どう解決したか」を書く問題である。
+<strong>AIに聞いて解決した場合は、そう書いてよい</strong>（何を聞いて、何が分かったか）。減点はしない。</p>
+</div>
 <hr />
 <h2 id="1-dataframe">1. データは「表」＝ DataFrame<a class="headerlink" href="#1-dataframe" title="Permanent link">&para;</a></h2>
 <p>CSVを読み込むと、Excelのような表になる。Pandasでは、このような表形式のデータを <strong>DataFrame</strong> として扱い、慣習的に <code>df</code> という名前を付ける。</p>
