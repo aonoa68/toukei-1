@@ -13,6 +13,7 @@
     - [📓 Colabノートを開く（05_correlation.ipynb）](https://colab.research.google.com/github/aonoa68/toukei-1/blob/main/colab/05_correlation.ipynb)
     - [📝 課題を提出する（Moodle・第5回）](https://moodle.hokusei.ac.jp/mod/assign/view.php?id=990625)
     - 課題の本文は**このページの末尾**にあります
+    - [🤖 NotebookLMで復習する](https://notebook.google.com/notebook/1866d439-994f-4265-894f-112d31f39e30)（この回の内容をAIに質問できます）
 <!-- LINKS:END -->
 
 !!! tip "考え方をガイドで確かめる"
