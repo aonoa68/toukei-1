@@ -1079,6 +1079,7 @@
 <li><strong>相関 ≠ 因果</strong>であることを、交絡・逆因果・偶然の観点から説明できる</li>
 <li>相関を見たときに「対抗仮説（第三の変数）」を立てて批判的に検証できる</li>
 <li><strong>発展</strong>：<span class="arithmatex">\( r \)</span> が標準化した値の積の平均であることと、<span class="arithmatex">\( -1 \le r \le 1 \)</span> を、自分で導ける</li>
+<li><strong>発展</strong>：「体重を統制する（偏相関）」が何を引き算しているのかを、標準化だけで導ける</li>
 </ul>
 <p>到達目標との対応：<strong>G1（記述）・G2（批判的検証の入口）</strong>。</p>
 <hr />
@@ -1253,6 +1254,26 @@ B2が「エラーの原因と解決」を聞く問題だったので、<strong>�
 <p>アイスと水難事故（犯人は「気温」）、チョコとノーベル賞（犯人は「経済的豊かさ」）と同じ構造。
 <strong>相関を見たら、因果を結論する前に『隠れた第三の変数（交絡）』を疑う。</strong></p>
 </div>
+<details class="note" open="open">
+<summary>導出③：「体重を統制する」とは、何を引き算しているのか（偏相関）</summary>
+<p>ノートブックのこのセルは <code>np.linalg.lstsq</code> ―― <strong>最小二乗法</strong> ―― を呼んでいる。これは<strong>第10回の回帰の先取り</strong>なので、いまはコードの中身を書けなくてよい。出てきた2つの数字（0.657 と 0.051）を読み比べられれば十分である。</p>
+<p>ただし「<strong>何を引き算したのか</strong>」は、第3回の標準化と導出①だけで導ける。回帰の公式は要らない。</p>
+<p>3つの量 ―― 離乳日齢 <span class="arithmatex">\( x \)</span>・行動圏 <span class="arithmatex">\( y \)</span>・体重 <span class="arithmatex">\( w \)</span>（すべて対数）―― を<strong>標準化</strong>して <span class="arithmatex">\( z_x, z_y, z_w \)</span> とする。標準化したので分散はどれも1で、共分散は相関係数そのものになる（導出①）。</p>
+<p><strong>体重で説明できる分を引く。</strong> <span class="arithmatex">\( z_x \)</span> から <span class="arithmatex">\( a\,z_w \)</span> を引いた残りを <span class="arithmatex">\( e_x = z_x - a\,z_w \)</span> と書く。係数 <span class="arithmatex">\( a \)</span> は「<strong>引いたあとに残るばらつきが最小</strong>」になるように決めたい。分散を展開すると</p>
+<div class="arithmatex">\[ \mathrm{Var}[e_x] \;=\; 1 - 2a\,r_{xw} + a^2 \;=\; (a - r_{xw})^2 + (1 - r_{xw}^2) \]</div>
+<p>二乗は負にならない（導出②と同じ手である）。したがって <span class="arithmatex">\( a = r_{xw} \)</span> のとき最小で、そのときの残りのばらつきは <span class="arithmatex">\( 1 - r_{xw}^2 \)</span>。</p>
+<p><strong>最適な係数が、相関係数そのものになった。</strong>これが標準化の効きどころである。単位をそろえておいたから、「どれだけ引くべきか」が r で書けてしまう。</p>
+<p>同じように <span class="arithmatex">\( e_y = z_y - r_{yw} z_w \)</span> で <span class="arithmatex">\( \mathrm{Var}[e_y] = 1 - r_{yw}^2 \)</span>。残り同士の共分散は、そのまま展開して</p>
+<div class="arithmatex">\[ \mathrm{Cov}[e_x, e_y] \;=\; r_{xy} - r_{xw} r_{yw} \]</div>
+<p>これを両者の標準偏差で割れば、体重を統制した相関 ―― <strong>偏相関</strong> ―― になる。</p>
+<div class="arithmatex">\[ r_{xy \mid w} \;=\; \frac{r_{xy} - r_{xw} r_{yw}}{\sqrt{(1-r_{xw}^2)(1-r_{yw}^2)}} \]</div>
+<p><strong>数値で確かめる。</strong>3つの列すべてに値がある n=97種では、<span class="arithmatex">\( r_{xy}=0.6570 \)</span>（離乳×行動圏）、<span class="arithmatex">\( r_{xw}=0.8543 \)</span>（離乳×体重）、<span class="arithmatex">\( r_{yw}=0.7485 \)</span>（行動圏×体重）。</p>
+<div class="arithmatex">\[ \frac{0.6570 - 0.8543\times0.7485}{\sqrt{(1-0.8543^2)(1-0.7485^2)}} \;=\; \frac{0.0176}{0.3447} \;=\; 0.051 \]</div>
+<p>ノートブックが最小二乗で出した 0.0510 と一致する。<strong>式でも、コードでも、同じ数にたどり着く。</strong></p>
+<p><strong>何が起きていたのか。</strong>見かけの相関 0.6570 のうち、<span class="arithmatex">\( 0.8543 \times 0.7485 = 0.6394 \)</span> は<strong>体重を経由して説明できてしまう分</strong>だった。引き算して残るのは 0.0176 しかない。それを残りのばらつき（0.3447）で割り直したのが 0.051 である。</p>
+<p>「乳離れが遅い種ほど広く動きまわる」の中身は、<strong>ほとんど全部が「体が大きい」だった</strong>ということだ。</p>
+<p><strong>使った数学</strong>：二次式の平方完成と最小値（微I）、分散・共分散の展開（線I）、標準化というスケール変換（第3回）。</p>
+</details>
 <div class="admonition danger">
 <p class="admonition-title">この分野では、これが最大の落とし穴である</p>
 <p>生き物のデータでは、<strong>体の大きさがほとんど全部に効く</strong>。寿命も、妊娠期間も、行動圏も、集団サイズも、大きい種ほど大きい。だから種どうしを比べると、<strong>何と何を組み合わせても相関が出る</strong>。</p>
