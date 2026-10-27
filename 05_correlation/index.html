@@ -446,6 +446,34 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        前回の答案から
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="前回の答案から">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        今日につながること
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#1" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -491,7 +519,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
         確かめ方：体重を統制する（偏相関）
@@ -518,7 +546,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       
         まとめ
@@ -856,6 +884,34 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        前回の答案から
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="前回の答案から">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        今日につながること
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#1" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -901,7 +957,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
         確かめ方：体重を統制する（偏相関）
@@ -928,7 +984,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       
         まとめ
@@ -1026,6 +1082,71 @@
 </ul>
 <p>到達目標との対応：<strong>G1（記述）・G2（批判的検証の入口）</strong>。</p>
 <hr />
+<h2 id="_2">前回の答案から<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>第4回の記述（パートB・60点）は、10/25時点の69名で<strong>満点36名（52%）／平均55.7点</strong>だった。
+パートAの小テストは77名中70名が満点。初めてコードを書いた回としては上出来である。</p>
+<div class="admonition success">
+<p class="admonition-title">まず、配布ノートの不具合をお詫びする</p>
+<p><code>print("妊娠期間日 標準偏差", df["妊娠期間日"].____().round(1), "日")</code> という形が残っていた。
+<code>.std()</code> が返すのは<strong>1個の数値（float）</strong>で、列まるごと（Series）ではない。
+floatには <code>.round()</code> が無いので <code>'float' object has no attribute 'round'</code> が出る。
+<strong>10名がここで詰まった。ノート側の間違いで、皆さんのミスではない</strong>（10/20に修正済み）。</p>
+<p>そのうえで、<strong>4名が型の違いまで自力で突き止めた</strong>。
+「Seriesには <code>.round()</code> があるが、計算後の単一の数値には無い」――正しい診断である。
+直し方は、組み込み関数で囲む <code>round(df["妊娠期間日"].std(), 1)</code>。</p>
+<p><strong>板書</strong>：<code>df["列"]</code> → Series（列まるごと）／<code>df["列"].std()</code> → float（1個の数値）</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">① 直したあとに出た数値を書かなかった（69名中30名）</p>
+<p>引用が無くて点が止まった人が<strong>43%</strong>。第3回の25%から増えた。内容が悪いのではない。
+B2が「エラーの原因と解決」を聞く問題だったので、<strong>原因を特定したところで話が終わって</strong>しまった。</p>
+<blockquote>
+<p>列名を間違えるとエラーが起きるため計算ができなかった。もう一度列名を確認し、修正した</p>
+</blockquote>
+<p>直ったのは分かる。<strong>だが何が出たのかが書かれていない。</strong>
+「直したら平均5880.9gが出た」の一言があれば満点だった。</p>
+<p><strong>「直った」で終わらせず、出力を見るところまでを1セットにする。</strong>
+これはエラー処理の作法でもある。直ったつもりで値がおかしい、はよくある。</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">② <code>.mode()</code> が返す値を「典型値」と読んでしまう</p>
+<p>今回いちばん良かった答案を挙げる。</p>
+<blockquote>
+<p>最頻値（一腹産子数）<strong>1.01</strong> は、一回の出産で1.01頭生まれる種が多い、という意味に見える。
+しかし実際には、<strong>一腹産子数として1.01という値が記録されている種が最も多かった</strong>ことを表している</p>
+</blockquote>
+<p><code>.mode()</code> は<strong>記録値の重複を数えて最多のもの</strong>を返すだけで、分布の山とは別物である。
+体重の最頻値 <strong>992.4g</strong> も、<strong>6種で最多</strong>というだけのこと。
+同じ留保を書けた人は10名ほどいた。</p>
+<p><strong>「数字が出た」と「その数字が何を表している」は別。</strong>これが今日の入口になる。</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">③ 手計算のほうが正確だ、と書いた</p>
+<blockquote>
+<p>手計算は、値を求める正確さにおいて役立ち、コードは値を求める速さで役に立つ</p>
+</blockquote>
+<p><strong>逆である。</strong>376種の体重を電卓で足せば、どこかで打ち間違える。
+コードの強みは速さだけでなく、<strong>同じ処理を何度でも間違いなく繰り返せること</strong>にある。
+手計算の利点は正確さではなく、<strong>仕組みが見えること</strong>である。</p>
+</div>
+<div class="admonition danger">
+<p class="admonition-title">④ B2が感想で終わった（2名）</p>
+<blockquote>
+<p>頻繁にエラーが発生していたので、目的意識をしっかり持っていくようにしたい</p>
+</blockquote>
+<p>どのコードで、どの文字が、どう間違っていたのかが分からない。
+次の4点を書く。<strong>場所・原因・直し方・出た数値。</strong></p>
+<blockquote>
+<p>穴埋め①で <code>df["体重ｇ"]</code> とgを全角で打って KeyError が出た。半角に直したら先頭の 4749.96 が表示された</p>
+</blockquote>
+</div>
+<h3 id="_3">今日につながること<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p>前回は「機械が出した数字に、<strong>何の数字で、単位は何で、それは信じてよいのか</strong>というラベルを貼るのが人間の仕事」という話だった。</p>
+<p>今日は、そのラベルの中でもいちばん間違えやすいものを扱う。<strong>「この2つには関係がある」というラベル</strong>である。</p>
+<p><code>r = 0.657</code> という数字は、コードが一瞬で出してくれる。だが<strong>それが「原因と結果」なのかどうかは、画面には出ない。</strong>
+今日は、同じ <code>r</code> を出したあとで<strong>体重をそろえて計算し直す</strong>と 0.051 まで落ちる例を見る。
+数字は何も嘘をついていない。読み方のほうが間違っていたのである。</p>
+<hr />
 <h2 id="1">1. フック：この相関を信じる？<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
 <ul>
 <li>「<strong>アイスの売上</strong>が増えると<strong>水難事故</strong>も増える」――アイスを禁止すれば事故は減る？</li>
@@ -1108,7 +1229,7 @@
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>     離乳が遅い    行動圏が広い
 </code></pre></div>
 <p>チンパンジー（45kg）は離乳まで1,261日＝3年半かかり、行動圏は10.85km²。ネズミキツネザル（48g）は離乳40日、行動圏0.01km²。<strong>どちらの列も、体の大きさが動かしている。</strong>これが <strong>交絡（confounding）</strong> だ。</p>
-<h3 id="_2">確かめ方：体重を統制する（偏相関）<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<h3 id="_4">確かめ方：体重を統制する（偏相関）<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
@@ -1178,7 +1299,7 @@
 </blockquote>
 <p>さらに r が測れるのは<strong>直線的な関係だけ</strong>。<code>y = x²</code> のようなきれいな放物線でも r ≈ 0 になり、「関係なし」と誤解する。やはり<strong>まず散布図</strong>。</p>
 <hr />
-<h2 id="_3">まとめ<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<h2 id="_5">まとめ<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
