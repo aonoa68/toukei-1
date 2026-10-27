@@ -1308,6 +1308,13 @@ SDが0のデータは<strong>偏差値を計算できない</strong>（0で割�
 <h2 id="3_1">3. 偏差値の正体<a class="headerlink" href="#3_1" title="Permanent link">&para;</a></h2>
 <p>偏差値は、値を <strong>平均50・標準偏差10</strong> のものさしに置き直しただけ。</p>
 <div class="arithmatex">\[ 偏差値 = 50 + 10 \times \frac{あなたの値 - 平均}{標準偏差} \]</div>
+<div class="admonition note">
+<p class="admonition-title">この操作には名前がある ―― 標準化</p>
+<p>上の式の、分数の部分だけを取り出したもの</p>
+<div class="arithmatex">\[ z \;=\; \frac{x - \bar{x}}{s} \]</div>
+<p>を <strong>標準化（standardization）</strong>、<span class="arithmatex">\( z \)</span> を <strong>z得点</strong> という。平均0・標準偏差1に置き直す操作で、<strong>単位が消える</strong>（cmでも円でもgでも、z は無単位）。偏差値はこの z を 50+10z と読みやすく化粧しただけである。</p>
+<p>この授業では、標準化がこのあと何度も出てくる。<strong>第5回</strong>（相関係数 r は標準化した2つの値の積の平均）、<strong>第6回・第7回</strong>（標本平均を標準化して正規分布に持ち込む）、<strong>第13回</strong>（単位の違う変数を主成分分析にかける前処理）。<strong>名前を覚えるのはここで一度だけでよい。</strong></p>
+</div>
 <details class="note" open="open">
 <summary>導出③：偏差値の平均が50・標準偏差が10になる理由</summary>
 <p>偏差値は、元の値 <span class="arithmatex">\( x \)</span> を <span class="arithmatex">\( z = 50 + 10\cdot\frac{x-\bar{x}}{s} \)</span> に置き換えたものである。よく見るとこれは <span class="arithmatex">\( x \)</span> の<strong>一次式</strong>（<span class="arithmatex">\( ax+b \)</span> の形）でしかない。</p>
