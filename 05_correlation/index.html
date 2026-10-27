@@ -1257,22 +1257,110 @@ B2が「エラーの原因と解決」を聞く問題だったので、<strong>�
 <details class="note" open="open">
 <summary>導出③：「体重を統制する」とは、何を引き算しているのか（偏相関）</summary>
 <p>ノートブックのこのセルは <code>np.linalg.lstsq</code> ―― <strong>最小二乗法</strong> ―― を呼んでいる。これは<strong>第10回の回帰の先取り</strong>なので、いまはコードの中身を書けなくてよい。出てきた2つの数字（0.657 と 0.051）を読み比べられれば十分である。</p>
-<p>ただし「<strong>何を引き算したのか</strong>」は、第3回の標準化と導出①だけで導ける。回帰の公式は要らない。</p>
-<p>3つの量 ―― 離乳日齢 <span class="arithmatex">\( x \)</span>・行動圏 <span class="arithmatex">\( y \)</span>・体重 <span class="arithmatex">\( w \)</span>（すべて対数）―― を<strong>標準化</strong>して <span class="arithmatex">\( z_x, z_y, z_w \)</span> とする。標準化したので分散はどれも1で、共分散は相関係数そのものになる（導出①）。</p>
-<p><strong>体重で説明できる分を引く。</strong> <span class="arithmatex">\( z_x \)</span> から <span class="arithmatex">\( a\,z_w \)</span> を引いた残りを <span class="arithmatex">\( e_x = z_x - a\,z_w \)</span> と書く。係数 <span class="arithmatex">\( a \)</span> は「<strong>引いたあとに残るばらつきが最小</strong>」になるように決めたい。分散を展開すると</p>
-<div class="arithmatex">\[ \mathrm{Var}[e_x] \;=\; 1 - 2a\,r_{xw} + a^2 \;=\; (a - r_{xw})^2 + (1 - r_{xw}^2) \]</div>
-<p>二乗は負にならない（導出②と同じ手である）。したがって <span class="arithmatex">\( a = r_{xw} \)</span> のとき最小で、そのときの残りのばらつきは <span class="arithmatex">\( 1 - r_{xw}^2 \)</span>。</p>
-<p><strong>最適な係数が、相関係数そのものになった。</strong>これが標準化の効きどころである。単位をそろえておいたから、「どれだけ引くべきか」が r で書けてしまう。</p>
-<p>同じように <span class="arithmatex">\( e_y = z_y - r_{yw} z_w \)</span> で <span class="arithmatex">\( \mathrm{Var}[e_y] = 1 - r_{yw}^2 \)</span>。残り同士の共分散は、そのまま展開して</p>
-<div class="arithmatex">\[ \mathrm{Cov}[e_x, e_y] \;=\; r_{xy} - r_{xw} r_{yw} \]</div>
-<p>これを両者の標準偏差で割れば、体重を統制した相関 ―― <strong>偏相関</strong> ―― になる。</p>
+<p>ノートブックが内部で何をしているのかは、<strong>第3回の標準化と、導出①②で出した事実だけ</strong>で追える。回帰の公式は要らない。記号も導出①②と同じ ―― 総和 <span class="arithmatex">\( \sum \)</span> のまま進める。</p>
+<p><strong>ステップ0：道具をそろえる。</strong></p>
+<p>3つの量 ―― 離乳日齢 <span class="arithmatex">\( x \)</span>・行動圏 <span class="arithmatex">\( y \)</span>・体重 <span class="arithmatex">\( w \)</span>（すべて対数）―― を<strong>標準化</strong>して <span class="arithmatex">\( z_{x_i}, z_{y_i}, z_{w_i} \)</span> とする。導出①②で確かめたことを、そのまま持ってくる。</p>
+<table>
+<thead>
+<tr>
+<th>事実</th>
+<th>式</th>
+<th>出どころ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>標準化した値の平均は0</td>
+<td><span class="arithmatex">\( \sum z_{x_i} = 0 \)</span>（他も同様）</td>
+<td>第3回・導出①</td>
+</tr>
+<tr>
+<td>標準化した値の二乗和は n</td>
+<td><span class="arithmatex">\( \sum z_{x_i}^2 = n \)</span>（他も同様）</td>
+<td>導出②</td>
+</tr>
+<tr>
+<td>積の和は n×相関</td>
+<td><span class="arithmatex">\( \sum z_{x_i} z_{y_i} = n\,r_{xy} \)</span></td>
+<td>導出①</td>
+</tr>
+</tbody>
+</table>
+<p>3つめは、任意の組について成り立つ。つまり <span class="arithmatex">\( \sum z_{x_i} z_{w_i} = n\,r_{xw} \)</span>、<span class="arithmatex">\( \sum z_{y_i} z_{w_i} = n\,r_{yw} \)</span> も使える。<strong>これだけが材料である。</strong></p>
+<p><strong>ステップ1：体重で説明できる分を引いた「残り」を作る。</strong></p>
+<p>各個体 <span class="arithmatex">\( i \)</span> について、<span class="arithmatex">\( z_{x_i} \)</span> から <span class="arithmatex">\( a\,z_{w_i} \)</span> を引いた残りを</p>
+<div class="arithmatex">\[ e_{x_i} \;=\; z_{x_i} - a\,z_{w_i} \]</div>
+<p>と書く。体重が大きいほど離乳も遅いのだから、体重ぶんを <span class="arithmatex">\( a \)</span> 倍して差し引いてやる、という操作である。係数 <span class="arithmatex">\( a \)</span> はまだ決まっていない。</p>
+<p>まず、残りの平均は0のままである（あとで使う）。</p>
+<div class="arithmatex">\[ \sum e_{x_i} \;=\; \sum z_{x_i} - a\sum z_{w_i} \;=\; 0 - a\cdot 0 \;=\; 0 \]</div>
+<p><strong>ステップ2：残りのばらつきを、a の式として書く。</strong></p>
+<p><span class="arithmatex">\( a \)</span> は「<strong>引いたあとに残るばらつきが最小</strong>」になるように決めたい。そこで残りの二乗和を展開する。導出②と同じ、二乗を展開して項ごとに和をとるだけである。</p>
+<div class="arithmatex">\[ \sum e_{x_i}^2 \;=\; \sum \left(z_{x_i} - a\,z_{w_i}\right)^2 \;=\; \sum z_{x_i}^2 \;-\; 2a\sum z_{x_i} z_{w_i} \;+\; a^2 \sum z_{w_i}^2 \]</div>
+<p>ステップ0の表を、3つの和に1つずつ代入する。</p>
+<div class="arithmatex">\[ \sum e_{x_i}^2 \;=\; n \;-\; 2a\cdot n\,r_{xw} \;+\; a^2\cdot n \;=\; n\left(1 - 2a\,r_{xw} + a^2\right) \]</div>
+<p><strong>ステップ3：平方完成して、最小になる a を見つける。</strong></p>
+<p>かっこの中は <span class="arithmatex">\( a \)</span> についての二次式である。<span class="arithmatex">\( a \)</span> を含む項をまとめて平方完成する。</p>
+<div class="arithmatex">\[ a^2 - 2a\,r_{xw} + 1 \;=\; \underbrace{\left(a^2 - 2a\,r_{xw} + r_{xw}^2\right)}_{(a-r_{xw})^2} - r_{xw}^2 + 1 \;=\; (a - r_{xw})^2 + \left(1 - r_{xw}^2\right) \]</div>
+<p>第1項は二乗だから負にならず、<strong><span class="arithmatex">\( a = r_{xw} \)</span> のときだけ0</strong>になる。第2項は <span class="arithmatex">\( a \)</span> を含まない定数である。したがって</p>
+<ul>
+<li>最小になるのは <span class="arithmatex">\( a = r_{xw} \)</span> のとき</li>
+<li>そのときの残りのばらつきは <span class="arithmatex">\( \sum e_{x_i}^2 = n\left(1 - r_{xw}^2\right) \)</span></li>
+</ul>
+<p><strong>最適な係数が、相関係数そのものになった。</strong> これが標準化の効きどころである。単位をそろえておいたから、「どれだけ引けばよいか」が r で書けてしまう。</p>
+<p>行動圏のほうも、文字を入れ替えるだけでまったく同じ計算になる。</p>
+<div class="arithmatex">\[ e_{y_i} = z_{y_i} - r_{yw}\,z_{w_i}, \qquad \sum e_{y_i}^2 = n\left(1 - r_{yw}^2\right) \]</div>
+<p><strong>ステップ4：残り同士の積の和を計算する（ここが山場）。</strong></p>
+<p><span class="arithmatex">\( e_x \)</span> と <span class="arithmatex">\( e_y \)</span> の積の和を、<strong>かっこを展開して4つの項に分ける</strong>。</p>
+<div class="arithmatex">\[ \sum e_{x_i} e_{y_i} \;=\; \sum \left(z_{x_i} - r_{xw} z_{w_i}\right)\left(z_{y_i} - r_{yw} z_{w_i}\right) \]</div>
+<div class="arithmatex">\[ =\; \sum z_{x_i} z_{y_i} \;-\; r_{yw}\sum z_{x_i} z_{w_i} \;-\; r_{xw}\sum z_{w_i} z_{y_i} \;+\; r_{xw} r_{yw}\sum z_{w_i}^2 \]</div>
+<p>4つの和に、ステップ0の表を1つずつ代入する。</p>
+<table>
+<thead>
+<tr>
+<th>項</th>
+<th>代入する和</th>
+<th>結果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>第1項</td>
+<td><span class="arithmatex">\( \sum z_{x_i} z_{y_i} = n\,r_{xy} \)</span></td>
+<td><span class="arithmatex">\( +n\,r_{xy} \)</span></td>
+</tr>
+<tr>
+<td>第2項</td>
+<td><span class="arithmatex">\( \sum z_{x_i} z_{w_i} = n\,r_{xw} \)</span></td>
+<td><span class="arithmatex">\( -n\,r_{xw} r_{yw} \)</span></td>
+</tr>
+<tr>
+<td>第3項</td>
+<td><span class="arithmatex">\( \sum z_{w_i} z_{y_i} = n\,r_{yw} \)</span></td>
+<td><span class="arithmatex">\( -n\,r_{xw} r_{yw} \)</span></td>
+</tr>
+<tr>
+<td>第4項</td>
+<td><span class="arithmatex">\( \sum z_{w_i}^2 = n \)</span></td>
+<td><span class="arithmatex">\( +n\,r_{xw} r_{yw} \)</span></td>
+</tr>
+</tbody>
+</table>
+<p>第2項と第3項で<strong>同じものを2回引き</strong>、第4項で<strong>1回足している</strong>。差し引き、1回ぶんだけ引いたことになる。</p>
+<div class="arithmatex">\[ \sum e_{x_i} e_{y_i} \;=\; n\,r_{xy} - n\,r_{xw}r_{yw} - n\,r_{xw}r_{yw} + n\,r_{xw}r_{yw} \;=\; n\left(r_{xy} - r_{xw} r_{yw}\right) \]</div>
+<p><strong>ステップ5：残り同士の相関を作る。</strong></p>
+<p>「体重を統制した相関」とは、<strong>残り <span class="arithmatex">\( e_x \)</span> と残り <span class="arithmatex">\( e_y \)</span> の相関</strong>のことである。相関係数の定義（導出①）を、平均0の量どうしに当てはめると</p>
+<div class="arithmatex">\[ r_{xy \mid w} \;=\; \frac{\sum e_{x_i} e_{y_i}}{\sqrt{\sum e_{x_i}^2}\,\sqrt{\sum e_{y_i}^2}} \]</div>
+<p>（分母が標準偏差の役をしている。<strong>ステップ1で平均が0のままだと確かめておいたので、偏差を取り直す必要がない。</strong>）ステップ2〜4の結果を入れる。</p>
+<div class="arithmatex">\[ r_{xy \mid w} \;=\; \frac{n\left(r_{xy} - r_{xw} r_{yw}\right)}{\sqrt{n\left(1-r_{xw}^2\right)}\,\sqrt{n\left(1-r_{yw}^2\right)}} \]</div>
+<p>分母の2つの平方根をかけると <span class="arithmatex">\( \sqrt{n}\times\sqrt{n}=n \)</span> が出るので、<strong>n が約分されて消える</strong>。</p>
 <div class="arithmatex">\[ r_{xy \mid w} \;=\; \frac{r_{xy} - r_{xw} r_{yw}}{\sqrt{(1-r_{xw}^2)(1-r_{yw}^2)}} \]</div>
+<p>これが <strong>偏相関</strong> である。<strong>標本の大きさ n がきれいに消えた</strong>ことに注意したい。偏相関は、3つの相関係数だけから計算できる。</p>
 <p><strong>数値で確かめる。</strong>3つの列すべてに値がある n=97種では、<span class="arithmatex">\( r_{xy}=0.6570 \)</span>（離乳×行動圏）、<span class="arithmatex">\( r_{xw}=0.8543 \)</span>（離乳×体重）、<span class="arithmatex">\( r_{yw}=0.7485 \)</span>（行動圏×体重）。</p>
 <div class="arithmatex">\[ \frac{0.6570 - 0.8543\times0.7485}{\sqrt{(1-0.8543^2)(1-0.7485^2)}} \;=\; \frac{0.0176}{0.3447} \;=\; 0.051 \]</div>
 <p>ノートブックが最小二乗で出した 0.0510 と一致する。<strong>式でも、コードでも、同じ数にたどり着く。</strong></p>
 <p><strong>何が起きていたのか。</strong>見かけの相関 0.6570 のうち、<span class="arithmatex">\( 0.8543 \times 0.7485 = 0.6394 \)</span> は<strong>体重を経由して説明できてしまう分</strong>だった。引き算して残るのは 0.0176 しかない。それを残りのばらつき（0.3447）で割り直したのが 0.051 である。</p>
 <p>「乳離れが遅い種ほど広く動きまわる」の中身は、<strong>ほとんど全部が「体が大きい」だった</strong>ということだ。</p>
-<p><strong>使った数学</strong>：二次式の平方完成と最小値（微I）、分散・共分散の展開（線I）、標準化というスケール変換（第3回）。</p>
+<p><strong>使った数学</strong>：二次式の平方完成と最小値（微I）、総和記号の展開と定数の括り出し（線I）、標準化というスケール変換（第3回）。新しい公式はひとつも使っていない ―― 導出①②で出した3つの事実と、かっこの展開だけである。</p>
 </details>
 <div class="admonition danger">
 <p class="admonition-title">この分野では、これが最大の落とし穴である</p>
