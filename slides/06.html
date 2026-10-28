@@ -18,7 +18,7 @@ h1 { color: #00695c; }
 h2 { color: #00897b; }
 .big { font-size: 1.4em; font-weight: bold; color: #e8503a; }
 table { font-size: 0.8em; }
-;" data-marpit-pagination-total="8" data-size="16:9">
+;" data-marpit-pagination-total="13" data-size="16:9">
 <header>統計学Ⅰ（B）2026　第6回</header>
 
 <h1 id="%E7%AC%AC6%E5%9B%9E-%E7%A2%BA%E7%8E%87%E5%88%86%E5%B8%83%E3%81%A8%E6%A8%99%E6%9C%AC">第6回　確率分布と標本</h1>
@@ -26,26 +26,21 @@ table { font-size: 0.8em; }
 <p>統計学Ⅰ（B）　北星学園大学<br />
 小野原 彩香</p>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="2" data-paginate="true" data-header="統計学Ⅰ（B）2026　第6回" data-theme="default" data-style="section { font-size: 27px; }
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="2" data-paginate="true" data-header="統計学Ⅰ（B）2026　第6回" data-class="lead" data-theme="default" data-style="section { font-size: 27px; }
 h1 { color: #00695c; }
 h2 { color: #00897b; }
 .big { font-size: 1.4em; font-weight: bold; color: #e8503a; }
 table { font-size: 0.8em; }
-" lang="ja-JP" data-marpit-pagination="2" style="--paginate:true;--header:統計学Ⅰ（B）2026　第6回;--theme:default;--style:section { font-size: 27px; }
+" lang="ja-JP" class="lead" data-marpit-pagination="2" style="--paginate:true;--header:統計学Ⅰ（B）2026　第6回;--class:lead;--theme:default;--style:section { font-size: 27px; }
 h1 { color: #00695c; }
 h2 { color: #00897b; }
 .big { font-size: 1.4em; font-weight: bold; color: #e8503a; }
 table { font-size: 0.8em; }
-;" data-marpit-pagination-total="8" data-size="16:9">
+;" data-marpit-pagination-total="13" data-size="16:9">
 <header>統計学Ⅰ（B）2026　第6回</header>
-<h2 id="%E3%83%95%E3%83%83%E3%82%AF%E3%81%AA%E3%81%9C%E4%B8%80%E9%83%A8%E3%81%A7%E5%85%A8%E4%BD%93">フック：なぜ「一部」で「全体」？</h2>
-<ul>
-<li>視聴率は全国数千万世帯のうち<strong>数百世帯</strong>だけ調べる</li>
-<li>味噌汁の味見は<strong>ひと匙</strong>で分かる</li>
-</ul>
-<br />
-<h2 id="span-classbig%E3%81%AA%E3%81%9C%E4%B8%80%E9%83%A8%E3%81%A7%E5%85%A8%E4%BD%93%E3%82%92%E8%AA%9E%E3%82%8C%E3%82%8Bspan"><span class="big">なぜ一部で全体を語れる？</span></h2>
-<p>その裏づけ＝<strong>中心極限定理</strong></p>
+
+<h1 id="%E5%89%8D%E5%9B%9E%E3%81%AE%E8%A3%9C%E8%B6%B3">前回の補足</h1>
+<h2 id="%E4%BA%A4%E7%B5%A1%E3%81%A8%E5%AA%92%E4%BB%8B%E3%81%AF%E9%81%95%E3%81%86">交絡と「媒介」は違う</h2>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="3" data-paginate="true" data-header="統計学Ⅰ（B）2026　第6回" data-theme="default" data-style="section { font-size: 27px; }
 h1 { color: #00695c; }
@@ -57,15 +52,19 @@ h1 { color: #00695c; }
 h2 { color: #00897b; }
 .big { font-size: 1.4em; font-weight: bold; color: #e8503a; }
 table { font-size: 0.8em; }
-;" data-marpit-pagination-total="8" data-size="16:9">
+;" data-marpit-pagination-total="13" data-size="16:9">
 <header>統計学Ⅰ（B）2026　第6回</header>
-<h2 id="%E6%AF%8D%E9%9B%86%E5%9B%A3%E3%81%A8%E6%A8%99%E6%9C%AC">母集団と標本</h2>
+<h2 id="%E7%AC%AC5%E5%9B%9E%E3%81%A73%E3%81%A4%E6%8C%99%E3%81%92%E3%81%9F-%E2%80%95%E2%80%95-%E3%82%82%E3%81%861%E3%81%A4%E3%81%82%E3%82%8B">第5回で3つ挙げた ―― もう1つある</h2>
+<p><strong>交絡・逆因果・偶然</strong>。説明が足りなかったのが <strong>媒介</strong></p>
 <ul>
-<li><strong>母集団</strong>：知りたい全体</li>
-<li><strong>標本</strong>：実際に調べる一部</li>
+<li><strong>交絡</strong>： <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mo>←</mo><mi>Z</mi><mo>→</mo><mi>Y</mi></mrow><annotation encoding="application/x-tex">X \leftarrow Z \rightarrow Y</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0785em;">X</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">←</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0715em;">Z</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.2222em;">Y</span></span></span></span>　XとYの間に矢印が<strong>ない</strong> → 因果では<strong>ない</strong></li>
+<li><strong>媒介</strong>： <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mo>→</mo><mi>M</mi><mo>→</mo><mi>Y</mi></mrow><annotation encoding="application/x-tex">X \rightarrow M \rightarrow Y</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0785em;">X</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.109em;">M</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.2222em;">Y</span></span></span></span>　矢印で<strong>つながっている</strong> → 因果で<strong>ある</strong></li>
 </ul>
-<p><img src="data/population_skew.png" alt="" style="width:560px;" /></p>
-<p>母集団 μ=5,881 g / σ=13,110 g / 歪度<strong>7.60</strong>（<strong>正規からほど遠い</strong>）</p>
+<br />
+<h2 id="span-classbig%E5%AA%92%E4%BB%8B%E3%81%AF%E5%9B%A0%E6%9E%9C%E3%81%AE%E4%B8%80%E7%A8%AEspan"><span class="big">媒介は「因果の一種」</span></h2>
+<p>ほとんどの因果は何かを媒介する<br />
+運動→体重減→血圧低下／教育→収入→健康<br />
+→ 「媒介だから因果でない」とすると、因果がほぼ全部消える</p>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="4" data-paginate="true" data-header="統計学Ⅰ（B）2026　第6回" data-theme="default" data-style="section { font-size: 27px; }
 h1 { color: #00695c; }
@@ -77,16 +76,10 @@ h1 { color: #00695c; }
 h2 { color: #00897b; }
 .big { font-size: 1.4em; font-weight: bold; color: #e8503a; }
 table { font-size: 0.8em; }
-;" data-marpit-pagination-total="8" data-size="16:9">
+;" data-marpit-pagination-total="13" data-size="16:9">
 <header>統計学Ⅰ（B）2026　第6回</header>
-<h2 id="%E6%A8%99%E6%9C%AC%E5%B9%B3%E5%9D%87%E3%82%922000%E5%9B%9E%E3%81%8F%E3%82%8A%E3%81%8B%E3%81%88%E3%81%99%E3%81%A8">標本平均を2000回くりかえすと…</h2>
-<p>母集団は歪んでいた。標本平均(n=30)の分布は？</p>
-<ul>
-<li>標本平均の平均 ≈ <strong>5,850 g</strong>（母平均5,881にほぼ一致）</li>
-<li>ばらつき SD ≈ <strong>2,300 g</strong>（理論値 σ/√n = 2,394）</li>
-<li>歪度 7.60 → <strong>約1.5</strong>（近づいた。ただしまだ0ではない）</li>
-</ul>
-<h2 id="span-classbig%EF%BC%9D%E4%B8%AD%E5%BF%83%E6%A5%B5%E9%99%90%E5%AE%9A%E7%90%86cltspan"><span class="big">＝中心極限定理(CLT)</span></h2>
+<h2 id="%E5%90%8C%E3%81%98%E9%9B%A8%E3%81%A72%E3%81%A4%E3%82%92%E4%B8%A6%E3%81%B9%E3%82%8B">同じ「雨」で、2つを並べる</h2>
+<p><img src="data/confound_mediate.png" alt="" style="width:880px;" /></p>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="5" data-paginate="true" data-header="統計学Ⅰ（B）2026　第6回" data-theme="default" data-style="section { font-size: 27px; }
 h1 { color: #00695c; }
@@ -98,7 +91,131 @@ h1 { color: #00695c; }
 h2 { color: #00897b; }
 .big { font-size: 1.4em; font-weight: bold; color: #e8503a; }
 table { font-size: 0.8em; }
-;" data-marpit-pagination-total="8" data-size="16:9">
+;" data-marpit-pagination-total="13" data-size="16:9">
+<header>統計学Ⅰ（B）2026　第6回</header>
+<h2 id="%E7%B5%B1%E8%A8%88%E3%81%A0%E3%81%91%E3%81%A7%E3%81%AF%E5%8C%BA%E5%88%A5%E3%81%A7%E3%81%8D%E3%81%AA%E3%81%84">統計だけでは区別できない</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>交絡</th>
+<th>媒介</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>第三の変数を統制すると</td>
+<td>相関が消える</td>
+<td><strong>相関が消える</strong></td>
+</tr>
+<tr>
+<td><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0785em;">X</span></span></span></span> に介入すると <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Y</mi></mrow><annotation encoding="application/x-tex">Y</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.2222em;">Y</span></span></span></span> は</td>
+<td><strong>動かない</strong></td>
+<td><strong>動く</strong></td>
+</tr>
+</tbody>
+</table>
+<br />
+<h2 id="span-classbig%E7%B5%B1%E5%88%B6%E3%81%97%E3%81%9F%E3%82%89%E6%B6%88%E3%81%88%E3%81%9F%E3%81%A0%E3%81%91%E3%81%A7%E3%81%AF%E4%BD%95%E3%82%82%E6%B1%BA%E3%81%BE%E3%82%89%E3%81%AA%E3%81%84span"><span class="big">「統制したら消えた」だけでは何も決まらない</span></h2>
+<p>決めるのは <strong>時間順序と仕組み</strong><br />
+<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0785em;">X</span></span></span></span> より<strong>前</strong>にあるのが交絡、<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0785em;">X</span></span></span></span> の<strong>後</strong>に来るのが媒介</p>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="6" data-paginate="true" data-header="統計学Ⅰ（B）2026　第6回" data-theme="default" data-style="section { font-size: 27px; }
+h1 { color: #00695c; }
+h2 { color: #00897b; }
+.big { font-size: 1.4em; font-weight: bold; color: #e8503a; }
+table { font-size: 0.8em; }
+" lang="ja-JP" data-marpit-pagination="6" style="--paginate:true;--header:統計学Ⅰ（B）2026　第6回;--theme:default;--style:section { font-size: 27px; }
+h1 { color: #00695c; }
+h2 { color: #00897b; }
+.big { font-size: 1.4em; font-weight: bold; color: #e8503a; }
+table { font-size: 0.8em; }
+;" data-marpit-pagination-total="13" data-size="16:9">
+<header>統計学Ⅰ（B）2026　第6回</header>
+<h2 id="%E7%AC%AC5%E5%9B%9E%E3%81%AE%E4%BD%93%E9%87%8D%E3%81%AF%E3%81%A9%E3%81%A1%E3%82%89%E3%81%A0%E3%81%A3%E3%81%9F">第5回の体重は、どちらだった？</h2>
+<p>離乳日齢×行動圏 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>r</mi><mo>=</mo><mn>0.657</mn></mrow><annotation encoding="application/x-tex">r=0.657</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.0278em;">r</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0.657</span></span></span></span> → 体重を統制して <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0.051</mn></mrow><annotation encoding="application/x-tex">0.051</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0.051</span></span></span></span></p>
+<ul>
+<li>体の大きさが<strong>先</strong> → <strong>交絡</strong>。離乳に効果はない</li>
+<li>離乳が<strong>先</strong>（離乳が遅い→体が大きい→行動圏が広い） → <strong>媒介</strong>。効果は<strong>ある</strong></li>
+</ul>
+<br />
+<h2 id="span-classbig%E6%95%B0%E5%AD%97%E3%81%AF%E3%81%A9%E3%81%A1%E3%82%89%E3%81%A7%E3%82%82-0051span"><span class="big">数字はどちらでも 0.051</span></h2>
+<p>体サイズのほうが根本的な変数だから交絡と読んだ<br />
+―― <strong>この判断は相関係数の外から持ち込んでいる</strong></p>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="7" data-paginate="true" data-header="統計学Ⅰ（B）2026　第6回" data-theme="default" data-style="section { font-size: 27px; }
+h1 { color: #00695c; }
+h2 { color: #00897b; }
+.big { font-size: 1.4em; font-weight: bold; color: #e8503a; }
+table { font-size: 0.8em; }
+" lang="ja-JP" data-marpit-pagination="7" style="--paginate:true;--header:統計学Ⅰ（B）2026　第6回;--theme:default;--style:section { font-size: 27px; }
+h1 { color: #00695c; }
+h2 { color: #00897b; }
+.big { font-size: 1.4em; font-weight: bold; color: #e8503a; }
+table { font-size: 0.8em; }
+;" data-marpit-pagination-total="13" data-size="16:9">
+<header>統計学Ⅰ（B）2026　第6回</header>
+<h2 id="%E3%83%95%E3%83%83%E3%82%AF%E3%81%AA%E3%81%9C%E4%B8%80%E9%83%A8%E3%81%A7%E5%85%A8%E4%BD%93">フック：なぜ「一部」で「全体」？</h2>
+<ul>
+<li>視聴率は全国数千万世帯のうち<strong>数百世帯</strong>だけ調べる</li>
+<li>味噌汁の味見は<strong>ひと匙</strong>で分かる</li>
+</ul>
+<br />
+<h2 id="span-classbig%E3%81%AA%E3%81%9C%E4%B8%80%E9%83%A8%E3%81%A7%E5%85%A8%E4%BD%93%E3%82%92%E8%AA%9E%E3%82%8C%E3%82%8Bspan"><span class="big">なぜ一部で全体を語れる？</span></h2>
+<p>その裏づけ＝<strong>中心極限定理</strong></p>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="8" data-paginate="true" data-header="統計学Ⅰ（B）2026　第6回" data-theme="default" data-style="section { font-size: 27px; }
+h1 { color: #00695c; }
+h2 { color: #00897b; }
+.big { font-size: 1.4em; font-weight: bold; color: #e8503a; }
+table { font-size: 0.8em; }
+" lang="ja-JP" data-marpit-pagination="8" style="--paginate:true;--header:統計学Ⅰ（B）2026　第6回;--theme:default;--style:section { font-size: 27px; }
+h1 { color: #00695c; }
+h2 { color: #00897b; }
+.big { font-size: 1.4em; font-weight: bold; color: #e8503a; }
+table { font-size: 0.8em; }
+;" data-marpit-pagination-total="13" data-size="16:9">
+<header>統計学Ⅰ（B）2026　第6回</header>
+<h2 id="%E6%AF%8D%E9%9B%86%E5%9B%A3%E3%81%A8%E6%A8%99%E6%9C%AC">母集団と標本</h2>
+<ul>
+<li><strong>母集団</strong>：知りたい全体</li>
+<li><strong>標本</strong>：実際に調べる一部</li>
+</ul>
+<p><img src="data/population_skew.png" alt="" style="width:560px;" /></p>
+<p>母集団 μ=5,881 g / σ=13,110 g / 歪度<strong>7.60</strong>（<strong>正規からほど遠い</strong>）</p>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="9" data-paginate="true" data-header="統計学Ⅰ（B）2026　第6回" data-theme="default" data-style="section { font-size: 27px; }
+h1 { color: #00695c; }
+h2 { color: #00897b; }
+.big { font-size: 1.4em; font-weight: bold; color: #e8503a; }
+table { font-size: 0.8em; }
+" lang="ja-JP" data-marpit-pagination="9" style="--paginate:true;--header:統計学Ⅰ（B）2026　第6回;--theme:default;--style:section { font-size: 27px; }
+h1 { color: #00695c; }
+h2 { color: #00897b; }
+.big { font-size: 1.4em; font-weight: bold; color: #e8503a; }
+table { font-size: 0.8em; }
+;" data-marpit-pagination-total="13" data-size="16:9">
+<header>統計学Ⅰ（B）2026　第6回</header>
+<h2 id="%E6%A8%99%E6%9C%AC%E5%B9%B3%E5%9D%87%E3%82%922000%E5%9B%9E%E3%81%8F%E3%82%8A%E3%81%8B%E3%81%88%E3%81%99%E3%81%A8">標本平均を2000回くりかえすと…</h2>
+<p>母集団は歪んでいた。標本平均(n=30)の分布は？</p>
+<ul>
+<li>標本平均の平均 ≈ <strong>5,850 g</strong>（母平均5,881にほぼ一致）</li>
+<li>ばらつき SD ≈ <strong>2,300 g</strong>（理論値 σ/√n = 2,394）</li>
+<li>歪度 7.60 → <strong>約1.5</strong>（近づいた。ただしまだ0ではない）</li>
+</ul>
+<h2 id="span-classbig%EF%BC%9D%E4%B8%AD%E5%BF%83%E6%A5%B5%E9%99%90%E5%AE%9A%E7%90%86cltspan"><span class="big">＝中心極限定理(CLT)</span></h2>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="10" data-paginate="true" data-header="統計学Ⅰ（B）2026　第6回" data-theme="default" data-style="section { font-size: 27px; }
+h1 { color: #00695c; }
+h2 { color: #00897b; }
+.big { font-size: 1.4em; font-weight: bold; color: #e8503a; }
+table { font-size: 0.8em; }
+" lang="ja-JP" data-marpit-pagination="10" style="--paginate:true;--header:統計学Ⅰ（B）2026　第6回;--theme:default;--style:section { font-size: 27px; }
+h1 { color: #00695c; }
+h2 { color: #00897b; }
+.big { font-size: 1.4em; font-weight: bold; color: #e8503a; }
+table { font-size: 0.8em; }
+;" data-marpit-pagination-total="13" data-size="16:9">
 <header>統計学Ⅰ（B）2026　第6回</header>
 <h2 id="n-%E3%82%92%E5%A2%97%E3%82%84%E3%81%99%E3%81%A8%E7%B7%A0%E3%81%BE%E3%82%8B">n を増やすと「締まる」</h2>
 <p><img src="data/clt_n.png" alt="" style="width:920px;" /></p>
@@ -116,33 +233,33 @@ s-225.272,467,-225.272,467s-235,486,-235,486c-2.7,4.7,-9,7,-19,7
 c-6,0,-10,-1,-12,-3s-194,-422,-194,-422s-65,47,-65,47z
 M834 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2397em;"><span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0359em;">σ</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.93em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p><p>n を4倍 → SE は半分（精度2倍に4倍のデータ）</p>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="6" data-paginate="true" data-header="統計学Ⅰ（B）2026　第6回" data-theme="default" data-style="section { font-size: 27px; }
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="11" data-paginate="true" data-header="統計学Ⅰ（B）2026　第6回" data-theme="default" data-style="section { font-size: 27px; }
 h1 { color: #00695c; }
 h2 { color: #00897b; }
 .big { font-size: 1.4em; font-weight: bold; color: #e8503a; }
 table { font-size: 0.8em; }
-" lang="ja-JP" data-marpit-pagination="6" style="--paginate:true;--header:統計学Ⅰ（B）2026　第6回;--theme:default;--style:section { font-size: 27px; }
+" lang="ja-JP" data-marpit-pagination="11" style="--paginate:true;--header:統計学Ⅰ（B）2026　第6回;--theme:default;--style:section { font-size: 27px; }
 h1 { color: #00695c; }
 h2 { color: #00897b; }
 .big { font-size: 1.4em; font-weight: bold; color: #e8503a; }
 table { font-size: 0.8em; }
-;" data-marpit-pagination-total="8" data-size="16:9">
+;" data-marpit-pagination-total="13" data-size="16:9">
 <header>統計学Ⅰ（B）2026　第6回</header>
 <h2 id="%E6%A8%99%E6%9C%AC%E2%89%A0%E6%A8%99%E6%9C%AC%E5%B9%B3%E5%9D%87%E3%81%AE%E5%88%86%E5%B8%83">「標本」≠「標本平均の分布」</h2>
 <p><img src="data/sample_vs_mean.png" alt="" style="width:880px;" /></p>
 <p>正規に近づくのは<strong>標本平均の分布</strong>。標本そのものは歪んだまま。</p>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="7" data-paginate="true" data-header="統計学Ⅰ（B）2026　第6回" data-theme="default" data-style="section { font-size: 27px; }
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="12" data-paginate="true" data-header="統計学Ⅰ（B）2026　第6回" data-theme="default" data-style="section { font-size: 27px; }
 h1 { color: #00695c; }
 h2 { color: #00897b; }
 .big { font-size: 1.4em; font-weight: bold; color: #e8503a; }
 table { font-size: 0.8em; }
-" lang="ja-JP" data-marpit-pagination="7" style="--paginate:true;--header:統計学Ⅰ（B）2026　第6回;--theme:default;--style:section { font-size: 27px; }
+" lang="ja-JP" data-marpit-pagination="12" style="--paginate:true;--header:統計学Ⅰ（B）2026　第6回;--theme:default;--style:section { font-size: 27px; }
 h1 { color: #00695c; }
 h2 { color: #00897b; }
 .big { font-size: 1.4em; font-weight: bold; color: #e8503a; }
 table { font-size: 0.8em; }
-;" data-marpit-pagination-total="8" data-size="16:9">
+;" data-marpit-pagination-total="13" data-size="16:9">
 <header>統計学Ⅰ（B）2026　第6回</header>
 <h2 id="%E3%81%9F%E3%81%A0%E3%81%97%E7%84%A1%E4%BD%9C%E7%82%BA%E3%81%8C%E5%A4%A7%E5%89%8D%E6%8F%90">ただし「無作為」が大前提</h2>
 <ul>
@@ -153,17 +270,17 @@ table { font-size: 0.8em; }
 <h2 id="span-classbig%E6%95%B0%E3%81%AE%E5%A4%9A%E3%81%95%E3%81%AF%E5%81%8F%E3%82%8A%E3%82%92%E7%9B%B4%E3%81%95%E3%81%AA%E3%81%84span"><span class="big">数の多さは、偏りを直さない</span></h2>
 <p>「たくさん集めた」≠「正しく集めた」</p>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="8" data-paginate="true" data-header="統計学Ⅰ（B）2026　第6回" data-class="lead" data-theme="default" data-style="section { font-size: 27px; }
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="13" data-paginate="true" data-header="統計学Ⅰ（B）2026　第6回" data-class="lead" data-theme="default" data-style="section { font-size: 27px; }
 h1 { color: #00695c; }
 h2 { color: #00897b; }
 .big { font-size: 1.4em; font-weight: bold; color: #e8503a; }
 table { font-size: 0.8em; }
-" lang="ja-JP" class="lead" data-marpit-pagination="8" style="--paginate:true;--header:統計学Ⅰ（B）2026　第6回;--class:lead;--theme:default;--style:section { font-size: 27px; }
+" lang="ja-JP" class="lead" data-marpit-pagination="13" style="--paginate:true;--header:統計学Ⅰ（B）2026　第6回;--class:lead;--theme:default;--style:section { font-size: 27px; }
 h1 { color: #00695c; }
 h2 { color: #00897b; }
 .big { font-size: 1.4em; font-weight: bold; color: #e8503a; }
 table { font-size: 0.8em; }
-;" data-marpit-pagination-total="8" data-size="16:9">
+;" data-marpit-pagination-total="13" data-size="16:9">
 <header>統計学Ⅰ（B）2026　第6回</header>
 
 <h1 id="%E3%81%BE%E3%81%A8%E3%82%81">まとめ</h1>
