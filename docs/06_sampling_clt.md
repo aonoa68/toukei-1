@@ -13,6 +13,7 @@
     - [📓 Colabノートを開く（06_sampling_clt.ipynb）](https://colab.research.google.com/github/aonoa68/toukei-1/blob/main/colab/06_sampling_clt.ipynb)
     - [📝 課題を提出する（Moodle・第6回）](https://moodle.hokusei.ac.jp/mod/assign/view.php?id=990627)
     - 課題の本文は**このページの末尾**にあります
+    - [🤖 NotebookLMで復習する](https://notebook.google.com/notebook/01acd9c1-84a0-4c2b-aaf4-1fe3f0d3723e)（この回の内容をAIに質問できます）
 <!-- LINKS:END -->
 
 !!! abstract "一言でいうと"
