@@ -606,6 +606,28 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#1_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        導出①：傾きと切片は、どこから出てくるのか（最小二乗法）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-r2-r" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        導出②：単回帰の \( R^2 \) は、相関係数 r の二乗にすぎない
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -909,6 +931,28 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#1_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        導出①：傾きと切片は、どこから出てくるのか（最小二乗法）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-r2-r" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        導出②：単回帰の \( R^2 \) は、相関係数 r の二乗にすぎない
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1102,30 +1146,123 @@
 <li><strong>切片 = −3.883</strong>：log体重が0（＝1g）のときの予測値</li>
 <li><strong>決定係数 R² = 0.462</strong>：行動圏のばらつきの約46%をモデルが説明</li>
 </ul>
-<details class="note" open="open">
-<summary>導出①：傾きと切片は、どこから出てくるのか（最小二乗法）</summary>
+<h3 id="1_1">導出①：傾きと切片は、どこから出てくるのか（最小二乗法）<a class="headerlink" href="#1_1" title="Permanent link">&para;</a></h3>
 <p>直線 <span class="arithmatex">\( y = a + bx \)</span> を引くとき、「当てはまりが良い」を<strong>縦のズレの二乗和が最小</strong>と決める。この決め方が最小二乗法である。</p>
+<div class="admonition tip">
+<p class="admonition-title">下のボタンで、1行ずつ送れる</p>
+<p>「次の式へ ▶」を押すと、1段ずつ現れる。<strong>各行には、何をしたのかが付いている。</strong>
+最後の2段は、<strong>微分を使わない道</strong>（平方完成）である。</p>
+</div>
+<div class="deriv">
+<div>
 <div class="arithmatex">\[ Q(a,b) \;=\; \sum_{i=1}^{n}\bigl(y_i - a - b x_i\bigr)^2 \]</div>
-<p>まず a について。<span class="arithmatex">\( Q \)</span> を a で微分して 0 とおくと <span class="arithmatex">\( -2\sum (y_i - a - bx_i) = 0 \)</span>、両辺を n で割って</p>
+<p><strong>出発点。</strong>各点の<strong>縦のズレ</strong>（実際の <span class="arithmatex">\( y_i \)</span> と直線の値 <span class="arithmatex">\( a+bx_i \)</span> の差）を二乗して、全部足したもの。
+これを最小にする <span class="arithmatex">\( a,b \)</span> を探す。<span class="arithmatex">\( Q \)</span> は <span class="arithmatex">\( a,b \)</span> についての<strong>二次式</strong>である。</p>
+</div>
+<div>
+<div class="arithmatex">\[ \frac{\partial Q}{\partial a} \;=\; -2\sum_{i=1}^{n}\bigl(y_i-a-bx_i\bigr) \;=\; 0 \]</div>
+<p><strong>まず <span class="arithmatex">\( a \)</span> について。</strong>二次式が最小になるのは、傾きが 0 になるところ。
+（合成関数の微分で、中身の <span class="arithmatex">\( -a \)</span> から <span class="arithmatex">\( -1 \)</span> が出て、全体に <span class="arithmatex">\( 2 \)</span> が掛かる。）</p>
+</div>
+<div>
+<div class="arithmatex">\[ \sum y_i - na - b\sum x_i \;=\; 0 \qquad\Longrightarrow\qquad n\bar{y} - na - b\,n\bar{x} \;=\; 0 \]</div>
+<p><strong>和をばらした。</strong><span class="arithmatex">\( a \)</span> は <span class="arithmatex">\( n \)</span> 個足されるので <span class="arithmatex">\( na \)</span>。
+<span class="arithmatex">\( \sum y_i = n\bar{y} \)</span>、<span class="arithmatex">\( \sum x_i = n\bar{x} \)</span>（平均の定義）を入れる。</p>
+</div>
+<div>
 <div class="arithmatex">\[ a \;=\; \bar{y} - b\bar{x} \]</div>
-<p>次に b について同じことをすると <span class="arithmatex">\( -2\sum x_i (y_i - a - bx_i) = 0 \)</span>。ここに <span class="arithmatex">\( a=\bar{y}-b\bar{x} \)</span> を入れて整理すると、</p>
+<p><strong>両辺を <span class="arithmatex">\( n \)</span> で割って <span class="arithmatex">\( a \)</span> について解いた。</strong>
+これを直線の式に戻すと <span class="arithmatex">\( y=\bar{y}+b(x-\bar{x}) \)</span> となり、<span class="arithmatex">\( x=\bar{x} \)</span> のとき <span class="arithmatex">\( y=\bar{y} \)</span>。
+🔴 <strong>回帰直線は必ず点 <span class="arithmatex">\( (\bar{x},\bar{y}) \)</span> を通る。</strong></p>
+</div>
+<div>
+<div class="arithmatex">\[ \frac{\partial Q}{\partial b} \;=\; -2\sum_{i=1}^{n} x_i\bigl(y_i-a-bx_i\bigr) \;=\; 0 \qquad\Longrightarrow\qquad \sum x_iy_i - a\sum x_i - b\sum x_i^2 \;=\; 0 \]</div>
+<p><strong>次に <span class="arithmatex">\( b \)</span> について。</strong>同じことをする。中身の <span class="arithmatex">\( -bx_i \)</span> から <span class="arithmatex">\( -x_i \)</span> が出るので、<span class="arithmatex">\( x_i \)</span> が掛かる。
+そのあと、かっこを展開して和をばらした。</p>
+</div>
+<div>
+<div class="arithmatex">\[ \sum x_iy_i - (\bar{y}-b\bar{x})\,n\bar{x} - b\sum x_i^2 \;=\; 0 \]</div>
+<p><strong>いま求めた <span class="arithmatex">\( a=\bar{y}-b\bar{x} \)</span> を代入した。</strong>
+<span class="arithmatex">\( \sum x_i = n\bar{x} \)</span> も同時に使っている。<strong>これで未知数は <span class="arithmatex">\( b \)</span> だけになった。</strong></p>
+</div>
+<div>
+<div class="arithmatex">\[ \sum x_iy_i - n\bar{x}\bar{y} \;=\; b\left(\sum x_i^2 - n\bar{x}^2\right) \]</div>
+<p><strong>かっこを展開して、<span class="arithmatex">\( b \)</span> の項を右辺に集めた。</strong>
+左辺から <span class="arithmatex">\( +b\,n\bar{x}^2 \)</span> が出るので、それを右辺の <span class="arithmatex">\( -b\sum x_i^2 \)</span> と合わせている。</p>
+</div>
+<div>
+<div class="arithmatex">\[ \sum (x_i-\bar{x})(y_i-\bar{y}) \;=\; \sum x_iy_i - \bar{y}\sum x_i - \bar{x}\sum y_i + n\bar{x}\bar{y} \;=\; \sum x_iy_i - n\bar{x}\bar{y} \;=\; S_{xy} \]</div>
+<p><strong>左辺が何者かを確かめる。</strong>かっこを展開すると、真ん中の2項がどちらも <span class="arithmatex">\( -n\bar{x}\bar{y} \)</span> になり、
+最後の <span class="arithmatex">\( +n\bar{x}\bar{y} \)</span> と合わせて <span class="arithmatex">\( -n\bar{x}\bar{y} \)</span> がひとつ残る。
+<strong>つまり左辺は、<span class="arithmatex">\( x \)</span> と <span class="arithmatex">\( y \)</span> の偏差の積の和 <span class="arithmatex">\( S_{xy} \)</span> そのものである。</strong></p>
+</div>
+<div>
+<div class="arithmatex">\[ \sum (x_i-\bar{x})^2 \;=\; \sum x_i^2 - n\bar{x}^2 \;=\; S_{xx} \]</div>
+<p><strong>右辺のかっこも同じ形。</strong>上の式で <span class="arithmatex">\( y \)</span> を <span class="arithmatex">\( x \)</span> に置き換えただけである。
+<strong><span class="arithmatex">\( x \)</span> の偏差平方和 <span class="arithmatex">\( S_{xx} \)</span> になる。</strong></p>
+</div>
+<div>
 <div class="arithmatex">\[ b \;=\; \frac{\sum (x_i-\bar{x})(y_i-\bar{y})}{\sum (x_i-\bar{x})^2} \;=\; \frac{S_{xy}}{S_{xx}} \]</div>
-<p><strong>傾きは「x と y の共分散 ÷ x の分散」</strong>である。微分を知らなくてもよい。<span class="arithmatex">\( Q \)</span> は b について下に凸の二次式なので、<strong>平方完成して頂点を読めば同じ答えが出る</strong>。</p>
-<p><span class="arithmatex">\( a=\bar{y}-b\bar{x} \)</span> を直線の式に戻すと <span class="arithmatex">\( y = \bar{y} + b(x-\bar{x}) \)</span>。x に <span class="arithmatex">\( \bar{x} \)</span> を入れると y は <span class="arithmatex">\( \bar{y} \)</span>。つまり<strong>回帰直線は必ず点 <span class="arithmatex">\( (\bar{x},\bar{y}) \)</span> を通る</strong>。平均の点は、どんなデータでも直線の上にある。</p>
+<p>🔴 <strong>答え。傾きは「<span class="arithmatex">\( x \)</span> と <span class="arithmatex">\( y \)</span> の共分散 ÷ <span class="arithmatex">\( x \)</span> の分散」</strong>である
+（分子分母を <span class="arithmatex">\( n \)</span> で割れば、そのまま共分散と分散になる）。</p>
+</div>
+<div>
+<div class="arithmatex">\[ Q \;=\; S_{yy} - 2b\,S_{xy} + b^2 S_{xx} \;=\; S_{xx}\left(b - \frac{S_{xy}}{S_{xx}}\right)^2 + \left(S_{yy} - \frac{S_{xy}^{\,2}}{S_{xx}}\right) \]</div>
+<p><strong>微分を使わない道。</strong><span class="arithmatex">\( a=\bar{y}-b\bar{x} \)</span> を <span class="arithmatex">\( Q \)</span> に戻すと、<span class="arithmatex">\( b \)</span> だけの<strong>二次式</strong>になる。
+それを <strong>平方完成</strong>した形がこれである（<span class="arithmatex">\( S_{xx}&gt;0 \)</span> なので下に凸）。</p>
+</div>
+<div>
+<div class="arithmatex">\[ b \;=\; \frac{S_{xy}}{S_{xx}} \quad\text{のとき}\quad Q \;=\; S_{yy} - \frac{S_{xy}^{\,2}}{S_{xx}} \quad(\text{最小}) \]</div>
+<p><strong>頂点を読むだけ。</strong>二乗の部分が 0 になるときが最小で、そのときの <span class="arithmatex">\( b \)</span> は<strong>微分で出した答えと同じ</strong>。
+🔴 <strong>微分を知らなくても、平方完成だけで最小二乗法は終わる。</strong>
+（ここで出た最小値 <span class="arithmatex">\( S_{yy}-S_{xy}^2/S_{xx} \)</span> は、次の導出②でそのまま使う。）</p>
+</div>
+</div>
 <p><strong>数値で確かめる</strong>：この回のデータ（n=153種、両対数）で <span class="arithmatex">\( S_{xy}/S_{xx} = 0.9333 \)</span>、<span class="arithmatex">\( \bar{y}-b\bar{x} = -3.8830 \)</span>。本文の傾き 0.933・切片 −3.883 に一致する。</p>
 <p><strong>使った数学</strong>：二次式の最小化（微I：偏微分、または平方完成）。総和の記号操作（線I）。</p>
-</details>
-<details class="note" open="open">
-<summary>導出②：単回帰の <span class="arithmatex">\( R^2 \)</span> は、相関係数 r の二乗にすぎない</summary>
+<h3 id="2-r2-r">導出②：単回帰の <span class="arithmatex">\( R^2 \)</span> は、相関係数 r の二乗にすぎない<a class="headerlink" href="#2-r2-r" title="Permanent link">&para;</a></h3>
 <p>決定係数は「全体のばらつきのうち、モデルが説明できた割合」と定義される。</p>
+<div class="admonition tip">
+<p class="admonition-title">下のボタンで、1行ずつ送れる</p>
+<p>導出①の最後で出した <span class="arithmatex">\( Q \)</span> の最小値が、そのまま残差平方和である。</p>
+</div>
+<div class="deriv">
+<div>
 <div class="arithmatex">\[ R^2 \;=\; 1 - \frac{\sum (y_i-\hat{y}_i)^2}{\sum (y_i-\bar{y})^2} \;=\; 1 - \frac{SS_{\text{残差}}}{SS_{\text{全体}}} \]</div>
-<p>予測値は導出①より <span class="arithmatex">\( \hat{y}_i = \bar{y} + b(x_i-\bar{x}) \)</span> なので、残差平方和は</p>
-<div class="arithmatex">\[ \sum (y_i-\hat{y}_i)^2 \;=\; \sum \bigl[(y_i-\bar{y}) - b(x_i-\bar{x})\bigr]^2 \;=\; S_{yy} - 2bS_{xy} + b^2 S_{xx} \]</div>
-<p>ここに <span class="arithmatex">\( b=S_{xy}/S_{xx} \)</span> を代入すると、後ろの2項がまとまって</p>
-<div class="arithmatex">\[ \sum (y_i-\hat{y}_i)^2 \;=\; S_{yy} - \frac{S_{xy}^{\,2}}{S_{xx}} \]</div>
-<p>よって</p>
-<div class="arithmatex">\[ R^2 \;=\; 1 - \frac{S_{yy} - S_{xy}^{\,2}/S_{xx}}{S_{yy}} \;=\; \frac{S_{xy}^{\,2}}{S_{xx}S_{yy}} \;=\; r^2 \]</div>
-<p><strong>説明変数が1つのとき、<span class="arithmatex">\( R^2 \)</span> は相関係数 r を二乗しただけのものである。</strong> 第5回で見た r と、今日の <span class="arithmatex">\( R^2 \)</span> は別々の量ではない。</p>
+<p><strong>定義。</strong>「説明できなかった割合」を 1 から引いたもの。
+分母 <span class="arithmatex">\( SS_{\text{全体}} = S_{yy} \)</span> は、直線を引かずに <span class="arithmatex">\( \bar{y} \)</span> だけで予測したときの外れ具合である。</p>
+</div>
+<div>
+<div class="arithmatex">\[ y_i-\hat{y}_i \;=\; (y_i-\bar{y}) - b(x_i-\bar{x}) \]</div>
+<p><strong>残差を書き下した。</strong>導出①より <span class="arithmatex">\( \hat{y}_i = \bar{y} + b(x_i-\bar{x}) \)</span> なので、引き算すればこうなる。</p>
+</div>
+<div>
+<div class="arithmatex">\[ \sum (y_i-\hat{y}_i)^2 \;=\; S_{yy} - 2b\,S_{xy} + b^2 S_{xx} \]</div>
+<p><strong>二乗して和を取った。</strong><span class="arithmatex">\( (A-B)^2=A^2-2AB+B^2 \)</span> をそのまま使っただけ。
+3つの和がそれぞれ <span class="arithmatex">\( S_{yy},\ S_{xy},\ S_{xx} \)</span> になる。
+（導出①の最後に出てきた式と<strong>同じもの</strong>である。）</p>
+</div>
+<div>
+<div class="arithmatex">\[ -2b\,S_{xy} \;=\; -\frac{2S_{xy}^{\,2}}{S_{xx}}, \qquad b^2S_{xx} \;=\; \frac{S_{xy}^{\,2}}{S_{xx}^{\,2}}\cdot S_{xx} \;=\; \frac{S_{xy}^{\,2}}{S_{xx}} \]</div>
+<p><strong><span class="arithmatex">\( b=S_{xy}/S_{xx} \)</span> を、後ろの2項に別々に代入した。</strong>
+第2項では <span class="arithmatex">\( S_{xx} \)</span> が1つ約分される。
+<strong>2つとも <span class="arithmatex">\( S_{xy}^2/S_{xx} \)</span> の形になった。</strong></p>
+</div>
+<div>
+<div class="arithmatex">\[ \sum (y_i-\hat{y}_i)^2 \;=\; S_{yy} - \frac{2S_{xy}^{\,2}}{S_{xx}} + \frac{S_{xy}^{\,2}}{S_{xx}} \;=\; S_{yy} - \frac{S_{xy}^{\,2}}{S_{xx}} \]</div>
+<p><strong>足し合わせた。</strong><span class="arithmatex">\( -2 + 1 = -1 \)</span> なので、<span class="arithmatex">\( S_{xy}^2/S_{xx} \)</span> がひとつ残る。</p>
+</div>
+<div>
+<div class="arithmatex">\[ R^2 \;=\; 1 - \frac{S_{yy} - S_{xy}^{\,2}/S_{xx}}{S_{yy}} \;=\; \frac{S_{xy}^{\,2}/S_{xx}}{S_{yy}} \;=\; \frac{S_{xy}^{\,2}}{S_{xx}S_{yy}} \]</div>
+<p><strong>定義に戻した。</strong><span class="arithmatex">\( 1 - (1 - X) = X \)</span> の形で、きれいに約分される。</p>
+</div>
+<div>
+<div class="arithmatex">\[ R^2 \;=\; \frac{S_{xy}^{\,2}}{S_{xx}S_{yy}} \;=\; \left(\frac{S_{xy}}{\sqrt{S_{xx}S_{yy}}}\right)^2 \;=\; r^2 \]</div>
+<p>🔴 <strong>かっこの中は、相関係数 <span class="arithmatex">\( r \)</span> の定義そのもの</strong>（第5回）。
+<strong>説明変数が1つのとき、<span class="arithmatex">\( R^2 \)</span> は相関係数 r を二乗しただけのものである。</strong>
+第5回で見た r と、今日の <span class="arithmatex">\( R^2 \)</span> は別々の量ではない。</p>
+</div>
+</div>
 <p><strong>数値で確かめる</strong>：この回のデータで <span class="arithmatex">\( r = 0.6799 \)</span>、その二乗は 0.4623。本文の <span class="arithmatex">\( R^2 = 0.462 \)</span> に一致する。</p>
 <div class="admonition warning">
 <p class="admonition-title">これは『R² が何を測っているか』を示しただけ</p>
@@ -1133,7 +1270,6 @@
 <p>しかも説明変数が2つ以上になれば <span class="arithmatex">\( R^2 \)</span> はもう <span class="arithmatex">\( r^2 \)</span> ではなくなり、<strong>変数を足すだけで必ず上がる</strong>ようになる。なぜそうなるかは、次の §3「R²の罠」で見る。</p>
 </div>
 <p><strong>使った数学</strong>：平方の展開と総和（線I）。相関係数の定義（第5回）。</p>
-</details>
 <h3 id="_2">両対数のときの傾きは「何倍になるか」を表す<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
 <p>傾き <strong>0.933</strong> は、両方を対数にしているので<strong>足し算ではなくかけ算</strong>の関係を意味する。</p>
 <table>

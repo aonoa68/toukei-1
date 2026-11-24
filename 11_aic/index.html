@@ -644,6 +644,17 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#2-2k" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        導出②：ペナルティ \( 2k \) は、何を補正しているのか
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#3" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -881,6 +892,17 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#2-2k" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        導出②：ペナルティ \( 2k \) は、何を補正しているのか
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#3" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1051,25 +1073,131 @@
 </div>
 <p><strong>使った数学</strong>：指数関数と対数の性質（微I）。独立な事象の確率の積（統計学Ⅱ 第2回）。</p>
 </details>
-<details class="note" open="open">
-<summary>導出②：ペナルティ <span class="arithmatex">\( 2k \)</span> は、何を補正しているのか</summary>
+<h3 id="2-2k">導出②：ペナルティ <span class="arithmatex">\( 2k \)</span> は、何を補正しているのか<a class="headerlink" href="#2-2k" title="Permanent link">&para;</a></h3>
 <p>本当に知りたいのは「<strong>まだ見ていないデータ</strong>にどれだけ当たるか」である。ところが手元にあるのは1組のデータだけで、そこからパラメータを推定し、<strong>その同じデータで</strong>当てはまりを測っている。</p>
 <p>このやり方では、当てはまりは必ず<strong>実力より良く出る</strong>。推定の段階で、そのデータにたまたま乗っていた偶然のでこぼこにまで合わせてしまうからだ。パラメータが多いほど、合わせられる余地は増える。第10回で、でたらめな乱数を足すだけで <span class="arithmatex">\( R^2 \)</span> が上がったのは、これが起きていたからである。</p>
 <div class="arithmatex">\[ \underbrace{-2\log L(\hat{\theta})}_{\text{手元での当てはまり（楽観的）}} \;\approx\; \underbrace{\text{未知データでの当てはまり}}_{\text{本当に知りたい量}} \;-\; \underbrace{2k}_{\text{楽観のぶん}} \]</div>
-<p>赤池弘次が示したのは、<strong>この「楽観のぶん」が、標本が大きいときにはパラメータ数 k でおよそ書け、<span class="arithmatex">\( -2\log L \)</span> の尺度では <span class="arithmatex">\( 2k \)</span> になる</strong>ということである。だから手元の当てはまりに <span class="arithmatex">\( 2k \)</span> を足し戻せば、未知データでの当てはまりの見積もりが得られる。</p>
+<p><strong>この「楽観のぶん」が、なぜちょうど <span class="arithmatex">\( 2k \)</span> なのか。</strong>
+いちばん簡単な場合（<strong>平均だけを推定する、<span class="arithmatex">\( k=1 \)</span></strong>）なら、<strong>この授業で既に出した2つの式だけ</strong>で最後まで出せる。</p>
+<div class="admonition tip">
+<p class="admonition-title">下のボタンで、1行ずつ送れる</p>
+<p>使うのは <span class="arithmatex">\( \mathbb{E}\!\left[\sum(y_i-\bar{y})^2\right]=(n-1)\sigma^2 \)</span>（第8回 導出①）と
+<span class="arithmatex">\( \mathbb{E}[(\bar{y}-\mu)^2]=\sigma^2/n \)</span>（第6回 導出①）の2つだけである。</p>
+</div>
+<div class="deriv">
+<div>
+<div class="arithmatex">\[ \underbrace{y_1,\dots,y_n}_{\text{手元のデータ}} \qquad\text{と}\qquad \underbrace{z_1,\dots,z_n}_{\text{まだ見ていないデータ}} \]</div>
+<p><strong>何と何を比べるのかを、先に決める。</strong>
+<span class="arithmatex">\( y \)</span> で推定して <strong><span class="arithmatex">\( y \)</span> で測った</strong>当てはまりが「手元での当てはまり」。
+<span class="arithmatex">\( y \)</span> で推定して <strong><span class="arithmatex">\( z \)</span> で測った</strong>当てはまりが「本当に知りたい量」。
+<strong>この2つの差が「楽観のぶん」</strong>である。<span class="arithmatex">\( z \)</span> は <span class="arithmatex">\( y \)</span> と独立に、同じ母集団から取る。</p>
+</div>
+<div>
+<div class="arithmatex">\[ -2\log L \;=\; n\log(2\pi\sigma^2) \;+\; \frac{1}{\sigma^2}\sum(\text{残差})^2 \]</div>
+<p><strong><span class="arithmatex">\( -2\log L \)</span> は、残差平方和でできている</strong>（<span class="arithmatex">\( \sigma^2 \)</span> が既知の正規モデルの場合）。
+第1項は定数なので、<strong>差を取るときには消える</strong>。
+だから以下は <strong>残差平方和だけ</strong>を追えばよい。</p>
+</div>
+<div>
+<div class="arithmatex">\[ \mathbb{E}\!\left[\sum_{i=1}^{n}(y_i-\bar{y})^2\right] \;=\; (n-1)\,\sigma^2 \]</div>
+<p><strong>手元での当てはまり（<span class="arithmatex">\( k=1 \)</span>、推定するのは平均だけ）。</strong>
+これは<strong>第8回 導出①</strong>でそのまま出した式である（不偏分散が <span class="arithmatex">\( n-1 \)</span> で割る理由）。
+🔴 <span class="arithmatex">\( n\sigma^2 \)</span> ではなく <span class="arithmatex">\( (n-1)\sigma^2 \)</span>。<strong><span class="arithmatex">\( \sigma^2 \)</span> ひとつぶん、小さく出ている。</strong></p>
+</div>
+<div>
+<div class="arithmatex">\[ z_i-\bar{y} \;=\; (z_i-\mu) \;-\; (\bar{y}-\mu) \]</div>
+<p><strong>未知データで測る側。</strong><span class="arithmatex">\( \mu \)</span> を足して引いただけ。
+<span class="arithmatex">\( \bar{y} \)</span> は手元のデータから作った値で、<strong><span class="arithmatex">\( z_i \)</span> とは無関係</strong>であることに注意。</p>
+</div>
+<div>
+<div class="arithmatex">\[ \mathbb{E}\!\left[(z_i-\bar{y})^2\right] \;=\; \mathbb{E}\!\left[(z_i-\mu)^2\right] + \mathbb{E}\!\left[(\bar{y}-\mu)^2\right] \;=\; \sigma^2 + \frac{\sigma^2}{n} \]</div>
+<p><strong>二乗して期待値を取った。</strong>交差項は <span class="arithmatex">\( z \)</span> と <span class="arithmatex">\( \bar{y} \)</span> が<strong>独立</strong>で、どちらも平均 <span class="arithmatex">\( \mu \)</span> からのずれなので消える。
+第2項は <span class="arithmatex">\( \mathrm{Var}[\bar{y}]=\sigma^2/n \)</span>（<strong>第6回 導出①</strong>）。
+🔴 <strong>狙う的がずれているぶん、<span class="arithmatex">\( \sigma^2/n \)</span> だけ余計にかかる。</strong></p>
+</div>
+<div>
+<div class="arithmatex">\[ \mathbb{E}\!\left[\sum_{i=1}^{n}(z_i-\bar{y})^2\right] \;=\; n\left(\sigma^2+\frac{\sigma^2}{n}\right) \;=\; (n+1)\,\sigma^2 \]</div>
+<p><strong><span class="arithmatex">\( n \)</span> 個ぶん足した。</strong>こちらは <span class="arithmatex">\( (n+1)\sigma^2 \)</span>。
+<strong>手元では <span class="arithmatex">\( (n-1)\sigma^2 \)</span>、未知データでは <span class="arithmatex">\( (n+1)\sigma^2 \)</span>。</strong></p>
+</div>
+<div>
+<div class="arithmatex">\[ (n+1)\sigma^2 \;-\; (n-1)\sigma^2 \;=\; 2\sigma^2 \qquad\Longrightarrow\qquad \frac{2\sigma^2}{\sigma^2} \;=\; 2 \]</div>
+<p>🔴 <strong>これが「楽観のぶん」である。</strong>
+<span class="arithmatex">\( -2\log L \)</span> の尺度（<span class="arithmatex">\( \sigma^2 \)</span> で割った形）にすると、ちょうど <strong>2</strong>。
+<span class="arithmatex">\( k=1 \)</span> なのだから、<strong><span class="arithmatex">\( 2k \)</span> に一致している。</strong></p>
+</div>
+<div>
+<div class="arithmatex">\[ \mathbb{E}[\text{手元}] = (n-k)\sigma^2, \qquad \mathbb{E}[\text{未知}] = (n+k)\sigma^2 \qquad\Longrightarrow\qquad \text{差} = 2k\sigma^2 \]</div>
+<p><strong>パラメータが <span class="arithmatex">\( k \)</span> 個のときも、同じ形で広がる。</strong>
+パラメータを1つ増やすごとに、<strong>手元側は <span class="arithmatex">\( \sigma^2 \)</span> 下がり、未知側は <span class="arithmatex">\( \sigma^2 \)</span> 上がる</strong>。
+合わせて1つにつき <span class="arithmatex">\( 2\sigma^2 \)</span>、<span class="arithmatex">\( k \)</span> 個で <span class="arithmatex">\( 2k\sigma^2 \)</span>。
+だから <span class="arithmatex">\( -2\log L \)</span> の尺度では <strong><span class="arithmatex">\( 2k \)</span></strong> になる。</p>
+</div>
+</div>
+<p><strong>数値で確かめる</strong>：<span class="arithmatex">\( n=20,\ \sigma=2 \)</span> で、手元データと未知データを別々に作って40万回ずつ試した。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">パラメータ数 <span class="arithmatex">\( k \)</span></th>
+<th style="text-align: right;">手元の残差平方和 ÷ <span class="arithmatex">\( \sigma^2 \)</span></th>
+<th style="text-align: right;">未知データでの値 ÷ <span class="arithmatex">\( \sigma^2 \)</span></th>
+<th style="text-align: right;">差</th>
+<th style="text-align: right;"><span class="arithmatex">\( 2k \)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">19.01（理論 <span class="arithmatex">\( n-1=19 \)</span>）</td>
+<td style="text-align: right;">21.00（理論 <span class="arithmatex">\( n+1=21 \)</span>）</td>
+<td style="text-align: right;"><strong>1.99</strong></td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">17.00</td>
+<td style="text-align: right;">22.97</td>
+<td style="text-align: right;"><strong>5.97</strong></td>
+<td style="text-align: right;">6</td>
+</tr>
+<tr>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">14.97</td>
+<td style="text-align: right;">24.97</td>
+<td style="text-align: right;"><strong>10.00</strong></td>
+<td style="text-align: right;">10</td>
+</tr>
+<tr>
+<td style="text-align: right;">13</td>
+<td style="text-align: right;">7.02</td>
+<td style="text-align: right;">33.05</td>
+<td style="text-align: right;"><strong>26.03</strong></td>
+<td style="text-align: right;">26</td>
+</tr>
+</tbody>
+</table>
+<p><strong>パラメータを13個にすると、手元では 7 まで下がって見えるのに、未知データでは 33 に跳ね上がる。</strong>
+第10回で「でたらめを10本足したら <span class="arithmatex">\( R^2 \)</span> が上がった」のは、左の列が下がるのを見ていただけだった。</p>
 <div class="arithmatex">\[ \text{AIC} \;=\; -2\log L(\hat{\theta}) \;+\; 2k \]</div>
 <p>ペナルティは「複雑なモデルは嫌いだ」という好みではない。<strong>手元のデータで測ったせいで生じた偏りを、差し引いているだけ</strong>である。</p>
-<div class="admonition warning">
-<p class="admonition-title">なぜちょうど <span class="arithmatex">\( 2k \)</span> なのかは、この科目では導かない</p>
-<p>この <span class="arithmatex">\( 2k \)</span> は、カルバック・ライブラー情報量という「2つの分布のズレ」を測る量を、標本が大きいときに展開して出てくる近似である。その導出には多変数のテイラー展開と行列の計算が必要で、<strong>この授業で扱う統計数理の範囲外</strong>になる。ここでは「楽観のぶんがパラメータ数で書ける」という筋道までを確認するにとどめる。</p>
-<p>また「標本が大きいとき」の近似なので、<strong>n が小さいと補正が足りない</strong>。そのときは AICc という修正版を使う。</p>
+<div class="admonition note">
+<p class="admonition-title">どこまでが厳密で、どこからが近似か</p>
+<p>上の導出は、<strong>誤差が正規分布で <span class="arithmatex">\( \sigma^2 \)</span> が既知の線形モデル</strong>なら<strong>近似ではなく厳密</strong>である
+（<span class="arithmatex">\( k \ge 2 \)</span> のとき <span class="arithmatex">\( \mathbb{E}[\text{手元}]=(n-k)\sigma^2 \)</span> を出すには、
+「<span class="arithmatex">\( k \)</span> 個のパラメータで <span class="arithmatex">\( k \)</span> 次元ぶん自由に合わせられる」という線形代数が1行要る）。</p>
+<p>一般のモデル（非線形・非正規、<span class="arithmatex">\( \sigma^2 \)</span> も推定する場合）では、
+赤池弘次が示したとおり <strong>標本が大きいときの近似</strong>になる。
+そこではカルバック・ライブラー情報量を多変数のテイラー展開で開く必要があり、
+<strong>この授業で扱う統計数理の範囲外</strong>である。
+ただし、<strong>何が起きているか</strong>は上の <span class="arithmatex">\( k=1 \)</span> の計算にすべて現れている ――
+手元側が下がり、未知側が上がり、その和がパラメータ数に比例する。</p>
+<p>「標本が大きいとき」の近似なので、<strong>n が小さいと補正が足りない</strong>。そのときは AICc という修正版を使う。</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">k に分散 <span class="arithmatex">\( \sigma^2 \)</span> を数えるかどうか</p>
 <p>パラメータ数 k に、切片や傾きだけでなく誤差分散 <span class="arithmatex">\( \sigma^2 \)</span> を数えるかは流儀が分かれ、統計ソフトによって AIC の値が 2 だけずれることがある。ただし <span class="arithmatex">\( \sigma^2 \)</span> はどのモデルにも1つずつあるので、<strong>同じ流儀で揃えて比べるかぎり、モデル間の差は変わらない</strong>。AIC を差で読む（次節）のは、こうした事情のためでもある。</p>
 </div>
-<p><strong>使った数学</strong>：期待値とバイアスの考え方（第7回の不偏性と同じ発想）。厳密な導出には多変数の近似（微II以降）。</p>
-</details>
+<p><strong>使った数学</strong>：期待値の線形性（第6回 導出①）、<span class="arithmatex">\( \mathbb{E}[\sum(y_i-\bar{y})^2]=(n-1)\sigma^2 \)</span>（第8回 導出①）、<span class="arithmatex">\( \mathrm{Var}[\bar{y}]=\sigma^2/n \)</span>（第6回 導出①）。<strong>新しい道具は使っていない。</strong></p>
 <h3 id="3">3つのモデルを比べる<a class="headerlink" href="#3" title="Permanent link">&para;</a></h3>
 <table>
 <thead>

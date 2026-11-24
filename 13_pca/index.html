@@ -687,6 +687,17 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        導出①：第1主成分とは「射影したときの分散が最大になる方向」のこと
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -881,6 +892,17 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        導出①：第1主成分とは「射影したときの分散が最大になる方向」のこと
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1039,19 +1061,53 @@
 <p>前処理を2つ行う。① 何桁にもまたがる量なので<strong>対数</strong>にする ② 単位が違う（g・日・月・頭）ので<strong>標準化</strong>する。</p>
 <p>PCAは、これら5次元のデータを、<strong>ばらつき（情報）が最も大きい方向</strong>に新しい軸を引き直す。最初の軸（第1主成分）が一番多くの情報を持ち、次の軸（第2主成分）がその次…と続く。少数の軸だけ残せば<strong>次元を削減</strong>できる。</p>
 <p>（変数ごとに単位が違う（時間・%・日）ので、まず<strong>標準化</strong>して土俵をそろえる。）</p>
-<details class="note" open="open">
-<summary>導出①：第1主成分とは「射影したときの分散が最大になる方向」のこと</summary>
-<p>「ばらつきが最大の方向」という言い方を、式にしてみる。変数が2つの場合なら、三角関数だけで最後まで行ける。</p>
+<h3 id="11">導出①：第1主成分とは「射影したときの分散が最大になる方向」のこと<a class="headerlink" href="#11" title="Permanent link">&para;</a></h3>
+<p>「ばらつきが最大の方向」という言い方を、式にしてみる。<strong>変数が2つなら、三角関数だけで最後まで行ける。</strong></p>
 <p>標準化した2変数を <span class="arithmatex">\( z_1, z_2 \)</span> とする。標準化してあるので <span class="arithmatex">\( \mathrm{Var}[z_1]=\mathrm{Var}[z_2]=1 \)</span> で、共分散は相関係数 <span class="arithmatex">\( r \)</span> そのものになる。</p>
-<p>角度 <span class="arithmatex">\( \theta \)</span> の向きの軸に各点を<strong>射影</strong>した値は、</p>
+<div class="admonition tip">
+<p class="admonition-title">下のボタンで、1行ずつ送れる</p>
+<p>使うのは<strong>和の分散の展開</strong>（第6回 導出①）と、<strong>三角関数の基本公式2つ</strong>だけである。</p>
+</div>
+<div class="deriv">
+<div>
 <div class="arithmatex">\[ y(\theta) \;=\; \cos\theta \cdot z_1 \;+\; \sin\theta \cdot z_2 \]</div>
-<p>この <span class="arithmatex">\( y \)</span> の分散を展開する。第7回の導出②では独立を仮定したので共分散の項が消えたが、<strong>今回は消えない</strong>。2変数の関係こそが知りたいものだからである。</p>
+<p><strong>角度 <span class="arithmatex">\( \theta \)</span> の向きの軸に、各点を射影した値。</strong>
+単位ベクトル <span class="arithmatex">\( (\cos\theta,\ \sin\theta) \)</span> との内積である。
+<strong>この <span class="arithmatex">\( y \)</span> の分散が最大になる <span class="arithmatex">\( \theta \)</span> を探す</strong>のが目標。</p>
+</div>
+<div>
 <div class="arithmatex">\[ \mathrm{Var}[y] \;=\; \cos^{2}\!\theta\,\mathrm{Var}[z_1] \;+\; \sin^{2}\!\theta\,\mathrm{Var}[z_2] \;+\; 2\cos\theta\sin\theta\,\mathrm{Cov}[z_1,z_2] \]</div>
-<p><span class="arithmatex">\( \mathrm{Var}[z_1]=\mathrm{Var}[z_2]=1 \)</span>、<span class="arithmatex">\( \mathrm{Cov}[z_1,z_2]=r \)</span> を入れ、<span class="arithmatex">\( \cos^{2}\theta+\sin^{2}\theta=1 \)</span> と倍角の公式 <span class="arithmatex">\( 2\sin\theta\cos\theta=\sin 2\theta \)</span> を使うと、</p>
-<div class="arithmatex">\[ \mathrm{Var}[y] \;=\; 1 \;+\; r\sin 2\theta \]</div>
-<p>あとは <span class="arithmatex">\( \sin 2\theta \)</span> が最大（＝1）になる角度を選ぶだけである。<span class="arithmatex">\( 2\theta = 90^\circ \)</span>、つまり</p>
-<div class="arithmatex">\[ \theta = 45^\circ \quad \text{のとき最大値} \quad 1 + r \]</div>
-<p>これが第1主成分である。直交する <span class="arithmatex">\( \theta=135^\circ \)</span> では <span class="arithmatex">\( \sin 2\theta = -1 \)</span> となり、最小値 <span class="arithmatex">\( 1-r \)</span>。こちらが第2主成分になる。</p>
+<p><strong>和の分散を展開した。</strong>第6回 導出①の性質A（定数倍は二乗で効く）と性質B（和の分散＝分散の和＋共分散）をそのまま使っている。
+🔴 第6回では独立を仮定したので共分散の項が消えたが、<strong>今回は消えない</strong>。
+<strong>2変数の関係こそが、ここで知りたいものだから</strong>である。</p>
+</div>
+<div>
+<div class="arithmatex">\[ \mathrm{Var}[y] \;=\; \cos^{2}\!\theta \cdot 1 \;+\; \sin^{2}\!\theta \cdot 1 \;+\; 2\cos\theta\sin\theta \cdot r \]</div>
+<p><strong>3つの値を入れた。</strong>標準化してあるので分散はどちらも 1、共分散は相関係数 <span class="arithmatex">\( r \)</span> そのもの。
+（標準化した2つの量の共分散が <span class="arithmatex">\( r \)</span> になることは、第5回の導出①で確かめた。）</p>
+</div>
+<div>
+<div class="arithmatex">\[ \cos^{2}\!\theta + \sin^{2}\!\theta \;=\; 1 \qquad\Longrightarrow\qquad \mathrm{Var}[y] \;=\; 1 \;+\; 2r\cos\theta\sin\theta \]</div>
+<p><strong>前の2項をまとめた。</strong>三角関数の基本公式（ピタゴラスの定理そのもの）。
+<strong>最初の2項は <span class="arithmatex">\( \theta \)</span> によらず 1 になる。</strong>つまり<strong>どの向きに射影しても、合計のばらつきは変わらない</strong>。
+動くのは残りの項だけである。</p>
+</div>
+<div>
+<div class="arithmatex">\[ 2\sin\theta\cos\theta \;=\; \sin 2\theta \qquad\Longrightarrow\qquad \mathrm{Var}[y] \;=\; 1 \;+\; r\sin 2\theta \]</div>
+<p><strong>倍角の公式を使った。</strong>これで <span class="arithmatex">\( \theta \)</span> が1か所にまとまった。
+<strong>あとは <span class="arithmatex">\( \sin 2\theta \)</span> を最大にするだけ</strong>である。</p>
+</div>
+<div>
+<div class="arithmatex">\[ \sin 2\theta = 1 \quad\Longleftrightarrow\quad 2\theta = 90^\circ \quad\Longleftrightarrow\quad \theta = 45^\circ \]</div>
+<p><strong><span class="arithmatex">\( \sin \)</span> の最大値は 1。</strong>そうなる角度を解いた。</p>
+</div>
+<div>
+<div class="arithmatex">\[ \mathrm{Var}[y]_{\max} \;=\; 1 + r \qquad (\theta = 45^\circ) \]</div>
+<p>🔴 <strong>これが第1主成分である。</strong>
+直交する <span class="arithmatex">\( \theta=135^\circ \)</span> では <span class="arithmatex">\( \sin 2\theta = -1 \)</span> となり、最小値 <span class="arithmatex">\( 1-r \)</span>。
+<strong>こちらが第2主成分</strong>になる。2つ足すと <span class="arithmatex">\( (1+r)+(1-r)=2 \)</span> で、もとの2変数の分散の合計と一致する。</p>
+</div>
+</div>
 <p>式から読めることがもう一つある。<strong>相関が強いほど第1主成分は強くなる</strong>。<span class="arithmatex">\( r \)</span> が大きいほど <span class="arithmatex">\( 1+r \)</span> は大きい。逆に <span class="arithmatex">\( r=0 \)</span> なら、どの向きに射影しても分散は1のままで、<strong>軸を選ぶ意味がなくなる</strong>。PCAが効くのは変数どうしが関係しあっているときだけ、というのがここで分かる。</p>
 <p><strong>数値で確かめる</strong>：この授業のデータで、対数をとって標準化した体重と離乳日齢の相関は <span class="arithmatex">\( r = 0.872 \)</span>。式によれば最大分散は <span class="arithmatex">\( 1+r = 1.872 \)</span>、その角度は45°のはずである。実際に角度を変えて射影の分散を計算すると、</p>
 <table>
@@ -1095,7 +1151,6 @@
 <p>だが<strong>探しているものは同じ</strong>で、「射影の分散が最大になる方向」である。多変数の微分（ラグランジュの未定乗数法）を学ぶと、ここが一般の次元へつながる。それはこの地図で扱う統計数理の範囲外なので、名前だけ挙げておく。</p>
 </div>
 <p><strong>使った数学</strong>：分散の展開（共分散の項つき）と、三角関数の倍角公式。2変数なら、これだけで第1主成分に届く。</p>
-</details>
 <h3 id="_2">寄与率：各軸がどれだけ情報を持つか<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
