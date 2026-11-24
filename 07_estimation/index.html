@@ -1844,19 +1844,40 @@
 </ul>
 <p>「95%」とは、<strong>この区間作りを繰り返したときの当たり率</strong>であって、「いま手元の1本に真値が95%で入っている」ではない。手元の1本は、当たっているか外しているかのどちらか（どちらかは分からない）。</p>
 <h3 id="3_1">導出③：信頼区間の式は、不等式を μ について解いたもの<a class="headerlink" href="#3_1" title="Permanent link">&para;</a></h3>
-<p>中心極限定理（第6回）より、<span class="arithmatex">\( n \)</span> が十分大きければ <span class="arithmatex">\( \bar{X} \)</span> はおよそ正規分布に従う。標準化すると</p>
-<div class="arithmatex">\[ Z \;=\; \frac{\bar{X}-\mu}{\sigma/\sqrt{n}} \;\approx\; N(0,1) \]</div>
-<p>標準正規分布では、中央の95%が <span class="arithmatex">\( \pm 1.96 \)</span> の中に入る（この 1.96 は上で逆引きした <span class="arithmatex">\( \Pr(Z\le z)=0.975 \)</span> の <span class="arithmatex">\( z \)</span> である）。</p>
-<p>あとは、この不等式を <strong>μ について解くだけ</strong>である。<strong>新しい原理は何も使わない。</strong></p>
+<p>信頼区間の式は、<strong>第3回でやった標準化</strong>から出てくる。新しい原理は何も使わない。</p>
 <div class="admonition tip">
 <p class="admonition-title">下のボタンで、1行ずつ送れる</p>
-<p>「次の式へ ▶」を押すと、変形が1段ずつ現れる。<strong>各行には、何をしたのかが付いている。</strong>
+<p>「次の式へ ▶」を押すと、1段ずつ現れる。<strong>各行には、何をしたのかが付いている。</strong>
+前半は<strong>式を組み立てる</strong>ところ、後半は<strong>それを μ について解く</strong>ところである。
 戻ることもできるし、「すべて表示」で一気に出すこともできる。</p>
 </div>
 <div class="deriv">
 <div>
+<div class="arithmatex">\[ z \;=\; \frac{(\text{値}) \;-\; (\text{その平均})}{(\text{その標準偏差})} \]</div>
+<p><strong>標準化の形。</strong>どんな量でも、この形に直すと<strong>平均0・標準偏差1</strong>になる。
+第3回の z 得点（偏差値のもと）と同じものである。<strong>まず、この形を手元に置く。</strong></p>
+</div>
+<div>
+<div class="arithmatex">\[ \mathbb{E}[\bar{X}] \;=\; \mu, \qquad \mathrm{SD}[\bar{X}] \;=\; \frac{\sigma}{\sqrt{n}} \]</div>
+<p><strong>標準化したい「値」は、標本平均 <span class="arithmatex">\( \bar{X} \)</span> である。</strong>
+その平均と標準偏差は、<strong>第6回で出してある</strong>。
+🔴 分母の <span class="arithmatex">\( \sigma/\sqrt{n} \)</span> は <strong><span class="arithmatex">\( \bar{X} \)</span> のほうのばらつき（標準誤差）</strong>であって、データ1個のばらつき <span class="arithmatex">\( \sigma \)</span> ではない。</p>
+</div>
+<div>
+<div class="arithmatex">\[ Z \;=\; \frac{\overbrace{\bar{X}-\mu}^{\text{中心からのずれ}}}{\underbrace{\sigma/\sqrt{n}}_{\bar{X}\,\text{の標準偏差}}} \]</div>
+<p><strong>これが標準化の式である。</strong>
+1段目の形に、値 ＝ <span class="arithmatex">\( \bar{X} \)</span>、その平均 ＝ <span class="arithmatex">\( \mu \)</span>、その標準偏差 ＝ <span class="arithmatex">\( \sigma/\sqrt{n} \)</span> を<strong>入れただけ</strong>。
+「標準誤差で割る」とは、<strong>標準誤差を1目盛りにして、ずれが何目盛りぶんかを測る</strong>ということである。</p>
+</div>
+<div>
+<div class="arithmatex">\[ Z \;\approx\; N(0,1) \qquad \text{中央の 95\% は } -1.96 \le Z \le 1.96 \]</div>
+<p><strong>この <span class="arithmatex">\( Z \)</span> が標準正規分布に従う</strong>（中心極限定理・第6回）。
+だから、<a href="#196">上の節</a>で逆引きした <span class="arithmatex">\( \pm 1.96 \)</span> がそのまま使える。</p>
+</div>
+<div>
 <div class="arithmatex">\[ \Pr\!\left(-1.96 \;\le\; \frac{\bar{X}-\mu}{\sigma/\sqrt{n}} \;\le\; 1.96\right) = 0.95 \]</div>
-<p><strong>出発点。</strong>標準化した量は標準正規分布に従い、その中央95%が <span class="arithmatex">\( \pm 1.96 \)</span> に入る。</p>
+<p><strong>確率の形に書き、<span class="arithmatex">\( Z \)</span> を中身に戻した。ここまでが「式の組み立て」。</strong>
+<strong>ここから先は、この不等式を μ について解くだけ</strong>である。</p>
 </div>
 <div>
 <div class="arithmatex">\[ -1.96\,\frac{\sigma}{\sqrt{n}} \;\le\; \bar{X}-\mu \;\le\; 1.96\,\frac{\sigma}{\sqrt{n}} \]</div>
