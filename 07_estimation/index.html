@@ -590,6 +590,39 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        何のために幅で言うのか ―― 区間推定を使う場面
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        幅そのものが、情報である
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        区間の作り方
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#196" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -656,7 +689,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#_7" class="md-nav__link">
     <span class="md-ellipsis">
       
         まとめ
@@ -1030,6 +1063,39 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        何のために幅で言うのか ―― 区間推定を使う場面
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        幅そのものが、情報である
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        区間の作り方
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#196" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1096,7 +1162,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#_7" class="md-nav__link">
     <span class="md-ellipsis">
       
         まとめ
@@ -1193,6 +1259,7 @@
 <h2 id="_1">この回のゴール<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <ul>
 <li>点推定と区間推定の違いを説明できる</li>
+<li><strong>区間推定をどういうときに使うのか</strong>（全数調査では要らない／2つを比べてよいかの判断）を言える</li>
 <li>95%信頼区間 <span class="arithmatex">\( \bar{x} \pm 1.96 \times SE \)</span> を計算できる</li>
 <li><strong>1.96 がどこから来た数か</strong>を説明でき、信頼度を変えると係数が変わる理由を言える</li>
 <li><strong>「95%」の正しい意味</strong>（手続きの当たり率）を理解し、よくある誤解を正せる</li>
@@ -1526,6 +1593,88 @@
 <p>点推定は「当たり」を言い切るが、必ず少しズレる。だから「どれくらい外れうるか」＝<strong>幅</strong>が欲しくなる。</p>
 <hr />
 <h2 id="2">2. 区間推定 ―― 幅を持たせる<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
+<h3 id="_4">何のために幅で言うのか ―― 区間推定を使う場面<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<p>区間推定が要るのは、次の<strong>3つがそろったときだけ</strong>である。</p>
+<ol>
+<li>知りたい相手（<strong>母集団</strong>）が、<strong>全部は調べられない</strong></li>
+<li>そこから<strong>一部を取り出して</strong>調べた</li>
+<li>その結果から、<strong>母集団について何か言いたい</strong></li>
+</ol>
+<p>逆に、<strong>全部を測ったのなら区間推定は要らない。</strong>
+クラス30人全員のテストの平均点は、推定値ではなく<strong>平均点そのもの</strong>である。そこに「誤差」はない。</p>
+<div class="admonition danger">
+<p class="admonition-title">よくある誤用 ―― 全数調査のデータに信頼区間を付ける</p>
+<p>標本を取っていないのに信頼区間が付いている表を見たら、
+<strong>その人が何を母集団だと考えているのか</strong>を確かめること。
+「今年度の全社員」を全部数えた平均に ±1.2% と書いてあれば、それは何かがおかしい。</p>
+</div>
+<p><strong>役に立つ場面は、大きく4つある。</strong></p>
+<div class="admonition note">
+<p class="admonition-title">① 数字を鵜呑みにしないための目盛りになる</p>
+<p>「内閣支持率 <strong>45%</strong>」とだけ出ていると、45 という数が事実のように見える。
+実際には調査人数に応じた幅（たとえば ±3%）がある。</p>
+<p>だから「前回の 45.2% から 44.8% に下がった」という報道は、<strong>誤差の中の動き</strong>であって、
+下がったとは言えない。<strong>幅を知らないと、ノイズを変化として読んでしまう。</strong></p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">② 2つを比べてよいかどうかが分かる ―― いちばん実用的</p>
+<p>A案の賛成が 40%、B案が 50%。<strong>差があると言ってよいか。</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">調べた人数</th>
+<th style="text-align: right;">誤差</th>
+<th>A案の区間</th>
+<th>B案の区間</th>
+<th>判定</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">100人</td>
+<td style="text-align: right;">±9.8%</td>
+<td>30.2〜49.8%</td>
+<td>40.2〜59.8%</td>
+<td><strong>重なる → 言えない</strong></td>
+</tr>
+<tr>
+<td style="text-align: right;">400人</td>
+<td style="text-align: right;">±4.9%</td>
+<td>35.1〜44.9%</td>
+<td>45.1〜54.9%</td>
+<td>重ならない → 言える</td>
+</tr>
+</tbody>
+</table>
+<p>同じ「40% と 50%」でも、<strong>人数しだいで結論が逆になる。</strong>
+点推定だけを見ていると、この違いがまったく見えない。</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">③ 最悪どれくらいかを見積もれる</p>
+<p>不良率を「2%」と1つの数で報告するより、「<strong>0.5%〜3.5%</strong>」と幅で報告するほうが、
+保証や在庫の<strong>最悪値</strong>を見積もれる。意思決定は、点ではなく幅で行うものである。</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">④ 論文・報告書では、ほぼ必須</p>
+<p>医学や心理学の論文は、効果の大きさを「1.8倍」とだけ書かず、
+「<strong>1.2〜2.7倍</strong>」と信頼区間を併記する。点推定だけの報告は、いまはまず通らない。</p>
+</div>
+<h3 id="_5">幅そのものが、情報である<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<div class="admonition example">
+<p class="admonition-title">今日の区間は、実は使いものにならない</p>
+<p>今日のノートで出る95%信頼区間は <strong>[493, 9,875] g</strong>、半幅は <strong>4,691 g</strong>。
+母平均 5,881 g に対して、<strong>誤差が平均の約80%</strong>ある。</p>
+<p>言い換えると「霊長類の平均体重は、<strong>1,200 g くらいかもしれないし 10,600 g くらいかもしれない</strong>」。
+<strong>ほとんど何も言えていない。</strong></p>
+<p>ところが点推定だけを書くと「霊長類の平均体重は 5,184 g」となり、
+この心もとなさは<strong>完全に消える</strong>。</p>
+<blockquote>
+<p><strong>区間推定の第一の役目は、推定の心もとなさを隠さないことである。</strong></p>
+</blockquote>
+<p>幅が広ければ「<span class="arithmatex">\(n\)</span> が足りない」と分かる。<strong>その判断ができるのは、幅を出したときだけ</strong>である。
+（どれくらい集めればどこまで絞れるかは、統計学Ⅱ 第7回で扱う。）</p>
+</div>
+<h3 id="_6">区間の作り方<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
 <p>標本平均の散らばりは標準誤差 SE（第6回）。この母集団では <span class="arithmatex">\( \sigma = 13{,}110 \)</span> g、<span class="arithmatex">\( n=30 \)</span> なので <span class="arithmatex">\( SE = \sigma/\sqrt{n} = 2{,}394 \)</span> g。正規分布では95%が平均±1.96SDに入るので：</p>
 <div class="arithmatex">\[ 95\%\text{信頼区間} = \bar{x} \pm 1.96 \times SE \]</div>
 <h3 id="196">1.96 とは何か ―― 「面積」を「距離」に言い換えた数<a class="headerlink" href="#196" title="Permanent link">&para;</a></h3>
@@ -1735,7 +1884,7 @@
 
 <p>確実にしたい（99%）ほど区間は広く＝ぼんやりする。極端に「100%確実」にすれば幅は無限大（「体重は0〜∞ g」）＝<strong>何も言っていないのと同じ</strong>。確実さと精密さは両立しない。</p>
 <hr />
-<h2 id="_4">まとめ<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<h2 id="_7">まとめ<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
