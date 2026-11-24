@@ -695,6 +695,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#t-n-d" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        なぜ \( t \) は \( n \) で動き、\( d \) は動かないのか
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1129,6 +1140,17 @@
     <span class="md-ellipsis">
       
         導出③：なぜ効果量は単位を変えても動かないのか
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#t-n-d" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        なぜ \( t \) は \( n \) で動き、\( d \) は動かないのか
       
     </span>
   </a>
@@ -1591,9 +1613,45 @@
 これが「<strong>標準化された</strong>効果量」と呼ばれる理由である。</p>
 </div>
 </div>
-<p>ここが p値との決定的な違いになる。t 統計量には <span class="arithmatex">\( \sqrt{n} \)</span> が入っていて、</p>
-<div class="arithmatex">\[ t \;\approx\; d \times \sqrt{\frac{n_1 n_2}{n_1+n_2}} \]</div>
-<p>という関係にある。<strong>d が同じでも、n を増やせば t は大きくなり、p は小さくなる。</strong> 第4節で「真の差は常に0.2kgなのに n を増やすほど有意になった」のは、この式そのものである。d は n を含まないので動かない。だから両方を見る必要がある。
+<h3 id="t-n-d">なぜ <span class="arithmatex">\( t \)</span> は <span class="arithmatex">\( n \)</span> で動き、<span class="arithmatex">\( d \)</span> は動かないのか<a class="headerlink" href="#t-n-d" title="Permanent link">&para;</a></h3>
+<p>ここが p値との決定的な違いになる。<strong>2つの式を並べて割ってみれば、関係がそのまま出る。</strong></p>
+<div class="deriv">
+<div>
+<div class="arithmatex">\[ t \;=\; \frac{\bar{x}_1-\bar{x}_2}{s_p\sqrt{\dfrac{1}{n_1}+\dfrac{1}{n_2}}}, \qquad d \;=\; \frac{\bar{x}_1-\bar{x}_2}{s_p} \]</div>
+<p><strong>2つを並べた。分子はまったく同じ</strong>（2群の平均の差）。
+違うのは<strong>分母だけ</strong>で、<span class="arithmatex">\( t \)</span> のほうには根号の因子が余計に付いている。</p>
+</div>
+<div>
+<div class="arithmatex">\[ \bar{x}_1-\bar{x}_2 \;=\; d \cdot s_p \]</div>
+<p><strong><span class="arithmatex">\( d \)</span> の式を、差について解いた。</strong>両辺に <span class="arithmatex">\( s_p \)</span> を掛けただけ。
+これを <span class="arithmatex">\( t \)</span> の分子に代入する。</p>
+</div>
+<div>
+<div class="arithmatex">\[ t \;=\; \frac{d\,s_p}{s_p\sqrt{\dfrac{1}{n_1}+\dfrac{1}{n_2}}} \;=\; \frac{d}{\sqrt{\dfrac{1}{n_1}+\dfrac{1}{n_2}}} \]</div>
+<p><strong>代入して <span class="arithmatex">\( s_p \)</span> が約分された。</strong>
+ばらつきの大きさは <span class="arithmatex">\( t \)</span> と <span class="arithmatex">\( d \)</span> の両方に同じように入っているので、<strong>消える</strong>。
+残るのは <span class="arithmatex">\( d \)</span> と、<strong>人数だけでできた因子</strong>である。</p>
+</div>
+<div>
+<div class="arithmatex">\[ \frac{1}{n_1}+\frac{1}{n_2} \;=\; \frac{n_2+n_1}{n_1 n_2} \qquad\Longrightarrow\qquad \frac{1}{\sqrt{\dfrac{1}{n_1}+\dfrac{1}{n_2}}} \;=\; \sqrt{\frac{n_1 n_2}{n_1+n_2}} \]</div>
+<p><strong>分母を通分して、逆数の平方根に直した。</strong>ただの分数の整理である。</p>
+</div>
+<div>
+<div class="arithmatex">\[ t \;=\; d \times \sqrt{\frac{n_1 n_2}{n_1+n_2}} \]</div>
+<p>🔴 <strong>これが答え。</strong>合併標準偏差を使う定義なら、これは<strong>近似ではなく等式</strong>である。</p>
+<ul>
+<li><strong>右辺の <span class="arithmatex">\( d \)</span> に <span class="arithmatex">\( n \)</span> は入っていない</strong> …… 人数を増やしても動かない</li>
+<li><strong>右辺の根号は <span class="arithmatex">\( n \)</span> だけでできている</strong> …… 人数を増やすと大きくなる</li>
+</ul>
+</div>
+<div>
+<div class="arithmatex">\[ n_1=n_2=n \;\Longrightarrow\; t \;=\; d\sqrt{\frac{n^2}{2n}} \;=\; d\sqrt{\frac{n}{2}} \]</div>
+<p><strong>2群が同じ人数のときは、もっと簡単になる。</strong>
+<span class="arithmatex">\( t \)</span> は <span class="arithmatex">\( \sqrt{n} \)</span> に比例する。<strong>n を4倍にすれば t は2倍</strong>、p値はそのぶん小さくなる。
+差の大きさ <span class="arithmatex">\( d \)</span> は1ミリも変わっていないのに、である。</p>
+</div>
+</div>
+<p><strong>d が同じでも、n を増やせば t は大きくなり、p は小さくなる。</strong> 第4節で「真の差は常に0.2kgなのに n を増やすほど有意になった」のは、この式そのものである。d は n を含まないので動かない。だから両方を見る必要がある。
 <strong>数値で確かめる</strong>：オナガザル科とオマキザル科の体重で、g のまま計算しても kg に直しても d = 2.2464 で同じ。対数スケールでも log10(g) と log10(kg) のどちらでも d = 4.4012 で一致する（対数では単位の変更が平行移動になるため、差も標準偏差も変わらない）。</p>
 <p><strong>使った数学</strong>：定数倍に対する平均と標準偏差の振る舞い（微I）、約分という比の性質。</p>
 <hr />
