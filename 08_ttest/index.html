@@ -1437,6 +1437,19 @@
 ここまでは<strong>確率も期待値も出てこない。ただの式変形</strong>である。</p>
 </div>
 <div>
+<div class="arithmatex">\[ \mathbb{E}[X] \;=\; \sum_x x \cdot \Pr(X=x) \]</div>
+<p><strong>ここから期待値を使う。まず定義に戻る。</strong>
+「<strong>取りうる値 × その確率</strong> を、全部足したもの」＝平均のこと。
+次の段で使う「線形性」は、この定義から出てくる。</p>
+</div>
+<div>
+<div class="arithmatex">\[ \mathbb{E}[aX+bY] \;=\; a\,\mathbb{E}[X] + b\,\mathbb{E}[Y] \]</div>
+<p><strong>期待値の線形性。</strong>定義に入れて和の順番を入れ替えるだけで出る。
+<span class="arithmatex">\( \sum_{x,y}(ax+by)\Pr(x,y) = a\sum_{x,y}x\Pr(x,y) + b\sum_{x,y}y\Pr(x,y) \)</span>。</p>
+<p>🔴 <strong>ここでは独立を使っていない。</strong>分散の加法性（第6回 導出①の9段目）は独立が要ったが、
+<strong>期待値の線形性は、連動していても成り立つ。</strong>だから相関したデータにも、そのまま使える。</p>
+</div>
+<div>
 <div class="arithmatex">\[ \mathbb{E}\!\left[\sum_{i=1}^{n}(X_i-\bar{X})^2\right] \;=\; \sum_{i=1}^{n}\mathbb{E}\!\left[(X_i-\mu)^2\right] \;-\; n\,\mathbb{E}\!\left[(\bar{X}-\mu)^2\right] \]</div>
 <p><strong>両辺の期待値を取った。</strong>期待値は和と定数倍について線形なので、そのまま中に入れられる。</p>
 </div>
