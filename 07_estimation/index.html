@@ -55,6 +55,8 @@
       
     
     
+      <link rel="stylesheet" href="../stylesheets/derivation.css">
+    
     <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -672,6 +674,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#3_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        導出③：信頼区間の式は、不等式を μ について解いたもの
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1139,6 +1152,17 @@
     <span class="md-ellipsis">
       
         シミュレーション：100本の信頼区間
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        導出③：信頼区間の式は、不等式を μ について解いたもの
       
     </span>
   </a>
@@ -1819,14 +1843,44 @@
 <li>残り約5本は外した</li>
 </ul>
 <p>「95%」とは、<strong>この区間作りを繰り返したときの当たり率</strong>であって、「いま手元の1本に真値が95%で入っている」ではない。手元の1本は、当たっているか外しているかのどちらか（どちらかは分からない）。</p>
-<details class="note" open="open">
-<summary>導出③：信頼区間の式は、不等式を μ について解いたもの</summary>
-<p>中心極限定理（第6回）より、n が十分大きければ <span class="arithmatex">\( \bar{X} \)</span> はおよそ正規分布に従う。標準化すると</p>
+<h3 id="3_1">導出③：信頼区間の式は、不等式を μ について解いたもの<a class="headerlink" href="#3_1" title="Permanent link">&para;</a></h3>
+<p>中心極限定理（第6回）より、<span class="arithmatex">\( n \)</span> が十分大きければ <span class="arithmatex">\( \bar{X} \)</span> はおよそ正規分布に従う。標準化すると</p>
 <div class="arithmatex">\[ Z \;=\; \frac{\bar{X}-\mu}{\sigma/\sqrt{n}} \;\approx\; N(0,1) \]</div>
-<p>標準正規分布では、中央の95%が <span class="arithmatex">\( \pm 1.96 \)</span> の中に入る（この 1.96 は上で逆引きした <span class="arithmatex">\( \Pr(Z\le z)=0.975 \)</span> の <span class="arithmatex">\( z \)</span> である）。つまり</p>
-<div class="arithmatex">\[ \Pr\!\left(-1.96 \le \frac{\bar{X}-\mu}{\sigma/\sqrt{n}} \le 1.96\right) = 0.95 \]</div>
-<p>この不等式を <strong>μ について解く</strong>（各辺に <span class="arithmatex">\( \sigma/\sqrt{n} \)</span> を掛け、<span class="arithmatex">\( \bar{X} \)</span> を移項して符号を整える）と、</p>
+<p>標準正規分布では、中央の95%が <span class="arithmatex">\( \pm 1.96 \)</span> の中に入る（この 1.96 は上で逆引きした <span class="arithmatex">\( \Pr(Z\le z)=0.975 \)</span> の <span class="arithmatex">\( z \)</span> である）。</p>
+<p>あとは、この不等式を <strong>μ について解くだけ</strong>である。<strong>新しい原理は何も使わない。</strong></p>
+<div class="admonition tip">
+<p class="admonition-title">下のボタンで、1行ずつ送れる</p>
+<p>「次の式へ ▶」を押すと、変形が1段ずつ現れる。<strong>各行には、何をしたのかが付いている。</strong>
+戻ることもできるし、「すべて表示」で一気に出すこともできる。</p>
+</div>
+<div class="deriv">
+<div>
+<div class="arithmatex">\[ \Pr\!\left(-1.96 \;\le\; \frac{\bar{X}-\mu}{\sigma/\sqrt{n}} \;\le\; 1.96\right) = 0.95 \]</div>
+<p><strong>出発点。</strong>標準化した量は標準正規分布に従い、その中央95%が <span class="arithmatex">\( \pm 1.96 \)</span> に入る。</p>
+</div>
+<div>
+<div class="arithmatex">\[ -1.96\,\frac{\sigma}{\sqrt{n}} \;\le\; \bar{X}-\mu \;\le\; 1.96\,\frac{\sigma}{\sqrt{n}} \]</div>
+<p><strong>各辺に <span class="arithmatex">\( \sigma/\sqrt{n} \)</span> を掛けた。</strong><span class="arithmatex">\( \sigma/\sqrt{n} \)</span> は正の数なので、<strong>不等号の向きは変わらない</strong>。</p>
+</div>
+<div>
+<div class="arithmatex">\[ -\bar{X}-1.96\,\frac{\sigma}{\sqrt{n}} \;\le\; -\mu \;\le\; -\bar{X}+1.96\,\frac{\sigma}{\sqrt{n}} \]</div>
+<p><strong>各辺から <span class="arithmatex">\( \bar{X} \)</span> を引いた。</strong>μ だけを残したいので、まず <span class="arithmatex">\( \bar{X} \)</span> を追い出す。</p>
+</div>
+<div>
+<div class="arithmatex">\[ \bar{X}+1.96\,\frac{\sigma}{\sqrt{n}} \;\ge\; \mu \;\ge\; \bar{X}-1.96\,\frac{\sigma}{\sqrt{n}} \]</div>
+<p>🔴 <strong>各辺に <span class="arithmatex">\( -1 \)</span> を掛けた。負の数を掛けたので、不等号の向きが逆になる。</strong>
+この導出で注意が要るのは、ここ1か所だけである。</p>
+</div>
+<div>
+<div class="arithmatex">\[ \bar{X}-1.96\,\frac{\sigma}{\sqrt{n}} \;\le\; \mu \;\le\; \bar{X}+1.96\,\frac{\sigma}{\sqrt{n}} \]</div>
+<p><strong>左右を入れ替えて、<span class="arithmatex">\( \le \)</span> の向きにそろえた。</strong>書き方を変えただけで、前の行と同じ式である。</p>
+</div>
+<div>
 <div class="arithmatex">\[ \Pr\!\left(\bar{X} - 1.96\frac{\sigma}{\sqrt{n}} \;\le\; \mu \;\le\; \bar{X} + 1.96\frac{\sigma}{\sqrt{n}}\right) = 0.95 \]</div>
+<p><strong>確率の中に戻した。</strong>中身を同値変形しただけなので、確率は 0.95 のまま。
+<strong>これが信頼区間の式である。</strong></p>
+</div>
+</div>
 <p>左辺の中で<strong>動いているのは <span class="arithmatex">\( \bar{X} \)</span></strong>、つまり区間の両端である。μ は動かない。だから「95%」は、この手続きを繰り返したときに区間が μ を捕まえる割合になる。<strong>上の節で言葉にしたことが、式の上でも同じ形で現れている。</strong></p>
 <p>標本を1つ取って <span class="arithmatex">\( \bar{x} \)</span> が決まった瞬間、区間は数値として確定し、μ を含むか含まないかのどちらかになる。確率が残っているのは、区間を作る<strong>前</strong>の話である。</p>
 <div class="admonition note">
@@ -1834,7 +1888,6 @@
 <p>実際には母標準偏差 σ は未知で、標本から <span class="arithmatex">\( s \)</span> を計算して代わりに使う。すると分母もランダムになり、分布は正規分布より裾が重い <strong>t 分布</strong>（自由度 n−1）になる。1.96 の代わりに t の値を使う。詳しくは第8回と、統計学Ⅱ 第7回で扱う。</p>
 </div>
 <p><strong>使った数学</strong>：不等式の同値変形（微I）、標準化（線I的なスケール変換）。</p>
-</details>
 <hr />
 <h2 id="4">4. 信頼度と幅のトレードオフ<a class="headerlink" href="#4" title="Permanent link">&para;</a></h2>
 <p>「もっと確実に当てたい」なら信頼度を上げる。すると<strong>区間は広がる</strong>。</p>
@@ -2079,6 +2132,8 @@
         <script src="../javascripts/mathjax.js"></script>
       
         <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="../javascripts/derivation.js"></script>
       
     
   </body>
