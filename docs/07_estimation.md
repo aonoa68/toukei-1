@@ -400,6 +400,11 @@ $$ \bar{x} \;\pm\; \underbrace{1.96}_{\text{何本ぶんか（無単位）}} \ti
 
     標本 \( X_1,\dots,X_n \) を母集団から**独立に同じ分布で**選ぶ。各 \( X_i \) について \( \mathbb{E}[X_i]=\mu \)。
 
+    （**なぜ \( \mathbb{E}[X_i]=\mu \) と言えるのか**は、
+    [第6回 導出①](06_sampling_clt.md#1-sesigmasqrtn)のステップ1〜4で、
+    期待値の定義から計算して出してある。要は、無作為抽出なら**どの個体も確率 \( 1/N \) で引かれる**ので、
+    期待値の式がそのまま母平均の式になる、ということである。）
+
     期待値は和と定数倍について線形（\( \mathbb{E}[aX+bY]=a\mathbb{E}[X]+b\mathbb{E}[Y]\)）なので、
 
     $$ \mathbb{E}[\bar{X}] \;=\; \mathbb{E}\!\left[\frac{1}{n}\sum_{i=1}^{n} X_i\right] \;=\; \frac{1}{n}\sum_{i=1}^{n} \mathbb{E}[X_i] \;=\; \frac{1}{n}\cdot n\mu \;=\; \mu $$
