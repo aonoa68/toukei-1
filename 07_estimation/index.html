@@ -1178,6 +1178,53 @@
 </div>
 <p>分布の形を正規に近づけ、ばらつきを <span class="arithmatex">\( \sigma/\sqrt{n} \)</span> まで締めるのは、<strong><span class="arithmatex">\( n \)</span> のほう</strong>である。
 <span class="arithmatex">\( R \)</span> をいくら増やしても、<span class="arithmatex">\( n=5 \)</span> の分布は <span class="arithmatex">\( n=5 \)</span> の形のまま、なめらかになるだけだ。</p>
+<div class="admonition success">
+<p class="admonition-title">式で書くと、<span class="arithmatex">\( R \)</span> は最初から入っていない</p>
+<p>標本平均の分布の<strong>歪み</strong>は、次の式で決まる。</p>
+<div class="arithmatex">\[\text{標本平均の歪度} \;=\; \frac{\text{母集団の歪度}}{\sqrt{n}} \;=\; \frac{7.60}{\sqrt{n}}\]</div>
+<p><strong>右辺にあるのは <span class="arithmatex">\( n \)</span> だけで、<span class="arithmatex">\( R \)</span> はどこにも出てこない。</strong>
+第6回で各自のノートに出た値と、並べてみる。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;"><span class="arithmatex">\( n \)</span></th>
+<th style="text-align: right;">ノートに出た歪度</th>
+<th style="text-align: right;"><span class="arithmatex">\( 7.60/\sqrt{n} \)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">3.62</td>
+<td style="text-align: right;">3.40</td>
+</tr>
+<tr>
+<td style="text-align: right;">30</td>
+<td style="text-align: right;"><strong>1.49</strong></td>
+<td style="text-align: right;"><strong>1.39</strong></td>
+</tr>
+<tr>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">0.79</td>
+<td style="text-align: right;">0.76</td>
+</tr>
+<tr>
+<td style="text-align: right;">500</td>
+<td style="text-align: right;">0.30</td>
+<td style="text-align: right;">0.34</td>
+</tr>
+</tbody>
+</table>
+<p>「<span class="arithmatex">\( n=30 \)</span> でもまだ歪度が 1.3 ほど残る」と言ったあの数字は、
+<span class="arithmatex">\( 7.60/\sqrt{30} = 1.39 \)</span> から出ていた。
+<span class="arithmatex">\( R \)</span> を 2000 から 20000 に増やしても、この値は動かない。</p>
+<p>そして、この <span class="arithmatex">\( \sqrt{n} \)</span> は <strong>標準誤差 <span class="arithmatex">\( \sigma/\sqrt{n} \)</span> の <span class="arithmatex">\( \sqrt{n} \)</span> と同じもの</strong>である。</p>
+<blockquote>
+<p><strong>「ばらつきが縮む」と「歪みが取れる」は、同じ <span class="arithmatex">\( n \)</span> の、同じ <span class="arithmatex">\( \sqrt{\ } \)</span> で起きている。</strong></p>
+</blockquote>
+<p>だから両方とも、<strong><span class="arithmatex">\( n \)</span> を4倍にしてやっと半分</strong>にしかならない。
+今日の信頼区間の幅も、まったく同じ理由で <span class="arithmatex">\( \sqrt{n} \)</span> でしか縮まない。</p>
+</div>
 <div class="admonition danger">
 <p class="admonition-title">現実の調査は、1回しかやらない</p>
 <p>これがいちばん大事なところである。
