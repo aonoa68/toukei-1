@@ -45,7 +45,7 @@ table { font-size: 0.78em; }
 </blockquote>
 <br />
 <h2 id="span-classbig%E5%8A%B9%E6%9E%9C-%E3%81%9D%E3%82%8C%E3%81%A8%E3%82%82%E5%81%B6%E7%84%B6span"><span class="big">効果？ それとも偶然？</span></h2>
-<p>0.2kgは大きい？小さい？ 直感では決められない</p>
+<p>母平均が等しいと仮定したら、この標本平均の差は珍しいか？</p>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="3" data-paginate="true" data-header="統計学Ⅰ（B）2026　第8回" data-theme="default" data-style="section { font-size: 27px; }
 h1 { color: #00695c; }
@@ -59,14 +59,14 @@ h2 { color: #00897b; }
 table { font-size: 0.78em; }
 ;" data-marpit-pagination-total="9" data-size="16:9">
 <header>統計学Ⅰ（B）2026　第8回</header>
-<h2 id="%E5%B8%B0%E7%84%A1%E4%BB%AE%E8%AA%AC-%E2%80%95%E2%80%95-%E8%83%8C%E7%90%86%E6%B3%95">帰無仮説 ―― 背理法</h2>
+<h2 id="%E5%B8%B0%E7%84%A1%E4%BB%AE%E8%AA%AC%E3%81%A8%E5%AF%BE%E7%AB%8B%E4%BB%AE%E8%AA%AC">帰無仮説と対立仮説</h2>
 <ol>
-<li>まず「<strong>差はない（偶然）</strong>」と仮定（＝帰無仮説）</li>
-<li>その仮定で「観測の差が出る確率」を計算（＝<strong>p値</strong>）</li>
-<li>p値が小さい → 「差はない」が間違い → <strong>有意差あり</strong></li>
+<li><strong>帰無仮説 H₀</strong> は「母平均が等しい」、<strong>対立仮説 H₁</strong> は「母平均が異なる」</li>
+<li>平均差を標準誤差で割って t 値を求める</li>
+<li>H₀ のもとで、t 値の絶対値が観測した絶対値以上となる確率が <strong>p値</strong></li>
 </ol>
 <br />
-<p>「差がある」＝「<strong>偶然では説明しにくい</strong>」の言い換え</p>
+<p>有意水準を5%と決めたとき、p値が0.05を下回れば H₀ を棄却する。</p>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="4" data-paginate="true" data-header="統計学Ⅰ（B）2026　第8回" data-theme="default" data-style="section { font-size: 27px; }
 h1 { color: #00695c; }
@@ -82,10 +82,10 @@ table { font-size: 0.78em; }
 <header>統計学Ⅰ（B）2026　第8回</header>
 <h2 id="t%E6%A4%9C%E5%AE%9A%E6%98%8E%E7%A2%BA%E3%81%AA%E5%B7%AE%E3%81%AE%E4%BE%8B">t検定（明確な差の例）</h2>
 <p>体重の中央値：オナガザル科（旧世界）<strong>7,226g</strong> vs オマキザル科（新世界）<strong>492g</strong></p>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python">t, p = stats.ttest_ind(旧世界, 新世界)
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python">t, p = stats.ttest_ind(旧世界, 新世界, equal_var=False)
 </code></pre>
-<p>→ <strong>t = −23.3、p ≈ 0.00000…（10⁻⁷¹）</strong></p>
-<p>偶然ではまず起きない差 → 有意差あり</p>
+<p>→ <strong>t = 20.03、p ≈ 8.35 × 10⁻²⁷</strong></p>
+<p>対数体重の母平均が等しいという帰無仮説を棄却する。</p>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="5" data-paginate="true" data-header="統計学Ⅰ（B）2026　第8回" data-theme="default" data-style="section { font-size: 27px; }
 h1 { color: #00695c; }
@@ -187,14 +187,14 @@ table { font-size: 0.78em; }
 <td>正解</td>
 </tr>
 <tr>
-<td>「差なし」判定</td>
+<td>「棄却せず」と判定</td>
 <td>正解</td>
 <td><strong>見逃し(第二種)</strong></td>
 </tr>
 </tbody>
 </table>
 <p>α=0.05 ＝ 偽陽性を5%まで許す基準<br />
-→ 有意でも20回に1回は偶然かも（→第9回）</p>
+帰無仮説が正しい条件で100回検定すると、平均で約5回が有意になる。</p>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="9" data-paginate="true" data-header="統計学Ⅰ（B）2026　第8回" data-class="lead" data-theme="default" data-style="section { font-size: 27px; }
 h1 { color: #00695c; }
