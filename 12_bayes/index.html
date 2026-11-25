@@ -678,6 +678,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="3. ベイズ更新を見る ―― コインの表確率θ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#beta-posterior" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        導出③：なぜ事後が Beta になるのか ―― 指数が足し算になるだけ
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -881,6 +898,23 @@
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="3. ベイズ更新を見る ―― コインの表確率θ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#beta-posterior" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        導出③：なぜ事後が Beta になるのか ―― 指数が足し算になるだけ
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1130,42 +1164,172 @@
 <p>どちらが正しいではなく、<strong>世界の捉え方が違う</strong>。第7回で「信頼区間の95%は真値が入る確率ではない」と苦労したが、ベイズの<strong>信用区間</strong>なら「真値がこの中にある確率が95%」と素直に言える。</p>
 <hr />
 <h2 id="3">3. ベイズ更新を見る ―― コインの表確率θ<a class="headerlink" href="#3" title="Permanent link">&para;</a></h2>
-<p>あるコインの「表が出る確率 θ」を知りたい。最初は何も分からないので、θは0〜1のどれも同程度という<strong>一様な事前</strong>から始め、投げるたびに更新する（表k回・裏(n−k)回を見たら、事後は Beta(1+k, 1+n−k)）。</p>
+<p>あるコインの「表が出る確率 θ」を知りたい。最初は何も分からないので、θは0〜1のどれも同程度という<strong>一様な事前</strong>から始め、投げるたびに更新する（表k回・裏(n−k)回を見たら、事後は Beta(1+k, 1+n−k)。<strong>なぜそう書けるのかは<a href="#beta-posterior">導出③</a>で出す</strong>）。</p>
 <p>真の値を0.7として投げていくと：</p>
 <table>
 <thead>
 <tr>
-<th>投げた回数</th>
+<th style="text-align: right;">投げた回数 <span class="arithmatex">\(n\)</span></th>
+<th style="text-align: right;">表の回数 <span class="arithmatex">\(k\)</span></th>
+<th>事後</th>
 <th>事後平均</th>
-<th>95%信用区間（幅）</th>
+<th style="text-align: right;">95%信用区間（幅）</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>0</td>
-<td>0.50</td>
-<td>0.95</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td>Beta(1, 1)</td>
+<td><span class="arithmatex">\(1/2\)</span> ＝ 0.50</td>
+<td style="text-align: right;">0.95</td>
 </tr>
 <tr>
-<td>5</td>
-<td>0.86</td>
-<td>0.46</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">5</td>
+<td>Beta(6, 1)</td>
+<td><span class="arithmatex">\(6/7\)</span> ＝ 0.86</td>
+<td style="text-align: right;">0.46</td>
 </tr>
 <tr>
-<td>20</td>
-<td>0.68</td>
-<td>0.38</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">14</td>
+<td>Beta(15, 7)</td>
+<td><span class="arithmatex">\(15/22\)</span> ＝ 0.68</td>
+<td style="text-align: right;">0.38</td>
 </tr>
 <tr>
-<td>100</td>
-<td>0.75</td>
-<td><strong>0.17</strong></td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">75</td>
+<td>Beta(76, 26)</td>
+<td><span class="arithmatex">\(76/102\)</span> ＝ 0.75</td>
+<td style="text-align: right;"><strong>0.17</strong></td>
 </tr>
 </tbody>
 </table>
 <p>データが増えるほど信念は締まり、真値0.7の近くに絞り込まれる。<strong>これがベイズ更新：データを見るたびに信念を上書きしていく。</strong></p>
+<h3 id="beta-posterior">導出③：なぜ事後が Beta になるのか ―― 指数が足し算になるだけ<a class="headerlink" href="#beta-posterior" title="Permanent link">&para;</a></h3>
+<p>上の表の <strong>Beta(1+k, 1+n−k)</strong> は、覚える式ではない。
+<strong>かけ算を1本やると、そう書くしかない形</strong>になる。</p>
+<div class="admonition info">
+<p class="admonition-title">先に定義 ―― <span class="arithmatex">\(\propto\)</span>（比例記号）と Beta 分布</p>
+<ul>
+<li><strong><span class="arithmatex">\(\propto\)</span></strong> … 「定数倍を除いて等しい」。<span class="arithmatex">\(f(\theta)\propto g(\theta)\)</span> は、<span class="arithmatex">\(\theta\)</span> を含まない定数 <span class="arithmatex">\(c\)</span> があって <span class="arithmatex">\(f=c\,g\)</span> ということ。
+  確率分布は<strong>全体の合計（積分）が1</strong>になるので、形が決まれば定数は自動的に決まる。だから形だけ追えばよい。</li>
+<li><strong>Beta 分布</strong> … <span class="arithmatex">\(0\le\theta\le1\)</span> の値についての分布で、密度が <span class="arithmatex">\(p(\theta)\propto\theta^{a-1}(1-\theta)^{b-1}\)</span> の形のもの。
+  <span class="arithmatex">\(a,b\)</span> の2つで形が決まる。<strong><span class="arithmatex">\(a=b=1\)</span> なら <span class="arithmatex">\(\theta^0(1-\theta)^0=1\)</span> ―― つまり一様分布</strong>である。</li>
+</ul>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">下のボタンで、1行ずつ送れる</p>
+<p>8段ある。<strong>1〜5段はかけ算と指数の足し算だけ</strong>で、積分は出てこない。
+積分を1つ借りるのは、平均を出す6段目からである。</p>
+</div>
+<div class="deriv">
+<div>
+<div class="arithmatex">\[ p(\theta \mid \text{データ}) \;=\; \frac{P(\text{データ}\mid\theta)\;p(\theta)}{P(\text{データ})} \;\propto\; P(\text{データ}\mid\theta)\;p(\theta) \]</div>
+<p><strong>導出①のベイズの定理を、<span class="arithmatex">\(\theta\)</span> についての式として書いただけ。</strong>
+違うのは、<span class="arithmatex">\(\theta\)</span> が 0〜1 の連続値なので、確率ではなく<strong>密度</strong> <span class="arithmatex">\(p(\theta)\)</span> になることだけである。</p>
+<p>分母の <span class="arithmatex">\(P(\text{データ})\)</span> は、<strong><span class="arithmatex">\(\theta\)</span> を含まない</strong>（もう出てしまった結果の確率）。
+だから <span class="arithmatex">\(\theta\)</span> の形を追うぶんには、定数として <span class="arithmatex">\(\propto\)</span> の向こうに追い出せる。</p>
+<blockquote>
+<p><strong>事後 ∝ 尤度 × 事前。</strong>これだけが材料である。</p>
+</blockquote>
+</div>
+<div>
+<div class="arithmatex">\[ P(\text{データ}\mid\theta) \;=\; \theta^{k}\,(1-\theta)^{\,n-k} \]</div>
+<p><strong>尤度。</strong><span class="arithmatex">\(n\)</span> 回投げて表が <span class="arithmatex">\(k\)</span> 回だったとする。
+表が出る確率は <span class="arithmatex">\(\theta\)</span>、裏が出る確率は <span class="arithmatex">\(1-\theta\)</span> で、各回は独立なので<strong>かけ算</strong>になる。
+<span class="arithmatex">\(\theta\)</span> が <span class="arithmatex">\(k\)</span> 個、<span class="arithmatex">\((1-\theta)\)</span> が <span class="arithmatex">\(n-k\)</span> 個 ―― それだけである。</p>
+<p>（どの順番で出たかの並べ方の数 <span class="arithmatex">\(\binom{n}{k}\)</span> は <span class="arithmatex">\(\theta\)</span> を含まない定数なので、<span class="arithmatex">\(\propto\)</span> では消える。）</p>
+</div>
+<div>
+<div class="arithmatex">\[ p(\theta)=1 \quad (0\le\theta\le1) \qquad\Longrightarrow\qquad p(\theta \mid \text{データ}) \;\propto\; \theta^{k}(1-\theta)^{\,n-k} \]</div>
+<p><strong>一様な事前を入れた。</strong>「0〜1のどれも同程度」は、密度が平らということ、つまり <span class="arithmatex">\(p(\theta)=1\)</span> である。</p>
+<p>定数 <span class="arithmatex">\(1\)</span> を掛けても形は変わらないので、<strong>事後は尤度そのものの形</strong>になる。
+1段目の「事後 ∝ 尤度 × 事前」で、事前が消えた状態である。</p>
+</div>
+<div>
+<div class="arithmatex">\[ \underbrace{\theta^{a-1}(1-\theta)^{b-1}}_{\text{Beta}(a,b)\text{ の形}} \;=\; \underbrace{\theta^{k}(1-\theta)^{\,n-k}}_{\text{いま出た形}} \quad\Longrightarrow\quad \begin{cases} a-1=k \\ b-1=n-k \end{cases} \quad\Longrightarrow\quad \begin{cases} a=1+k \\ b=1+(n-k) \end{cases} \]</div>
+<p><strong>Beta の形と見比べて、指数を合わせただけ。</strong>
+これが表に出ていた <strong>Beta(1+k, 1+n−k)</strong> である。</p>
+<p>🔴 <strong>「事後が Beta になる」のは、偶然ではなく、<span class="arithmatex">\(\theta^{\;\cdot}(1-\theta)^{\;\cdot}\)</span> という形がかけ算で閉じているからである。</strong></p>
+</div>
+<div>
+<div class="arithmatex">\[ \underbrace{\theta^{a_0-1}(1-\theta)^{b_0-1}}_{\text{事前 Beta}(a_0,b_0)} \times \underbrace{\theta^{k}(1-\theta)^{\,n-k}}_{\text{尤度}} \;=\; \theta^{\,(a_0+k)-1}(1-\theta)^{\,(b_0+n-k)-1} \]</div>
+<p><strong>事前も Beta にして、同じかけ算をやってみる。</strong>
+同じ底のかけ算は指数の足し算（<span class="arithmatex">\(\theta^{p}\theta^{q}=\theta^{p+q}\)</span>）なので、</p>
+<div class="arithmatex">\[ \text{事前 Beta}(a_0,\,b_0) \;\times\; \text{表}k\text{回・裏}(n-k)\text{回} \;\longrightarrow\; \text{事後 Beta}(a_0+k,\;b_0+n-k) \]</div>
+<p>🔴 <strong>更新とは、ただの足し算である。</strong><span class="arithmatex">\(a\)</span> に表の回数を足し、<span class="arithmatex">\(b\)</span> に裏の回数を足す。
+これが「<strong>共役</strong>」と呼ばれている性質の中身である。
+一様な事前は <span class="arithmatex">\(a_0=b_0=1\)</span> の場合（Beta(1,1)）なので、4段目はこの式の特別な場合にすぎない。</p>
+<p><strong>更新の順番が結論を変えないのも、これで分かる。</strong>足す順番を変えても、合計は同じだからである。</p>
+</div>
+<div>
+<div class="arithmatex">\[ \int_0^1 \theta^{p}(1-\theta)^{q}\,d\theta \;=\; \frac{p!\;q!}{(p+q+1)!} \qquad (p,q \text{ は0以上の整数}) \]</div>
+<p><strong>ここからが平均の計算。借りるのは、この積分1本だけである</strong>（部分積分を繰り返すと出る）。</p>
+<p>確かめ：<span class="arithmatex">\(p=q=0\)</span> なら <span class="arithmatex">\(\dfrac{0!\,0!}{1!}=1\)</span> ―― 区間 <span class="arithmatex">\([0,1]\)</span> で高さ1の面積は1。合っている。</p>
+</div>
+<div>
+<div class="arithmatex">\[ \mathbb{E}[\theta\mid\text{データ}] \;=\; \frac{\displaystyle\int_0^1 \theta\cdot\theta^{k}(1-\theta)^{n-k}d\theta}{\displaystyle\int_0^1 \theta^{k}(1-\theta)^{n-k}d\theta} \;=\; \frac{\dfrac{(k+1)!\,(n-k)!}{(n+2)!}}{\dfrac{k!\,(n-k)!}{(n+1)!}} \;=\; \frac{k+1}{n+2} \]</div>
+<p><strong>平均は「<span class="arithmatex">\(\theta\)</span> を重み付きで足して、重みの合計で割る」だけ。</strong>
+分子は <span class="arithmatex">\(\theta^{k+1}\)</span> なので <span class="arithmatex">\(p=k+1\)</span>、分母は <span class="arithmatex">\(p=k\)</span> として前の段の公式を当てた。</p>
+<p>約分すると、<span class="arithmatex">\((n-k)!\)</span> が消え、<span class="arithmatex">\(\dfrac{(k+1)!}{k!}=k+1\)</span>、<span class="arithmatex">\(\dfrac{(n+1)!}{(n+2)!}=\dfrac{1}{n+2}\)</span> が残る。</p>
+<div class="arithmatex">\[ \boxed{\;\mathbb{E}[\theta\mid\text{データ}] \;=\; \frac{k+1}{n+2}\;} \]</div>
+<p>一般の事前 Beta<span class="arithmatex">\((a_0,b_0)\)</span> なら、同じ計算で <span class="arithmatex">\(\dfrac{a_0+k}{a_0+b_0+n}\)</span> になる。</p>
+</div>
+<div>
+<div class="arithmatex">\[ n=5,\;k=5 \;\Longrightarrow\; \frac{5+1}{5+2}=\frac{6}{7}=0.857 \qquad\text{（}1.000\text{ ではない）} \]</div>
+<p><strong>表の値と合わせる。</strong>上の表は、この分数そのものだった。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;"><span class="arithmatex">\(n\)</span></th>
+<th style="text-align: right;"><span class="arithmatex">\(k\)</span></th>
+<th><span class="arithmatex">\(\dfrac{k+1}{n+2}\)</span></th>
+<th style="text-align: right;">表の値</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td><span class="arithmatex">\(1/2\)</span></td>
+<td style="text-align: right;">0.50</td>
+</tr>
+<tr>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">5</td>
+<td><span class="arithmatex">\(6/7\)</span></td>
+<td style="text-align: right;">0.86</td>
+</tr>
+<tr>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">14</td>
+<td><span class="arithmatex">\(15/22\)</span></td>
+<td style="text-align: right;">0.68</td>
+</tr>
+<tr>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">75</td>
+<td><span class="arithmatex">\(76/102\)</span></td>
+<td style="text-align: right;">0.75</td>
+</tr>
+</tbody>
+</table>
+<p>🔴 <strong>5回投げて5回とも表でも、<span class="arithmatex">\(1.000\)</span> とは言わない。<span class="arithmatex">\(6/7=0.857\)</span> である。</strong>
+分母の <span class="arithmatex">\(+2\)</span> と分子の <span class="arithmatex">\(+1\)</span> は、<strong>一様な事前が「表1回・裏1回を見たことにする」ぶんの重み</strong>である（Beta(1,1) の <span class="arithmatex">\(a_0=b_0=1\)</span>）。
+5回のデータに対して1回ぶんの重みなので、まだ効いている。<span class="arithmatex">\(n\)</span> が増えれば薄まって <span class="arithmatex">\(k/n\)</span> に近づく。</p>
+<blockquote>
+<p><strong>「次も表が出る確率は？」に <span class="arithmatex">\(\dfrac{k+1}{n+2}\)</span> と答えるのを、ラプラスの継起則という。</strong></p>
+</blockquote>
+</div>
+</div>
+<p><strong>使った数学</strong>：独立な試行の確率のかけ算（統計学Ⅱ 第2回）。指数の足し算（数I）。
+<span class="arithmatex">\(\displaystyle\int_0^1\theta^p(1-\theta)^q d\theta=\frac{p!q!}{(p+q+1)!}\)</span> の1本だけを借りた。
+<strong>1〜5段は、かけ算しか使っていない。</strong></p>
 <details class="note" open="open">
-<summary>導出③：仮説が2つしかないなら、ベイズは分数の計算で終わる</summary>
+<summary>導出④：仮説が2つしかないなら、ベイズは分数の計算で終わる</summary>
 <p>上のコインでは θ が 0〜1 のどこでもよいとした。ここでは話を思い切って絞り、<strong>θ は 1/4 か 3/4 のどちらかだ</strong>と分かっている場合を考える。どちらかは分からないので、事前は五分五分（<span class="arithmatex">\( P(\theta=1/4)=P(\theta=3/4)=1/2 \)</span>）とする。</p>
 <p>3回投げて、<strong>3回とも表</strong>が出た。それぞれの仮説のもとで、この結果の出やすさ（尤度）は、</p>
 <div class="arithmatex">\[ P(\text{表表表}\mid \theta=\tfrac{3}{4}) = \left(\tfrac{3}{4}\right)^{3} = \tfrac{27}{64}, \qquad P(\text{表表表}\mid \theta=\tfrac{1}{4}) = \left(\tfrac{1}{4}\right)^{3} = \tfrac{1}{64} \]</div>
@@ -1200,6 +1364,13 @@
 </tbody>
 </table>
 <p>まとめて計算しても、1回ずつ更新しても、行き着く先は同じ <span class="arithmatex">\( 27/28 \)</span> である。更新の順番や刻み方は、結論を変えない。</p>
+<p><strong>なぜ順番によらないのか</strong>は、<strong>オッズ</strong>（確率の比）で書くと一目で分かる。上の式の分母を払って比にすると、</p>
+<div class="arithmatex">\[ \underbrace{\frac{P(\theta=3/4\mid\text{データ})}{P(\theta=1/4\mid\text{データ})}}_{\text{事後オッズ}} \;=\; \underbrace{\frac{P(\theta=3/4)}{P(\theta=1/4)}}_{\text{事前オッズ}} \times \underbrace{\frac{P(\text{データ}\mid\theta=3/4)}{P(\text{データ}\mid\theta=1/4)}}_{\text{尤度比}} \]</div>
+<p>表が1回出るごとに、尤度比は <span class="arithmatex">\( (3/4)/(1/4)=3 \)</span> 倍になる。事前オッズは <span class="arithmatex">\( 1 \)</span> なので、3回表なら</p>
+<div class="arithmatex">\[ 1 \times 3 \times 3 \times 3 \;=\; 27 \qquad\Longrightarrow\qquad P(\theta=3/4\mid\text{表表表}) \;=\; \frac{27}{27+1} \;=\; \frac{27}{28} \]</div>
+<p><strong>更新はかけ算なので、順番を変えても積は同じ</strong>である。これが「順番や刻み方が結論を変えない」理由である。
+（オッズ形式のベイズは<a href="https://aonoa68.github.io/toukei-2/12_cascade/">統計学Ⅱ 第12回</a>でも使う。
+<a href="#beta-posterior">導出③</a>の5段目「<span class="arithmatex">\(a\)</span> と <span class="arithmatex">\(b\)</span> に足すだけ」も、同じことを連続の場合で言っている。）</p>
 <div class="admonition success">
 <p class="admonition-title">ベイズに微積分は要らない</p>
 <p>この計算に出てきたのは、分数のかけ算と足し算だけである。積分も、確率密度も、共役事前分布も使っていない。</p>
@@ -1214,22 +1385,28 @@
 <tr>
 <th>事前</th>
 <th>事前平均</th>
+<th>事後</th>
 <th>事後平均</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>懐疑的 Beta(2,8)</td>
-<td>0.20</td>
-<td>0.70</td>
+<td>懐疑的 Beta(2, 8)</td>
+<td><span class="arithmatex">\(2/10\)</span> ＝ 0.20</td>
+<td>Beta(2+75, 8+25) ＝ Beta(77, 33)</td>
+<td><span class="arithmatex">\(77/110\)</span> ＝ <strong>0.700</strong></td>
 </tr>
 <tr>
-<td>楽観的 Beta(8,2)</td>
-<td>0.80</td>
-<td>0.75</td>
+<td>楽観的 Beta(8, 2)</td>
+<td><span class="arithmatex">\(8/10\)</span> ＝ 0.80</td>
+<td>Beta(8+75, 2+25) ＝ Beta(83, 27)</td>
+<td><span class="arithmatex">\(83/110\)</span> ＝ <strong>0.755</strong></td>
 </tr>
 </tbody>
 </table>
+<p>この2行は、<a href="#beta-posterior">導出③</a>の5段目の<strong>足し算だけ</strong>で出る。表75回・裏25回を足すので、
+<span class="arithmatex">\(2+75=77\)</span>、<span class="arithmatex">\(8+75=83\)</span>、分母はどちらも <span class="arithmatex">\(10+100=110\)</span> である。
+<strong>事前の違いは <span class="arithmatex">\(a_0\)</span> の 2 と 8 の差、つまり「6回ぶん」しかない。</strong>データ100回に対して6回ぶんなので、薄まる。</p>
 <div class="admonition success">
 <p class="admonition-title">事前は『非科学』ではなく『出発点』</p>
 <p>出発点（信念）が正反対でも、データを見たあとの結論はほぼ同じ（約0.70〜0.76）。
