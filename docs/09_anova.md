@@ -2,7 +2,7 @@
 
 **12/8（火）Ⅱ講 10:35〜12:15・B402教室**
 
-> 3つ以上を比べるとき、t検定を繰り返してはいけない ―― 偽陽性の罠
+> 複数の比較から「どれかに差がある」と言うとき、偽陽性はどう増えるか
 
 ---
 
@@ -34,7 +34,7 @@
 > 3つの科（オマキザル科・クモザル科・コビトキツネザル科）で体重に差があるか調べたい。
 > 「じゃあ、オマキvsクモ・クモvsコビト・オマキvsコビト と、**全ペアで t検定**すればいいよね？」
 
-――この『全ペアでt検定』が、実は危ない。
+**多重比較とは、一つの研究上の問いについて、複数の比較をひとまとまりとして行うことである。** 3つの科のうちどの科どうしで平均体重が違うかを調べると、比較は3組ある。「6種類の食品のうち、効果があるものはあるか」と食品ごとに対照と比べる場合は6組である。いずれも、最後に「どれか一つでも有意か」で結論を出す。
 
 ---
 
@@ -42,7 +42,7 @@
 
 1回のt検定は「本当は差がないのに、まぐれで有意」と誤る確率を **5%（α）** 許している。
 
-では検定を何回もやったら？　毎回5%の落とし穴があるのだから、回数が増えるほど「どれか1つはまぐれで有意」になりやすい。
+各検定の有意水準を5%にしても、複数の比較のうち**少なくとも一つの正しい帰無仮説を誤って棄却する確率**は5%を超えることがある。次の実習では、すべての母平均が等しい場合に、この割合を数える。
 
 ---
 
@@ -62,7 +62,7 @@
     差はまったくないのに、群が増える（＝検定回数が増える）ほど「最低1つ有意」が増える。
     10群なら6割以上がまぐれの「発見」。**検定の回数を増やすほど、偽の発見が紛れ込む。**
 
-だから3群以上を「全ペアt検定」してはいけない。
+どのペアに差があるかをまとめて判断するときは、比較全体の誤りを考慮して各ペアを検定する。
 
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 372" role="img" aria-labelledby="mct mcd" style="width:100%;height:auto;max-width:720px;display:block;margin:0.8em auto" font-family="system-ui,-apple-system,'Hiragino Sans','Yu Gothic',Meiryo,sans-serif" font-size="13"><title id="mct">検定を繰り返すほど、まぐれの「発見」が増える</title><desc id="mcd">横軸は群の数、縦軸は「差がまったく無いのに、全ペアのt検定で最低1つが有意になる割合」。実測（各群20個体・2万回）は3群で12%、5群で29%、10群で63%まで上がる。検定を独立と仮定した式 1−0.95^m はさらに上を行くが、全ペア検定は同じ群のデータを使い回すので独立ではなく、実測はこの式より低く出る。</desc><text x="0.0" y="32.0" font-size="13.5" text-anchor="start" font-weight="bold" fill="currentColor" fill-opacity="1.0">差がまったく無いのに「どれかは有意」になる割合</text><line x1="58.0" y1="258.0" x2="560.0" y2="258.0" stroke="currentColor" stroke-width="1" stroke-opacity="0.5"/><text x="50.0" y="262.0" font-size="11" text-anchor="end" fill="currentColor" fill-opacity="0.75">0%</text><line x1="58.0" y1="210.0" x2="560.0" y2="210.0" stroke="currentColor" stroke-width="1" stroke-opacity="0.13"/><text x="50.0" y="214.0" font-size="11" text-anchor="end" fill="currentColor" fill-opacity="0.75">25%</text><line x1="58.0" y1="162.0" x2="560.0" y2="162.0" stroke="currentColor" stroke-width="1" stroke-opacity="0.13"/><text x="50.0" y="166.0" font-size="11" text-anchor="end" fill="currentColor" fill-opacity="0.75">50%</text><line x1="58.0" y1="114.0" x2="560.0" y2="114.0" stroke="currentColor" stroke-width="1" stroke-opacity="0.13"/><text x="50.0" y="118.0" font-size="11" text-anchor="end" fill="currentColor" fill-opacity="0.75">75%</text><line x1="58.0" y1="66.0" x2="560.0" y2="66.0" stroke="currentColor" stroke-width="1" stroke-opacity="0.13"/><text x="50.0" y="70.0" font-size="11" text-anchor="end" fill="currentColor" fill-opacity="0.75">100%</text><text x="58.0" y="277.0" font-size="11" text-anchor="middle" fill="currentColor" fill-opacity="0.75">2</text><text x="158.4" y="277.0" font-size="11" text-anchor="middle" fill="currentColor" fill-opacity="0.75">4</text><text x="258.8" y="277.0" font-size="11" text-anchor="middle" fill="currentColor" fill-opacity="0.75">6</text><text x="359.2" y="277.0" font-size="11" text-anchor="middle" fill="currentColor" fill-opacity="0.75">8</text><text x="459.6" y="277.0" font-size="11" text-anchor="middle" fill="currentColor" fill-opacity="0.75">10</text><text x="560.0" y="277.0" font-size="11" text-anchor="middle" fill="currentColor" fill-opacity="0.75">12</text><line x1="58.0" y1="66.0" x2="58.0" y2="258.0" stroke="currentColor" stroke-width="1" stroke-opacity="0.5"/><text x="574.0" y="277.0" font-size="11.5" text-anchor="start" fill="currentColor" fill-opacity="0.8">群の数 k</text><line x1="58.0" y1="248.4" x2="560.0" y2="248.4" stroke="#c62828" stroke-width="1" stroke-opacity="0.6" stroke-dasharray="4 3"/><text x="556.0" y="240.4" font-size="11" text-anchor="end" fill="#c62828" fill-opacity="0.9">検定1回ぶんの 5%</text><path d="M 58.0 248.4 L 108.2 230.6 L 158.4 207.1 L 208.6 181.0 L 258.8 155.0 L 309.0 131.4 L 359.2 111.7 L 409.4 96.3 L 459.6 85.1 L 509.8 77.4 L 560.0 72.5" fill="none" stroke="#ef6c00" stroke-width="2.2" stroke-opacity="1.0" stroke-dasharray="6 4"/><path d="M 58.0 248.7 L 108.2 234.5 L 158.4 218.5 L 208.6 202.1 L 258.8 187.8 L 309.0 173.3 L 359.2 160.9 L 409.4 148.8 L 459.6 136.7 L 509.8 128.0 L 560.0 119.8" fill="none" stroke="#5c6bc0" stroke-width="2.6" stroke-opacity="1.0"/><circle cx="108.2" cy="234.5" r="4.4" fill="#5c6bc0" fill-opacity="1.0"/><text x="98.2" y="238.5" font-size="12" text-anchor="end" font-weight="bold" fill="#5c6bc0" fill-opacity="1.0">12%</text><circle cx="208.6" cy="202.1" r="4.4" fill="#5c6bc0" fill-opacity="1.0"/><text x="208.6" y="190.1" font-size="12" text-anchor="middle" font-weight="bold" fill="#5c6bc0" fill-opacity="1.0">29%</text><circle cx="459.6" cy="136.7" r="4.4" fill="#5c6bc0" fill-opacity="1.0"/><text x="459.6" y="124.7" font-size="12" text-anchor="middle" font-weight="bold" fill="#5c6bc0" fill-opacity="1.0">63%</text><line x1="574.0" y1="96.0" x2="604.0" y2="96.0" stroke="#ef6c00" stroke-width="2.2" stroke-opacity="1.0" stroke-dasharray="6 4"/><text x="610.0" y="100.0" font-size="11.5" text-anchor="start" fill="currentColor" fill-opacity="1.0">検定が独立だと</text><text x="610.0" y="115.0" font-size="11.5" text-anchor="start" fill="currentColor" fill-opacity="1.0">仮定した式</text><text x="610.0" y="130.0" font-size="11.5" text-anchor="start" fill="currentColor" fill-opacity="0.8">1−0.95ᵐ</text><line x1="574.0" y1="160.0" x2="604.0" y2="160.0" stroke="#5c6bc0" stroke-width="2.6" stroke-opacity="1.0"/><text x="610.0" y="164.0" font-size="11.5" text-anchor="start" fill="currentColor" fill-opacity="1.0">実測（各群20個体・</text><text x="610.0" y="179.0" font-size="11.5" text-anchor="start" fill="currentColor" fill-opacity="1.0">2万回）</text><text x="0.0" y="302.0" font-size="11.5" text-anchor="start" fill="currentColor" fill-opacity="0.9">3群で全ペアを検定すると、差が無くても 12% は「どれか有意」になる。10群なら 63%。</text><text x="0.0" y="324.0" font-size="11.5" text-anchor="start" fill="currentColor" fill-opacity="0.9">実測が式より低いのは、同じ群のデータを使い回していて検定どうしが独立でないため。式は増え方の勢いを示す目安である。</text><text x="0.0" y="346.0" font-size="11" text-anchor="start" fill="currentColor" fill-opacity="0.7">（各群20個体・正規分布・2万回。等分散のt検定を両側5%で。k=2 では理論どおり 4.9% になる。）</text></svg>
 
@@ -113,7 +113,7 @@
 
 **ANOVA：F = 151.89、p = 3×10⁻²⁵**
 
-圧倒的に有意。中央値が桁で違うのだから当然である。F=151.89 は「グループ間の差が、群内のばらつきの150倍」という意味。
+3科の対数体重の母平均がすべて等しいという帰無仮説を棄却した。F＝151.89 は群間平均平方が群内平均平方の約152倍だったことを表す。
 
 ### 対照実験 ―― F が1前後だと、どう見えるか
 
@@ -191,7 +191,7 @@ $$ F = \frac{\text{群間のばらつき（グループの平均どうしの違�
 
 ANOVAが教えるのは「**どこかに**差がある」まで。**どのペアか**は別途調べる（事後検定）。その際も検定を繰り返すので、有意水準を厳しくする補正をかける。
 
-- **ボンフェローニ補正**：α を検定回数で割る。例：5群=10ペアなら α=0.05/10=0.005 を各検定の基準に。これで全体の偽陽性を5%に抑える。
+- **ボンフェローニ補正**：α を検定回数で割る。例：5群=10ペアなら α=0.05/10=0.005 を各検定の基準に。この方法は、比較の間に依存があっても、一組の比較で少なくとも一つ偽陽性が出る確率を5%以下に抑える。
 
 !!! warning "よくある誤り"
     「ANOVAが有意 ＝ すべての群が互いに違う」――**ちがう。**
@@ -207,9 +207,9 @@ ANOVAが教えるのは「**どこかに**差がある」まで。**どのペア
 | ANOVA | 3群以上を1回で「どこかに差があるか」判定。偽陽性が増えない |
 | F値 | 群間のばらつき ÷ 群内のばらつき。大きいほど差あり |
 | 事後検定＋補正 | どのペアかは別途。ボンフェローニ補正で α を回数で割る |
-| ❌ 誤り | 全ペアt検定でOK／ANOVA有意＝全群が違う |
+| ❌ 誤り | 無補正の全ペアt検定でOK／ANOVA有意＝全群が違う |
 
-> **群が3つ以上なら、t検定を繰り返さない。まずANOVAで一括判定。**
+> **全群の母平均が等しいかはANOVAで一括検定する。どの組が違うかを複数の比較から判断するには、比較全体の誤りを制御する。**
 > 「有意」は『どこかに差』であって『全部違う』ではない。
 > **何度も試せばいつか「当たる」。これは第1回の大数の法則の裏返しで、少数の偶然に意味を見てしまう癖そのものだ。繰り返すなら、繰り返した回数の分だけ厳しくする。**
 
@@ -231,7 +231,7 @@ Colab `09_anova.ipynb` を実行したうえで答えること。
 - (イ) 約6%→12%→30%→64% と増えた
 - (ウ) 約64%→30%→12%→6% と減った
 
-**A2.** なぜ3群以上で「全ペアt検定」を避けるべきか。**最も適切**なのは？
+**A2.** なぜ3群以上を比べるとき、無補正の全ペアt検定で「どれかに差がある」と判断するのは危ういのか。**最も適切**なのは？
 
 - (ア) 計算が面倒だから
 - (イ) 検定を繰り返すほど、まぐれで有意になる偽陽性が増えるから
@@ -260,7 +260,7 @@ Colab `09_anova.ipynb` を実行したうえで答えること。
 
 **B1.（30点）** ある研究者が、**6種類のダイエット食品**それぞれについて「食べた群 vs 食べない群」で個別にt検定を行い、「6つのうち1つで p<0.05 が出たので、その食品には効果がある」と発表した。この分析の**何が問題か**を、今日学んだ多重比較の観点から指摘し、**どうすべきだったか**を述べなさい。
 
-**B2.（30点）** 3つの科の生息地の月降水量は、**平均が少し違って見えた**のに、ANOVAでは「差があるとは言えない」という結果になった。**あなたのノートに出た3つの平均とF値・p値を書いたうえで**、**見かけの平均差があるのに「差なし」**になるのはなぜか、F値（群間のばらつきと群内のばらつき）の考え方を使って説明しなさい。
+**B2.（30点）** 3つの科の生息地の月降水量は、**平均が少し違って見えた**のに、ANOVAでは「差があるとは言えない」という結果になった。**あなたのノートに出た3つの平均とF値・p値を書いたうえで**、**見かけの平均差があるのに「有意差を検出できなかった」**という結果になるのはなぜか、F値（群間のばらつきと群内のばらつき）の考え方を使って説明しなさい。
 
 > 目安：B1・B2あわせて350〜550字。**自分の言葉**で書くこと。
 >

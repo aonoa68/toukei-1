@@ -22,7 +22,7 @@ table { font-size: 0.8em; }
 <header>統計学Ⅰ（B）2026　第9回</header>
 
 <h1 id="%E7%AC%AC9%E5%9B%9E-%E4%BB%AE%E8%AA%AC%E6%A4%9C%E5%AE%9A2">第9回　仮説検定(2)</h1>
-<h2 id="%E5%88%86%E6%95%A3%E5%88%86%E6%9E%90anova-%E2%80%95%E2%80%95-%E7%B9%B0%E3%82%8A%E8%BF%94%E3%81%97%E3%81%A6%E3%81%AF%E3%81%84%E3%81%91%E3%81%AA%E3%81%84">分散分析(ANOVA) ―― 繰り返してはいけない</h2>
+<h2 id="%E5%88%86%E6%95%A3%E5%88%86%E6%9E%90anova%E3%81%A8%E5%A4%9A%E9%87%8D%E6%AF%94%E8%BC%83">分散分析(ANOVA)と多重比較</h2>
 <p>統計学Ⅰ（B）　北星学園大学<br />
 小野原 彩香</p>
 </section>
@@ -42,10 +42,10 @@ table { font-size: 0.8em; }
 <blockquote>
 <p>3つの科で体重に差がある？<br />
 「<strong>全ペアでt検定</strong>すればいいよね？」<br />
-経済vs文・文vs社福・経済vs社福…</p>
+オマキとクモ、クモとコビト、オマキとコビトの3組。</p>
 </blockquote>
 <br />
-<h2 id="span-classbig%E2%80%95%E2%80%95%E3%81%9D%E3%82%8C%E5%8D%B1%E3%81%AA%E3%81%84%E3%81%A7%E3%81%99span"><span class="big">――それ、危ないです</span></h2>
+<h2 id="span-classbig%E3%81%A9%E3%81%AE%E6%AF%94%E8%BC%83%E3%82%92%E3%81%B2%E3%81%A8%E3%81%BE%E3%81%A8%E3%81%BE%E3%82%8A%E3%81%AB%E3%81%99%E3%82%8B%E3%81%8Bspan"><span class="big">どの比較をひとまとまりにするか？</span></h2>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="3" data-paginate="true" data-header="統計学Ⅰ（B）2026　第9回" data-theme="default" data-style="section { font-size: 27px; }
 h1 { color: #00695c; }
@@ -59,11 +59,11 @@ h2 { color: #00897b; }
 table { font-size: 0.8em; }
 ;" data-marpit-pagination-total="8" data-size="16:9">
 <header>統計学Ⅰ（B）2026　第9回</header>
-<h2 id="%E3%81%AA%E3%81%9C%E7%B9%B0%E3%82%8A%E8%BF%94%E3%81%97%E3%81%8C%E3%83%80%E3%83%A1%E3%81%8B">なぜ繰り返しがダメか</h2>
-<p>1回のt検定は「まぐれで有意」を**5%**許している</p>
+<h2 id="%E5%A4%9A%E9%87%8D%E6%AF%94%E8%BC%83%E3%81%A8%E3%81%AF%E4%BD%95%E3%81%8B">多重比較とは何か</h2>
+<p>多重比較とは、一つの問いに答えるために複数の比較を行うこと。</p>
 <br />
-<p>検定を<strong>何回も</strong>やったら？<br />
-→ 毎回5%の落とし穴 → どれか1つはまぐれで当たる</p>
+<p>3科の全ペアは3比較、6食品をそれぞれ対照と比べるなら6比較。<br />
+1比較につき5%でも、全体で一度でも誤って有意とする確率は上がりうる。</p>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="4" data-paginate="true" data-header="統計学Ⅰ（B）2026　第9回" data-theme="default" data-style="section { font-size: 27px; }
 h1 { color: #00695c; }
@@ -79,7 +79,7 @@ table { font-size: 0.8em; }
 <header>統計学Ⅰ（B）2026　第9回</header>
 <h2 id="%E5%A4%9A%E9%87%8D%E6%AF%94%E8%BC%83%E3%81%AE%E7%BD%A0%E5%B7%AE%E3%81%8C%E3%81%AA%E3%81%84%E3%81%AE%E3%81%AB">多重比較の罠（差がないのに）</h2>
 <p><img src="data/multiple_comparison.png" alt="" style="width:620px;" /></p>
-<p>群（＝検定回数）が増えるほど、まぐれの「発見」が増える</p>
+<p>群が増えるとペア数が増え、差がなくても「1組以上が有意」が増える。</p>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="5" data-paginate="true" data-header="統計学Ⅰ（B）2026　第9回" data-theme="default" data-style="section { font-size: 27px; }
 h1 { color: #00695c; }
@@ -96,10 +96,10 @@ table { font-size: 0.8em; }
 <h2 id="%E3%81%A0%E3%81%8B%E3%82%89-anova">だから ANOVA</h2>
 <p>3群以上を<strong>1回</strong>で「<strong>どこかに差があるか</strong>」判定<br />
 → 検定を繰り返さないので偽陽性が増えない</p>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python">F, p = stats.f_oneway(経済, 文, 社福)
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python">F, p = stats.f_oneway(*群)
 </code></pre>
-<p>オマキ492g / クモ6,652g / コビト69g → <strong>F=151.89, p=3e-25</strong><br />
-→ 差があるとは言えない（見かけの差にだまされない）</p>
+<p>3科の対数体重を比較 → <strong>F=151.89, p=3e-25</strong><br />
+→ 3科の対数体重の母平均がすべて等しいという仮説を棄却する。</p>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="6" data-paginate="true" data-header="統計学Ⅰ（B）2026　第9回" data-theme="default" data-style="section { font-size: 27px; }
 h1 { color: #00695c; }
@@ -117,7 +117,7 @@ table { font-size: 0.8em; }
 <p><span is="marp-span" data-auto-scaling="downscale-only" class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>F</mi><mo>=</mo><mfrac><mtext>群間のばらつき（平均の違い）</mtext><mtext>群内のばらつき（個人差）</mtext></mfrac></mrow><annotation encoding="application/x-tex">F = \frac{\text{群間のばらつき（平均の違い）}}{\text{群内のばらつき（個人差）}} 
 </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">F</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.0463em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3603em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord text"><span class="mord cjk_fallback">群内のばらつき（個人差）</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord text"><span class="mord cjk_fallback">群間のばらつき（平均の違い）</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p><ul>
 <li>F 大 ＝ グループ差が個人差より大きい → 差あり</li>
-<li>F ≒ 1 ＝ 個人差の範囲 → 差とは言えない（今回）</li>
+<li>F ≒ 1 は、群間と群内の平均平方が近いことを表す。</li>
 </ul>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="7" data-paginate="true" data-header="統計学Ⅰ（B）2026　第9回" data-theme="default" data-style="section { font-size: 27px; }
@@ -155,8 +155,8 @@ table { font-size: 0.8em; }
 <header>統計学Ⅰ（B）2026　第9回</header>
 
 <h1 id="%E3%81%BE%E3%81%A8%E3%82%81">まとめ</h1>
-<h2 id="%E7%BE%A4%E3%81%8C3%E3%81%A4%E4%BB%A5%E4%B8%8A%E3%81%AA%E3%82%89-t%E6%A4%9C%E5%AE%9A%E3%82%92%E7%B9%B0%E3%82%8A%E8%BF%94%E3%81%95%E3%81%AA%E3%81%84">群が3つ以上なら t検定を繰り返さない</h2>
-<h2 id="%E3%81%BE%E3%81%9Aanova%E3%81%A7%E4%B8%80%E6%8B%AC%E5%88%A4%E5%AE%9A">まずANOVAで一括判定</h2>
+<h2 id="%E5%85%A8%E7%BE%A4%E3%81%AE%E6%AF%8D%E5%B9%B3%E5%9D%87%E3%82%92%E3%81%BE%E3%81%A8%E3%82%81%E3%81%A6%E8%AA%BF%E3%81%B9%E3%82%8B">全群の母平均をまとめて調べる</h2>
+<h2 id="%E5%85%A8%E4%BD%93%E3%81%AE%E5%B7%AE%E3%81%AFanova%E5%80%8B%E5%88%A5%E3%81%AE%E5%B7%AE%E3%81%AF%E8%A3%9C%E6%AD%A3%E3%81%97%E3%81%9F%E6%AF%94%E8%BC%83%E3%81%A7%E8%AA%BF%E3%81%B9%E3%82%8B">全体の差はANOVA、個別の差は補正した比較で調べる</h2>
 <h3 id="%E6%9C%89%E6%84%8F%EF%BC%9D%E3%81%A9%E3%81%93%E3%81%8B%E3%81%AB%E5%B7%AE%E2%89%A0-%E5%85%A8%E9%83%A8%E9%81%95%E3%81%86">「有意」＝どこかに差、≠ 全部違う</h3>
 <h3 id="%E6%AC%A1%E5%9B%9E%E5%9B%9E%E5%B8%B0%E5%88%86%E6%9E%90-%E2%80%95%E2%80%95-%E3%83%87%E3%83%BC%E3%82%BF%E3%82%92%E6%95%B0%E5%BC%8F%E3%81%A7%E8%AA%AC%E6%98%8E%E3%81%99%E3%82%8B">次回：回帰分析 ―― データを数式で説明する</h3>
 </section>
