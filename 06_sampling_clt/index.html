@@ -1511,6 +1511,8 @@
 <li><strong>標本（sample）</strong>：実際に調べる一部</li>
 </ul>
 <p>今日の母集団は「<strong>体重の記録がある霊長類265種</strong>」。</p>
+<p><strong>確率変数とは何か。</strong> 確率変数は、偶然に決まる結果のそれぞれに数値を対応させる関数である。265種から1種を等確率で引くとしよう。結果は「どの種を引いたか」であり、選ばれた種に表の体重を対応させる関数が <span class="arithmatex">\(X\)</span> である。体重の表は引く前から決まっている。たとえばニホンザルを引けば <span class="arithmatex">\(X\)</span> の値は 10,114.76 g になる。このように実際に得た値を<strong>実現値</strong>という。</p>
+<p>どの体重がどれだけの確率で出るかをまとめたものが、<span class="arithmatex">\(X\)</span> の<strong>確率分布</strong>である。各種を引く確率は <span class="arithmatex">\(1/265\)</span>。同じ体重が複数の種に記録されていれば、その体重が出る確率は該当する種の数を265で割ればよい。</p>
 <table>
 <thead>
 <tr>
@@ -1537,13 +1539,13 @@
 </tr>
 </tbody>
 </table>
-<div class="admonition warning">
-<p class="admonition-title">歪度7.60 は極端である</p>
-<p>一般に「歪んでいる」と言われるデータの歪度は1〜2程度。この母集団で<strong>中心極限定理が本当に効くのか</strong>が、今日の見どころになる。</p>
+<div class="admonition note">
+<p class="admonition-title">歪度 +7.60 をデータから確かめる</p>
+<p><a href="../03_variability/#4-68-95-997">第3回の歪度の式</a>を使う。各種の体重から母平均を引き、母標準偏差で割り、3乗して平均する。たとえばヒガシゴリラ（149,325 g）は平均より約10.94 SD 重い。1種だけで歪度に約 <span class="arithmatex">\(10.94^3/265\approx4.94\)</span> 寄与する。265種すべての寄与を合計した値が <span class="arithmatex">\(7.6013\ldots\)</span> である。</p>
 </div>
 <hr />
 <h2 id="3">3. 標本平均は、母平均の周りに散らばる<a class="headerlink" href="#3" title="Permanent link">&para;</a></h2>
-<p>母集団から n=30 種を無作為に選んで平均を取ると、母平均（5,881g）に近いがぴったりではない値が出る。数十gの種と数万gの種が混ざっているので、大型種が1種でも多く入れば標本平均は跳ね上がる。1回では運に左右される。</p>
+<p>1種を引くたびに元に戻し、独立に30回引く。<span class="arithmatex">\(i\)</span> 回目に選んだ種の体重を <span class="arithmatex">\(X_i\)</span> とすると、標本平均は <span class="arithmatex">\(\bar X=(X_1+\cdots+X_{30})/30\)</span> である。<strong>標本平均も確率変数である。</strong> 30回の抽出結果のそれぞれに、平均体重という一つの数値を対応させるからだ。大型種が多く入った回には平均が上がる。実際に引いて計算した一つの平均を <span class="arithmatex">\(\bar x\)</span> と書く。</p>
 <p>そこで <strong>n=30 の標本取り→平均を2000回くりかえす</strong>と、標本平均たちはどう散らばるか？</p>
 <ul>
 <li>標本平均の平均 ≈ <strong>5,850 g</strong>（母平均5,881とほぼ一致）</li>
@@ -1631,9 +1633,7 @@
 <div class="deriv">
 <div>
 <div class="arithmatex">\[ X_i \;=\; \text{「}\,i\ \text{回目に引いた値」} \]</div>
-<p>🔴 <strong><span class="arithmatex">\( X_i \)</span> は、特定の1個体ではない。</strong>「<span class="arithmatex">\( i \)</span> 回目に引く」という<strong>手続きのほう</strong>を指している。
-サイコロの「3回目の出目」と同じで、<strong>引く前は決まっておらず、やり直せば別の値になる</strong>。
-だから <span class="arithmatex">\( X_i \)</span> は確率変数であり、<strong>それ自体が分布を持っている。</strong></p>
+<p><span class="arithmatex">\(X_i\)</span> は抽出結果に「<span class="arithmatex">\(i\)</span> 回目に選ばれた種の体重」を対応させる確率変数である。添字 <span class="arithmatex">\(i\)</span> は抽出の順番を表す。</p>
 </div>
 <div>
 <div class="arithmatex">\[ \mathbb{E}[X_i]=\mu, \qquad \mathrm{Var}[X_i]=\sigma^2 \qquad (\text{どの } i \text{ でも同じ}) \]</div>
@@ -1649,12 +1649,10 @@
 </blockquote>
 </div>
 <div>
-<div class="arithmatex">\[ \mathbb{E}[X_i] \;=\; \sum_{k=1}^{N} x_k \cdot \Pr(X_i = x_k) \;=\; \sum_{k=1}^{N} x_k \cdot \frac{1}{N} \;=\; \frac{1}{N}\sum_{k=1}^{N} x_k \;=\; \mu \]</div>
+<div class="arithmatex">\[ \mathbb{E}[X_i]=\sum_{k=1}^{N}x_k\,\Pr(i\text{ 回目に種 }k\text{ を引く})=\sum_{k=1}^{N}x_k\frac{1}{N}=\mu \]</div>
 <p><strong>言葉ではなく、計算で確かめる。</strong>母集団が <span class="arithmatex">\( N \)</span> 個の値 <span class="arithmatex">\( x_1,\dots,x_N \)</span> からなるとする
 （この授業なら霊長類265種の体重、<span class="arithmatex">\( N=265 \)</span>）。</p>
-<p>無作為に1個引くとは、<strong>どの個体も確率 <span class="arithmatex">\( 1/N \)</span> で引かれる</strong>ということである。
-期待値の定義（値 × その確率を全部足す）に入れると、確率が全部 <span class="arithmatex">\( 1/N \)</span> で共通なので<strong>外に出せる</strong>。
-すると残るのは <span class="arithmatex">\( \frac{1}{N}\sum x_k \)</span> ―― <strong>これは母平均の定義そのもの</strong>である。</p>
+<p>各種を引く確率は <span class="arithmatex">\(1/N\)</span> なので、種ごとに「体重 × その種を引く確率」を足すと、ちょうど母平均になる。同じ体重の種があっても、各種の寄与は1回ずつこの和に入る。</p>
 <blockquote>
 <p><strong>「母集団の平均」と「1個引いたときの期待値」が同じ式になる。だから <span class="arithmatex">\( \mathbb{E}[X_i]=\mu \)</span>。</strong></p>
 </blockquote>

@@ -1388,7 +1388,12 @@ SDが0のデータは<strong>偏差値を計算できない</strong>（0で割�
 </div>
 <hr />
 <h2 id="4-68-95-997">4. 正規分布と 68-95-99.7 則<a class="headerlink" href="#4-68-95-997" title="Permanent link">&para;</a></h2>
-<p><strong>正規分布</strong>は、左右対称な釣鐘型をした<strong>特定の分布</strong>である（左右対称で釣鐘型ならどれも正規、ではない）。正規分布なら、ばらつきの目安が決まっている：</p>
+<p>正規分布の釣鐘型の曲線を、どう読めばよいだろうか。横軸には体重や得点などの値を取り、縦軸には<strong>確率密度</strong>を取る。密度は、その値の近くで、横幅1単位あたりにどれだけ確率が集まっているかを表す。</p>
+<p>たとえば体重のヒストグラムで、4〜6 kg の階級に全体の10%が入っていたとする。棒の<strong>面積</strong>がその割合を表すように描くには、高さを <span class="arithmatex">\(0.10/2=0.05\)</span>（1 kg あたり）にすればよい。幅の 2 kg を掛けると、もとの割合 <span class="arithmatex">\(0.10\)</span> に戻る。</p>
+<p>たとえば無作為に選んだ1頭の体重を表す量を <span class="arithmatex">\(X\)</span> と書こう。選んだ結果に数値を対応させるこのような関数を<strong>確率変数</strong>という。体重を連続的な値としてモデル化するときも、同じように面積を読む。<strong>確率密度関数</strong> <span class="arithmatex">\(f\)</span> は、値 <span class="arithmatex">\(x\)</span> に密度 <span class="arithmatex">\(f(x)\)</span> を対応させる関数である。密度はどこでも0以上で、曲線下の総面積は1。値が <span class="arithmatex">\(a\)</span> から <span class="arithmatex">\(b\)</span> の間に入る確率は、その区間の曲線下の面積である。</p>
+<div class="arithmatex">\[ \Pr(a\le X\le b)=\int_a^b f(x)\,dx \]</div>
+<p><img alt="標準正規分布の密度曲線。横軸の−1から1までを塗った面積は約68.27%。" src="../data/normal_density_interval.svg" /></p>
+<p>正規分布は、左右対称な釣鐘型の密度曲線をもつ分布の一つである。図の横軸は、平均からの距離を標準偏差何個分かで表した値 <span class="arithmatex">\(z\)</span> である。<strong>標準正規分布</strong>は平均0、標準偏差1の正規分布なので、横軸の <span class="arithmatex">\(-1\)</span> から <span class="arithmatex">\(1\)</span> までの面積を読むと、平均±1 SD に入る確率は約68%になる。表の「理論」はこのように求めた面積で、「実データ」は実際にその範囲に入った種の割合である。</p>
 <table>
 <thead>
 <tr>
@@ -1431,7 +1436,9 @@ SDが0のデータは<strong>偏差値を計算できない</strong>（0で割�
 <p><strong>ヒストグラムに穴があいている</strong>ということであり、これ自体が「この分布は釣鐘型ではない」
 という証拠になっている。釣鐘型なら、平均の近くから外へ向かって、途切れずになだらかに減っていくはずである。</p>
 </div>
-<p><strong>対数の目盛りにした体重</strong>は、この3つの区間についてはほぼこの通りになる（歪度 −0.40）。</p>
+<p><strong>歪度はどう計算するか。</strong> 体重を記録した <span class="arithmatex">\(N=265\)</span> 種をここでは母集団とする。種 <span class="arithmatex">\(k\)</span> の体重 <span class="arithmatex">\(x_k\)</span> から母平均 <span class="arithmatex">\(\mu\)</span> を引き、母標準偏差 <span class="arithmatex">\(\sigma\)</span> で割ると、平均から何 SD 離れているかを表す値 <span class="arithmatex">\(z_k\)</span> になる。<strong>その値を3乗して全種で平均したもの</strong>が歪度である。</p>
+<div class="arithmatex">\[ z_k=\frac{x_k-\mu}{\sigma},\qquad \gamma_1=\frac{1}{N}\sum_{k=1}^{N}z_k^3 \]</div>
+<p>3乗すると符号が残る。平均よりはるかに重い種は大きな正の値を寄与するので、生の体重の歪度は <strong>+7.60</strong> になる。対数体重で平均と標準偏差から計算し直すと <strong>−0.40</strong> になる。</p>
 <div class="admonition warning">
 <p class="admonition-title">「中央の区間が合う」＝「正規分布でよい」ではない</p>
 <p>今回そろったのは<strong>平均±1・2・3SDに入る割合</strong>であって、分布のすべてではない。
